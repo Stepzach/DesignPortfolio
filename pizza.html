@@ -12,10 +12,9 @@
   </head>
   <style>
   body {
-   background      : radial-gradient(#e5e5e5 2px, transparent 2px);
-   background-size : 41px 41px;
+  background-color: Black;
 }
-body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif, color:white;}
 body {font-size:16px;}
 .w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
 .w3-half img:hover{opacity:1}
@@ -31,15 +30,24 @@ body {font-size:16px;}
     div.center {
   text-align: center;
 }
+    .button {
+  background-color: red;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
 </style>
   
   
     <div.a><h1 class="w3-jumbo"><divdiv><b>Circular pizza box</b></divdiv></h1></div.a>
   
 
-  <div style="text-align:center"> 
-  <button id="vidbutton">Open box</button> 
-  <br><br>
     <div class="center">
   <video id="myvid" muted preload="metadata" width="90%">
     <source src="IMG_2216.mp4#t=0.1" type="video/mp4">
@@ -48,6 +56,9 @@ body {font-size:16px;}
     Your browser does not support the video tag. I suggest you upgrade your browser .
 </video>
     </div>
+  <div style="text-align:center"> 
+  <button id="vidbutton">Open box</button> 
+  <br><br>
   </div> 
 <script> 
 var ppbutton = document.getElementById("vidbutton");
