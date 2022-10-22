@@ -37,7 +37,7 @@ body {font-size:16px;}
   <div style="text-align:center"> 
   <button id="vidbutton">Open/close box</button> 
   <br><br>
-  <video id="myvid" muted class="fillWidth" preload="metadata">
+  <video id="myvid" muted preload="metadata">
     <source src="IMG_2216.mp4#t=0,2.7" type="video/mp4" width="1024" height="768">
     <source src="IMG_2216.ogv#t=0,2.7" type="video/ogv" width="1024" height="768">
     <source src="IMG_2216.webm#t=0,2.7" type="video/webm" width="1024" height="768">
@@ -46,7 +46,7 @@ body {font-size:16px;}
   </div> 
 <script> 
 var ppbutton = document.getElementById("vidbutton");
-ppbutton.addEventListener("click", playPause);
+ppbutton.addEventListener("click", play);
 myVideo = document.getElementById("myvid");
 function playPause() { 
     if (myVideo.paused) {
