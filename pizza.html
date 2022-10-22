@@ -54,9 +54,18 @@ body {font-size:16px;}
   margin-bottom:5px;
   position: absolute;
 } 
-    video {
-  width: 30%;
-  height: auto;
+    
+    .grid-container {
+  display: grid;
+  grid-template-columns: 30% auto;
+  grid-gap: 10px;
+  padding: 10px;
+}
+​
+.grid-container > div {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
 }
 </style>
   
@@ -68,20 +77,20 @@ body {font-size:16px;}
   <img src="AFD1231D-FB82-4B26-8866-16ECCAC7F718.jpeg" alt="3" style="width:100%">
   <img src="A4227628-040F-463A-9A4B-528AEEA8F747.jpeg" alt="4" style="width:100%">
   
-  
-     <div class="leftside"> <br><br>
+  <div class="grid-container">
+     <div class="item1">
     <video width="400"  controls muted preload="metadata">
-    <source src="FullSizeRender.mp4#t=0.0001" type="video/mp4" style="width:30%"> 
+    <source src="FullSizeRender.mp4#t=0.0001" type="video/mp4" style="width:100%"> 
       Your browser does not support the video tag.
        </video>
   </div>
-  <div class="rightside">
-    <video width="400"  controls muted preload="metadata">
-    <source src="IMG_2226.mp4#t=0.0001" type="video/mp4" style="width:50%"> 
+<div class="item2">
+    <video width="400"  controls preload="metadata">
+    <source src="IMG_2226.mp4#t=0.0001" type="video/mp4" style="width:100%"> 
       Your browser does not support the video tag.
        </video>
   </div>
-  
+  </div>
   
  <!-- .button {
       opacity: 0.6;
@@ -113,6 +122,12 @@ body {font-size:16px;}
   
 
 <!-- 
+
+video {
+  width: 30%;
+  height: auto;
+} 
+
 var ppbutton = document.getElementById("vidbutton");
 ppbutton.addEventListener("click", playPause);
 myVideo = document.getElementById("myvid");
