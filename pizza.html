@@ -32,7 +32,7 @@ body {font-size:16px;}
   
   <script> 
 var vid = document.getElementById("myVideo"); 
-​
+
 function playVid() { 
   vid.play(); 
 } 
@@ -41,11 +41,13 @@ function playVid() {
     <div.a><h1 class="w3-jumbo"><divdiv><b>Circular pizza box</b></divdiv></h1></div.a>
   
   <button onclick="playVid()" type="button">Open box</button><br> 
-​
-<video id="myVideo" width="320" height="176">
+
+<video id="myVideo" width="320" height="176" muted>
   <source src="IMG_2214.mp4" type="video/mp4">
 <source src="trim.E6C406F6-7B63-44CC-AA1D-963DD2B51066.ogg" type="video/ogg">
+  Your browser does not support the video tag.
 </video>
+  
   <video width="320" height="240" autoplay muted>
   <source src="trim.E6C406F6-7B63-44CC-AA1D-963DD2B51066.ogg" type="video/ogg">
   <source src="IMG_2214.mp4" type="video/mp4">
