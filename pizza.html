@@ -63,8 +63,8 @@ body {font-size:16px;}
   
   
      <div class="leftside"> <br><br>
-       <button class="button" id="vidbutton"><img src="287A1CD5-B587-4E07-8D4B-417AA981DB6D.jpeg" style="width:30%"></button>
-    <video width="400" id="myvid" muted preload="metadata">
+       <button class="button" onclick="playPause()"><img src="287A1CD5-B587-4E07-8D4B-417AA981DB6D.jpeg" style="width:30%"></button>
+    <video width="400" id="video1" muted preload="metadata">
     <source src="FullSizeRender.mp4#t=0.0001" type="video/mp4" style="width:30%"> 
       Your browser does not support the video tag.
        </video>
@@ -100,13 +100,25 @@ body {font-size:16px;}
 
   
 <script> 
+  var myVideo = document.getElementById("video1"); 
+​
+function playPause() { 
+  if (myVideo.paused) 
+    myVideo.play(); 
+  else 
+    myVideo.pause(); 
+} 
+​
+
+
+</script> 
+  
+<!-- 
 var ppbutton = document.getElementById("vidbutton");
 ppbutton.addEventListener("click", playPause);
 myVideo = document.getElementById("myvid");
 
-} 
-</script> 
-<!-- function playPause() { 
+function playPause() { 
     if (myVideo.paused) {
         myVideo.play();
         ppbutton.innerHTML = "";
@@ -114,4 +126,4 @@ myVideo = document.getElementById("myvid");
     else  {
         myVideo.pause(); 
         ppbutton.innerHTML = "";
-        } --!>
+        } } --!>
