@@ -31,8 +31,7 @@ body {font-size:16px;}
   text-align: center;
 }
    .leftside {
-    margin-left: 5%;
-      width: 30%;
+    margin-left: 2.5%;
       
 }
     div.box {
@@ -45,11 +44,13 @@ body {font-size:16px;}
   border: none;
   text-decoration: none;
   display: inline-block;
-  margin: 4px 2px;
   cursor: pointer;
   
 } 
-    
+    video {
+  width: 30%;
+  height: auto;
+}
 </style>
   
   
@@ -61,9 +62,9 @@ body {font-size:16px;}
   <img src="A4227628-040F-463A-9A4B-528AEEA8F747.jpeg" alt="4" style="width:100%">
   
   
-     <div class="leftside">
+     <div class="leftside"> <br><br>
        <button class="button" id="vidbutton"><img src="287A1CD5-B587-4E07-8D4B-417AA981DB6D.jpeg" style="width:100%"></button>
-    <video id="myvid" muted preload="metadata">
+    <video width="400" id="myvid" muted preload="metadata">
     <source src="FullSizeRender.mp4#t=0.0001" type="video/mp4" style="width:30%"> 
       Your browser does not support the video tag.
        </video>
