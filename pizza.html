@@ -34,11 +34,28 @@ body {font-size:16px;}
     <div.a><h1 class="w3-jumbo"><divdiv><b>Circular pizza box</b></divdiv></h1></div.a>
   
 
-  
+  <div style="text-align:center"> 
+  <button id="vidbutton">Play</button> 
+  <br><br>
   <video muted class="fillWidth" controls="controls" preload="metadata">
     <source src="IMG_2214.mp4" type="video/mp4" width="1024" height="768">
     <source src="IMG_2214.ogv" type="video/ogv" width="1024" height="768">
     <source src="IMG_2214.webm" type="video/webm" width="1024" height="768">
     Your browser does not support the video tag. I suggest you upgrade your browser #t=1,20.
 </video>
-  
+  </div> 
+<script> 
+var ppbutton = document.getElementById("vidbutton");
+ppbutton.addEventListener("click", playPause);
+myVideo = document.getElementById("myvid");
+function playPause() { 
+    if (myVideo.paused) {
+        myVideo.play();
+        ppbutton.innerHTML = "Pause";
+        }
+    else  {
+        myVideo.pause(); 
+        ppbutton.innerHTML = "Play";
+        }
+} 
+</script> 
