@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" href="ZS LOGO.png">
+<link rel="shortcut icon" type="image/png" href="ZS LOGO.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Casual Ballerz</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<style>
+ 
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+body {font-size:16px;}
+.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+.w3-half img:hover{opacity:1}
+  divw {    display: table;
+    padding:5px; background-color:white;
+  }
+    divdiv {    display: table;
+     padding-top:45px; ;
+  }
+  div.a {
+  text-align: center;
+}
+  a {
+  text-decoration: none; /* no underline */
+}
+</style>
+</head>
+<body>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-black w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+  <div class="w3-container">
+    <h3 class="w3-padding-64"><a href="#" onclick="w3_close()" class="w3-hover-white" style="text-decoration: none"><b>Zach<br>Stephens</b></a></h3>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#Home" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
+    <a href="#About" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">About us</a> 
+    <a href="#Elite" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Elite training squad</a> 
+    <a href="#Book" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Book sessions</a> 
+    <a href="#Kit" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Get your kit</a> 
+    <a href="#Footage" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Purchase footage</a> 
+    <a href="#Support" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Support us</a> 
+    <a href="#More" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">More</a> 
+  </div>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-black w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-black w3-margin-right" onclick="w3_open()">☰</a>
+  <span>Casual Ballerz</span>
+</header>
+  
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+  
+    <!-- Header: Design portfolio -->
+  <h1 class="w3-jumbo"><divdiv><b>Welcome to Casual Ballerz</b></divdiv></h1>
+  <divw><p>Blablabla. example text section ... blablabla</divw>
+  
+  <hr style="width:100%;border:3px solid yellow" class="w3-round">
+  
+  <!-- About us -->
+  <div class="a">
+  <div class="w3-container" style="margin-top:75px" id="About">
+    <h1 class="w3-xxxlarge w3-text-red"><b>About us:</b></h1>
+    
+     <divw><p>Blablabla. Lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure</p>
+    </divw> </div>
+      
+ <div class="w3-row-padding w3-grayscale">
+    <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-light-grey">
+         <img src="01FEB0E6-200E-47FA-A737-2615110317C3.jpeg" alt="chair" style="width:100%">
+        <div class="w3-container">
+          <h3>Respect for others</h3>
+        </div>
+      </div>
+    </div>
+   
+    <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-light-grey">
+        <img src="01FEB0E6-200E-47FA-A737-2615110317C3.jpeg" alt="2" style="width:100%">
+        <div class="w3-container">
+          <h3>Goal setting</h3>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-light-grey">
+        <img src="01FEB0E6-200E-47FA-A737-2615110317C3.jpeg" alt="3" style="width:100%">
+        <div class="w3-container">
+          <h3>Building a strong mind</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal for full size images on click-->
+  <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img01" class="w3-image">
+      <p id="caption"></p>
+    </div>
+  </div>
+    
+  <!--
+    
+<hr style="width:100%;border:3px solid red" class="w3-round"> 
+    
+  <!-- CAD -->
+  <div class="w3-container" id="CAD" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Computer Assisted Modelling:</b></h1>
+
+     <divw><p>Blablabla. Lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure</p>
+    </divw> </div>
+
+ <div class="w3-row-padding w3-grayscale">
+   <a href="sink.html" target="_blank"> <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-light-grey">
+         <img src="14036C5B-9CA0-4CF4-8E8E-17D275D21789.jpeg" alt="tap" style="width:100%">
+        <div class="w3-container">
+          <h3>Rotating tap</h3>
+          <p class="w3-opacity">for bathroom sink</p>
+          <p>180 degree rotation for various purposes.</p>
+        </div>
+      </div>
+    </div>
+    </a>
+    <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-light-grey">
+        <img src="01FEB0E6-200E-47FA-A737-2615110317C3.jpeg" alt="2" style="width:100%">
+        <div class="w3-container">
+          <h3>Profile 2</h3>
+          <p class="w3-opacity">blabla</p>
+          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-light-grey">
+        <img src="01FEB0E6-200E-47FA-A737-2615110317C3.jpeg" alt="watch" style="width:100%">
+        <div class="w3-container">
+          <h3>Watch Model</h3>
+          <p class="w3-opacity">Inspired by Rolex</p>
+          <p>I decided to create a 3D watch, using a photo of the 'Oyster Perpetual' Rolex as reference, to my practice my modelling skills.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+    <hr style="width:100%;border:3px solid red" class="w3-round">
+  
+  <!-- Projects -->
+  <div class="w3-container" id="Projects" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Projects:</b></h1>
+    
+    <divw><p>Blablabla. Lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure</p>
+   </divw> </div>
+
+ <div class="w3-row-padding w3-grayscale">
+       <a href="pizza.html" target="_blank"> <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-light-grey">
+         <img src="6F93D631-F4B0-4CAA-99B5-44F5CA6DEDD5.jpeg" alt="pizza" style="width:100%">
+        <div class="w3-container">
+          <h3>Circular pizza box</h3>
+          <p class="w3-opacity">Cardboard prototyping</p>
+          <p>Exploring different designs for a circular box and deciding wether it provides significant improvements to traditional pizza boxes.</p>
+        </div>
+      </div>
+    </div>
+   </a>
+    <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-light-grey">
+        <img src="01FEB0E6-200E-47FA-A737-2615110317C3.jpeg" alt="2" style="width:100%">
+        <div class="w3-container">
+          <h3>Profile 2</h3>
+          <p class="w3-opacity">blabla</p>
+          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-light-grey">
+        <img src="01FEB0E6-200E-47FA-A737-2615110317C3.jpeg" alt="3" style="width:100%">
+        <div class="w3-container">
+          <h3>Profile 3</h3>
+          <p class="w3-opacity">blabla</p>
+          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+    <hr style="width:100%;border:3px solid red" class="w3-round">
+  
+  <!-- References -->
+  <div class="w3-container" id="References" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>References:</b></h1>
+
+    <divw><p>Blablabla. Lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure</p>
+   </divw> </div>
+
+ <div class="w3-row-padding w3-grayscale">
+    <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-light-grey">
+         <img src="A48C32DF-7A89-469F-BFD7-6E456BA1DA23.jpeg" alt="Ive" style="width:100%">
+        <div class="w3-container">
+          <h3>Jonathan Ive</h3>
+          <p class="w3-opacity">British designer</p>
+          <p>Ive was the chief design officer at Apple Inc from 1997 until 2019.</p>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-light-grey">
+        <img src="01FEB0E6-200E-47FA-A737-2615110317C3.jpeg" alt="2" style="width:100%">
+        <div class="w3-container">
+          <h3>Profile 2</h3>
+          <p class="w3-opacity">blabla</p>
+          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-light-grey">
+        <img src="EA12C34D-F119-4E0D-B002-BABD0AF6804D.jpeg" alt="Naoto" style="width:100%">
+        <div class="w3-container">
+          <h3>Naoto Fukasawa</h3>
+          <p class="w3-opacity">Japanese designer, author, and educator</p>
+          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+    -->
+
+  </div>
+
+<!-- End page content -->
+</div>
+
+<!-- Footer -->
+<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Contact me: Zachstep05@gmail.com</p></div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+</script>
+
+</body>
+</html>
