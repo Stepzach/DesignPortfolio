@@ -1,51 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<link rel="icon" type="image/png" href="ZS LOGO.png">
+<link rel="shortcut icon" type="image/png" href="ZS LOGO.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Casual Ballerz</title>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <style>
-* {
-  box-sizing: border-box;
+ 
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+body {font-size:16px;}
+.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+.w3-half img:hover{opacity:1}
+  divw {    display: table;
+    padding:5px; background-color:white;
+  }
+    divdiv {    display: table;
+     padding-top:45px; ;
+  }
+  div.a {
+  text-align: center;
 }
-​
-/* Create two unequal columns that floats next to each other */
-.column {
-  float: left;
-  padding: 10px;
-  height: 400px; /* Should be removed. Only for demonstration */
-}
-​
-.left {
-  width: 25%;
-}
-​
-.right {
-  width: 75%;
-}
-​
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
+  a {
+  text-decoration: none; /* no underline */
 }
 </style>
 </head>
 <body>
-​
-<h2>LaLiga livestream</h2>
-​
-<div class="row">
-  <div class="column left" style="background-color:#aaa;">
-    
-    <p>Live chat:</p>
-<script id="cid0020000328155063688" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%; height: 85%;">{"handle":"zachfoot","arch":"js","styles":{"a":"C8C8C8","b":100,"c":"000000","d":"000000","k":"C8C8C8","l":"C8C8C8","m":"C8C8C8","p":"10","q":"C8C8C8","r":100,"t":0,"ab":false,"usricon":0,"surl":0,"allowpm":0,"cnrs":"0.35"}}</script>
-​
-​
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-black w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+  <div class="w3-container">
+    <h3 class="w3-padding-64"><a href="#" onclick="w3_close()" class="w3-hover-white" style="text-decoration: none"><b> <img src="IMG_2243.png" alt="chair" style="width:80%"></b></a></h3>
   </div>
-  <div class="column right" style="background-color:#bbb;">
-     <iframe frameborder="0" width="100%" height="100%" src="https://techclips.net/clip/s3.html" id="stream1" scrolling="no" allowfullscreen>Your Browser Do not Support Iframe</iframe>
+  <div class="w3-bar-block">
+<p>Live chat:</p>
+<script id="cid0020000328155063688" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%; height: 350px;">{"handle":"zachfoot","arch":"js","styles":{"a":"C8C8C8","b":100,"c":"000000","d":"000000","k":"C8C8C8","l":"C8C8C8","m":"C8C8C8","p":"10","q":"C8C8C8","r":100,"t":0,"ab":false,"usricon":0,"surl":0,"allowpm":0,"cnrs":"0.35"}}</script>
   </div>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-black w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-black w3-margin-right" onclick="w3_open()">☰</a>
+  <span>LaLiga Livestream</span>
+</header>
+  
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+  
+    <!-- Header: Design portfolio -->
+<iframe frameborder="0" width="500vw" height="400vw" src="https://techclips.net/clip/s3.html" id="stream1" scrolling="no" allowfullscreen>Your Browser Do not Support Iframe</iframe>
+  
+
+
+<!-- End page content -->
 </div>
-​
+
+<!-- Footer -->
+<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right"></p></div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+</script>
+
 </body>
 </html>
