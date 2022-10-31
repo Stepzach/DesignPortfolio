@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" href="">
+<link rel="shortcut icon" type="image/png" href="">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Livestream</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+ <body style="background-color: #222222;">
+<style>
+ .child {
+  margin: 0 auto;
+}
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif; color: #bbbbbb; }
+body {font-size:16px;}
+.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+.w3-half img:hover{opacity:1}
+  divw {    display: table;
+    padding:5px; background-color: #444444;
+  }
+    divdiv {    display: table;
+     padding-top:45px; ;
+  }
+ 
+ /* Create three equal columns that floats next to each other */
+.column1 {
+  float: left;
+  width: 10%;
+  padding: 0px;
+  margin-right: 5%;
+  height: ; /* Should be removed. Only for demonstration */
+}
+​
+/* Clear floats after the columns */
+.row1:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+​
+ h3 { 
+  text-align: center;
+ }
+ 
+a {
+text-align: center;
+  color: #bbbbbb;
+  text-decoration: none; /* no underline */
+}
+
+</style>
+</head>
+<body>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-dark-grey w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:400px;font-weight:bold;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+  <div class="w3-container">
+  </div>
+  <div class="w3-bar-block">
+<p>Live chat:<br><br></p>
+<script id="cid0020000328166702774" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 600px;">{"handle":"bballzach","arch":"js","styles":{"a":"383838","c":"000000","d":"000000","f":0,"i":0,"k":"383838","l":"383838","m":"383838","n":"FFFFFF","p":"10","q":"383838","t":0,"ab":false,"usricon":0,"surl":0,"allowpm":0,"cnrs":"0.35"}}</script>
+ </div>
+</nav>
+
+<!-- Top menu on small screens -->
+ 
+  
+<!-- Overlay effect when opening sidebar on small screens -->
+
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:440px;margin-right:40px">
+  
+    <!-- Header: Design portfolio -->
+ <h1><br>Football Livestream 1<br></h1>
+
+​
+​
+<div class="row1">
+  <div class="column1" style="background-color:#333333;">
+    <a href="bball1"><h3>Link 1</h3></a>
+  </div>
+  <div class="column1" style="background-color:#333333;">
+<a href="bball2"><h3>Link 2</h3></a>
+  </div>
+ 
+  <div class="column1" style="background-color:#333333;">
+<a href="bball3"><h3>Link 3</h3></a>
+  </div>
+</div>
+ <p><br><br></p>
+ 
+<div class="child"><iframe frameborder="0" width="100%" height="550px" src="https://techclips.net/clip/s1.html" id="stream1" scrolling="no" allowfullscreen>Your Browser Do not Support Iframe</iframe>
+ </div> <br>
+ 
+ <div class="w3-hide-large"><h2><br>Live Chat</h2><script id="cid0020000328166702774" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 400px;">{"handle":"bballzach","arch":"js","styles":{"a":"383838","c":"000000","d":"000000","f":0,"i":0,"k":"383838","l":"383838","m":"383838","n":"FFFFFF","p":"10","q":"383838","t":0,"ab":false,"usricon":0,"surl":0,"allowpm":0,"cnrs":"0.35"}}</script>
+ </div>
+
+<!-- End page content -->
+</div>
+
+<!-- Footer -->
+
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+</script>
+
+</body>
+</html>
