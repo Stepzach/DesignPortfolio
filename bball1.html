@@ -23,12 +23,29 @@ body {font-size:16px;}
     divdiv {    display: table;
      padding-top:45px; ;
   }
-  div.a {
-  text-align: center;
+ 
+ /* Create three equal columns that floats next to each other */
+.column1 {
+  float: left;
+  width: 13%;
+  padding: px;
+  margin-right: 5%;
+  height: ; /* Should be removed. Only for demonstration */
 }
-  a {
+​
+/* Clear floats after the columns */
+.row1:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+​
+a {
+text-align: center;
+  color: black;
   text-decoration: none; /* no underline */
 }
+  <body style="background-color:darkgrey;">
 </style>
 </head>
 <body>
@@ -54,31 +71,8 @@ body {font-size:16px;}
 <div class="w3-main" style="margin-left:440px;margin-right:40px">
   
     <!-- Header: Design portfolio -->
- <h1><br>NBA Livestream 1<br><br><br></h1>
- <style>
- /* Create three equal columns that floats next to each other */
-.column1 {
-  float: left;
-  width: 13%;
-  padding: px;
-  margin-right: 5%;
-  height: ; /* Should be removed. Only for demonstration */
-}
-​
-/* Clear floats after the columns */
-.row1:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-​
-a {
-text-align: center;
-  color: Black;
-  text-decoration: none; /* no underline */
-}
-  <body style="background-color:darkgrey;">
-</style>
+ <h1><br>NBA Livestream 1<br><br></h1>
+
 ​
 ​
 <div class="row1">
