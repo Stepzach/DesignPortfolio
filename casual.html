@@ -69,144 +69,164 @@ There are various opportunities to progress in and outside of football: professi
   
  
 <!-- leave this: image carousel with styling and script! -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></script>
+ 
   <style>
-  body1 {
-  margin: 10%;
-   margin-left: auto;
-   margin-right: auto;
-}
-
-#slider {
+* {box-sizing: border-box;}
+body {font-family: Verdana, sans-serif;}
+.mySlides {display: none;}
+img {vertical-align: middle;}
+​
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
   position: relative;
-  width: 64vw;
-  height: 36vw;
- 
-  overflow: hidden;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  margin: auto;
 }
-#slider ul {
-  position: relative;
-  list-style: none;
-  height: 100%;
-  width: 10000%;
-  padding: 0;
-  margin: 0;
-  transition: all 750ms ease;
-  left: 0;
-}
-#slider ul li {
-  position: relative;
-  height: 100%;
- 
-  float: left;
-}
-#slider ul li img{
-  width: 64vw;
-  height: 36vw;
-}
- 
-#slider #prev, #slider #next {
-  width: 50px;
-  line-height: 50px;
-  border-radius: 50%;
-  font-size: 2rem;
-  text-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-  text-align: center;
-  color: white;
-  text-decoration: none;
+​
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  transition: all 150ms ease;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
 }
-#slider #prev:hover, #slider #next:hover {
-  background-color: rgba(0, 0, 0, 0.5);
-  text-shadow: 0;
+​
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
 }
-#slider #prev {
-  left: 10px;
+​
+/* The dots/bullets/indicators */
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
 }
-#slider #next {
-  right: 10px;
+​
+.active {
+  background-color: #717171;
 }
-  </style>
-<body1>
-  <div id="slider">
-    <ul id="slideWrap"> 
+​
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+​
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+​
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
+</style>
+  
+<div class="slideshow-container">
+​
+<div class="mySlides fade">
+  <div class="numbertext">1 / 8</div>
+  <img src="329AD680-C64E-497B-BCB7-535104BBD2E0.jpeg" style="width:100%">
+  <div class="text">Caption Text</div>
+</div>
+​
+<div class="mySlides fade">
+  <div class="numbertext">2 / 8</div>
+  <img src="F46CDA59-A90D-4BE1-8E9A-BE9520D87D27.jpeg" style="width:100%">
+  <div class="text">Caption Two</div>
+</div>
+​
+<div class="mySlides fade">
+  <div class="numbertext">3 / 8</div>
+  <img src="61DD68D2-61ED-4A35-9462-AF5294A6C0FA.jpeg" style="width:100%">
+  <div class="text">Caption Three</div>
+</div>
+ <div class="mySlides fade">
+  <div class="numbertext">4 / 8</div>
+  <img src="6F5C26B7-5229-4C2E-B71F-B5ADDD434B10.jpeg" style="width:100%">
+  <div class="text">Caption Three</div>
+</div>
+ <div class="mySlides fade">
+  <div class="numbertext">5 / 8</div>
+  <img src="5852FE94-AD12-4014-97C7-9676095BC195.jpeg" style="width:100%">
+  <div class="text">Caption Three</div>
+</div>
+ <div class="mySlides fade">
+  <div class="numbertext">6 / 8</div>
+  <img src="EA6C167F-ABA5-4724-993D-E93D569C21E5.jpeg" style="width:100%">
+  <div class="text">Caption Three</div>
+</div>
+ <div class="mySlides fade">
+  <div class="numbertext">7 / 8</div>
+  <img src="AF470CB1-4237-4DBE-A3FC-18B00B0E96B7.jpeg" style="width:100%">
+  <div class="text">Caption Three</div>
+</div>
+ <div class="mySlides fade">
+  <div class="numbertext">8 / 8</div>
+  <img src="CA9F224F-BA42-4C62-9ED8-698DEEFFDFC9.jpeg" style="width:100%">
+  <div class="text">Caption Three</div>
+</div>
+​
+</div>
+<br>
+​
+<div style="text-align:center">
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+   <span class="dot"></span> 
+  <span class="dot"></span> 
+   <span class="dot"></span> 
+  <span class="dot"></span> 
+   <span class="dot"></span> 
+</div>
+ 
+ <script>
+let slideIndex = 0;
+showSlides();
+​
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+</script>
+ 
+ 
       <li><img src="329AD680-C64E-497B-BCB7-535104BBD2E0.jpeg" style="height:" alt=""></li>
       <li><img src="F46CDA59-A90D-4BE1-8E9A-BE9520D87D27.jpeg" style="height:" alt=""></li>
       <li><img src="61DD68D2-61ED-4A35-9462-AF5294A6C0FA.jpeg" alt=""></li>
-      <li><img src="6F5C26B7-5229-4C2E-B71F-B5ADDD434B10.jpeg" alt=""></li>
-      <li><img src="5852FE94-AD12-4014-97C7-9676095BC195.jpeg" alt=""></li>
-     <li><img src="EA6C167F-ABA5-4724-993D-E93D569C21E5.jpeg" alt=""></li>
-     <li><img src="AF470CB1-4237-4DBE-A3FC-18B00B0E96B7.jpeg" alt=""></li>
+      <li><img src="" alt=""></li>
+      <li><img src="" alt=""></li>
+     <li><img src="" alt=""></li>
+     <li><img src="" alt=""></li>
      <li><img src="CA9F224F-BA42-4C62-9ED8-698DEEFFDFC9.jpeg" alt=""></li>
-    </ul>
-    <a id="prev" href="#">&#8810;</a>
-    <a id="next" href="#">&#8811;</a>
-  </div>
- </body1>
-
-  <script>
-    var responsiveSlider = function() {
-
-var slider = document.getElementById("slider");
-var sliderWidth = slider.offsetWidth;
-var slideList = document.getElementById("slideWrap");
-var count = 1;
-var items = slideList.querySelectorAll("li").length;
-var prev = document.getElementById("prev");
-var next = document.getElementById("next");
-
-window.addEventListener('resize', function() {
-  sliderWidth = slider.offsetWidth;
-});
-
-var prevSlide = function() {
-  if(count > 1) {
-    count = count - 2;
-    slideList.style.left = "-" + count * sliderWidth + "px";
-    count++;
-  }
-  else if(count = 1) {
-    count = items - 1;
-    slideList.style.left = "-" + count * sliderWidth + "px";
-    count++;
-  }
-};
-
-var nextSlide = function() {
-  if(count < items) {
-    slideList.style.left = "-" + count * sliderWidth + "px";
-    count++;
-  }
-  else if(count = items) {
-    slideList.style.left = "0px";
-    count = 1;
-  }
-};
-
-next.addEventListener("click", function() {
-  nextSlide();
-});
-
-prev.addEventListener("click", function() {
-  prevSlide();
-});
-
-setInterval(function() {
-  nextSlide()
-}, 5000);
-
-};
-
-window.onload = function() {
-responsiveSlider();  
-}
 
 
-  </script>
  
  
  
