@@ -7,6 +7,16 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
     <style>
+        @media (max-width: 767px) {
+        .hidden-mobile {
+          display: none;
+        }
+      }
+        @media (min-width: 768px) {
+        .hidden-mobile {
+          display: none;
+        }
+      }
     body {
   background-color: #fe6f70;
 }
@@ -38,8 +48,8 @@
 ​
     <div class="header" id="myHeader">
 <div class="w3-display-container" style="margin-bottom:5px">
-      <div class="w3-hide-small"><img src="MASHHEADER.png" style="width:100%" class="center"></div>
-          <div class="w3-hide-big"><img src="MASHHEADSMALL.png" style="width:100%" class="center"></div>
+      <div class="hidden-web"><img src="MASHHEADER.png" style="width:100%" class="center"></div>
+          <div class="hidden-mobile"><img src="MASHHEADSMALL.png" style="width:100%" class="center"></div>
 
    
  
