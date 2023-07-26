@@ -1,36 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<link rel="icon" type="image/png" href="ZS LOGO.png">
-<link rel="shortcut icon" type="image/png" href="ZS LOGO.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>Rotating tap</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-  </head>
+  <title>London Map</title>
   <style>
-  body {
-   background      : radial-gradient(#e5e5e5 2px, transparent 2px);
-   background-size : 41px 41px;
-}
-body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
-body {font-size:16px;}
-.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
-.w3-half img:hover{opacity:1}
-  divw {    display: table;
-    padding:5px; background-color:white;
-  }
-    divdiv {    display: table;
-     padding-top:45px; ;
-  }
-  div.a {
-  text-align: center;
-}
-</style>
-    <div.a><h1 class="w3-jumbo"><divdiv><b>Rotating tap</b></divdiv></h1></div.a>
-  <img src="653DF980-C19D-475B-9ADF-CC7093AB43A5.jpeg" alt="1" style="width:100%">
-  <img src="3BF85767-59B2-4572-BD93-42BD26AD62C5.jpeg" alt="2" style="width:100%">
-  <img src="E69FFDD4-DF1E-4B00-B285-84854F799CF7.jpeg" alt="3" style="width:100%">
-  <img src="D15F3C16-96BE-4457-BA8B-F44F9E2A6503.jpeg" alt="4" style="width:100%">
+    /* Add your CSS styles here */
+    #map {
+      width: 100%;
+      height: 500px;
+    }
+    .pin {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    #sidebar {
+      width: 300px;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div id="sidebar">
+    <h2>Filter Locations</h2>
+    <label>
+      <input type="checkbox" class="filter" value="location1" checked>
+      Location 1
+    </label>
+    <label>
+      <input type="checkbox" class="filter" value="location2" checked>
+      Location 2
+    </label>
+    <!-- Add more location filters here as needed -->
+  </div>
+  <div id="map"></div>
+
+  <script>
+    // Add your JavaScript code here
+  </script>
+</body>
+</html>
+<!-- ...Previous HTML code... -->
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Sample data for map pins (longitude, latitude, name, and description)
+    const pinsData = [
+      { lat: 51.5074, lng: -0.1278, name: "Location 1", description: "Description for Location 1." },
+      { lat: 51.5128, lng: -0.0918, name: "Location 2", description: "Description for Location 2." },
+      // Add more pins data here
+    ];
+
+    let map;
+    let markers = [];
+
+    // Initialize the map
+    function initMap() {
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 51.5074, lng: -0.1278 }, // London coordinates
+        zoom: 13,
+      });
+
+      // Add pins to the map
+      pinsData.forEach((pinData) => {
+        const marker = new google.maps.Marker({
+          position: { lat: pinData.lat, lng: pinData.lng },
+          map,
+          title: pinData.name,
+        });
+
+        // Add event listener to show a summary when clicking on a pin
+        marker.addListener("click", () => {
+          showSummary(pinData);
+        });
+
+        markers.push(marker);
+      });
+
+      // Add event listeners for the filters
+      const filters = document.querySelectorAll(".filter");
+      filters.forEach((filter) => {
+        filter.addEventListener("change", updateMarkers);
+      });
+
+      // Show all markers initially
+      updateMarkers();
+    }
+
+    // Function to update the markers on the map based on selected filters
+    function updateMarkers() {
+      const selectedFilters = document.querySelectorAll(".filter:checked");
+      const selectedFilterValues = Array.from(selectedFilters).map((filter) => filter.value);
+
+      markers.forEach((marker) => {
+        const isVisible = selectedFilterValues.includes(marker.getTitle());
+        marker.setVisible(isVisible);
+      });
+    }
+
+    // Function to display the summary of a location
+    function showSummary(pinData) {
+      alert(`Location: ${pinData.name}\nDescription: ${pinData.description}`);
+    }
+  });
+
+  // Google Maps API script
+  // Make sure to replace YOUR_API_KEY with your actual Google Maps API key
+  // This script will load the Google Maps library and trigger the initMap() function
+  // when the DOM content is loaded.
+  (function () {
+    const script = document.createElement("script");
+    script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap`;
+    script.defer = true;
+    document.head.appendChild(script);
+  })();
+</script>
+</body>
+</html>
