@@ -1,134 +1,174 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<link rel="icon" type="image/png" href="">
-<link rel="shortcut icon" type="image/png" href="">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>Livestream</title>
-<meta charset="UTF-8">
+<html>
+<title>Toutes les Actus</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
- <body style="background-color: #222222;">
+<link rel="stylesheet" href="../lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 <style>
- .child {
-  margin: 0 auto;
-}
-body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif; color: #bbbbbb; }
-body {font-size:16px;}
-.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
-.w3-half img:hover{opacity:1}
-  divw {    display: table;
-    padding:5px; background-color: #444444;
-  }
-    divdiv {    display: table;
-     padding-top:45px; ;
-  }
- 
- /* Create three equal columns that floats next to each other */
-.column1 {
-  float: left;
-  width: 10%;
-  padding: 0px;
-  margin-right: 5%;
-  height: ; /* Should be removed. Only for demonstration */
-}
-​
-/* Clear floats after the columns */
-.row1:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-​
- h3 { 
-  text-align: center;
- }
- 
-a {
-text-align: center;
-  color: #bbbbbb;
-  text-decoration: none; /* no underline */
-}
-
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+.w3-sidenav a,.w3-sidenav h4 {font-weight:bold}
 </style>
-</head>
-<body>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
 
-<!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-dark-grey w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:400px;font-weight:bold;" id="mySidebar"><br>
-  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+<!-- Sidenav/menu -->
+<nav class="w3-sidenav w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;"><br>
   <div class="w3-container">
+    <a href="tryit.asp-filename=tryw3css_templates_portfolio&stacked=h.html#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <img src="img_avatar_g2.jpg" style="width:45%;" class="w3-round"><br><br>
+    <h4 class="w3-padding-0"><b>PORTFOLIO</b></h4>
+    <p class="w3-text-grey">Template by W3.CSS</p>
   </div>
-  <div class="w3-bar-block">
-<p>Live chat:<br><br></p>
-<script id="cid0020000328166702774" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 600px;">{"handle":"bballzach","arch":"js","styles":{"a":"383838","c":"000000","d":"000000","f":0,"i":0,"k":"383838","l":"383838","m":"383838","n":"FFFFFF","p":"10","q":"383838","t":0,"ab":false,"usricon":0,"surl":0,"allowpm":0,"cnrs":"0.35"}}</script>
- </div>
+  <a href="tryit.asp-filename=tryw3css_templates_portfolio&stacked=h.html#" class="w3-padding w3-text-teal">HOME</a> 
+  <a href="tryit.asp-filename=tryw3css_templates_portfolio&stacked=h.html#" class="w3-padding">ABOUT</a> 
+  <a href="tryit.asp-filename=tryw3css_templates_portfolio&stacked=h.html#" class="w3-padding">PORTFOLIO</a> 
+  <a href="tryit.asp-filename=tryw3css_templates_portfolio&stacked=h.html#" class="w3-padding">SHOP</a>
+  <a href="tryit.asp-filename=tryw3css_templates_portfolio&stacked=h.html#" class="w3-padding">CONTACT</a>
+   
+  <div class="w3-section w3-padding-top w3-large">
+    <a href="tryit.asp-filename=tryw3css_templates_portfolio&stacked=h.html#" class="w3-hover-white w3-hover-text-indigo w3-show-inline-block"><i class="fa fa-facebook-official"></i></a>
+    <a href="tryit.asp-filename=tryw3css_templates_portfolio&stacked=h.html#" class="w3-hover-white w3-hover-text-red w3-show-inline-block"><i class="fa fa-pinterest-p"></i></a>
+    <a href="tryit.asp-filename=tryw3css_templates_portfolio&stacked=h.html#" class="w3-hover-white w3-hover-text-light-blue w3-show-inline-block"><i class="fa fa-twitter"></i></a>
+    <a href="tryit.asp-filename=tryw3css_templates_portfolio&stacked=h.html#" class="w3-hover-white w3-hover-text-grey w3-show-inline-block"><i class="fa fa-flickr"></i></a>
+    <a href="tryit.asp-filename=tryw3css_templates_portfolio&stacked=h.html#" class="w3-hover-white w3-hover-text-indigo w3-show-inline-block"><i class="fa fa-linkedin"></i></a>
+  </div>
 </nav>
 
-<!-- Top menu on small screens -->
- 
-  
-<!-- Overlay effect when opening sidebar on small screens -->
-
+<!-- Overlay effect when opening sidenav on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu"></div>
 
 <!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:440px;margin-right:40px">
-  
-    <!-- Header: Design portfolio -->
- <h1><br>NBA Livestream 1<br></h1>
+<div class="w3-main" style="margin-left:300px">
 
-​
-​
-<div class="row1">
-  <div class="column1" style="background-color:#333333;">
-    <a href="bball1"><h3>Link 1</h3></a>
+  <!-- Header -->
+  <header class="w3-container">
+    <a href="tryit.asp-filename=tryw3css_templates_portfolio&stacked=h.html#"><img src="img_avatar_g2.jpg" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+    <span class="w3-opennav w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+    <h1><b>Les Actus</b></h1>
+    <div class="w3-section w3-bottombar w3-padding-hor-16">
+      <span class="w3-margin-right">Filtre:</span> 
+      <button class="w3-btn">TOUT</button>
+      <button class="w3-btn w3-white"><i class="fa fa-diamond w3-margin-right"></i>La Presse</button>
+      <button class="w3-btn w3-white w3-hide-small"><i class="fa fa-photo w3-margin-right"></i>Les Arts</button>
+      <button class="w3-btn w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>Paris</button>
+    </div>
+  </header>
+  
+  <!-- First Photo Grid-->
+  <div class="w3-row-padding">
+    <div class="w3-third w3-container w3-margin-bottom">
+      <img src="img_mountains.jpg" alt="Norway" style="width:100%" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p><b>Lorem Ipsum</b></p>
+        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+      </div>
+    </div>
+    <div class="w3-third w3-container w3-margin-bottom">
+      <img src="img_lights.jpg" alt="Norway" style="width:100%" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p><b>Lorem Ipsum</b></p>
+        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+      </div>
+    </div>
+    <div class="w3-third w3-container">
+      <img src="img_nature.jpg" alt="Norway" style="width:100%" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p><b>Lorem Ipsum</b></p>
+        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+      </div>
+    </div>
   </div>
-  <div class="column1" style="background-color:#333333;">
-<a href="bball2"><h3>Link 2</h3></a>
+  
+  <!-- Second Photo Grid-->
+  <div class="w3-row-padding">
+    <div class="w3-third w3-container w3-margin-bottom">
+      <img src="img_fjords.jpg" alt="Norway" style="width:100%" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p><b>Lorem Ipsum</b></p>
+        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+      </div>
+    </div>
+    <div class="w3-third w3-container w3-margin-bottom">
+      <img src="img_lights.jpg" alt="Norway" style="width:100%" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p><b>Lorem Ipsum</b></p>
+        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+      </div>
+    </div>
+    <div class="w3-third w3-container">
+      <img src="img_mountains.jpg" alt="Norway" style="width:100%" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p><b>Lorem Ipsum</b></p>
+        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+      </div>
+    </div>
   </div>
- 
-  <div class="column1" style="background-color:#333333;">
-<a href="bball3"><h3>Link 3</h3></a>
+
+  <!-- Pagination -->
+  <div class="w3-center w3-padding-hor-32">
+    <ul class="w3-pagination">
+      <li><a class="w3-black" href="tryit.asp-filename=tryw3css_templates_portfolio&stacked=h.html#">1</a></li>
+      <li><a class="w3-hover-black" href="tryit.asp-filename=tryw3css_templates_portfolio&stacked=h.html#">2</a></li>
+      <li><a class="w3-hover-black" href="tryit.asp-filename=tryw3css_templates_portfolio&stacked=h.html#">3</a></li>
+      <li><a class="w3-hover-black" href="tryit.asp-filename=tryw3css_templates_portfolio&stacked=h.html#">4</a></li>
+      <li><a class="w3-hover-black" href="tryit.asp-filename=tryw3css_templates_portfolio&stacked=h.html#">»</a></li>
+    </ul>
   </div>
-</div>
- <p><br><br></p>
- 
-<div class="child"><iframe frameborder="0" width="100%" height="550px" src="https://techclips.net/clip/a4.html" id="stream1" scrolling="no" allowfullscreen>Your Browser Do not Support Iframe</iframe>
- </div> <br>
- 
- <div class="w3-hide-large"><h2><br>Live Chat</h2><script id="cid0020000328166702774" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 400px;">{"handle":"bballzach","arch":"js","styles":{"a":"383838","c":"000000","d":"000000","f":0,"i":0,"k":"383838","l":"383838","m":"383838","n":"FFFFFF","p":"10","q":"383838","t":0,"ab":false,"usricon":0,"surl":0,"allowpm":0,"cnrs":"0.35"}}</script>
- </div>
-<div class="row1">
-  <div class="column1" style="background-color:#333333;">
-    <a href="livestream"><h3>Home</h3></a>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-hor-32 w3-white">
+  <div class="w3-row-padding">
+    <div class="w3-third">
+      <h3>FOOTER</h3>
+      <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+      <p>Powered by <a href="default.asp.html" target="_blank">w3.css</a></p>
+    </div>
+  
+    <div class="w3-third">
+      <h3>BLOG POSTS</h3>
+      <ul class="w3-ul w3-hoverable">
+        <li class="w3-padding-hor-16">
+          <img src="img_workshop.jpg" class="w3-left w3-margin-right" style="width:50px">
+          <span class="w3-large">Lorem</span><br>
+          <span>Sed mattis nunc</span>
+        </li>
+        <li class="w3-padding-hor-16">
+          <img src="img_gondol.jpg" class="w3-left w3-margin-right" style="width:50px">
+          <span class="w3-large">Ipsum</span><br>
+          <span>Praes tinci sed</span>
+        </li> 
+      </ul>
+    </div>
+
+    <div class="w3-third">
+      <h3>POPULAR TAGS</h3>
+      <p>
+        <span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">New York</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">London</span>
+        <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">IKEA</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">NORWAY</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">DIY</span>
+        <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Ideas</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Baby</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Family</span>
+        <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">News</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Clothing</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Shopping</span>
+        <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Sports</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Games</span>
+      </p>
+    </div>
+
   </div>
- </div>
+  </footer>
+
 <!-- End page content -->
 </div>
 
-<!-- Footer -->
-​
-
-
 <script>
-// Script to open and close sidebar
+// Script to open and close sidenav
 function w3_open() {
-  document.getElementById("mySidebar").style.display = "block";
-  document.getElementById("myOverlay").style.display = "block";
+    document.getElementsByClassName("w3-sidenav")[0].style.display = "block";
+    document.getElementsByClassName("w3-overlay")[0].style.display = "block";
 }
  
 function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
-  document.getElementById("myOverlay").style.display = "none";
-}
-
-// Modal Image Gallery
-function onClick(element) {
-  document.getElementById("img01").src = element.src;
-  document.getElementById("modal01").style.display = "block";
-  var captionText = document.getElementById("caption");
-  captionText.innerHTML = element.alt;
+    document.getElementsByClassName("w3-sidenav")[0].style.display = "none";
+    document.getElementsByClassName("w3-overlay")[0].style.display = "none";
 }
 </script>
 
