@@ -115,15 +115,15 @@ $(document).ready(function() {
     var detectiveBoard = $(".detective-board");
     var stringsContainer = $(".strings");
     var pinSizeRange = { min: 50, max: 100 }; // Range for pin size
-    var minDistance = 20; // Minimum distance between pins
+    var minDistance = 50; // Minimum distance between pins
 
     // Generate pins and their content
     for (var i = 0; i < pinCount; i++) {
         var x, y, pinOverlap;
         do {
-            x = Math.random() * (detectiveBoard.width() - pinSizeRange.max);
-            y = Math.random() * (detectiveBoard.height() - pinSizeRange.max);
-            pinOverlap = checkPinOverlap(x, y, pinSizeRange.max + minDistance);
+            x = Math.random() * detectiveBoard.width();
+            y = Math.random() * detectiveBoard.height();
+            pinOverlap = checkPinOverlap(x, y, minDistance);
         } while (pinOverlap);
 
         var pinShape = (i % 2 === 0) ? "circle" : "rectangle";
@@ -201,6 +201,5 @@ $(document).ready(function() {
         return false;
     }
 });
-
 
 </script>
