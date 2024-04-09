@@ -50,6 +50,7 @@ body {
     width: 100%;
     height: 100%;
     pointer-events: none;
+    z-index: 1; /* Ensure strings are above gray background */
 }
 
 .pin {
@@ -58,7 +59,9 @@ body {
     padding: 10px;
     border: 1px solid #000;
     cursor: pointer;
+    z-index: 2; /* Ensure pins are above strings */
 }
+
 
 .string {
     position: absolute;
@@ -106,8 +109,7 @@ body {
 </style>
 
 <script>
-
-   $(document).ready(function() {
+$(document).ready(function() {
     var pinCount = 10; // Number of pins
     var detectiveBoard = $(".detective-board");
     var stringsContainer = $(".strings");
@@ -116,7 +118,11 @@ body {
     for (var i = 0; i < pinCount; i++) {
         var x = Math.random() * (detectiveBoard.width() - 100); // Adjust 100 to ensure pin stays within board
         var y = Math.random() * (detectiveBoard.height() - 100); // Adjust 100 to ensure pin stays within board
-        
+
+        // Apply slight randomness to pin positions
+        x += Math.random() * 50 - 25;
+        y += Math.random() * 50 - 25;
+
         // Generate content for the pin
         var pinContent = {
             title: "Suspect " + (i + 1),
@@ -171,4 +177,6 @@ body {
         $("#modal").css("display", "none");
     });
 });
+
+   
 </script>
