@@ -1,115 +1,127 @@
-    <!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>MASH</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detective Board</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-    <style>
-        @media screen and (min-width: 600px) {
-  div.min {
-    display: none;
-  }
-}
-        @media screen and (max-width: 600px) {
-  div.max {
-    display: none;
-  }
-}
-    body {
-  background-color: #fe6f70;
-}
-        .center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-        .header {
-  background: #;
-  color: #;
-}
-
-
-/* The sticky class is added to the header with JS when it reaches its scroll position */
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%
-}
-
-/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
-.sticky + .content {
-  padding-top: 25%;
-}
-    </style>
 <body>
-
-    <div class="header" id="myHeader">
-        <div class="w3-display-container" style="margin-bottom:50px">
-      <div class="max"><img src="MASHHEADER.png" style="width:100%" class="center"></div>
-          <div class="min"><img src="MASHHEADSMALL.png" style="width:100%" class="center"></div>
-
-   
- 
-
-</div>
+    <div class="detective-board">
+        <div class="pins">
+            <div class="pin" id="note1">Note 1</div>
+            <div class="pin" id="note2">Note 2</div>
+            <!-- Add more pins as needed -->
+        </div>
+        <div class="strings">
+            <!-- Strings will be dynamically added using JavaScript/jQuery -->
+        </div>
     </div>
-    <div class="content" style="margin-top:102px">
-​
-<div class="w3-row w3-container" style="margin:50px 0">
-<div class="w3-half w3-container">
-  
-    <img src="Mash1.png" style="width:100%">
-    <h2>Product 1</h2>
-   
-  
-</div>
-​
-<div class="w3-half w3-container">
-  
-    <img src="MASH2.png" style="width:100%">
-    <h2>Product 2</h2>
 
-
-</div>
-</div>
-​
-<div class="w3-row w3-container" style="margin:50px 0">
-<div class="w3-half w3-container">
-  
-    <img src="/w3images/truck.jpg" style="width:100%">
-    <h2>Product 3</h2>
-    
-  
-</div>
-​
-<div class="w3-half w3-container">
-  
-    <img src="/w3images/nowornever.jpg" style="width:100%">
-    <h2>Product 4</h2>
-    
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-content"></div>
+        </div>
     </div>
-</div>
-</div>
-​
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
 </body>
-<script>// When the user scrolls the page, execute myFunction 
-window.onscroll = function() {myFunction()};
-
-// Get the header
-var header = document.getElementById("myHeader");
-
-// Get the offset position of the navbar
-var sticky = header.offsetTop;
-
-// Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
-function myFunction() {
-  if (window.pageYOffset > sticky) {
-    header.classList.add("sticky");
-  } else {
-    header.classList.remove("sticky");
-  }
-}</script>
 </html>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.detective-board {
+    position: relative;
+    background-color: #dcdcdc;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.pins {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pin {
+    background-color: #fff;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+
+.strings {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Prevent interactions with strings */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
+
+<sript>
+$(document).ready(function() {
+    $(".pin").click(function() {
+        var noteId = $(this).attr("id");
+        var modalContent = "Content of " + noteId; // You can replace this with actual content
+        
+        $("#modal-content").html(modalContent);
+        $("#modal").css("display", "block");
+    });
+
+    $(".close").click(function() {
+        $("#modal").css("display", "none");
+    });
+});
+
+    </sript>
