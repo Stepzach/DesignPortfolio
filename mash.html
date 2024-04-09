@@ -115,6 +115,7 @@ $(document).ready(function() {
     var stringsContainer = $(".strings");
 
     // Generate pins and their content
+    var pins = [];
     for (var i = 0; i < pinCount; i++) {
         var x = Math.random() * (detectiveBoard.width() - 100); // Adjust 100 to ensure pin stays within board
         var y = Math.random() * (detectiveBoard.height() - 100); // Adjust 100 to ensure pin stays within board
@@ -135,32 +136,33 @@ $(document).ready(function() {
         }).html(pinContent.title).attr("data-title", pinContent.title).attr("data-description", pinContent.description);
 
         detectiveBoard.append(pin);
+
+        pins.push({
+            x: x,
+            y: y
+        });
     }
 
     // Generate strings connecting pins
-    $(".pin").each(function() {
-        var startPin = $(this);
+    for (var i = 0; i < pinCount; i++) {
+        var startPin = pins[i];
+        var nearestPinIndex = findNearestPin(i, pins);
+        var endPin = pins[nearestPinIndex];
 
-        $(".pin").each(function() {
-            var endPin = $(this);
+        var startX = startPin.x + $(".pin").width() / 2;
+        var startY = startPin.y + $(".pin").height() / 2;
+        var endX = endPin.x + $(".pin").width() / 2;
+        var endY = endPin.y + $(".pin").height() / 2;
 
-            if (startPin.attr("data-title") !== endPin.attr("data-title")) {
-                var startX = startPin.position().left + startPin.width() / 2;
-                var startY = startPin.position().top + startPin.height() / 2;
-                var endX = endPin.position().left + endPin.width() / 2;
-                var endY = endPin.position().top + endPin.height() / 2;
-
-                var string = $("<div class='string'></div>").css({
-                    top: startY,
-                    left: startX,
-                    width: Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)),
-                    transform: "rotate(" + Math.atan2(endY - startY, endX - startX) + "rad)"
-                });
-
-                stringsContainer.append(string);
-            }
+        var string = $("<div class='string'></div>").css({
+            top: startY,
+            left: startX,
+            width: Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)),
+            transform: "rotate(" + Math.atan2(endY - startY, endX - startX) + "rad)"
         });
-    });
+
+        stringsContainer.append(string);
+    }
 
     // Show modal with pin content when clicked
     $(".pin").click(function() {
@@ -176,7 +178,24 @@ $(document).ready(function() {
     $(".close").click(function() {
         $("#modal").css("display", "none");
     });
+
+    // Function to find the index of the nearest pin to a given pin
+    function findNearestPin(currentIndex, pins) {
+        var nearestIndex = -1;
+        var minDistance = Number.MAX_VALUE;
+
+        for (var i = 0; i < pins.length; i++) {
+            if (i !== currentIndex) {
+                var distance = Math.sqrt(Math.pow(pins[i].x - pins[currentIndex].x, 2) + Math.pow(pins[i].y - pins[currentIndex].y, 2));
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    nearestIndex = i;
+                }
+            }
+        }
+
+        return nearestIndex;
+    }
 });
 
-   
 </script>
