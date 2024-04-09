@@ -114,15 +114,20 @@ $(document).ready(function() {
     var pinCount = 10; // Number of pins
     var detectiveBoard = $(".detective-board");
     var stringsContainer = $(".strings");
-    var pinSizeRange = { min: 50, max: 100 }; // Range for pin size
-    var minDistance = 50; // Minimum distance between pins
+    var pinSizeRange = { min: 60, max: 130 }; // Range for pin size
+    var minDistance = 30; // Minimum distance between pins
+
+    // Function to generate a random number within a range
+    function getRandomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+    }
 
     // Generate pins and their content
     for (var i = 0; i < pinCount; i++) {
         var x, y, pinOverlap;
         do {
-            x = Math.random() * detectiveBoard.width();
-            y = Math.random() * detectiveBoard.height();
+            x = getRandomInRange(0, $(window).width() - pinSizeRange.max);
+            y = getRandomInRange(0, $(window).height() - pinSizeRange.max);
             pinOverlap = checkPinOverlap(x, y, minDistance);
         } while (pinOverlap);
 
