@@ -10,11 +10,11 @@
     <div class="detective-board">
         <!-- Pins will be added dynamically using JavaScript -->
     </div>
-
+    
     <div class="strings">
-        <!-- Strings will be dynamically added using JavaScript -->
+        <!-- Red strings connecting pins -->
     </div>
-
+    
     <div class="modal" id="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -28,20 +28,29 @@
 </html>
 
 
+
 <style>
 
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #2c3e50; /* Dark blue background */
 }
 
 .detective-board {
     position: relative;
-    background-color: #dcdcdc;
     width: 100%;
     height: 100vh;
     overflow: hidden;
+}
+
+.pin {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #000;
+    padding: 15px;
+    cursor: pointer;
+    z-index: 2; /* Ensure pins are above strings */
 }
 
 .strings {
@@ -51,37 +60,8 @@ body {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 1; /* Ensure strings are above gray background */
+    z-index: 1; /* Ensure strings are below pins */
 }
-
-
-
-    /* Add styles for pin shapes */
-.circle {
-    border-radius: 50%;
-}
-
-.rectangle {
-    border-radius: 10px;
-}
-
-.pin {
-    position: absolute;
-    background-color: #fff;
-    border: 1px solid #000;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.pin img {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-
 
 .string {
     position: absolute;
@@ -126,6 +106,7 @@ body {
     cursor: pointer;
 }
 
+
 </style>
 
 <script>
@@ -135,23 +116,16 @@ $(document).ready(function() {
     var stringsContainer = $(".strings");
 
     // Generate pins and their content
-    var pins = [];
     for (var i = 0; i < pinCount; i++) {
-        var x = Math.random() * (detectiveBoard.width() - 100); // Adjust 100 to ensure pin stays within board
-        var y = Math.random() * (detectiveBoard.height() - 100); // Adjust 100 to ensure pin stays within board
-
-        // Apply slight randomness to pin positions
-        x += Math.random() * 50 - 25;
-        y += Math.random() * 50 - 25;
+        var x = Math.random() * (detectiveBoard.width() - 200); // Adjust 200 to ensure pin stays within board
+        var y = Math.random() * (detectiveBoard.height() - 200); // Adjust 200 to ensure pin stays within board
 
         var pinShape = (i % 2 === 0) ? "circle" : "rectangle";
-        var pinSize = Math.floor(Math.random() * (60 - 30 + 1)) + 30; // Random size between 30px and 60px
+        var pinSize = Math.floor(Math.random() * (100 - 50 + 1)) + 50; // Random size between 50px and 100px
 
-        // Generate content for the pin
         var pinContent = {
-            title: "Suspect " + (i + 1),
-            description: "Description of Suspect " + (i + 1) + "...",
-            image: (i % 3 === 0) ? "https://via.placeholder.com/150" : null // Randomly include image for every third pin
+            title: "Note " + (i + 1),
+            description: "Description of Note " + (i + 1) + "..."
         };
 
         var pin = $("<div class='pin'></div>").addClass(pinShape).css({
@@ -161,30 +135,25 @@ $(document).ready(function() {
             height: pinSize
         }).attr("data-title", pinContent.title).attr("data-description", pinContent.description);
 
-        if (pinContent.image) {
-            var pinImage = $("<img>").attr("src", pinContent.image).appendTo(pin);
+        if (i % 3 === 0) { // Randomly include image for every third pin
+            var pinImage = $("<img>").attr("src", "https://via.placeholder.com/150").appendTo(pin);
         } else {
             pin.html(pinContent.title);
         }
 
         detectiveBoard.append(pin);
-
-        pins.push({
-            x: x,
-            y: y
-        });
     }
 
     // Generate strings connecting pins
-    for (var i = 0; i < pinCount; i++) {
-        var startPin = pins[i];
-        var nearestPinIndex = findNearestPin(i, pins);
-        var endPin = pins[nearestPinIndex];
+    var pins = $(".pin");
+    for (var i = 0; i < pins.length; i++) {
+        var startPin = $(pins[i]);
+        var endPin = $(pins[(i + 1) % pins.length]);
 
-        var startX = startPin.x + $(".pin").width() / 2;
-        var startY = startPin.y + $(".pin").height() / 2;
-        var endX = endPin.x + $(".pin").width() / 2;
-        var endY = endPin.y + $(".pin").height() / 2;
+        var startX = startPin.position().left + startPin.width() / 2;
+        var startY = startPin.position().top + startPin.height() / 2;
+        var endX = endPin.position().left + endPin.width() / 2;
+        var endY = endPin.position().top + endPin.height() / 2;
 
         var string = $("<div class='string'></div>").css({
             top: startY,
@@ -210,24 +179,6 @@ $(document).ready(function() {
     $(".close").click(function() {
         $("#modal").css("display", "none");
     });
-
-    // Function to find the index of the nearest pin to a given pin
-    function findNearestPin(currentIndex, pins) {
-        var nearestIndex = -1;
-        var minDistance = Number.MAX_VALUE;
-
-        for (var i = 0; i < pins.length; i++) {
-            if (i !== currentIndex) {
-                var distance = Math.sqrt(Math.pow(pins[i].x - pins[currentIndex].x, 2) + Math.pow(pins[i].y - pins[currentIndex].y, 2));
-                if (distance < minDistance) {
-                    minDistance = distance;
-                    nearestIndex = i;
-                }
-            }
-        }
-
-        return nearestIndex;
-    }
 });
 
 </script>
