@@ -7,15 +7,12 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="detective-board">
-        <div class="pins">
-            <div class="pin" id="note1">Note 1</div>
-            <div class="pin" id="note2">Note 2</div>
-            <!-- Add more pins as needed -->
-        </div>
-        <div class="strings">
-            <!-- Strings will be dynamically added using JavaScript/jQuery -->
-        </div>
+    <div class="detective-board" id="detective-board">
+        <!-- Pins will be added dynamically using JavaScript -->
+    </div>
+
+    <div class="strings" id="strings">
+        <!-- Strings will be dynamically added using JavaScript -->
     </div>
 
     <div class="modal" id="modal">
@@ -45,30 +42,21 @@ body {
     overflow: hidden;
 }
 
-.pins {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.pin {
-    background-color: #fff;
-    padding: 10px;
-    margin: 10px;
-    border: 1px solid #000;
-    cursor: pointer;
-}
-
 .strings {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* Prevent interactions with strings */
+    pointer-events: none;
+}
+
+.pin {
+    position: absolute;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #000;
+    cursor: pointer;
 }
 
 .modal {
@@ -107,14 +95,75 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
+
 </style>
 
 <sript>
 $(document).ready(function() {
+    var pinContent = [
+        {
+            id: "note1",
+            title: "Suspect 1",
+            description: "Description of Suspect 1..."
+        },
+        {
+            id: "note2",
+            title: "Suspect 2",
+            description: "Description of Suspect 2..."
+        },
+        // Add more pin content objects as needed
+    ];
+
+    var pinCount = 10; // Number of pins
+    var detectiveBoard = $("#detective-board");
+    var stringsContainer = $("#strings");
+
+    // Generate pins
+    for (var i = 0; i < pinCount; i++) {
+        var x = Math.random() * (detectiveBoard.width() - 100); // Adjust 100 to ensure pin stays within board
+        var y = Math.random() * (detectiveBoard.height() - 100); // Adjust 100 to ensure pin stays within board
+
+        var pinIndex = Math.floor(Math.random() * pinContent.length);
+        var pinObject = pinContent[pinIndex];
+
+        var pin = $("<div class='pin'></div>").css({
+            top: y,
+            left: x
+        }).attr("id", pinObject.id).attr("title", pinObject.title);
+
+        detectiveBoard.append(pin);
+    }
+
+    // Generate strings
+    $(".pin").each(function() {
+        var startPin = $(this);
+
+        $(".pin").each(function() {
+            var endPin = $(this);
+
+            if (startPin.attr("id") !== endPin.attr("id")) {
+                var startX = startPin.position().left + startPin.width() / 2;
+                var startY = startPin.position().top + startPin.height() / 2;
+                var endX = endPin.position().left + endPin.width() / 2;
+                var endY = endPin.position().top + endPin.height() / 2;
+
+                var string = $("<div class='string'></div>").css({
+                    top: startY,
+                    left: startX,
+                    width: Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)),
+                    transform: "rotate(" + Math.atan2(endY - startY, endX - startX) + "rad)"
+                });
+
+                stringsContainer.append(string);
+            }
+        });
+    });
+
     $(".pin").click(function() {
         var noteId = $(this).attr("id");
-        var modalContent = "Content of " + noteId; // You can replace this with actual content
-        
+        var pinObject = pinContent.find(pin => pin.id === noteId);
+        var modalContent = "<h2>" + pinObject.title + "</h2>" + "<p>" + pinObject.description + "</p>";
+
         $("#modal-content").html(modalContent);
         $("#modal").css("display", "block");
     });
