@@ -159,7 +159,7 @@ $(document).ready(function() {
     var pins = $(".pin");
     for (var i = 0; i < pins.length; i++) {
         var startPin = $(pins[i]);
-        var endPin = $(pins[(i + 1) % pins.length]);
+        var endPin = $(pins[(i + 1) % pins.length]); // Next pin
 
         var startX = startPin.position().left + startPin.width() / 2;
         var startY = startPin.position().top + startPin.height() / 2;
@@ -208,5 +208,6 @@ $(document).ready(function() {
         return false;
     }
 });
+
 
 </script>
