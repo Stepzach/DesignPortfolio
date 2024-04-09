@@ -27,6 +27,7 @@
 </body>
 </html>
 
+
 <style>
 
 body {
@@ -53,14 +54,33 @@ body {
     z-index: 1; /* Ensure strings are above gray background */
 }
 
+
+
+    /* Add styles for pin shapes */
+.circle {
+    border-radius: 50%;
+}
+
+.rectangle {
+    border-radius: 10px;
+}
+
 .pin {
     position: absolute;
     background-color: #fff;
-    padding: 10px;
     border: 1px solid #000;
     cursor: pointer;
-    z-index: 2; /* Ensure pins are above strings */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
+
+.pin img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
 
 
 .string {
@@ -124,16 +144,28 @@ $(document).ready(function() {
         x += Math.random() * 50 - 25;
         y += Math.random() * 50 - 25;
 
+        var pinShape = (i % 2 === 0) ? "circle" : "rectangle";
+        var pinSize = Math.floor(Math.random() * (60 - 30 + 1)) + 30; // Random size between 30px and 60px
+
         // Generate content for the pin
         var pinContent = {
             title: "Suspect " + (i + 1),
-            description: "Description of Suspect " + (i + 1) + "..."
+            description: "Description of Suspect " + (i + 1) + "...",
+            image: (i % 3 === 0) ? "https://via.placeholder.com/150" : null // Randomly include image for every third pin
         };
 
-        var pin = $("<div class='pin'></div>").css({
+        var pin = $("<div class='pin'></div>").addClass(pinShape).css({
             top: y,
-            left: x
-        }).html(pinContent.title).attr("data-title", pinContent.title).attr("data-description", pinContent.description);
+            left: x,
+            width: pinSize,
+            height: pinSize
+        }).attr("data-title", pinContent.title).attr("data-description", pinContent.description);
+
+        if (pinContent.image) {
+            var pinImage = $("<img>").attr("src", pinContent.image).appendTo(pin);
+        } else {
+            pin.html(pinContent.title);
+        }
 
         detectiveBoard.append(pin);
 
@@ -197,6 +229,5 @@ $(document).ready(function() {
         return nearestIndex;
     }
 });
-
 
 </script>
