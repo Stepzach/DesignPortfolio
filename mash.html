@@ -114,8 +114,8 @@ $(document).ready(function() {
     var pinCount = 10; // Number of pins
     var detectiveBoard = $(".detective-board");
     var stringsContainer = $(".strings");
-    var pinSizeRange = { min: 60, max: 130 }; // Range for pin size
-    var minDistance = 60; // Minimum distance between pins
+    var pinSizeRange = { min: 50, max: 100 }; // Range for pin size
+    var minDistance = 50; // Minimum distance between pins
 
     // Function to generate a random number within a range
     function getRandomInRange(min, max) {
@@ -169,7 +169,9 @@ $(document).ready(function() {
         var string = $("<div class='string'></div>").css({
             top: startY,
             left: startX,
-            width: Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)),
+            width: Math.abs(endX - startX),
+            height: Math.abs(endY - startY),
+            transformOrigin: "0 0",
             transform: "rotate(" + Math.atan2(endY - startY, endX - startX) + "rad)"
         });
 
