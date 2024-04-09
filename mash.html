@@ -114,14 +114,20 @@ $(document).ready(function() {
     var pinCount = 10; // Number of pins
     var detectiveBoard = $(".detective-board");
     var stringsContainer = $(".strings");
+    var pinSizeRange = { min: 50, max: 100 }; // Range for pin size
+    var minDistance = 20; // Minimum distance between pins
 
     // Generate pins and their content
     for (var i = 0; i < pinCount; i++) {
-        var x = Math.random() * (detectiveBoard.width() - 200); // Adjust 200 to ensure pin stays within board
-        var y = Math.random() * (detectiveBoard.height() - 200); // Adjust 200 to ensure pin stays within board
+        var x, y, pinOverlap;
+        do {
+            x = Math.random() * (detectiveBoard.width() - pinSizeRange.max);
+            y = Math.random() * (detectiveBoard.height() - pinSizeRange.max);
+            pinOverlap = checkPinOverlap(x, y, pinSizeRange.max + minDistance);
+        } while (pinOverlap);
 
         var pinShape = (i % 2 === 0) ? "circle" : "rectangle";
-        var pinSize = Math.floor(Math.random() * (100 - 50 + 1)) + 50; // Random size between 50px and 100px
+        var pinSize = Math.floor(Math.random() * (pinSizeRange.max - pinSizeRange.min + 1)) + pinSizeRange.min; // Random size between min and max
 
         var pinContent = {
             title: "Note " + (i + 1),
@@ -179,6 +185,22 @@ $(document).ready(function() {
     $(".close").click(function() {
         $("#modal").css("display", "none");
     });
+
+    // Function to check if a pin overlaps with existing pins
+    function checkPinOverlap(x, y, minDistance) {
+        var pins = $(".pin");
+        for (var i = 0; i < pins.length; i++) {
+            var pin = $(pins[i]);
+            var pinX = pin.position().left;
+            var pinY = pin.position().top;
+            var distance = Math.sqrt(Math.pow(pinX - x, 2) + Math.pow(pinY - y, 2));
+            if (distance < minDistance) {
+                return true;
+            }
+        }
+        return false;
+    }
 });
+
 
 </script>
