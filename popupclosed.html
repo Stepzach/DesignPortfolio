@@ -319,19 +319,24 @@
       /* Hide element on extra small devices */
       @media  screen and (max-width: 765px; min-width:799px;) {
         div.mediumscreen {
-          display: none;
+          display: none !important;
+        }
+      }
+	 @media  screen and ( min-width:799px;) {
+        div.mediumscreen {
+          display: none !important;
         }
       }
 		 
-	@media  screen and (max-width: 3px;) {
+	@media  screen and (max-width: 800px;) {
         div.bigscreen {
-          display: none;
+         display: none !important;
         }
       }
 		   
         @media  screen and (min-width: 764px;) {
         div.smallscreen {
-          display: none;
+         display: none !important;
         }
       }
     </style>
