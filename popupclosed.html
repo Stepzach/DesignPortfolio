@@ -7,7 +7,25 @@
         
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-<div class="w3-hide-small w3-hide-medium">
+	 <style>
+      /* Hide element on extra small devices */
+      @media (max-width: 765px; min-width:799px;) {
+        .mediumscreen {
+          display: none;
+        }
+      }
+		  @media (max-width: 800px;) {
+        .bigscreen {
+          display: none;
+        }
+      }
+		   @media (min-width: 764px;) {
+        .smallscreen {
+          display: none;
+        }
+      }
+    </style>
+<div class="bigscreen">
     
     <meta name="format-detection" content="telephone=no"/>
 
@@ -108,7 +126,7 @@
 
  </div>
 
-<div class="w3-hide-medium w3-hide-large">
+<div class="smallscreen">
    <meta name="viewport" content="width=320">
         
 
@@ -197,7 +215,7 @@
 	
 </div>
 
-	<div class="w3-hide-small w3-hide-large">
+	<div class="mediumscreen">
  
 
     <meta name="keywords" content=""/>
