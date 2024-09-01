@@ -317,9 +317,9 @@
 </script>
  <style>
       /* Hide element on extra small devices */
-      @media  screen and (max-width: 765px; min-width:799px;) {
+      @media  screen and (max-width: 765px;) {
         div.mediumscreen {
-          display: none !important;
+          visibility: hidden;
         }
       }
 	 @media  screen and ( min-width:799px;) {
@@ -330,7 +330,7 @@
 		 
 	@media  screen and (max-width: 800px;) {
         div.bigscreen {
-         display: none !important;
+        width: 0; height: 0;
         }
       }
 		   
