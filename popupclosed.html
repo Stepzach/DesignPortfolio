@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <meta name="viewport" content="width=device-width, initial-scale=1, initial-scale=1" />
 
-<div class="w3-hide-small; w3-hide-medium">
+<div class="bigscreen">
     
     <meta name="format-detection" content="telephone=no"/>
 
@@ -109,7 +109,7 @@
 
  </div>
 
-<div class="w3-hide-medium; w3-hide-large">
+<div class="smallscreen">
 
         
 
@@ -198,7 +198,7 @@
 	
 </div>
 
-	<div class="w3-hide-small; w3-hide-large">
+	<div class="mediumscreen">
  
 
     <meta name="keywords" content=""/>
@@ -317,26 +317,26 @@
 </script>
  <style>
       /* Hide element on extra small devices */
-      @media  screen and (max-width: 765px;) {
+      @media  screen and (max-width: 1200px;) {
         div.mediumscreen {
-          visibility: hidden;
+           display: none
         }
       }
-	 @media  screen and ( min-width:799px;) {
+	 @media  screen and ( min-width:900px;) {
         div.mediumscreen {
-          display: none !important;
+          display: none
         }
       }
 		 
-	@media  screen and (max-width: 800px;) {
+	@media  screen and (max-width: 1800px;) {
         div.bigscreen {
-        width: 0; height: 0;
+        display: none
         }
       }
 		   
-        @media  screen and (min-width: 764px;) {
+        @media  screen and (min-width: 700px;) {
         div.smallscreen {
-         display: none !important;
+        display: none
         }
       }
     </style>
