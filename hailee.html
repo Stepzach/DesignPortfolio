@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <title>Zach Stephens – Glazing Mist</title>
+  <title>Zach Stephens – Portfolio</title>
   <style>
     * {
       margin: 0;
@@ -442,6 +442,19 @@ text-decoration: underline;
   user-select: none;
 }
 
+@keyframes jerk-left {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-30px); }
+  100% { transform: translateX(0); }
+}
+
+.menu-tabs.jerk {
+  animation: jerk-left 0.5s ease-in-out;
+}
+
+
+
+
   </style>
 </head>
 <body>
@@ -535,7 +548,8 @@ menuButton.addEventListener("click", () => {
 
   if (menuOpen) {
     slidingMenu.classList.add("open");
-    menuButton.textContent = "✕";
+   menuButton.innerHTML = '<span style="display:block; padding-top:5px; padding-left:4px;     font-size: 2.2rem;">✕</span>';
+
 
     setTimeout(() => {
       overlay.classList.add("menu-open");
@@ -637,4 +651,20 @@ menuButton.addEventListener("click", () => {
   });
 </script>
 
+<script>
+document.getElementById('menuButton').addEventListener('click', () => {
+  if (window.innerWidth <= 520) {
+    setTimeout(() => {
+      const menu = document.querySelector('.menu-tabs');
+      menu.classList.add('jerk');
+
+      // Remove the class after animation ends so it can trigger again next time
+      menu.addEventListener('animationend', function handler() {
+        menu.classList.remove('jerk');
+        menu.removeEventListener('animationend', handler);
+      });
+    }, 2000); // 4 seconds
+  }
+});
+</script>
 
