@@ -46,7 +46,7 @@
     .hero-section {
     
       position: relative;
-      height: calc(92vh - 74px); /* 50px banner + ~12px top + ~12px bottom margin */
+       height: calc(var(--vh, 1vh) * 100 - 86px);
       margin: 12px 12px;
       border-radius: 14px;
       overflow: hidden;
@@ -318,3 +318,12 @@
 
 </body>
 </html>
+<script>
+  function setVhUnit() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  }
+
+  window.addEventListener('resize', setVhUnit);
+  window.addEventListener('load', setVhUnit);
+</script>
