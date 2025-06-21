@@ -13,23 +13,25 @@
     }
 
     body, html {
-      height: 100%;
+      height: auto;
       font-family: 'Helvetica Neue', sans-serif;
-      background-color: #f9f9f9;
+      background-color: white;
     }
 
     .pill-banner {
       max-width: 100%;
       height: 40px;
-      background-color: #efede8;
+      background-color: #f1f0ed;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 14px;
       text-transform: uppercase;
-      font-weight: 600;
-      letter-spacing: 1px;
-      font-size: 0.8rem;
+     
+     letter-spacing: .02em;
+      font-size: .75rem;
+    font-weight: 550;
+    line-height: .875rem;
       margin: 12px 24px;
       
      
@@ -40,7 +42,7 @@
         
         padding-left:30px;
          padding-right:30px;
-         color:#715f5f;
+         color:#67645e;
        
       }
 
@@ -209,14 +211,16 @@
       }
     }
    .footer {
-  background-color: #efede8;
+  
+  background-color: #f1f0ed;
   max-width:100% !important;
   padding: 32px 24px 16px;
-  margin: 12px 12px !important;
+  margin: 12px 24px;
   border-radius: 24px;
   font-family: 'Helvetica Neue', sans-serif;
 
-   color:#715f5f;
+   color:#67645e;
+  
    
 }
 
@@ -251,10 +255,13 @@
   display: flex;
   align-items: center;
   gap: 8px;
+      font-size: max(.825rem + .2vw, .925vw);
+    line-height: 150%;
+    letter-spacing: .02em;
 }
 
 .footer-section a:hover {
-  color: #000;
+text-decoration: underline;
   
 }
 
@@ -271,7 +278,15 @@
   color: #666;
 }
  
+ @media (max-width: 768px) {
+ .footer {
+ 
+  margin: 12px 12px;
 
+  }
+  
+   
+}
 
 
    
