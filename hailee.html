@@ -89,6 +89,7 @@
       font-size: 2.5rem;
       cursor: pointer;
       line-height:2.2rem;
+      transition: color 0.8s ease;
     }
 
     .bottom-right {
@@ -296,7 +297,7 @@ text-decoration: underline;
   height: 0;
   background-color: #f1f0ed;
   z-index: 1;
-  transition: height 1.7s cubic-bezier(0.7, 0, 0.2, 1); /* Strong slow-fast-slow */
+  transition: height 1.5s cubic-bezier(0.5, 0, 0.1, 1); /* Strong slow-fast-slow */
   border-radius:14px;
   pointer-events: none;
 }
@@ -305,19 +306,21 @@ text-decoration: underline;
 .sliding-menu.open {
   height: 100%;
   pointer-events: auto;
-  transition: height 1.7s cubic-bezier(0.7, 0, 0.2, 1);
+  transition: height 1.1s cubic-bezier(0.2, 0, 0.1, 1);
 }
 
 /* Keep title above menu */
 .title {
   position: relative;
   z-index: 2;
+  transition: color 0.8s ease !important;
 }
 
 /* Keep menu button above sliding menu */
 #menuButton {
   position: relative;
   z-index: 2;
+   transition: all 0.4s ease;
 }
 .title.menu-open {
   color: #715f5f !important;
@@ -328,7 +331,117 @@ text-decoration: underline;
    transition: height 0.8s ease;
 }
 
+   .sliding-content {
+  opacity: 0;
+  transform: translateY(-40px);
+  transition: opacity 1.4s ease, transform 1.4s ease;
+  padding: 100px 24px;
+    overflow-x: auto;
+}
+
+
+/* Reveal content when menu opens */
+.sliding-menu.open .sliding-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sliding-menu nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
    
+}
+
+.sliding-menu nav ul li {
+  margin-bottom: 16px;
+  
+}
+
+.sliding-menu nav ul li a {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #715f5f;
+  font-weight: bold;
+}
+.menu-tabs {
+  display: flex;
+  
+  gap: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1rem;
+  margin-bottom: 24px;
+   padding-bottom: 10px;
+  white-space: nowrap; /* Prevents wrapping */
+  overflow-x: auto;     /* Enables horizontal scrolling */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  
+}
+.menu-tabs::-webkit-scrollbar {
+  display: none;
+}
+.menu-tabs .tab {
+  cursor: pointer;
+  position: relative;
+  color: #715f5f;
+  
+  
+}
+
+.menu-tabs .tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #715f5f;
+}
+
+.pill-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 12px 16px;
+  border-radius: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.pill img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin-right: 16px;
+}
+
+.pill-text {
+  color: #715f5f;
+}
+
+.pill-text h4 {
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+.pill-text p {
+  margin: 4px 0 0 0;
+  font-size: 0.9rem;
+  color: #8a7e7e;
+}
+.menu-tabs.dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
   </style>
 </head>
 <body>
@@ -347,7 +460,22 @@ text-decoration: underline;
         <div class="title">Zach Stephens</div>
       </div>
       
-       <div class="sliding-menu" id="slidingMenu"></div>
+      <div class="sliding-menu" id="slidingMenu">
+ <div class="sliding-content">
+  <div class="menu-tabs">
+    <span class="tab active" data-category="featured">FEATURED</span>
+    <span class="tab" data-category="university">UNI PROJECTS</span>
+    <span class="tab" data-category="website">WEBSITES</span>
+    <span class="tab" data-category="personal">PERSONAL PROJECTS</span>
+  </div>
+
+  <div class="pill-container" id="pillContainer">
+    <!-- Pills will be injected here -->
+  </div>
+</div>
+
+</div>
+
        
       <div class="bottom-right">
         <p>Glazing Mist arrives June 24th at 9am PT.</p>
@@ -412,7 +540,7 @@ menuButton.addEventListener("click", () => {
     setTimeout(() => {
       overlay.classList.add("menu-open");
       menu.classList.add("menu-open");
-    }, 400); // Delay for adding menu-open
+    }, 50); // Delay for adding menu-open
   } else {
     slidingMenu.classList.remove("open");
     menuButton.textContent = "☰";
@@ -420,9 +548,93 @@ menuButton.addEventListener("click", () => {
     setTimeout(() => {
       overlay.classList.remove("menu-open");
       menu.classList.remove("menu-open");
-    }, 1200); // Delay for removing menu-open
+    }, 1000); // Delay for removing menu-open
   }
 });
 
+
+  const pillContainer = document.getElementById("pillContainer");
+  const tabs = document.querySelectorAll(".tab");
+
+  const pillData = {
+    featured: [
+      { title: "GLAZING MIST", caption: "The hydrating face spray", img: "https://via.placeholder.com/48x48?text=M" },
+      { title: "GLAZING MILK", caption: "The essential prep layer", img: "https://via.placeholder.com/48x48?text=MLK" },
+      { title: "BARRIER BUTTER", caption: "The intensive moisture balm", img: "https://via.placeholder.com/48x48?text=BB" },
+      { title: "BARRIER BUTTER", caption: "The intensive moisture balm", img: "https://via.placeholder.com/48x48?text=BB" }
+    ],
+    university: [
+      { title: "PROJECT A", caption: "An interactive interface study", img: "https://via.placeholder.com/48x48?text=A" },
+      { title: "PROJECT B", caption: "Typography exploration", img: "https://via.placeholder.com/48x48?text=B" },
+      { title: "PROJECT C", caption: "Sustainable packaging concept", img: "https://via.placeholder.com/48x48?text=C" },
+      { title: "PROJECT D", caption: "UX research deep dive", img: "https://via.placeholder.com/48x48?text=D" }
+    ],
+    website: [
+      { title: "ZINE ARCHIVE", caption: "Minimalist digital archive", img: "https://via.placeholder.com/48x48?text=Z" },
+      { title: "DJ COLLECTIVE", caption: "Site for music event series", img: "https://via.placeholder.com/48x48?text=DJ" },
+      { title: "PORTFOLIO SITE", caption: "Responsive personal showcase", img: "https://via.placeholder.com/48x48?text=PF" },
+      { title: "TOOLKIT", caption: "Design resources hub", img: "https://via.placeholder.com/48x48?text=T" }
+    ],
+    personal: [
+      { title: "GARDEN DIARY", caption: "HTML journal and weather API", img: "https://via.placeholder.com/48x48?text=🌱" },
+      { title: "PHOTO ZINE", caption: "Summer street photography", img: "https://via.placeholder.com/48x48?text=📷" },
+      { title: "FILM POSTERS", caption: "Alternative layout studies", img: "https://via.placeholder.com/48x48?text=🎞️" },
+      { title: "RECIPE PAGE", caption: "Web layout for saved meals", img: "https://via.placeholder.com/48x48?text=🍲" }
+    ]
+  };
+
+  function renderPills(category) {
+    pillContainer.innerHTML = pillData[category].map(pill => `
+      <div class="pill">
+        <img src="${pill.img}" alt="${pill.title}">
+        <div class="pill-text">
+          <h4>${pill.title}</h4>
+          <p>${pill.caption}</p>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      renderPills(tab.dataset.category);
+    });
+  });
+
+  // Load default pills
+  renderPills("featured");
+  const menuTabs = document.querySelector('.menu-tabs');
+
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  menuTabs.addEventListener('mousedown', (e) => {
+    isDown = true;
+    menuTabs.classList.add('dragging');
+    startX = e.pageX - menuTabs.offsetLeft;
+    scrollLeft = menuTabs.scrollLeft;
+  });
+
+  menuTabs.addEventListener('mouseleave', () => {
+    isDown = false;
+    menuTabs.classList.remove('dragging');
+  });
+
+  menuTabs.addEventListener('mouseup', () => {
+    isDown = false;
+    menuTabs.classList.remove('dragging');
+  });
+
+  menuTabs.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - menuTabs.offsetLeft;
+    const walk = (x - startX) * 2; // adjust scroll speed multiplier here
+    menuTabs.scrollLeft = scrollLeft - walk;
+  });
 </script>
+
 
