@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Zach Stephens – Glazing Mist</title>
   <style>
     * {
@@ -20,7 +21,7 @@
     .pill-banner {
       max-width: 100%;
       height: 50px;
-      background-color: #e6e4de;
+      background-color: #efede8;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -37,6 +38,7 @@
         text-align: center;
         padding-left:30px;
          padding-right:30px;
+         color:#715f5f;
        
       }
 
@@ -192,7 +194,72 @@
         font-size: 1.5rem;
       }
     }
+   .footer {
+  background-color: #efede8;
+  max-width:100% !important;
+  padding: 32px 24px 16px;
+  margin: 12px 12px !important;
+  border-radius: 24px;
+  font-family: 'Helvetica Neue', sans-serif;
+
+   color:#715f5f;
    
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+ 
+  
+}
+
+.footer-section h4 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section li {
+  margin-top: 12px;
+}
+
+.footer-section a {
+  text-decoration: none;
+   color:#715f5f;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-section a:hover {
+  color: #000;
+  
+}
+
+.icon {
+  font-size: 1.1rem;
+}
+
+.footer-bottom {
+  border-top: 1px solid #ccc;
+  margin-top: 24px;
+  padding-top: 12px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+}
+ 
+
+
+
    
   </style>
 </head>
@@ -217,6 +284,37 @@
       </div>
     </div>
   </div>
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h4>NAVIGATE</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Archive</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>SOCIAL</h4>
+      <ul>
+        <li><a href="#"><span class="icon"><i class="fa fa-linkedin"></i></span> LinkedIn</a></li>
+        <li><a href="#"><span class="icon"><i class="fa fa-instagram"></i></span> Instagram</a></li>
+        <li><a href="#"><span class="icon"><i class="fa fa-github"></i></span> GitHub</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>OFFICIAL</h4>
+      <ul>
+        <li><a href="#">Résumé</a></li>
+        <li><a href="#">Awards</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© Zachary Stephens 2025</p>
+  </div>
+</footer>
 
 </body>
 </html>
