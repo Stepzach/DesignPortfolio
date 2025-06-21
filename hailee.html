@@ -46,7 +46,7 @@
     .hero-section {
     
       position: relative;
-       height: calc(var(--vh, 1vh) * 100 - 86px);
+       height: calc(var(--vh, 1vh) * 100 - 80px);
       margin: 12px 12px;
       border-radius: 14px;
       overflow: hidden;
@@ -319,11 +319,10 @@
 </body>
 </html>
 <script>
-  function setVhUnit() {
+  // Set --vh to the initial viewport height and don't update it again
+  (function () {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
-  }
-
-  window.addEventListener('resize', setVhUnit);
-  window.addEventListener('load', setVhUnit);
+  })();
 </script>
+
