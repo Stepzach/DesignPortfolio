@@ -418,6 +418,8 @@ text-decoration: underline;
   border-radius: 14px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   max-width:500px;
+  padding-right: 52px;
+ 
 }
 
 .pill img {
@@ -429,12 +431,14 @@ text-decoration: underline;
 
 .pill-text {
   color: #67645e;
+  
 }
 
 .pill-text h4 {
   font-size: 1rem;
   margin: 0;
-  font-weight: 700;
+  font-weight: 500;
+  
 }
 
 .pill-text p {
@@ -474,6 +478,15 @@ text-decoration: underline;
   font-weight: bold;
   white-space: nowrap;
 }
+.pill-logo {
+ position: absolute;
+ top:6px;
+ right:-12px;
+  width: 14px;
+  height: 14px;
+  border-radius: 100% !important;
+  object-fit: contain;
+}
 
   </style>
 </head>
@@ -498,8 +511,9 @@ text-decoration: underline;
   <div class="menu-tabs">
     <span class="tab active" data-category="featured">FEATURED</span>
     <span class="tab" data-category="university">UNI PROJECTS</span>
+     <span class="tab" data-category="personal">PERSONAL PROJECTS</span>
     <span class="tab" data-category="website">WEBSITES</span>
-    <span class="tab" data-category="personal">PERSONAL PROJECTS</span>
+   
   </div>
 
   <div class="pill-container" id="pillContainer">
@@ -592,23 +606,44 @@ menuButton.addEventListener("click", () => {
 
   const pillData = {
     featured: [
-      { title: "GLAZING MIST", 
-      caption: "The hydrating face spray", 
-      img: "https://via.placeholder.com/48x48?text=M",
-      tags: [
-        { text: "CAD", color: "#67645e" },
-        { text: "NEW", color: "#67645e" }
+      { title: "TRANSCEIVER FOR FIRST RESPONDERS", caption: "Final design and Renderings", img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5696-min.jpeg?raw=true",
+       tags: [
+        { text: "3D", color: "#67645e" }
+       
       ]},
       
-      { title: "GLAZING MILK", caption: "The essential prep layer", img: "https://via.placeholder.com/48x48?text=MLK" },
-      { title: "BARRIER BUTTER", caption: "The intensive moisture balm", img: "https://via.placeholder.com/48x48?text=BB" },
-      { title: "BARRIER BUTTER", caption: "The intensive moisture balm", img: "https://via.placeholder.com/48x48?text=BB" }
+     { title: "SUSTAINABLE BERRY PACKAGING", caption: "Cardboard Cut-out template", img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5697-min.jpeg?raw=true",
+      tags: [
+        { type: "logo", src: "https://www.procarton.com/wp-content/uploads/2021/12/logo-232.png" }
+      ]},
+      { title: "PRINTING IN A RESOURCE DEPRIVED WORLD", caption: "The intensive moisture balm", img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5699-min.jpeg?raw=true",  
+      tags: [
+        { text: "CAD", color: "#67645e" }
+      
+      ]},
+      { title: "PICKLE RICK SHARPENER", caption: "3D Printed pencil sharpener", img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5698-min.jpeg?raw=true" }
     ],
+    
+    
+    
+    
     university: [
-      { title: "TRANSCEIVER FOR FIRST RESPONDERS", caption: "Final design and Renderings", img: "https://zacharystephens.info/IMG_4976.jpeg" },
-      { title: "PRINTING IN A RESOURCE DEPRIVED WORLD", caption: "Typography exploration", img: "https://zacharystephens.info/IMG_4821.jpeg" },
-      { title: "PROJECT C", caption: "Sustainable packaging concept", img: "https://via.placeholder.com/48x48?text=C" },
-      { title: "PROJECT D", caption: "UX research deep dive", img: "https://via.placeholder.com/48x48?text=D" }
+     
+      { title: "SMART SECURITY SYSTEM INTERFACE", caption: "Electronics Project on Arduino", img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5700-min.jpeg?raw=true",
+       tags: [
+        { text: "C++", color: "#67645e" }
+       
+      ]},
+      { title: "FOOT CAST FOR TRADITIONAL BONE SETTING", caption: "Quick iterations protoyping project", img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5695-min.jpeg?raw=true",
+      tags: [
+        { text: "AI", color: "#67645e" }
+      
+      ]},
+       { title: "PRESENTATION TO TAIT TOWERS", caption: "Solution proposition, after visiting their warehouse", img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5702-min.jpeg?raw=true",
+      tags: [
+        { type: "logo", src: "https://media.licdn.com/dms/image/v2/D4E0BAQGAOMFDbRl8Mg/company-logo_200_200/company-logo_200_200/0/1719258433497/tait_towers_logo?e=2147483647&v=beta&t=pgXn4jQw1VTtbaURo8v_wFdrSyvFEl3Y2dZ57YDZvvk" }
+      ]},
+     
     ],
     website: [
       { title: "BAD B!TCH DUBZ", caption: "Women-led record label and DJ collective based in Bristol", img: "https://ugc.production.linktr.ee/c3af7b23-afcc-4093-94fe-a56bf3d5b691_IMG-9572.jpeg?io=true&size=avatar-v3_0" },
@@ -617,10 +652,14 @@ menuButton.addEventListener("click", () => {
      
     ],
     personal: [
-      { title: "GARDEN DIARY", caption: "HTML journal and weather API", img: "https://via.placeholder.com/48x48?text=🌱" },
-      { title: "PHOTO ZINE", caption: "Summer street photography", img: "https://via.placeholder.com/48x48?text=📷" },
-      { title: "FILM POSTERS", caption: "Alternative layout studies", img: "https://via.placeholder.com/48x48?text=🎞️" },
-      { title: "RECIPE PAGE", caption: "Web layout for saved meals", img: "https://via.placeholder.com/48x48?text=🍲" }
+      { title: "MINI CROSSWORD GAME", caption: "5x5 Crossword with leaderboard", img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5703-min.jpeg?raw=true", 
+        tags: [
+        { text: "JS", color: "#67645e" }
+       
+      ]},
+      { title: "CIRCULAR PIZZA BOX", caption: "Prototyping experiment", img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5704-min.jpeg?raw=true" },
+      { title: "LOGO DESIGNS", caption: "For various Uni of Leeds societies", img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5705-min.jpeg?raw=true" },
+      { title: "MENU RE-DESIGN", caption: "For Okan (a Japanese restaurant I used to work at)", img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5707-min.jpeg?raw=true" }
     ]
   };
 
@@ -628,9 +667,13 @@ menuButton.addEventListener("click", () => {
   pillContainer.innerHTML = pillData[category].map(pill => `
     <div class="pill">
       <div class="pill-tags">
-        ${(pill.tags || []).map(tag => `
-          <span class="pill-tag" style="background-color: ${tag.color || 'gray'}">${tag.text}</span>
-        `).join('')}
+        ${(pill.tags || []).map(tag => {
+          if (tag.type === "logo") {
+            return `<img class="pill-logo" src="${tag.src}" alt="logo" />`;
+          } else {
+            return `<span class="pill-tag" style="background-color: ${tag.color || 'gray'}">${tag.text}</span>`;
+          }
+        }).join('')}
       </div>
       <img src="${pill.img}" alt="${pill.title}">
       <div class="pill-text">
@@ -640,6 +683,7 @@ menuButton.addEventListener("click", () => {
     </div>
   `).join('');
 }
+
 
 
   tabs.forEach(tab => {
