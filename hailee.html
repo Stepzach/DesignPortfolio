@@ -56,7 +56,7 @@
       overflow: hidden;
     }
 
-    .hero-section img {
+    .hero-video {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -64,6 +64,23 @@
       border-radius: 14px;
       display: block;
     }
+    .desktop-video {
+    display: block;
+  }
+
+  .mobile-video {
+    display: none;
+  }
+
+  @media screen and (max-width: 550px) {
+    .desktop-video {
+      display: none;
+    }
+
+    .mobile-video {
+      display: block;
+    }
+  }
 
     .overlay {
       position: absolute;
@@ -596,7 +613,31 @@ pill-link {
   </div>
 
   <div class="hero-section">
-    <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_1753-min-1.jpeg?raw=true" alt="Hero Image" />
+   <video
+    class="hero-video desktop-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+  >
+    <source src="/02E35E25-B0B8-45DB-99E3-47129AF58C07.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Mobile Video -->
+  <video
+    class="hero-video mobile-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+  >
+    <source src="/ECFFAC2A-0D1A-4F79-99BD-E4410EF0EAF7.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
     <div class="overlay">
      <div class="top-row"> 
   <div class="menu" id="menuButton" aria-haspopup="true" aria-expanded="false">☰</div>
