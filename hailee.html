@@ -335,6 +335,7 @@ text-decoration: underline;
    transition: height 0.8s ease;
 }
 
+
    .sliding-content {
   opacity: 0;
   transform: translateY(-40px);
@@ -348,6 +349,7 @@ text-decoration: underline;
 .sliding-menu.open .sliding-content {
   opacity: 1;
   transform: translateY(0);
+      overflow-y: hidden;
 }
 
 .sliding-menu nav ul {
@@ -517,6 +519,72 @@ pill-link {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.desktop-nav {
+  display: none;
+  gap: 1rem;
+}
+
+/* Show only on wider screens */
+@media (min-width: 768px) {
+  .menu {
+    display: none;
+  }
+
+  .title {
+    order: 1; /* move to left */
+    margin-left:20px;
+  }
+
+  .desktop-nav {
+    display: flex;
+    order: 2;
+      font-size:1rem;
+    margin-top:10px;
+    margin-right:20px;
+     transition: color 0.8s ease !important;
+  }
+
+  .nav-item {
+    cursor: pointer;
+    position: relative;
+    z-index:2;
+  }
+  
+
+ .desktop-nav.item-open {
+  color: #67645e !important;
+  transition: color 0.8s ease !important;
+}
+
+ .nav-item.item-open {
+  text-decoration: underline;
+   text-decoration-thickness: 2px; /* Thicker underline */
+  text-underline-offset: 5px;     /* More space between text and underline */
+ 
+} 
+ 
+#nav-item:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px; /* Thicker underline */
+  text-underline-offset: 5px;     /* More space between text and underline */
+ 
+   transition: underline 0.8s ease !important;
+}
+
+ 
+
+ 
+}
+@media (min-width: 998px) {
+ .desktop-nav {
+  font-size:1.2rem;
+  }
+   .sliding-content {
+  
+  padding: 130px 24px;
+  
+}
+   }
   </style>
 </head>
 <body>
@@ -530,10 +598,18 @@ pill-link {
   <div class="hero-section">
     <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_1753-min-1.jpeg?raw=true" alt="Hero Image" />
     <div class="overlay">
-      <div class="top-row">
-        <div class="menu" id="menuButton">☰</div>
-        <div class="title">Zach Stephens</div>
-      </div>
+     <div class="top-row">
+  <div class="menu" id="menuButton">☰</div>
+  <div class="title">Zach Stephens</div>
+
+  <!-- Desktop Navigation -->
+  <div class="desktop-nav">
+    <div class="nav-item projects" id="projectsHover">PROJECTS</div>
+    <div class="nav-item" id="nav-item">ABOUT</div>
+    <div class="nav-item" id="nav-item">ARCHIVE</div>
+  </div>
+</div>
+
       
       <div class="sliding-menu" id="slidingMenu">
  <div class="sliding-content">
@@ -606,21 +682,25 @@ const menuButton = document.getElementById("menuButton");
 const slidingMenu = document.getElementById("slidingMenu");
 const overlay = document.querySelector(".title");
 const menu = document.querySelector(".menu");
+const projectsHover = document.getElementById("projectsHover");
+const nav = document.querySelector(".desktop-nav"); 
+const nav2 = document.querySelector(".nav-item");
 
 let menuOpen = false;
 
+// MOBILE: Click menu toggle
 menuButton.addEventListener("click", () => {
   menuOpen = !menuOpen;
 
   if (menuOpen) {
     slidingMenu.classList.add("open");
-   menuButton.innerHTML = '<span style="display:block; padding-top:5px; padding-left:4px;     font-size: 2.2rem;">✕</span>';
-
+    menuButton.innerHTML = '<span style="display:block; padding-top:5px; padding-left:4px; font-size: 2.2rem;">✕</span>';
 
     setTimeout(() => {
       overlay.classList.add("menu-open");
       menu.classList.add("menu-open");
-    }, 50); // Delay for adding menu-open
+    
+    }, 50);
   } else {
     slidingMenu.classList.remove("open");
     menuButton.textContent = "☰";
@@ -628,10 +708,70 @@ menuButton.addEventListener("click", () => {
     setTimeout(() => {
       overlay.classList.remove("menu-open");
       menu.classList.remove("menu-open");
-    }, 1000); // Delay for removing menu-open
+    }, 1000);
   }
 });
 
+// DESKTOP: Hover to show/hide menu with class-based control
+if (window.innerWidth >= 768 && projectsHover) {
+  let hoverTimeout;
+
+  const openMenu = () => {
+    slidingMenu.classList.add("open");
+     setTimeout(() => {
+    overlay.classList.add("menu-open");
+    menu.classList.add("menu-open");
+      nav.classList.add("item-open");
+       nav2.classList.add("item-open");
+       }, 50);
+  };
+
+  const closeMenu = () => {
+    slidingMenu.classList.remove("open");
+    setTimeout(() => {
+    overlay.classList.remove("menu-open");
+    menu.classList.remove("menu-open");
+     nav.classList.remove("item-open");
+     nav2.classList.remove("item-open");
+       }, 1000);
+  
+  };
+
+  projectsHover.addEventListener("mouseenter", () => {
+    clearTimeout(hoverTimeout);
+    openMenu();
+  });
+
+  projectsHover.addEventListener("mouseleave", () => {
+    hoverTimeout = setTimeout(() => {
+      if (!slidingMenu.matches(":hover")) {
+        closeMenu();
+      }
+    }, 200);
+  });
+
+  slidingMenu.addEventListener("mouseenter", () => {
+    clearTimeout(hoverTimeout);
+    openMenu();
+  });
+
+  slidingMenu.addEventListener("mouseleave", () => {
+    closeMenu();
+  });
+}
+
+// On window resize: reset to default state if switching to desktop
+window.addEventListener('resize', () => {
+  if (window.innerWidth >= 768) {
+    menuButton.textContent = "☰";
+    slidingMenu.classList.remove("open");
+    overlay.classList.remove("menu-open");
+    menu.classList.remove("menu-open");
+     nav.classList.remove("item-open");
+     nav2.classList.remove("item-open");
+    menuOpen = false;
+  }
+});
 
   const pillContainer = document.getElementById("pillContainer");
   const tabs = document.querySelectorAll(".tab");
@@ -832,5 +972,5 @@ document.getElementById('menuButton').addEventListener('click', () => {
     }, 2000); // 4 seconds
   }
 });
-</script>
 
+</script>
