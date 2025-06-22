@@ -760,7 +760,7 @@ if (window.innerWidth >= 768 && projectsHover) {
   });
 }
 // TOUCH DEVICE: Click to toggle menu on #projectsHover
-if (window.innerWidth < 768 && projectsHover) {
+if ('ontouchstart' in window && projectsHover) {
   let touchMenuOpen = false;
 
   projectsHover.addEventListener("click", () => {
