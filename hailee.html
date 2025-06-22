@@ -419,9 +419,32 @@ text-decoration: underline;
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   max-width:500px;
   padding-right: 52px;
- 
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 1.6s ease, transform 1.6s ease;
+
 }
 
+
+
+.pill.show {
+  opacity: 1;
+  transform: translateY(0);
+ 
+  
+}
+.pill.hide {
+  opacity: 0;
+  transform: translateY(10px); /* animate downward on hide */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+
+pill-link {
+  text-decoration: none !important;
+  display: inline-block;
+  cursor: pointer;
+}
 .pill img {
   width: 48px;
   height: 48px;
@@ -431,6 +454,7 @@ text-decoration: underline;
 
 .pill-text {
   color: #67645e;
+  text-decoration: none;
   
 }
 
@@ -438,6 +462,7 @@ text-decoration: underline;
   font-size: 1rem;
   margin: 0;
   font-weight: 500;
+  
   
 }
 
@@ -486,6 +511,9 @@ text-decoration: underline;
   height: 14px;
   border-radius: 100% !important;
   object-fit: contain;
+}
+.pill:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
   </style>
@@ -607,21 +635,26 @@ menuButton.addEventListener("click", () => {
   const pillData = {
     featured: [
       { title: "TRANSCEIVER FOR FIRST RESPONDERS", caption: "Final design and Renderings", img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5696-min.jpeg?raw=true",
+       link: "https://zacharystephens.info/WalkieTalkie(part3).pdf",
        tags: [
         { text: "3D", color: "#67645e" }
        
       ]},
       
      { title: "SUSTAINABLE BERRY PACKAGING", caption: "Cardboard Cut-out template", img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5697-min.jpeg?raw=true",
+      link: "https://zacharystephens.info/berry",
       tags: [
         { type: "logo", src: "https://www.procarton.com/wp-content/uploads/2021/12/logo-232.png" }
       ]},
       { title: "PRINTING IN A RESOURCE DEPRIVED WORLD", caption: "The intensive moisture balm", img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5699-min.jpeg?raw=true",  
+       link: "https://zacharystephens.info/radicaldesignPART2.pdf",
       tags: [
         { text: "CAD", color: "#67645e" }
       
       ]},
-      { title: "PICKLE RICK SHARPENER", caption: "3D Printed pencil sharpener", img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5698-min.jpeg?raw=true" }
+      { title: "PICKLE RICK SHARPENER", caption: "3D Printed pencil sharpener", img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5698-min.jpeg?raw=true",
+       link: "https://zacharystephens.info/sharpernerportfolioA3.pdf"
+       }
     ],
     
     
@@ -630,59 +663,111 @@ menuButton.addEventListener("click", () => {
     university: [
      
       { title: "SMART SECURITY SYSTEM INTERFACE", caption: "Electronics Project on Arduino", img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5700-min.jpeg?raw=true",
+       link: "https://zacharystephens.info/Washing-Project1elec.pdf",
        tags: [
         { text: "C++", color: "#67645e" }
        
       ]},
       { title: "FOOT CAST FOR TRADITIONAL BONE SETTING", caption: "Quick iterations protoyping project", img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5695-min.jpeg?raw=true",
+        link: "g",
       tags: [
         { text: "AI", color: "#67645e" }
       
       ]},
        { title: "PRESENTATION TO TAIT TOWERS", caption: "Solution proposition, after visiting their warehouse", img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5702-min.jpeg?raw=true",
+         link: "https://zacharystephens.info/TaitPresentation.pdf",
       tags: [
         { type: "logo", src: "https://media.licdn.com/dms/image/v2/D4E0BAQGAOMFDbRl8Mg/company-logo_200_200/company-logo_200_200/0/1719258433497/tait_towers_logo?e=2147483647&v=beta&t=pgXn4jQw1VTtbaURo8v_wFdrSyvFEl3Y2dZ57YDZvvk" }
       ]},
      
     ],
     website: [
-      { title: "BAD B!TCH DUBZ", caption: "Women-led record label and DJ collective based in Bristol", img: "https://ugc.production.linktr.ee/c3af7b23-afcc-4093-94fe-a56bf3d5b691_IMG-9572.jpeg?io=true&size=avatar-v3_0" },
-      { title: "LEEDS STUDENTS RADIO", caption: "Officially the UK's best student radio 2023 & 2024", img: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAdVBMVEW2DQW1AACyAACzAAC2CwC0AAC/Pjzqy8rkv77boaDy3d3YmZfeqajoxcTjt7bKa2mxAADDUE7////04+P8+vnPf33Wj47ShoWuAADhsbDNeni8Mi/Uionv19bdp6e4HhnHYF7BSke5JCD47e3Kc3HEVlPHYmDqAzGvAAABCElEQVR4Ac3QBYLDIBAFUBgycRr641rv/Y+4Q5W9QX8UHq5+L5rM8ycyRCZSypB8+WlxkpqnZXleUGRKa+2ucg/cA84b1ZDU5B5flPTExiO3QFcA/ZBjnHbArL9IKUY3WFjB3slr4QATZIb7NfPIZLGZAHewAzMZ59ElKALkCsgnYiU4DQfgGAyraAPQTEawaYDaqQAVzaPwSRBiFIUov0Q1/IKmM5r/SI4VlUgF++GCigOk9XJl80I3IqUXDkTkVmzDIJv1SDeAogdiXdc87gCbAPvnPhsZ94k+RycCjP7gF6YUiYwbzd0i6Wbt7uV2c4qn7qR13MnZivIjMgMbo5V8WN6axX4uf1gvFqo3LKsUAAAAAElFTkSuQmCC" },
-      { title: "THE GRYPHON", caption: "The Official Newspaper of the University of Leeds, since 1897", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3sEAGHRuuR_Qd1LrYE7lBrKF4iLZicloVOA&s" },
+      { title: "BAD B!TCH DUBZ", caption: "Women-led record label and DJ collective based in Bristol", img: "https://ugc.production.linktr.ee/c3af7b23-afcc-4093-94fe-a56bf3d5b691_IMG-9572.jpeg?io=true&size=avatar-v3_0",  link: "https://badbitchdubz.co.uk/", },
+      
+       
+      { title: "LEEDS STUDENTS RADIO", caption: "Officially the UK's best student radio 2023 & 2024",  link: "https://www.thisislsr.com/",
+      img: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAdVBMVEW2DQW1AACyAACzAAC2CwC0AAC/Pjzqy8rkv77boaDy3d3YmZfeqajoxcTjt7bKa2mxAADDUE7////04+P8+vnPf33Wj47ShoWuAADhsbDNeni8Mi/Uionv19bdp6e4HhnHYF7BSke5JCD47e3Kc3HEVlPHYmDqAzGvAAABCElEQVR4Ac3QBYLDIBAFUBgycRr641rv/Y+4Q5W9QX8UHq5+L5rM8ycyRCZSypB8+WlxkpqnZXleUGRKa+2ucg/cA84b1ZDU5B5flPTExiO3QFcA/ZBjnHbArL9IKUY3WFjB3slr4QATZIb7NfPIZLGZAHewAzMZ59ElKALkCsgnYiU4DQfgGAyraAPQTEawaYDaqQAVzaPwSRBiFIUov0Q1/IKmM5r/SI4VlUgF++GCigOk9XJl80I3IqUXDkTkVmzDIJv1SDeAogdiXdc87gCbAPvnPhsZ94k+RycCjP7gF6YUiYwbzd0i6Wbt7uV2c4qn7qR13MnZivIjMgMbo5V8WN6axX4uf1gvFqo3LKsUAAAAAElFTkSuQmCC" },
+      { title: "THE GRYPHON", 
+      caption: "The Official Newspaper of the University of Leeds, since 1897", 
+       link: "https://www.thegryphon.co.uk/",
+       img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3sEAGHRuuR_Qd1LrYE7lBrKF4iLZicloVOA&s" },
      
     ],
     personal: [
-      { title: "MINI CROSSWORD GAME", caption: "5x5 Crossword with leaderboard", img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5703-min.jpeg?raw=true", 
+      { title: "MINI CROSSWORD GAME", 
+      caption: "5x5 Crossword with leaderboard", 
+      img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5703-min.jpeg?raw=true", 
+       link: "https://zacharystephens.info/nytmini.pdf",
         tags: [
         { text: "JS", color: "#67645e" }
-       
       ]},
-      { title: "CIRCULAR PIZZA BOX", caption: "Prototyping experiment", img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5704-min.jpeg?raw=true" },
-      { title: "LOGO DESIGNS", caption: "For various Uni of Leeds societies", img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5705-min.jpeg?raw=true" },
-      { title: "MENU RE-DESIGN", caption: "For Okan (a Japanese restaurant I used to work at)", img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5707-min.jpeg?raw=true" }
+      
+      { title: "CIRCULAR PIZZA BOX", 
+      caption: "Prototyping experiment",  
+      link: "https://zacharystephens.info/pizza.pdf", 
+      img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5704-min.jpeg?raw=true" },
+      
+      { title: "LOGO DESIGNS",  
+      link: "https://zacharystephens.info/logodes.pdf", 
+      caption: "For various Uni of Leeds societies", 
+      img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5705-min.jpeg?raw=true" },
+      
+      { title: "MENU RE-DESIGN", 
+      caption: "For Okan (a Japanese restaurant I used to work at)", 
+      link: "https://zacharystephens.info/menuokan.pdf", 
+      img: "https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5707-min.jpeg?raw=true" }
+    
     ]
   };
 
- function renderPills(category) {
-  pillContainer.innerHTML = pillData[category].map(pill => `
-    <div class="pill">
-      <div class="pill-tags">
-        ${(pill.tags || []).map(tag => {
-          if (tag.type === "logo") {
-            return `<img class="pill-logo" src="${tag.src}" alt="logo" />`;
-          } else {
-            return `<span class="pill-tag" style="background-color: ${tag.color || 'gray'}">${tag.text}</span>`;
-          }
-        }).join('')}
-      </div>
-      <img src="${pill.img}" alt="${pill.title}">
-      <div class="pill-text">
-        <h4>${pill.title}</h4>
-        <p>${pill.caption}</p>
-      </div>
-    </div>
-  `).join('');
+function renderPills(category) {
+  const oldPills = pillContainer.querySelectorAll('.pill');
+
+  // If there are pills already, fade them out first
+  if (oldPills.length > 0) {
+    oldPills.forEach(pill => pill.classList.remove('show'));
+    oldPills.forEach(pill => pill.classList.add('hide'));
+
+    // Wait for fade-out to finish before replacing
+    setTimeout(() => {
+      showNewPills(category);
+    }, 400); // Match CSS transition duration
+  } else {
+    showNewPills(category);
+  }
 }
+
+function showNewPills(category) {
+  pillContainer.innerHTML = pillData[category].map((pill, index) => `
+    <a href="${pill.link}" class="pill-link" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+      <div class="pill" data-index="${index}">
+        <div class="pill-tags">
+          ${(pill.tags || []).map(tag => {
+            if (tag.type === "logo") {
+              return `<img class="pill-logo" src="${tag.src}" alt="logo" />`;
+            } else {
+              return `<span class="pill-tag" style="background-color: ${tag.color || 'gray'}">${tag.text}</span>`;
+            }
+          }).join('')}
+        </div>
+        <img src="${pill.img}" alt="${pill.title}">
+        <div class="pill-text">
+          <h4>${pill.title}</h4>
+          <p>${pill.caption}</p>
+        </div>
+      </div>
+    </a>
+  `).join('');
+
+  // Fade in new pills
+  const newPills = pillContainer.querySelectorAll('.pill');
+  newPills.forEach((pill, i) => {
+    setTimeout(() => {
+      pill.classList.add('show');
+    }, i * 100); // Optional stagger
+  });
+}
+
 
 
 
