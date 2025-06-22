@@ -598,13 +598,13 @@ pill-link {
   <div class="hero-section">
     <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_1753-min-1.jpeg?raw=true" alt="Hero Image" />
     <div class="overlay">
-     <div class="top-row">
-  <div class="menu" id="menuButton">☰</div>
+     <div class="top-row"> 
+  <div class="menu" id="menuButton" aria-haspopup="true" aria-expanded="false">☰</div>
   <div class="title">Zach Stephens</div>
 
   <!-- Desktop Navigation -->
   <div class="desktop-nav">
-    <div class="nav-item projects" id="projectsHover">PROJECTS</div>
+    <div class="nav-item projects" id="projectsHover" >PROJECTS</div>
     <div class="nav-item" id="nav-item">ABOUT</div>
     <div class="nav-item" id="nav-item">ARCHIVE</div>
   </div>
@@ -757,6 +757,24 @@ if (window.innerWidth >= 768 && projectsHover) {
 
   slidingMenu.addEventListener("mouseleave", () => {
     closeMenu();
+  });
+}
+// TOUCH DEVICE: Click to toggle menu on #projectsHover
+if (window.innerWidth < 768 && projectsHover) {
+  let touchMenuOpen = false;
+
+  projectsHover.addEventListener("click", () => {
+    touchMenuOpen = !touchMenuOpen;
+
+    if (touchMenuOpen) {
+      slidingMenu.classList.add("open");
+      overlay.classList.add("menu-open");
+      menu.classList.add("menu-open");
+    } else {
+      slidingMenu.classList.remove("open");
+      overlay.classList.remove("menu-open");
+      menu.classList.remove("menu-open");
+    }
   });
 }
 
