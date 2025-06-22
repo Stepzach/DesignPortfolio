@@ -60,10 +60,29 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position:left;
+      
       border-radius: 14px;
       display: block;
     }
+    .hero-img-default {
+    object-position: left;
+  }
+
+  /* Center-aligned for mobile screens */
+  @media (max-width: 520px) {
+    .hero-img-default {
+      display: none !important;
+    }
+    .hero-img-mobile {
+      display: block;
+    }
+  }
+
+  /* Hide mobile image by default */
+  .hero-img-mobile {
+    display: none;
+    object-position: center;
+  }
 
     .overlay {
       position: absolute;
@@ -527,8 +546,19 @@ pill-link {
     </p>
   </div>
 
-  <div class="hero-section">
-    <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_1753-min-1.jpeg?raw=true" alt="Hero Image" />
+ <div class="hero-section">
+  <img
+    src="https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_1753-min-1.jpeg?raw=true"
+    alt="Hero Image"
+    class="hero-img hero-img-default"
+  />
+  <img
+    src="https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_1753-min.jpeg?raw=true"
+    alt="Mobile Hero Image"
+    class="hero-img hero-img-mobile"
+  />
+
+
     <div class="overlay">
       <div class="top-row">
         <div class="menu" id="menuButton">☰</div>
