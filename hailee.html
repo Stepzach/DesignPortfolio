@@ -715,7 +715,7 @@ pill-link {
  
   #footerlarger {
    display: block;
-   width:30%;
+   width:20%;
   
    
    
@@ -728,12 +728,12 @@ pill-link {
   }
    #footerlarge {
   
-   width:30%;
+   width:20%;
    
   }
   #footerlarge p {
   
-   width:250px;
+   width:210px;
    margin-left:auto;
    margin-right: auto;
    
@@ -751,8 +751,23 @@ pill-link {
   }
   
    }
+  .footimg {
+  width:230px; 
+  position: relative; 
+  left:-25px; 
+  top:10px; 
+  transform: rotate(3deg);
+   }
    
-
+    @media (min-width: 1160px) {
+.footimg {
+  width:270px; 
+  position: relative; 
+  left:-25px; 
+  top:10px; 
+  transform: rotate(3deg);
+   }
+  }
   </style>
 </head>
 <body style="    max-width: 1300px;
@@ -836,10 +851,23 @@ pill-link {
 <footer class="footer">
   <div class="footer-content">
 
+    <div class="footer-section" id="footerlarger" >
+      
+      <p>London-based product design student at the University of Leeds</p>
+      <div style="height:1px; width: 1px;" ><img class="footimg" src="https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_2748.png?raw=true">
+    </div>  </div>
+     <div class="footer-section"  id="footerlline" style="
+    border-left: 1px solid #ccc;">
+      
+      <ul>
+        <li style="margin-top: 0;"></li>
+      </ul>
+    </div>
+    
     <div class="footer-section">
       <h4>NAVIGATE</h4>
       <ul>
-        <li><a href="#">Home</a></li>
+        <li><a href="/">Home</a></li>
         <li><a href="#">Archive</a></li>
         <li><a href="#" class="marginsfoot">About</a></li>
       </ul>
@@ -848,18 +876,18 @@ pill-link {
     <div class="footer-section">
       <h4>SOCIAL</h4>
       <ul>
-        <li><a href="#"><span class="icon"><i class="fa fa-linkedin"></i></span> LinkedIn</a></li>
-        <li><a href="#"><span class="icon"><i class="fa fa-instagram"></i></span> Instagram</a></li>
-        <li><a href="#"><span class="icon"><i class="fa fa-github"></i></span> GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/zacharystephens05/" target="_blank"><span class="icon"><i class="fa fa-linkedin"></i></span> LinkedIn</a></li>
+        <li><a href="https://www.instagram.com/zstepsdesigns" target="_blank"><span class="icon"><i class="fa fa-instagram"></i></span> Instagram</a></li>
+        <li><a href="https://github.com/Stepzach/" target="_blank"><span class="icon"><i class="fa fa-github"></i></span> GitHub</a></li>
       </ul>
     </div>
     
     <div class="footer-section" id="offifoot">
       <h4>OFFICIAL</h4>
       <ul>
-        <li><a href="#">Résumé</a></li>
+        <li><a href="#">CV</a></li>
         <li><a href="#">Awards</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="mailto:zachstep05@gmail.com">Contact</a></li>
       </ul>
  
     </div>
@@ -876,24 +904,13 @@ pill-link {
       <ul>
         <li style="
     margin-top: 0;
-"><p>Built with HTML/CSS &amp; JavaScript</p></li>
+"><p>html, css & javascript code written by me :)</p></li>
         <li><p>Last updated: June 2025</p></li>
-        <li><p>Design inspired by <br><a class="marginsfoot">www.rhodeskin.com</a></p></li>
+        <li><p>Design inspired by <br><a href="https://www.rhodeskin.com" target="_blank" class="marginsfoot" style="cursor:pointer">www.rhodeskin.com</a></p></li>
       </ul>
     </div>
     
-     <div class="footer-section"  id="footerlline" style="
-    border-left: 1px solid #ccc;">
-      
-      <ul>
-        <li style="margin-top: 0;"></li>
-      </ul>
-    </div>
     
-    <div class="footer-section" id="footerlarger" >
-      
-      <p>Currently reading: <br>‘Designing Interfaces’ by Jenifer Tidwell</p>
-    </div>
   </div>
   <div class="footer-bottom">
     <p>© Zachary Stephens 2025</p>
