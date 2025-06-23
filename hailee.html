@@ -247,7 +247,7 @@
 .footer-content {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
  
   
 }
@@ -665,10 +665,99 @@ pill-link {
    max-width:800px;
   }
 }
+ #footerlarge {
+   display: none
+  }
+  #footerlarger {
+   display: none;
+   
+  }
+  
+  #footerlline {
+   display: none;
+  }
+  #footerline {
+   display: none;
+  }
+@media (min-width: 655px) {
+.footer-bottom {
+   margin-top:0px;
+  }
+  #footerlarge {
+   display: block;
+   
+  }
+  #footerline {
+   display: block;
+   
+   
+   
+  }
+   #footerlarge p {
+  
+   width:220px;
+   margin-left:auto;
+   margin-right: auto;
+   
+  
+   
+  }
+  .marginsfoot {
+  margin-bottom:24px;
+  }
+  
+   }
+   
+   @media (min-width: 1000px) {
+.footer-bottom {
+   margin-top:0px;
+  }
+ 
+  #footerlarger {
+   display: block;
+   width:30%;
+  
+   
+   
+  }
+  #footerlline {
+   display: block;
+   
+   
+   
+  }
+   #footerlarge {
+  
+   width:30%;
+   
+  }
+  #footerlarge p {
+  
+   width:250px;
+   margin-left:auto;
+   margin-right: auto;
+   
+  
+   
+  }
+  .l30per {
+  
+   width:30%;
+   
+   
+  }
+  .marginsfoot {
+  margin-bottom:24px;
+  }
+  
+   }
+   
 
   </style>
 </head>
-<body>
+<body style="    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;">
 
   <div class="pill-banner">
   <p>
@@ -746,14 +835,16 @@ pill-link {
   </div>
 <footer class="footer">
   <div class="footer-content">
+
     <div class="footer-section">
       <h4>NAVIGATE</h4>
       <ul>
         <li><a href="#">Home</a></li>
         <li><a href="#">Archive</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="#" class="marginsfoot">About</a></li>
       </ul>
     </div>
+    
     <div class="footer-section">
       <h4>SOCIAL</h4>
       <ul>
@@ -762,13 +853,46 @@ pill-link {
         <li><a href="#"><span class="icon"><i class="fa fa-github"></i></span> GitHub</a></li>
       </ul>
     </div>
-    <div class="footer-section">
+    
+    <div class="footer-section" id="offifoot">
       <h4>OFFICIAL</h4>
       <ul>
         <li><a href="#">Résumé</a></li>
         <li><a href="#">Awards</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
+ 
+    </div>
+    <div class="footer-section"  id="footerline" style="
+    border-left: 1px solid #ccc;">
+      
+      <ul>
+        <li style="margin-top: 0;"></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section"  id="footerlarge" >
+      
+      <ul>
+        <li style="
+    margin-top: 0;
+"><p>Built with HTML/CSS &amp; JavaScript</p></li>
+        <li><p>Last updated: June 2025</p></li>
+        <li><p>Design inspired by <br><a class="marginsfoot">www.rhodeskin.com</a></p></li>
+      </ul>
+    </div>
+    
+     <div class="footer-section"  id="footerlline" style="
+    border-left: 1px solid #ccc;">
+      
+      <ul>
+        <li style="margin-top: 0;"></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section" id="footerlarger" >
+      
+      <p>Currently reading: <br>‘Designing Interfaces’ by Jenifer Tidwell</p>
     </div>
   </div>
   <div class="footer-bottom">
