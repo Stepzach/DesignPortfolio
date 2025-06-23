@@ -603,6 +603,69 @@ pill-link {
   
 }
    }
+   
+   @media screen and (min-width: 768px) {
+  .pill-container {
+     display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+  }
+
+  .pill {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    padding: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .pill:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+  .pill img {
+    width: 100px;
+    height: 100px;
+    margin: 0 0 12px 0;
+  }
+
+  .pill-text {
+    margin-top: 4px;
+  }
+
+  .pill-text h4 {
+    font-size: 1rem;
+  }
+
+  .pill-text p {
+    font-size: 0.85rem;
+  }
+
+  .pill-tags {
+    top: 8px;
+    right: 8px;
+  }
+
+  .pill-logo {
+    top: 8px;
+    right: 8px;
+    width: 26px !important;
+    height: 26px !important;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .pill-container {
+    grid-template-columns: repeat(3, 1fr);
+   max-width:800px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -666,6 +729,7 @@ pill-link {
   <div class="pill-container" id="pillContainer">
     <!-- Pills will be injected here -->
   </div>
+ 
 </div>
 
 </div>
