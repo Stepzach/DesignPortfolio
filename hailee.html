@@ -100,6 +100,9 @@
       max-height: 660px;
       
     }
+    .menu-tabs {
+     justify-content: center;
+  }
 }
 
     .top-row {
@@ -408,8 +411,11 @@ text-decoration: underline;
   overflow-x: auto;     /* Enables horizontal scrolling */
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   scrollbar-width: none; /* Hide scrollbar for Firefox */
+ 
+
   
 }
+
 .menu-tabs::-webkit-scrollbar {
   display: none;
 }
@@ -548,9 +554,11 @@ pill-link {
   display: none;
   gap: 1rem;
 }
+   
 
 /* Show only on wider screens */
 @media (min-width: 768px) {
+  
   .menu {
     display: none;
   }
