@@ -789,23 +789,31 @@ pill-link {
    }
   }
   
-  
-
-.image-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 32px;
-  margin: 16px 28px;
-  max-width: 1300px;
-  
+  .carousel-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
 }
+
+.carousel-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 16px;
+  margin: 16px 28px;
+    max-width: 1300px;
+    scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+
 
 .image-card {
   position: relative;
-  flex: 1 1 calc(33.333% - 32px);
+  flex: 1 1 calc(33.333% - 16px);
   overflow: hidden;
   min-width: 100px;
-  aspect-ratio: 1 / 1;
+   aspect-ratio: 8 / 7;
   border-radius: 10px;
   background-color: #efefef !important;
 }
@@ -858,6 +866,8 @@ pill-link {
   opacity: 0;
 }
 
+
+
 .view-pill {
   position: absolute;
   bottom: -40px;
@@ -879,22 +889,65 @@ pill-link {
   bottom: 20px;
   opacity: 1;
 }
+.carousel-dots {
+  position: relative;
+ 
+ 
+  display:none;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.carousel-dots .dot {
+  display: inline-block;
+  height: 7px;
+  width: 7px;
+  margin: 0 5px;
+  background-color: rgb(103, 100, 94, 0.8);
+  border-radius: 50%; 
+  transition: background 0.3s;
+}
+
+.carousel-dots .dot.active {
+  height: 11px;
+  width: 11px;
+ 
+}
+.dot.active {
+  position: relative;
+  top:2px;
+  
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {
   .image-card {
      flex: 1 1 calc(50% - 32px);
   }
-  .image-row {
+ .carousel-track {
         margin: 12px 12px;
     }
+   
+
 }
-@media (max-width: 500px) {
+@media (max-width: 700px) {
   .image-card {
-     flex: 1 1 calc(100%);
-  }
+  position: relative;
+  flex: 0 0 85%;
+  max-width: 85%;
+  aspect-ratio: 8 / 7;
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 250px;
+  scroll-snap-align: start;
+}
+.carousel-dots {
+ display:block;
 }
 
+ 
+}
 
   </style>
 </head>
@@ -976,7 +1029,8 @@ pill-link {
       </div>
     </div>
   </div>
-  <div class="image-row">
+ <div class="carousel-container">
+  <div class="carousel-track" id="carouselTrack">
   <div class="image-card">
     <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5696-min.jpeg?raw=true" alt="Image 1" class="default-img">
     <img src="image1-hover.jpg" alt="Image 1 Hover" class="hover-img">
@@ -1009,9 +1063,10 @@ pill-link {
     </div>
     <div class="view-pill">View Project</div>
   </div>
+  
 </div>
 
- 
+  <div class="carousel-dots" id="carouselDots"></div>
 <footer class="footer">
   <div class="footer-content">
 
@@ -1431,3 +1486,40 @@ document.getElementById('menuButton').addEventListener('click', () => {
 });
 
 </script>
+<script>
+  const track = document.getElementById('carouselTrack');
+  const dotsContainer = document.getElementById('carouselDots');
+  const cards = track.querySelectorAll('.image-card');
+
+  // Create dots and add click listeners
+  cards.forEach((_, index) => {
+    const dot = document.createElement('span');
+    dot.classList.add('dot');
+    if (index === 0) dot.classList.add('active');
+    
+    dot.addEventListener('click', () => {
+      const cardWidth = cards[0].offsetWidth + 20; // includes gap
+      track.scrollTo({
+        left: index * cardWidth,
+        behavior: 'smooth'
+      });
+    });
+
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = dotsContainer.querySelectorAll('.dot');
+
+  // Update active dot on scroll
+  track.addEventListener('scroll', () => {
+    const scrollLeft = track.scrollLeft;
+    const cardWidth = cards[0].offsetWidth + 20;
+    const index = Math.round(scrollLeft / cardWidth);
+
+    dots.forEach(dot => dot.classList.remove('active'));
+    if (dots[index]) {
+      dots[index].classList.add('active');
+    }
+  });
+</script>
+
