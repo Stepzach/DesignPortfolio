@@ -804,6 +804,8 @@ pill-link {
     max-width: 1300px;
     scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
+   scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
 }
 
 
@@ -822,7 +824,7 @@ pill-link {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.5s ease;
   position: absolute;
   top: 0;
   left: 0;
@@ -956,6 +958,24 @@ pill-link {
 .carousel-dots {
  display:block;
 }
+.carousel-track::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+.image-card:hover .text {
+  opacity: 1;
+}
+.image-card:hover .hover-img {
+  opacity: 0;
+  
+}
+
+.image-card:hover .default-img {
+  opacity: 1;
+}
+.image-card:hover .view-pill {
+  
+  opacity: 0;
+}
 
  
 }
@@ -1042,8 +1062,20 @@ pill-link {
   </div>
  <div class="carousel-container">
   <div class="carousel-track" id="carouselTrack">
+  
+   <div class="image-card">
+    <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/Image%2063%20(1).png?raw=true" alt="LSR" class="default-img">
+    <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/Image%2065%20(1).png?raw=true" alt="LSR Hover" class="hover-img">
+    <div class="tag">UI/UX</div>
+    <div class="text">
+      <h3>LSR WEBSITE</h3>
+      <p>2024 Best Student Radio</p>
+    </div>
+    <div class="view-pill">VIEW PROJECT</div>
+  </div>
+  
   <div class="image-card">
-    <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/Image%2064%20(1).png?raw=true" alt="Image 1" class="default-img">
+    <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_1774-min%20(1).png?raw=true" alt="Image 1" class="default-img">
     <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/Image%2062%20(1).png?raw=true" alt="Image 1 Hover" class="hover-img">
     <div class="tag">CAD</div>
     <div class="text">
@@ -1054,9 +1086,9 @@ pill-link {
   </div>
 
   <div class="image-card">
-    <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/Image%2066%20(1).png?raw=true" alt="Image 2" class="default-img">
+    <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_1773.png?raw=true" alt="Image 2" class="default-img">
     <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_1710%20(1).jpg?raw=true" alt="Image 2 Hover" class="hover-img">
-    <div class="tag">JS</div>
+    <div class="tag">PROTOTYPE</div>
     <div class="text">
       <h3>CIRCLE PIZZA BOX</h3>
       <p>From a flat cutout</p>
@@ -1064,16 +1096,7 @@ pill-link {
     <div class="view-pill">VIEW PROJECT</div>
   </div>
 
-  <div class="image-card">
-    <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/Image%2063%20(1).png?raw=true" alt="LSR" class="default-img">
-    <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/Image%2065%20(1).png?raw=true" alt="LSR Hover" class="hover-img">
-    <div class="tag">UI/UX</div>
-    <div class="text">
-      <h3>LSR WEBSITE</h3>
-      <p>2024 Best Student Radio</p>
-    </div>
-    <div class="view-pill">VIEW PROJECT</div>
-  </div>
+ 
   
 </div>
 
