@@ -856,7 +856,8 @@ pill-link {
 .text {
   position: absolute;
   bottom: 10px;
-  left: 10px;
+  left: 20px;
+ line-height:25px;
   color: #67645e;
   z-index: 2;
   transition: opacity 0.3s ease;
@@ -878,11 +879,12 @@ pill-link {
   color: #67645e;
   padding: 10px 20px;
   border-radius: 999px;
-  font-weight: bold;
+
   transition: bottom 0.4s ease, opacity 0.4s ease;
   opacity: 0;
   z-index: 3;
   cursor: pointer;
+  text-align:center;
 }
 .view-pill:hover {
   background: #67645e;
@@ -896,12 +898,14 @@ pill-link {
   opacity: 1;
 }
 .carousel-dots {
-  position: relative;
- 
+  position: absolute;
+ top:20px;
+ left:25px;
  height:12px;
   display:none;
   text-align: center;
   margin-top: -10px;
+  z-index:10000;
 }
 
 .carousel-dots .dot {
@@ -932,7 +936,7 @@ pill-link {
      flex: 1 1 calc(50% - 32px);
   }
  .carousel-track {
-        margin: 12px 12px;
+        margin: 0px 12px;
     }
    
 
@@ -1040,23 +1044,23 @@ pill-link {
   <div class="image-card">
     <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5696-min.jpeg?raw=true" alt="Image 1" class="default-img">
     <img src="image1-hover.jpg" alt="Image 1 Hover" class="hover-img">
-    <div class="tag">Design</div>
+    <div class="tag">CAD</div>
     <div class="text">
-      <h3>Project One</h3>
-      <p>Creative direction</p>
+      <h3>TRANSCEIVER DESIGN</h3>
+      <p>For first reposnders</p>
     </div>
-    <div class="view-pill">View Project</div>
+    <div class="view-pill">VIEW PROJECT</div>
   </div>
 
   <div class="image-card">
     <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/IMG_5703-min.jpeg?raw=true" alt="Image 2" class="default-img">
     <img src="image2-hover.jpg" alt="Image 2 Hover" class="hover-img">
-    <div class="tag">Art</div>
+    <div class="tag">JS</div>
     <div class="text">
-      <h3>Project Two</h3>
-      <p>Illustration work</p>
+      <h3>MINI CROSSWORD</h3>
+      <p>5x5 with leaderboard</p>
     </div>
-    <div class="view-pill">View Project</div>
+    <div class="view-pill">VIEW PROJECT</div>
   </div>
 
   <div class="image-card">
@@ -1064,10 +1068,10 @@ pill-link {
     <img src="image3-hover.jpg" alt="Image 3 Hover" class="hover-img">
     <div class="tag">UI/UX</div>
     <div class="text">
-      <h3>Project Three</h3>
-      <p>User research</p>
+      <h3>LSR WEBSITE</h3>
+      <p>2024 Best Student Radio</p>
     </div>
-    <div class="view-pill">View Project</div>
+    <div class="view-pill">VIEW PROJECT</div>
   </div>
   
 </div>
