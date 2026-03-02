@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalist Portfolio - Michelle</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #2c3135;
+            --text-muted: #88929b;
+            --border-color: #e5e5e5;
+            --hover-bg: #f4f5f7;
+            --card-radius: 24px;
+            --primary-green: #2fae60;
+            --bg-green: #ebf7ed;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            cursor: none; 
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient Background Gradient */
+        .ambient-gradient {
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 80vw;
+            height: 600px;
+            background: radial-gradient(ellipse at center, rgba(255, 182, 193, 0.25) 0%, rgba(200, 200, 255, 0.2) 35%, rgba(240, 248, 255, 0) 70%);
+            filter: blur(80px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 18px;
+            height: 18px;
+            background-color: var(--text-color);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        a, .project-card, .contact-pill, .social-icons a {
+            cursor: none;
+        }
+
+        /* Container Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem;
+            min-height: 80vh;
+        }
+
+        /* Header / Hero */
+        header {
+            margin-top: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .logo-stamp {
+            width: 44px;
+            height: 44px;
+            border: 2px solid #e05252;
+            color: #e05252;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            border-radius: 6px;
+            margin-bottom: 4rem;
+            opacity: 0.9;
+        }
+
+        header h1 {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        header .subtitle {
+            font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+            color: var(--text-muted);
+            max-width: 700px;
+            font-weight: 400;
+        }
+
+        /* Tab Navigation */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .tabs a {
+            text-decoration: none;
+            color: var(--text-muted);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tabs a.active, .tabs a:hover {
+            background-color: var(--hover-bg);
+            color: var(--text-color);
+        }
+
+        /* Tab Content Containers */
+        .tab-section {
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .tab-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Work Section (Grid) */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .project-card {
+            background-color: var(--hover-bg);
+            border-radius: var(--card-radius);
+            height: 450px;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-apple { background: linear-gradient(135deg, #f0e6f5 0%, #e0e5ff 100%); }
+        .card-apple::after {
+            content: '';
+            font-size: 8rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .card-roblox { background: linear-gradient(135deg, #2b4162 0%, #1a2a6c 100%); }
+        .card-nasa { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
+        .card-personal { background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%); }
+
+        .project-tag {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        /* About Section Styles */
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 6rem;
+            margin-bottom: 4rem;
+        }
+
+        .about-left h2 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            color: #4a5157;
+            margin-bottom: 1.5rem;
+        }
+
+        .meta-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #88929b;
+            font-size: 1rem;
+        }
+
+        .meta-item svg {
+            width: 18px;
+            height: 18px;
+            fill: #a0aab2;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: #4a5157;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .about-text strong {
+            font-weight: 600;
+        }
+
+        .contact-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background-color: var(--bg-green);
+            color: var(--primary-green);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 1rem;
+            margin-top: 1rem;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-pill:hover {
+            opacity: 0.8;
+        }
+
+        .contact-pill .dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-green);
+            border-radius: 50%;
+        }
+
+        .exp-header {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .exp-header h2 {
+            font-size: 2rem;
+            font-weight: 500;
+            color: #2c3135;
+        }
+
+        .exp-header a {
+            color: #88929b;
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: color 0.3s ease;
+        }
+
+        .exp-header a:hover {
+            color: var(--text-color);
+        }
+
+        .experience-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .exp-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .exp-logo {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: none;
+           
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        
+        }
+
+        /* Logo Approximations */
+       
+        .exp-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .exp-details h3 {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #2c3135;
+        }
+
+        .exp-details p {
+            font-size: 1rem;
+            color: #88929b;
+        }
+
+        /* -----------------------------------
+            NEW FOOTER STYLES
+        ------------------------------------ */
+        footer {
+            padding: 4rem 4rem 3rem;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            border-top: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .footer-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+            margin-bottom: 6rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-brand .logo-stamp {
+            margin-bottom: 0;
+            width: 36px;
+            height: 36px;
+            font-size: 1.1rem;
+        }
+
+        .footer-brand h2 {
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: var(--text-color);
+            letter-spacing: -0.02em;
+        }
+
+        .footer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-self: center;
+        }
+
+        .footer-nav a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: var(--text-color);
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            justify-self: end;
+        }
+
+        .footer-contact p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .footer-contact .email-link {
+            font-size: 1.25rem;
+            color: var(--text-color);
+            text-decoration: none;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .social-icons a {
+            color: #b0b8c1;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-icons a:hover {
+            color: var(--text-color);
+        }
+
+        .social-icons svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-bottom strong {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .footer-bottom .changelog {
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* Animations */
+        .reveal-element {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .projects-grid { grid-template-columns: 1fr; }
+            .about-layout { grid-template-columns: 1fr; gap: 4rem; }
+            .container { padding: 2rem; }
+            
+            footer { padding: 3rem 2rem 2rem; }
+            .footer-content {
+                display: flex;
+                flex-direction: column;
+                gap: 3.5rem;
+                margin-bottom: 4rem;
+            }
+            .footer-brand { order: 1; }
+            .footer-contact { order: 2; align-self: flex-start; }
+            .footer-nav { 
+                order: 3; 
+                align-self: flex-start;
+                gap: 1.2rem;
+            }
+            .footer-nav a {
+                font-size: 1.2rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="ambient-gradient"></div>
+
+    <div class="container">
+        <header>
+            <div class="logo-stamp reveal-element">ZS</div>
+            <h1 class="reveal-element">zachary stephens</h1>
+            <p class="subtitle reveal-element">
+                Designing useful products to spark moments of delight & human connection. <span>✨</span><br>
+                Previously at <strong>Air Liquide</strong> & <strong>Hummingbird Technologies</strong>.
+            </p>
+            
+            <div class="tabs reveal-element">
+                <a href="#work" class="tab-link active" data-target="work-section">Work</a>
+              
+                <a href="#about" class="tab-link" data-target="about-section">About</a>
+            </div>
+        </header>
+
+        <main id="work-section" class="tab-section active">
+            <div class="projects-grid">
+                <a href="#" class="project-card card-apple reveal-element">
+                    <div class="project-tag">Air Liquide • 2026</div>
+                </a>
+                <a href="#" class="project-card card-roblox reveal-element">
+                    <div class="project-tag">Air Liquide • 2025</div>
+                </a>
+                <a href="#" class="project-card card-nasa reveal-element">
+                    <div class="project-tag">Leeds Student Radio • 2025</div>
+                </a>
+                <a href="#" class="project-card card-personal reveal-element">
+                    <div class="project-tag">University Year 2 Project</div>
+                </a>
+            </div>
+        </main>
+
+        <main id="art-section" class="tab-section">
+            <div style="height: 400px; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
+                Art gallery coming soon...
+            </div>
+        </main>
+
+        <main id="about-section" class="tab-section">
+            <div class="about-layout">
+                <div class="about-left reveal-element">
+                    <h2>Hi, I'm Zach!</h2>
+                    
+                    <div class="meta-info">
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                            <span>London / Paris </span>
+                        </div>
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+                            <span>Product Design BSc. / University of Leeds '27</span>
+                        </div>
+                    </div>
+
+                    <div class="about-text">
+                        <p>I love physics, art, technology, & the ways that they can work together to create extraordinary products for people.</p>
+                        
+                        <p>I believe thoughtful design makes life more intuitive (& beautiful). I want to bring more of it into the world—whether through my creations or the communities I'm helping to build. I like to think of it as my <strong>ikigai</strong>: the constant pursuit of an intersection between passion, profession, & personal mission.</p>
+                        
+                        <p>I also love discovering new hidden food spots, getting excited about beautifully designed stationery, & listening to audiobooks on long drives.</p>
+                        
+                      
+                    </div>
+
+                    <a href="mailto:hello@example.com" class="contact-pill">
+                        <span class="dot"></span>
+                        Working on something cool? Get in <strong>touch!</strong>
+                    </a>
+                </div>
+
+                <div class="about-right reveal-element" style="transition-delay: 0.1s;">
+                    <div class="exp-header">
+                        <h2>Experience</h2>
+                        <a href="#">CV ↗</a>
+                    </div>
+                    
+                    <div class="experience-list">
+                        <div class="exp-item">
+                            <div class="exp-logo">
+                               <img src="https://companieslogo.com/img/orig/AI.PA-00c0bedf.png?t=1720244490" width=80%;>
+                            </div>
+                            <div class="exp-details">
+                                <h3>Air Liquide</h3>
+                                <p>Product Design Intern, 2025</p>
+                            </div>
+                        </div>
+
+                        <div class="exp-item">
+                            <div class="exp-logo">
+                               
+                                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc-UGBJQLNKJr6VmpjiTt2W56-yRy4iLKM7g&s" width=80%;>
+                 
+                                
+                               
+                            </div>
+                            <div class="exp-details">
+                                <h3>Hummingbird Technologies</h3>
+                                <p>Product Design Intern, 2021</p>
+                            </div>
+                        </div>
+
+                      
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-wrapper">
+            <div class="footer-content reveal-element">
+                <div class="footer-brand">
+                    <div class="logo-stamp">ZS</div>
+                    <h2>zachary stephens</h2>
+                </div>
+                
+                <div class="footer-nav">
+                    <a href="#work">Work</a>
+                    <a href="#art">Archives</a>
+                    <a href="#about">About</a>
+                </div>
+
+                <div class="footer-contact">
+                    <p>Let's work together!</p>
+                    <a href="mailto:zachstep05@gmail.com" class="email-link">zachstep05@gmail.com</a>
+                    
+                    <div class="social-icons">
+                        <a href="#" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="#" aria-label="X">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="4" x2="20" y2="20"></line><line x1="20" y1="4" x2="4" y2="20"></line></svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </a>
+                        <a href="#" aria-label="Sparkle">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom reveal-element">
+                <p>Website <strong>by me</strong> & Gemini's help ;)</p>
+                <p class="changelog">Github</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Custom Cursor Logic
+            const cursor = document.querySelector('.cursor');
+            const interactiveElements = document.querySelectorAll('a, .project-card, .contact-pill, .social-icons a');
+
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = `${e.clientX}px`;
+                cursor.style.top = `${e.clientY}px`;
+            });
+
+            const addCursorHover = () => {
+                interactiveElements.forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        cursor.style.width = '30px';
+                        cursor.style.height = '30px';
+                        cursor.style.backgroundColor = 'rgba(255, 255, 255, 1)';
+                    });
+                    
+                    el.addEventListener('mouseleave', () => {
+                        cursor.style.width = '18px';
+                        cursor.style.height = '18px';
+                        cursor.style.backgroundColor = 'var(--text-color)';
+                    });
+                });
+            }
+            addCursorHover();
+
+            // 2. Tab Navigation Logic
+            const tabLinks = document.querySelectorAll('.tab-link');
+            const tabSections = document.querySelectorAll('.tab-section');
+
+            tabLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Remove active state from all tabs and sections
+                    tabLinks.forEach(l => l.classList.remove('active'));
+                    tabSections.forEach(s => s.classList.remove('active'));
+                    
+                    // Add active state to clicked tab
+                    link.classList.add('active');
+                    
+                    // Show corresponding section
+                    const targetId = link.getAttribute('data-target');
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        targetSection.classList.add('active');
+                    }
+                });
+            });
+
+            // 3. Scroll Reveal Animations
+            const revealElements = document.querySelectorAll('.reveal-element');
+            const revealOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+
+            const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+
+            revealElements.forEach((el, index) => {
+                el.style.transitionDelay = `${index * 0.08}s`; 
+                revealObserver.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
