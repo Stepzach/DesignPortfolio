@@ -34,7 +34,7 @@
             font-weight: 400; 
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            cursor: none; 
+          
             overflow-x: hidden;
             position: relative;
         }
@@ -66,24 +66,9 @@
             pointer-events: none;
         }
 
-        /* Custom Cursor */
-        .cursor {
-            width: 14px; /* Smaller cursor */
-            height: 14px;
-            background-color: var(--text-color);
-            border-radius: 50%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: difference;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
+       
         a, .project-card, .contact-pill, .social-icons a, .profile-photo {
-            cursor: none;
+            
         }
 
         /* Container Layout */
@@ -190,7 +175,7 @@
             flex-direction: column;
             gap: 0.2rem;
             text-decoration: none;
-            cursor: none;
+           
         }
 
         .project-card {
@@ -395,12 +380,14 @@
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
+            
         }
 
         .exp-header h2 {
             font-size: 1.8rem;
             font-weight: 400;
             color: #333;
+           
         }
 
         .exp-header a {
@@ -411,6 +398,7 @@
             align-items: center;
             gap: 0.3rem;
             transition: color 0.3s ease;
+             
         }
 
         .exp-header a:hover {
@@ -430,9 +418,9 @@
         }
 
         .exp-logo {
-            width: 56px; /* Slightly larger logo container */
-            height: 56px;
-            border-radius: 12px;
+            width: 70px; /* Slightly larger logo container */
+            height: 70px;
+            border-radius: 50%;
             background: #f5f5f5;
             display: flex;
             align-items: center;
@@ -443,8 +431,8 @@
         
         /* Grayscale filter for minimalism */
         .exp-logo img {
-            width: 100%;
-            height: 100%;
+            width: 70%;
+            height: 70%;
             object-fit: cover;
             transition: all 0.3s ease;
         }
@@ -463,7 +451,7 @@
             font-size: 1.1rem;
             font-weight: 500;
             color: var(--text-color);
-            margin-bottom: 0.2rem;
+            margin-bottom: 0rem;
         }
 
         .exp-details p {
@@ -608,6 +596,7 @@
             .experience-section {
                 grid-template-columns: 1fr;
                 gap: 2rem;
+                border:none !important;
             }
 
             .container { padding: 2rem 1.5rem; }
@@ -660,11 +649,20 @@
             .project-card {
                 height: 320px; /* Slightly shorter */
             }
+            .experience-section {
+        display: flex;
+    gap: 4rem;
+    justify-content: space-between;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    
         }
+        
+      }
     </style>
 </head> 
 <body>
-    <div class="cursor"></div>
+  
     <div class="ambient-gradient"></div>
 
     <div class="container">
@@ -827,31 +825,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. Custom Cursor Logic
-            const cursor = document.querySelector('.cursor');
-            const interactiveElements = document.querySelectorAll('a, .project-card, .contact-pill, .social-icons a, .profile-photo');
-
-            document.addEventListener('mousemove', (e) => {
-                cursor.style.left = `${e.clientX}px`;
-                cursor.style.top = `${e.clientY}px`;
-            });
-
-            const addCursorHover = () => {
-                interactiveElements.forEach(el => {
-                    el.addEventListener('mouseenter', () => {
-                        cursor.style.width = '24px';
-                        cursor.style.height = '24px';
-                        cursor.style.backgroundColor = 'rgba(255, 255, 255, 1)';
-                    });
-                    
-                    el.addEventListener('mouseleave', () => {
-                        cursor.style.width = '14px';
-                        cursor.style.height = '14px';
-                        cursor.style.backgroundColor = 'var(--text-color)';
-                    });
-                });
-            }
-            addCursorHover();
+         
 
             // 2. Tab Navigation Logic
             const tabLinks = document.querySelectorAll('.tab-link');
