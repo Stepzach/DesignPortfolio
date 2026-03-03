@@ -34,12 +34,12 @@
             font-weight: 400; 
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-          
+           
             overflow-x: hidden;
             position: relative;
         }
-           
-       
+            
+        
             
         html, body {
             width: 100%;
@@ -47,7 +47,7 @@
             position: relative;
         }
 
-     
+      
      .ambient-gradient {
     position: absolute;
     top: -20%;
@@ -65,15 +65,15 @@
     
     pointer-events: none;
 }
-     
-       
+      
+        
         a, .project-card, .contact-pill, .social-icons a, .profile-photo {
             
         }
 
         /* Container Layout */
         .container {
-            max-width: 1200px; /* Reduced width slightly for focus */
+            max-width: 1600px; /* Reduced width slightly for focus */
             margin: 0 auto;
             padding: 1rem 2rem;
             min-height: 80vh;
@@ -170,27 +170,61 @@
         }
 
         /* Wrapper for Project Items */
-        .project-item {
-            display: flex;
-            flex-direction: column;
-            gap: 0.2rem;
-            text-decoration: none;
-           
-        }
+      /* Update 1: Make the item the reference point for positioning */
+.project-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    text-decoration: none;
+    position: relative; /* Crucial for desktop tag positioning */
+}
 
-        .project-card {
-            background-color: var(--hover-bg);
-            border-radius: var(--card-radius);
-            height: 280px; /* Slightly shorter */
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-            width: 100%;
-        }
+/* Update 2: Ensure card keeps its shape */
+.project-card {
+    background-color: var(--hover-bg);
+    border-radius: var(--card-radius);
+    height: 240px;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    width: 100%;
+}
+
+/* Update 3: Desktop Tag Styles (The "Pill" look) */
+.project-tag {
+    position: absolute; /* Floats over the card on desktop */
+    bottom: 1.5rem; /* Default fallback */
+    left: 1.5rem;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    padding: 0.35rem 0.9rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    letter-spacing: 0.02em;
+    pointer-events: none; /* Allows clicks to pass through to the card image */
+    z-index: 10;
+}
+
+/* Fix: Adjust description spacing since tag is now a sibling */
+.project-description {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.4;
+    opacity: 0;
+    transform: translateY(7px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    padding-left: 0.2rem; /* Reduced padding slightly */
+    margin-top: 0.5rem; /* Gap between card/tag and text */
+}
 
         /* Description Text Styling */
         .project-description {
@@ -231,21 +265,7 @@
             mix-blend-mode: overlay;
         }
 
-        .project-tag {
-            position: absolute;
-            bottom: 1.5rem;
-            left: 1.5rem;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(8px);
-            padding: 0.35rem 0.9rem;
-            border-radius: 50px;
-            font-size: 0.75rem; /* Smaller font */
-            font-weight: 500;
-            color: var(--text-color);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-            letter-spacing: 0.02em;
-        }
-
+      
         /* --- UPDATED ABOUT SECTION STYLES --- */
         
         .about-main-wrapper {
@@ -387,7 +407,7 @@
             font-size: 1.8rem;
             font-weight: 400;
             color: #333;
-           
+            
         }
 
         .exp-header a {
@@ -611,7 +631,7 @@
             .project-description {
                 opacity: 1;
                 transform: translateY(0);
-                display:none; /* Keep hidden as per previous fix */
+                
             }
 
             footer { padding: 3rem 1.5rem 2rem; }
@@ -647,27 +667,37 @@
                 justify-content: flex-start;
             }
             .project-card {
-                height: 320px; /* Slightly shorter */
+                height: 320px; /* Fixed height for desktop */
             }
+            
+            /* -------------------------------------------
+               FIX: Anchoring the tag to the image height 
+               ------------------------------------------- */
+            .project-tag {
+                bottom: auto; /* Stop positioning relative to parent bottom */
+                top: 320px;   /* Align top of tag to the bottom line of the card (height is 320px) */
+                margin-top: -1.5rem; /* Move it UP into the card by the desired spacing */
+                transform: translateY(-100%); /* Move it UP by its own height */
+            }
+
             .experience-section {
-        display: flex;
-    gap: 4rem;
-    justify-content: space-between;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    
-        }
-         body {
+                display: flex;
+                gap: 4rem;
+                justify-content: space-between;
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+            body {
                 padding-left: 2.5rem;
                 padding-right: 2.5rem;
             }
-        
-      }
+        }
       
        @media (max-width: 900px) {
-           
+            
              header {
             margin-top: 0rem;
+            margin-bottom: 1rem;
           
         }
         .logo-stamp {
@@ -678,8 +708,14 @@
     font-weight: 500;
     
 }
+.projects-grid {
+   
+    padding-top: 1.5rem;
+  
+}
+
 header .subtitle {
-    
+        font-size: clamp(0.95rem, 1.1vw, 1rem);
     font-weight: 300;
     line-height:1.4;
 }
@@ -690,7 +726,7 @@ header .subtitle strong {
 .tabs {
     display: flex;
     gap: 0.2rem;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
 }
 
  .ambient-gradient {
@@ -772,7 +808,48 @@ header .subtitle strong {
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
+        .project-tag {
+        position: static; /* No longer floating absolute */
+        background: transparent; /* Remove pill background */
+        backdrop-filter: none;
+        box-shadow: none;
+        padding: 0;
+        border-radius: 0;
+            margin-left: 1rem;
         
+        /* Typography specific to mobile look */
+        font-size: 0.95rem; 
+        font-weight: 500; /* Slightly bolder */
+        color: #111; /* Darker, like the "Apple" text in screenshot */
+        
+        /* Spacing */
+        margin-top: 0.5rem;
+        margin-bottom: 0.1rem;
+       
+    }
+
+    /* 2. Ensure description is visible and spaced correctly */
+    .project-description {
+        opacity: 1; /* Always visible on mobile */
+        transform: translateY(0);
+        margin-top: 0; /* Tag handles the top spacing */
+        font-size: 0.95rem;
+       
+    }
+    
+    /* 3. Adjust spacing for the grid items */
+    .project-item {
+        margin-bottom: 2rem;
+    }
+    
+    .weakdate {
+          
+        font-size: 0.95rem;
+    color: var(--text-muted);
+    
+    font-weight: 400;
+    }
+    
          }
     </style>
 </head> 
@@ -799,29 +876,32 @@ header .subtitle strong {
             <div class="projects-grid">
                 <div class="project-item reveal-element">
                     <a href="#" class="project-card card-apple">
-                        <div class="project-tag">Air Liquide • 2026</div>
-                    </a>
+                      </a>
+                        <div class="project-tag">Air Liquide<span class="weakdate"> • 2026</span></div>
+                    
                     <p class="project-description">Redesigning the future of clean energy dashboarding for industrial use.</p>
                 </div>
 
                 <div class="project-item reveal-element">
                     <a href="#" class="project-card card-roblox">
-                        <div class="project-tag">Air Liquide • 2025</div>
-                    </a>
+                      </a>
+                        <div class="project-tag">Air Liquide<span class="weakdate"> • 2025</span></div>
+                    
                     <p class="project-description">Creating intuitive design systems for complex data workflows.</p>
                 </div>
 
                 <div class="project-item reveal-element">
                     <a href="#" class="project-card card-nasa">
-                        <div class="project-tag">Leeds Student Radio • 2025</div>
-                    </a>
+                      </a>
+                        <div class="project-tag">Leeds Student Radio<span class="weakdate"> • 2024</span></div>
+                    
                     <p class="project-description">A modern audio interface built for student-led broadcasting.</p>
                 </div>
 
                 <div class="project-item reveal-element">
-                    <a href="#" class="project-card card-personal">
+                    <a href="#" class="project-card card-personal"> </a>
                         <div class="project-tag">University Year 2 Project</div>
-                    </a>
+                   
                     <p class="project-description">Exploring the intersection of physical form and digital function.</p>
                 </div>
             </div>
@@ -940,7 +1020,7 @@ header .subtitle strong {
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-         
+          
 
             // 2. Tab Navigation Logic
             const tabLinks = document.querySelectorAll('.tab-link');
