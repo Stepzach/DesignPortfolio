@@ -31,13 +31,20 @@
             color: var(--text-color);
             /* Reduced base size and weight for "finer" look */
             font-size: 15px; 
-            font-weight: 400; 
+            font-weight: 500; 
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             cursor: none; 
             overflow-x: hidden;
             position: relative;
+               
         }
+           @media (min-width: 901px) {
+            body {
+           
+                padding-inline: 4rem;
+        }
+            }
 
         /* Ambient Background Gradient - Made much more subtle */
         .ambient-gradient {
@@ -392,7 +399,7 @@
         }
 
         .footer-wrapper {
-            max-width: 1000px;
+           
             margin: 0 auto;
         }
 
