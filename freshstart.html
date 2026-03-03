@@ -286,7 +286,7 @@
             object-fit: cover;
             /* Polaroid styling */
             border: 10px solid #ffffff;
-            border-bottom: 25px solid #ffffff; /* Thicker bottom */
+            border-bottom: 10px solid #ffffff; /* Thicker bottom */
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             border-radius: 2px;
             /* The Tilt */
@@ -674,14 +674,18 @@
               margin-bottom: 5rem;
         }
         header h1 {
-    font-size: clamp(1.9rem, 2.9vw, 2.7rem);
+    font-size: clamp(2rem, 3vw, 2.8rem);
     font-weight: 500;
     
 }
 header .subtitle {
     
+    font-weight: 300;
+    line-height:1.4;
+}
+header .subtitle strong {
     font-weight: 400;
-    line-height:1.3;
+    color: var(--text-color);
 }
 .tabs {
     display: flex;
@@ -694,7 +698,7 @@ header .subtitle {
         top: -5%;
         left: 0%;
         width: 100%;
-        height: 300px; /* Covers the header area well */
+        height: 400px; /* Covers the header area well */
         z-index: -1;
         pointer-events: none;
         overflow: hidden;
@@ -719,9 +723,9 @@ header .subtitle {
         */
         background: 
             radial-gradient(circle at 15% 30%, rgba(255, 190, 200, 0.0) 0%, transparent 10%),
-            radial-gradient(circle at 50% 55%, rgba(255, 190, 200, 0.7) 10%, transparent 50%),
+            radial-gradient(circle at 50% 55%, rgba(255, 190, 200, 0.8) 10%, transparent 50%),
             radial-gradient(circle at 85% 30%, rgba(180, 230, 255, 1) 0%, transparent 50%),
-            radial-gradient(circle at 50% 10%, rgba(220, 200, 255, 0.9) 0%, transparent 60%);
+            radial-gradient(circle at 50% 10%, rgba(220, 200, 255, 1) 0%, transparent 60%);
         
         /* The heavy blur creates the dreamy wash */
         filter: blur(80px);
@@ -746,6 +750,28 @@ header .subtitle {
         mix-blend-mode: multiply; /* Blends the grain into the colors */
     }
 
+        
+        
+         .profile-wrapper {
+            position: relative;
+            padding-top: 0rem;
+        }
+
+        .profile-photo {
+            width: 90%;
+            height: auto;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            /* Polaroid styling */
+            border: 10px solid #ffffff;
+            border-bottom: 10px solid #ffffff; /* Thicker bottom */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-radius: 2px;
+            /* The Tilt */
+            transform: rotate(-3deg);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
         
          }
     </style>
@@ -907,7 +933,7 @@ header .subtitle {
             
             <div class="footer-bottom reveal-element">
                 <p>Website <strong>by me</strong> & Gemini's help ;)</p>
-                <p class="changelog">Github</p>
+                <p class="changelog">2026</p>
             </div>
         </div>
     </footer>
