@@ -30,8 +30,8 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             /* Reduced base size and weight for "finer" look */
-            font-size: 15px; 
-            font-weight: 500; 
+            font-size: 16px; 
+            font-weight: 400; 
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             cursor: none; 
@@ -85,13 +85,13 @@
         .container {
             max-width: 1600px; /* Reduced width slightly for focus */
             margin: 0 auto;
-            padding: 2rem 2rem;
+            padding: 1rem 2rem;
             min-height: 80vh;
         }
 
         /* Header / Hero */
         header {
-            margin-top: 3rem;
+            margin-top: 2rem;
             margin-bottom: 1.5rem;
         }
 
@@ -107,24 +107,24 @@
             font-size: 0.9rem;
             font-weight: 400;
             border-radius: 4px;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             opacity: 1;
         }
 
         header h1 {
             /* Smaller, finer heading */
-            font-size: clamp(2rem, 3vw, 2.8rem);
+            font-size: clamp(1.8rem, 2.8vw, 2.6rem);
             font-weight: 400;
             letter-spacing: -0.03em;
             margin-bottom: 0.8rem;
-            color: #1a1a1a;
+            color: #374151;
         }
 
         header .subtitle {
             font-size: clamp(1rem, 1.2vw, 1.1rem);
             color: var(--text-muted);
             max-width: 650px;
-            font-weight: 300;
+            font-weight: 350;
         }
         
         header .subtitle strong {
@@ -269,9 +269,9 @@
         }
 
         .about-left h2 {
-            font-size: 1.8rem;
+            font-size: 1.7rem;
             font-weight: 400;
-            color: var(--text-color);
+            color: oklch(44.6% .03 256.802);
             margin-bottom: 1.5rem;
             letter-spacing: -0.02em;
         }
@@ -346,7 +346,7 @@
         .exp-header h2 {
             font-size: 1.6rem;
             font-weight: 400;
-            color: var(--text-color);
+            color: oklch(44.6% .03 256.802);
         }
 
         .exp-header a {
@@ -518,8 +518,8 @@
         }
 
         .social-icons svg {
-            width: 18px; /* Smaller icons */
-            height: 18px;
+            width: 22px; /* Smaller icons */
+            height: 22px;
             fill: currentColor;
         }
 
@@ -572,6 +572,21 @@
                 gap: 1rem;
             }
         }
+         @media (min-width: 901px) {
+         .footer-contact {
+            
+            justify-self: end;
+            text-align: left;
+        }
+
+
+     
+        .social-icons {
+           
+            align-items: center;
+            justify-content: flex-start;
+        }
+ }
     </style>
 </head> 
 <body>
