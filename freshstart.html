@@ -37,12 +37,13 @@
             cursor: none; 
             overflow-x: hidden;
             position: relative;
-               
+                
         }
            @media (min-width: 901px) {
             body {
-           
-                padding-inline: 4rem;
+            
+                padding-left: 2.5rem;
+                 padding-right: 2.5rem;
         }
             }
 
@@ -84,7 +85,7 @@
         .container {
             max-width: 1600px; /* Reduced width slightly for focus */
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 2rem 2rem;
             min-height: 80vh;
         }
 
@@ -172,12 +173,21 @@
 
         /* Work Section (Grid) */
         .projects-grid {
-         border-top: 1px solid rgba(0,0,0,0.06); 
-         padding-top:2rem;
+            border-top: 1px solid rgba(0,0,0,0.06); 
+            padding-top:2rem;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem; /* Reduced gap */
+            gap: 1rem 2rem; /* Added vertical gap for descriptions */
             margin-bottom: 4rem;
+        }
+
+        /* Wrapper for Project Items */
+        .project-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            text-decoration: none;
+            cursor: none;
         }
 
         .project-card {
@@ -191,12 +201,32 @@
             align-items: center;
             justify-content: center;
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-            opacity: 0.95;
+            width: 100%;
         }
 
-        .project-card:hover {
-            transform: scale(1.01); /* Subtle scale instead of translate */
+        /* Description Text Styling */
+        .project-description {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            line-height:1.4;
+            /* Animation Setup */
+            opacity: 0;
+            transform: translateY(7px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            padding-left:1rem;
+        }
+
+        /* Hover Effects */
+        .project-item:hover .project-card {
+            transform: scale(0.98); /* Subtle scale */
             opacity: 1;
+        }
+
+        .project-item:hover .project-description {
+            opacity: 1;
+            transform: translateY(0); /* Move up */
         }
 
         /* More subtle gradients */
@@ -354,8 +384,8 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-           
-           
+            
+            
         }
         
         /* Grayscale filter for minimalism */
@@ -364,7 +394,7 @@
             height: 80%;
             object-fit: cover;
             
-           
+            
             transition: all 0.3s ease;
         }
         
@@ -399,7 +429,7 @@
         }
 
         .footer-wrapper {
-           
+            
             margin: 0 auto;
         }
 
@@ -565,18 +595,33 @@
 
         <main id="work-section" class="tab-section active">
             <div class="projects-grid">
-                <a href="#" class="project-card card-apple reveal-element">
-                    <div class="project-tag">Air Liquide • 2026</div>
-                </a>
-                <a href="#" class="project-card card-roblox reveal-element">
-                    <div class="project-tag">Air Liquide • 2025</div>
-                </a>
-                <a href="#" class="project-card card-nasa reveal-element">
-                    <div class="project-tag">Leeds Student Radio • 2025</div>
-                </a>
-                <a href="#" class="project-card card-personal reveal-element">
-                    <div class="project-tag">University Year 2 Project</div>
-                </a>
+                <div class="project-item reveal-element">
+                    <a href="#" class="project-card card-apple">
+                        <div class="project-tag">Air Liquide • 2026</div>
+                    </a>
+                    <p class="project-description">Redesigning the future of clean energy dashboarding for industrial use.</p>
+                </div>
+
+                <div class="project-item reveal-element">
+                    <a href="#" class="project-card card-roblox">
+                        <div class="project-tag">Air Liquide • 2025</div>
+                    </a>
+                    <p class="project-description">Creating intuitive design systems for complex data workflows.</p>
+                </div>
+
+                <div class="project-item reveal-element">
+                    <a href="#" class="project-card card-nasa">
+                        <div class="project-tag">Leeds Student Radio • 2025</div>
+                    </a>
+                    <p class="project-description">A modern audio interface built for student-led broadcasting.</p>
+                </div>
+
+                <div class="project-item reveal-element">
+                    <a href="#" class="project-card card-personal">
+                        <div class="project-tag">University Year 2 Project</div>
+                    </a>
+                    <p class="project-description">Exploring the intersection of physical form and digital function.</p>
+                </div>
             </div>
         </main>
 
