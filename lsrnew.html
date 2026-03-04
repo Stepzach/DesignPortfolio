@@ -77,7 +77,6 @@
         }
 
         /* --- PLAYER BAR (Top) --- */
-     /* --- PLAYER BAR (Top) --- */
 .player-bar {
     display: grid;
     grid-template-columns: 1fr 1fr; /* 50/50 split */
@@ -400,7 +399,7 @@
             z-index: 10;
             text-transform: uppercase;
             border: 1px solid rgba(0,0,0,0.1);
-               transition: 0.4s ease;
+                transition: 0.4s ease;
         }
         /* Target the badge ONLY when the card is hovered */
 .card:hover .card-badge {
@@ -493,7 +492,7 @@
         .sponsor-text h5 { color: #ffffff; text-transform: uppercase; margin-bottom: 5px; font-weight: 800; }
         .sponsor-text p { font-size: 0.9rem; color: rgba(255,255,255,0.75); max-width: 500px; }
 
-     
+      
       /* --- FOOTER --- */
         .main-footer {
             position:relative;
@@ -509,36 +508,50 @@
         }
         
         .main-footer:before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 60%), linear-gradient(to bottom, rgba(0, 0, 0, 0.0) 0%, transparent 25%);
-    z-index: -1;
-    pointer-events: none;
-}
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 60%), linear-gradient(to bottom, rgba(0, 0, 0, 0.0) 0%, transparent 25%);
+            z-index: -1;
+            pointer-events: none;
+        }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 1.6fr 0.9fr 0.9fr 0.9fr 1.6fr;
+            /* Changed to 3 columns: Left (1fr), Center (auto/max-content), Right (1fr) */
+            grid-template-columns: 1fr 1.5fr 1fr;
             gap: 30px;
             margin-bottom: 20px;
             padding-bottom: 25px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.25);
             align-items: start;
+              justify-content: center;
         }
 
         .footer-col {
             display: flex;
             flex-direction: column;
+              justify-items: center;
+            
+        }
+
+        /* New Grouped Flex Container for the Middle */
+        .footer-links-group {
+            display: flex;
+            gap: 50px; /* Adjust gap between the 3 link columns here */
+            justify-content: center;
+           
+          
         }
 
         /* Vertical Dividers */
         .col-banner {
-            border-right: 1px solid rgba(0, 0, 0, 0.25);
+           
             padding-right: 30px;
+            
         }
         .col-official {
-            border-right: 1px solid rgba(0, 0, 0, 0.25);
+           
             padding-right: 30px;
         }
         .col-info {
@@ -617,22 +630,18 @@
         }
 
         /* --- RESPONSIVE ADJUSTMENTS --- */
-      
-    
         @media (max-width: 1100px) {
-            .footer-grid { grid-template-columns: 1fr 1fr 1fr; gap: 40px; }
-            .col-banner { grid-column: span 3; border-right: none; padding-right: 0; border-bottom: 1px solid rgba(0,0,0,0.25); padding-bottom: 30px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+            .col-banner { border-right: none; padding-right: 0; border-bottom: 1px solid rgba(0,0,0,0.25); padding-bottom: 30px; }
+            .footer-links-group { flex-wrap: wrap; justify-content: flex-start; gap: 30px; }
             .col-official { border-right: none; padding-right: 0; }
-            .col-info { grid-column: span 3; border-top: 1px solid rgba(0,0,0,0.25); padding-top: 30px; padding-left: 0; }
+            .col-info { border-top: 1px solid rgba(0,0,0,0.25); padding-top: 30px; padding-left: 0; }
         }
 
         @media (max-width: 768px) {
-            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
-            .col-banner, .col-info { grid-column: span 1; }
             .main-footer { margin: 10px; padding: 30px 20px 20px; }
+            .footer-links-group { flex-direction: column; gap: 30px; }
         }
-        
-        
         
         /* --- RESPONSIVE --- */
         @media (max-width: 992px) {
@@ -690,8 +699,6 @@
             .sponsor-body { flex-direction: column; padding: 20px; }
             .sponsor-body .cta-btn { margin-right:auto; }
             .sponsor-logo img { width: 100%; border-radius: 10px; }
-
-            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
             
             /* Mobile Grid fix */
             .grid-3, .grid-2 { display: flex; flex-direction: column; }
@@ -808,31 +815,33 @@
                     <img src="https://stepzach.github.io/leedstestradio/316c00_e85e432bbd2e4e15a926db384684cf02~mv2.png.avif" alt="Careers Service Banner" class="careers-banner">
                 </div>
 
-                <div class="footer-col">
-                    <h4>NAVIGATE</h4>
-                    <ul>
-                        <li><a href="#">Schedule</a></li>
-                        <li><a href="#">Listen</a></li>
-                        <li><a href="#">Get Involved</a></li>
-                    </ul>
-                </div>
+                <div class="footer-links-group">
+                    <div class="footer-col">
+                        <h4>NAVIGATE</h4>
+                        <ul>
+                            <li><a href="#">Schedule</a></li>
+                            <li><a href="#">Listen</a></li>
+                            <li><a href="#">Get Involved</a></li>
+                        </ul>
+                    </div>
 
-                <div class="footer-col">
-                    <h4>SOCIAL</h4>
-                    <ul>
-                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
-                        <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
-                        <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-                    </ul>
-                </div>
+                    <div class="footer-col">
+                        <h4>SOCIAL</h4>
+                        <ul>
+                            <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                            <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
+                            <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                        </ul>
+                    </div>
 
-                <div class="footer-col col-official">
-                    <h4>OFFICIAL</h4>
-                    <ul>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Awards</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
+                    <div class="footer-col col-official">
+                        <h4>OFFICIAL</h4>
+                        <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Awards</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div class="footer-col col-info">
