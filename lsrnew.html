@@ -41,7 +41,7 @@
             
             /* Layout */
             --container-width: 1680px;
-            --header-height: 50px;
+            --header-height: 58px;
         }
 
         /* --- RESET & BASE --- */
@@ -86,7 +86,11 @@
                 border: solid 2px black;
     margin: 10px 20px;
     border-radius: var(--radius-md);
-            
+                    display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        max-height: 145px;
+    
         }
             .player-bar::before {
         content: "";
@@ -109,6 +113,18 @@
             align-items: center;
             gap: 15px;
         }
+         .up-next {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+            .player-content img {
+        width: 100px;
+        height: 100px;
+        border-radius: 12px;
+        object-fit: cover;
+        transition: all 0.3s ease;
+    }
 
         .play-toggle {
             width: 48px;
@@ -131,12 +147,18 @@
             transform: scale(1.05);
             
         }
+         .show-info {
+               display: flex;
+    flex-direction: column;
+    overflow: hidden;
+        }
 
         .show-info h4 {
             font-size: 0.95rem;
             margin-bottom: 4px;
             color: #ffffff;
         }
+        
 
         .show-info p {
             font-size: 0.75rem;
@@ -213,7 +235,7 @@
         }
 
         .brand-logo {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 900;
             color: #ffffff;
             text-transform: uppercase;
@@ -233,9 +255,9 @@
 
         .nav-link {
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.85);
+            color: whitesmoke;
             position: relative;
             padding: 5px 0;
         }
@@ -295,6 +317,7 @@
             box-shadow: var(--shadow-card);
             cursor: pointer;
             border: 2px solid black;
+            filter: brightness(1.2);
         }
 
         .card-wide { aspect-ratio: 16 / 9; }
@@ -305,8 +328,9 @@
         }
 
         .card:hover img {
-            transform: scale(1.01);
+            transform: scale(1.05);
             opacity: 0.95;
+            filter: brightness(0.9);
         }
 
         .card-overlay {
@@ -335,6 +359,12 @@
             text-transform: uppercase;
             border: 1px solid rgba(0,0,0,0.1);
         }
+        /* Target the badge ONLY when the card is hovered */
+.card:hover .card-badge {
+  background: var(--brand-dark);
+  color: #ffffff;
+   transition: var(--transition);
+}
 
         .card-title {
             font-size: 1.4rem;
@@ -548,6 +578,7 @@
                 <button class="play-toggle" aria-label="Play Radio">
                     <i class="fas fa-play"></i>
                 </button>
+                <img src="https://lh3.googleusercontent.com/u/0/d/1xsBh4dZQwrBh09eFKZtmvNoJGcw6XlpZ=w2940-h1680-iv2" alt="Thumbnail" class="thumbnail">
                 <div class="show-info">
                     <h4>
                         Don't Mug Me Off! 
@@ -562,8 +593,21 @@
                 </div>
             </div>
             
-            <div class="up-next-pill">
-                <strong>NEXT:</strong> LSTV.MP3
+           <div class="up-next">
+               
+                <img src="https://lh3.googleusercontent.com/u/0/d/1xsBh4dZQwrBh09eFKZtmvNoJGcw6XlpZ=w2940-h1680-iv2" alt="Thumbnail" class="thumbnail">
+                <div class="show-info">
+                    <h4>
+                        Don't Mug Me Off! 
+                        <span class="live-badge">
+                            ON AIR 
+                            <div class="visualizer">
+                                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                            </div>
+                        </span>
+                    </h4>
+                    <p class="track-desc">The authentic girly show you can't miss...</p>
+                </div>
             </div>
         </div>
     </div>
