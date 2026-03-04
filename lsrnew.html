@@ -3,545 +3,736 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LSR | Leeds Student Radio</title>
+    <meta name="description" content="Leeds Student Radio - The UK's best student radio station. Listen live, check the schedule, and get involved.">
+    <title>Leeds Student Radio | Live</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Permanent+Marker&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* --- 1. CORE VARIABLES & RESET --- */
+  
+        /* --- VARIABLES --- */
         :root {
-            /* THE HOLY TRINITY PALETTE */
-            --lsr-white: #ffffff;
-            --lsr-red:   rgb(205, 50, 50);
-            --lsr-dark:  #952020;
-
-            /* UI Config */
-            --border-std: 2px solid var(--lsr-dark);
-            --border-white: 2px solid var(--lsr-white);
-            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            --header-height-mobile: 140px;
-            --header-height-desktop: 100px;
-            --radius-md: 4px;
+            /* Updated Palette */
+            --brand-red: rgb(205, 50, 50);
+            --brand-dark: rgb(160, 43, 43);
+            --brand-accent: rgb(225, 70, 70);
+            
+            --bg-body: rgb(205, 50, 50);
+            --bg-white: rgb(160, 43, 43);
+            --bg-dark: rgb(131 28 28);
+            
+            --text-main: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.75);
+            --text-light: #ffffff;
+            
+            /* UI Elements */
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-pill: 50px;
+            --shadow-card: 0 10px 30px rgba(0,0,0,0.25);
+            --shadow-hover: 0 15px 35px rgba(0,0,0,0.35);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            
+            /* Layout */
+            --container-width: 1680px;
+            --header-height: 50px;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        /* --- RESET & BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: var(--font-main);
-            background-color: var(--lsr-dark);
-            /* Background pattern using only the 3 colors (Dark BG with Red shading) */
-            background-image: radial-gradient(circle at 10% 20%, var(--lsr-red) 0%, var(--lsr-dark) 25%);
-            color: var(--lsr-dark);
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
             overflow-x: hidden;
-            padding-top: var(--header-height-mobile); 
-        }
-
-        /* --- 2. HEADER & PLAYER --- */
-        #radio-header {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            background: var(--lsr-white);
-            border-bottom: var(--border-std);
-            z-index: 1000;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 10px 0 rgba(0,0,0,0.2); /* Shadow is just black opacity */
+            min-height: 100vh;
         }
 
-        .player-interface {
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+        img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+        /* Typography Utilities */
+        .font-handwritten {
+            font-family: 'Permanent Marker', cursive;
+            line-height: 1.2;
+        }
+        .text-uppercase { text-transform: uppercase; letter-spacing: 0.5px; }
+        .text-bold { font-weight: 800; }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 20px 20px;
+        }
+
+        /* --- PLAYER BAR (Top) --- */
+        .player-bar {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            padding: 0px 0;
+            position: relative;
+            z-index: 200;
+            border-bottom: 2px solid var(--brand-dark);
+        }
+
+        .player-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .now-playing {
             display: flex;
             align-items: center;
-            padding: 0.75rem;
-            height: 80px;
-            background: var(--lsr-white);
-            justify-content: space-between;
+            gap: 15px;
         }
 
-        .now-playing-group {
-            display: flex; align-items: center; gap: 1rem; flex-grow: 1;
-        }
-
-        .show-thumb {
-            width: 50px; height: 50px;
-            background-color: var(--lsr-dark);
-            border: var(--border-std);
-            border-radius: 4px;
-            object-fit: cover;
-        }
-
-        /* Play Button - Red with Dark Border */
-        .play-btn {
-            width: 50px; height: 50px;
-            background: var(--lsr-red);
-            border: var(--border-std);
+        .play-toggle {
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
-            cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            transition: transform 0.1s, box-shadow 0.1s;
-            flex-shrink: 0;
-        }
-        
-        .play-btn:active { transform: scale(0.95); }
-        .play-btn svg { fill: var(--lsr-white); width: 20px; height: 20px; }
-
-        .play-btn .icon-pause { display: none; }
-        
-        body.audio-playing .play-btn .icon-play { display: none; }
-        body.audio-playing .play-btn .icon-pause { display: block; }
-        body.audio-playing .play-btn {
-            box-shadow: 0 0 15px var(--lsr-red); /* Glow is Red */
-        }
-
-        .meta-data { display: flex; flex-direction: column; }
-
-        .show-title {
-            font-weight: 900;
-            text-transform: uppercase;
-            font-size: 1rem;
-            line-height: 1;
-            margin-bottom: 4px;
-            color: var(--lsr-dark);
-        }
-
-        .presenter-name { 
-            font-size: 0.8rem; font-weight: 500; 
-            color: var(--lsr-dark); 
-            opacity: 0.6; /* Shading via opacity */
-        }
-
-        .next-up-info {
-            display: none;
-            text-align: right;
-            border-left: 2px solid rgba(26, 5, 5, 0.2); /* Dark with opacity */
-            padding-left: 1rem;
-            margin-left: auto;
-            margin-right: 1rem;
-        }
-        
-        .next-label { font-size: 0.7rem; color: var(--lsr-red); font-weight: bold; text-transform: uppercase;}
-
-        /* Navigation */
-        .main-nav {
-            background: var(--lsr-dark);
-            overflow-x: auto;
             display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+                background: #ffffff;
+    color: var(--brand-dark);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+        }
+         .fas {
+           font-size:1.5rem;
+        }
+
+        .play-toggle:hover {
+            transform: scale(1.05);
+            
+        }
+
+        .show-info h4 {
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+            color: #ffffff;
+        }
+
+        .show-info p {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.6);
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* Live Indicator */
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(46, 204, 113, 0.15);
+            color: #2ecc71;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            margin-left: 8px;
+        }
+
+        .visualizer {
+            display: flex;
+            gap: 2px;
+            align-items: flex-end;
+            height: 10px;
+        }
+
+        .bar {
+            width: 3px;
+            background: #2ecc71;
+            animation: bounce 1s infinite ease-in-out;
+        }
+        .bar:nth-child(2) { animation-delay: 0.1s; height: 60%; }
+        .bar:nth-child(3) { animation-delay: 0.2s; height: 80%; }
+
+        @keyframes bounce {
+            0%, 100% { height: 20%; }
+            50% { height: 100%; }
+        }
+
+        .up-next-pill {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 6px 16px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.8rem;
+            color: #ffffff;
+        }
+
+        .up-next-pill strong { color: #ffaaaa; margin-right: 5px; }
+
+        /* --- MAIN NAVIGATION --- */
+        .main-nav {
+            background: var(--brand-dark);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            height: var(--header-height);
+            border-bottom: 1px solid rgba(0,0,0,0.3);
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .brand-logo {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .brand-logo span { color: rgba(255,255,255,0.75); }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            align-items: center;
         }
 
         .nav-link {
-            flex: 1;
-            text-align: center;
-            padding: 1rem;
-            color: var(--lsr-white);
-            text-decoration: none;
             font-weight: 700;
-            text-transform: uppercase;
             font-size: 0.9rem;
-            border-right: 1px solid rgba(255,255,255,0.2); /* White shading */
-            transition: background 0.2s;
-            white-space: nowrap;
-        }
-
-        .nav-link:hover, .nav-link.active { 
-            background: var(--lsr-red); 
-            color: var(--lsr-white); 
-        }
-
-        /* --- 3. MAIN CONTENT --- */
-        #content-wrapper {
-            min-height: 80vh;
-            padding: 2rem 1rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            transition: opacity 0.3s ease;
-        }
-
-        .page-title {
-            font-size: 3rem;
-            color: var(--lsr-white);
             text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            text-shadow: 4px 4px 0px var(--lsr-red); /* Shadow is Red */
-            font-weight: 900;
+            color: rgba(255,255,255,0.85);
+            position: relative;
+            padding: 5px 0;
         }
 
-        /* --- 4. BENTO BOX LAYOUT --- */
-        .bento-grid {
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: #ffffff;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover { color: #ffffff; }
+        .nav-link:hover::after { width: 100%; }
+
+        .cta-btn {
+            background: #ffffff;
+            color: var(--brand-dark);
+            padding: 10px 24px;
+            border-radius: var(--radius-pill);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            border: 2px solid rgba(0,0,0,0.1);
+        }
+        .cta-btn:hover { 
+            background: rgba(255,255,255,0.85); 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); 
+            color: var(--brand-dark);
+        }
+
+        
+        .mobile-toggle { display: none; font-size: 1.5rem; color: #ffffff; cursor: pointer; }
+
+        /* --- CONTENT GRIDS --- */
+        main { padding: 40px 0; flex: 1; }
+
+        .section-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            width: 100%;
+            gap: 25px;
+            margin-bottom: 25px;
         }
+        
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-2 { grid-template-columns: 1fr 1fr; }
 
-        .bento-card {
-            border: var(--border-std);
+        /* Cards */
+        .card {
+            background: #000;
             border-radius: var(--radius-md);
-            padding: 1.5rem;
-            box-shadow: 8px 8px 0px rgba(0,0,0,0.4); /* Dark shadow */
-            display: flex;
-            flex-direction: column;
             overflow: hidden;
             position: relative;
+            aspect-ratio: 1 / 1;
+            box-shadow: var(--shadow-card);
+            cursor: pointer;
+            border: 2px solid black;
         }
 
-        /* --- STRICT 3-COLOR THEMES --- */
-        
-        /* Theme 1: Red Background, White Text */
-        .theme-red { 
-            background-color: var(--lsr-red); 
-            color: var(--lsr-white);
-            border-color: var(--lsr-dark);
-        }
-        
-        /* Theme 2: Dark Background, White Text */
-        .theme-dark { 
-            background-color: var(--lsr-dark); 
-            color: var(--lsr-white);
-            border-color: var(--lsr-white);
-        }
-        
-        /* Theme 3: White Background, Dark Text */
-        .theme-white { 
-            background-color: var(--lsr-white);
-            color: var(--lsr-dark);
-            border-color: var(--lsr-dark);
+        .card-wide { aspect-ratio: 16 / 9; }
+
+        .card img {
+            opacity: 1;
+            transition: transform 0.6s ease;
         }
 
-        /* Desktop Grid Config */
-        @media (min-width: 900px) {
-            .bento-grid {
-                grid-template-columns: 1.5fr 1fr 1fr;
-                grid-template-rows: auto auto auto;
-            }
-            .area-main { grid-column: 1 / 3; grid-row: 1 / 2; min-height: 350px; }
-            .area-chat { grid-column: 3 / 4; grid-row: 1 / 3; height: 100%; min-height: 500px; }
-            .area-alt  { grid-column: 1 / 2; grid-row: 2 / 3; }
-            .area-spotify { grid-column: 2 / 3; grid-row: 2 / 3; }
-            .area-soundcloud { grid-column: 1 / 4; grid-row: 3 / 4; }
+        .card:hover img {
+            transform: scale(1.01);
+            opacity: 0.95;
         }
 
-        /* Main Show Styling */
-        .main-show-layout {
-            display: flex; gap: 1.5rem; height: 100%; align-items: flex-start;
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            color: white;
+            transition: var(--transition);
         }
-        .main-show-img {
-            width: 40%; aspect-ratio: 1/1; object-fit: cover;
-            border: var(--border-std);
-            border-radius: 4px;
-            box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
-        }
-        .main-show-details {
-            flex: 1; display: flex; flex-direction: column; justify-content: center;
-        }
-        .main-show-tag {
-            background: var(--lsr-white);
-            color: var(--lsr-red);
-            padding: 4px 8px;
+
+        .card-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #ffffff;
+            color: var(--brand-dark);
+            font-weight: 800;
+            font-size: 0.7rem;
+            padding: 6px 12px;
+            border-radius: var(--radius-pill);
+            z-index: 10;
             text-transform: uppercase;
-            font-weight: bold;
-            font-size: 0.8rem;
-            align-self: flex-start;
-            margin-bottom: 10px;
-            border: 2px solid var(--lsr-dark);
-        }
-        .main-show-h2 { font-size: 2.5rem; line-height: 0.9; margin-bottom: 10px; text-transform: uppercase; color: var(--lsr-white);}
-        
-        /* Inverse Button (Dark on Red) */
-        .btn-inverse {
-            background: var(--lsr-dark);
-            border: 2px solid var(--lsr-white);
-        }
-        .btn-inverse svg { fill: var(--lsr-white); }
-        .btn-inverse:hover { background: var(--lsr-white); }
-        .btn-inverse:hover svg { fill: var(--lsr-dark); }
-
-        @media (max-width: 600px) {
-            .main-show-layout { flex-direction: column; }
-            .main-show-img { width: 100%; }
+            border: 1px solid rgba(0,0,0,0.1);
         }
 
-        /* Alt Stream */
-        .alt-stream-inner { display: flex; gap: 1rem; align-items: center; }
-        .alt-thumb { width: 80px; height: 80px; border: 2px solid var(--lsr-red); object-fit: cover;}
+        .card-title {
+            font-size: 1.4rem;
+            color: #ffffff;
+            margin-top: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
 
-        /* Chat Styling */
-        .chat-container {
-            flex: 1;
-            /* Shading: White at 10% opacity */
-            background: rgba(255,255,255,0.05); 
-            border: 1px solid rgba(255,255,255,0.2);
-            margin-top: 10px; padding: 10px;
-            overflow-y: auto;
-            display: flex; flex-direction: column; gap: 8px;
-            font-size: 0.9rem; border-radius: 4px;
+        /* Podcast Specifics */
+        .platform-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
         }
-        .chat-msg { 
-            background: var(--lsr-white); 
-            color: var(--lsr-dark);
-            padding: 8px; border-radius: 4px; 
-        }
-        .chat-input { 
-            margin-top: 10px; padding: 10px; 
-            border: 2px solid var(--lsr-white); 
-            background: transparent;
-            color: var(--lsr-white);
-            width: 100%; 
-        }
-        .chat-input::placeholder { color: rgba(255,255,255,0.5); }
-        
-        .chat-header { color: var(--lsr-red); margin-bottom: 0.5rem; text-transform: uppercase; border-bottom: 1px solid var(--lsr-red); padding-bottom: 5px;}
 
-        /* --- 5. FOOTER --- */
-        footer {
-            background: var(--lsr-dark);
-            color: var(--lsr-white);
-            padding: 4rem 2rem 2rem 2rem;
-            border-top: 4px solid var(--lsr-red);
-            margin-top: 4rem;
+        .platform-tag {
+            font-size: 0.75rem;
+            padding: 6px 12px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #ffffff;
+        }
+        .platform-tag:hover { background: white; }
+        .platform-tag.spotify:hover { color: #1DB954; }
+        .platform-tag.soundcloud:hover { color: #ff5500; }
+
+        /* --- SPONSOR BANNER (Unified) --- */
+        .sponsor-strip {
+            background: var(--brand-dark);
+            border: 1px solid rgba(0,0,0,0.3);
+            border-radius: var(--radius-md);
+            margin-bottom: 40px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            box-shadow: var(--shadow-card);
+        }
+
+        .sponsor-label {
+            background: rgba(0,0,0,0.25);
+            color: #ffffff;
+            padding: 10px 20px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid rgba(0,0,0,0.2);
+        }
+
+        .sponsor-body {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        .sponsor-logo img {
+            width: 400px;
+            height: auto;
+            object-fit: contain;
+           
+        }
+
+        .sponsor-text h5 { color: #ffffff; text-transform: uppercase; margin-bottom: 5px; font-weight: 800; }
+        .sponsor-text p { font-size: 0.9rem; color: rgba(255,255,255,0.75); max-width: 500px; }
+
+        /* --- FOOTER --- */
+        .main-footer {
+            background-color: var(--bg-dark);
+            color: rgba(255,255,255,0.5);
+            padding: 60px 0 20px;
+            margin-top: auto;
+            font-family: 'Open Sans', sans-serif;
+            border-top: 3px solid var(--brand-dark);
         }
 
         .footer-grid {
-            display: grid; grid-template-columns: 1fr; gap: 2.5rem;
-            max-width: 1200px; margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding-bottom: 40px;
         }
 
-        .footer-section h4 {
-            color: var(--lsr-red);
+        .footer-col h4 {
+            color: white;
+            font-family: 'Montserrat', sans-serif;
             text-transform: uppercase;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
         }
 
-        .footer-desc { opacity: 0.7; font-size: 0.95rem; line-height: 1.5; }
-        .footer-links { display: flex; flex-direction: column; gap: 0.8rem; }
-        .footer-links a {
-            color: var(--lsr-white); text-decoration: none; font-weight: 500;
+        .footer-col ul li { margin-bottom: 12px; }
+        
+        .footer-col a {
+            color: rgba(255,255,255,0.55);
+            font-size: 0.9rem;
         }
-        .footer-links a:hover { color: var(--lsr-red); text-decoration: underline; }
-
-        .sponsor-bar { display: flex; gap: 15px; flex-wrap: wrap; }
-        .sponsor-logo {
-            height: 40px; background: var(--lsr-white); padding: 5px;
-            border-radius: 4px; opacity: 1;
-        }
-
-        .copyright-bar {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            margin-top: 3rem; padding-top: 1.5rem;
-            text-align: center; opacity: 0.5; font-size: 0.8rem;
+        
+        .footer-col a:hover {
+            color: #ffffff;
+            padding-left: 5px;
         }
 
-        @media (min-width: 768px) {
-            body { padding-top: var(--header-height-desktop); }
-            #radio-header { flex-direction: row; height: var(--header-height-desktop); align-items: stretch; }
-            .player-interface { flex: 2; border-bottom: none; height: auto; }
-            .main-nav { flex: 1; border-left: var(--border-std); overflow: visible; }
-            .next-up-info { display: block; }
-            .show-title { font-size: 1.4rem; }
-            .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+        .social-links { display: flex; gap: 15px; }
+        .social-icon {
+            width: 35px;
+            height: 35px;
+            background: rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.1);
         }
+        .social-icon:hover { background: var(--brand-red); transform: translateY(-3px); border-color: transparent; }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.8rem;
+            opacity: 0.4;
+            color: #ffffff;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .grid-3 { grid-template-columns: 1fr 1fr; }
+            .section-grid { overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 20px; display: flex; }
+            .section-grid .card { min-width: 300px; scroll-snap-align: center; }
+        }
+
+        @media (max-width: 768px) {
+            :root { --header-height: 50px; }
+            
+            .up-next-pill, .track-desc { display: none; }
+            
+            .mobile-toggle { display: block; }
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--brand-dark);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: 0.4s ease-in-out;
+                border-bottom: 2px solid rgba(0,0,0,0.2);
+            }
+
+            .nav-menu.active { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            
+            .nav-menu li { width: 100%; }
+            .nav-link { display: block; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); color: #ffffff; }
+            .nav-link::after { display: none; }
+            .cta-btn { display: block; text-align: center; margin-top: 15px; }
+            
+            /* Mobile Dropdown reset */
+            .dropdown-menu {
+                position: static;
+                transform: none;
+                opacity: 1;
+                visibility: visible;
+                box-shadow: none;
+                padding-left: 15px;
+                border-top: none;
+                min-width: auto;
+                display: none;
+                background: rgba(0,0,0,0.15);
+            }
+            .has-dropdown:hover .dropdown-menu { display: block; }
+
+            /* Unified Sponsor Stack */
+            .sponsor-strip { flex-direction: column; text-align: center; }
+            .sponsor-label { width: 100%; height: 40px; writing-mode: horizontal-tb; transform: none; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.2); }
+            .sponsor-body { flex-direction: column; padding: 20px; }
+            .sponsor-body .cta-btn { margin-right:auto; }
+            .sponsor-logo img { width: 100%; border-radius: 10px; }
+
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            
+            /* Mobile Grid fix */
+            .grid-3, .grid-2 { display: flex; flex-direction: column; }
+            .card, .card-wide { width: 100%; aspect-ratio: 4/3; }
+        }
+    
     </style>
 </head>
 <body>
 
-    <header id="radio-header">
-        <div class="player-interface">
-            <div class="now-playing-group">
-                <img src="https://via.placeholder.com/100/1a0505/ffffff?text=LSR" alt="Show Art" class="show-thumb">
-                
-                <button class="play-btn" onclick="toggleRadio()" aria-label="Play Radio">
-                    <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                    <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    <div class="player-bar">
+        <div class="container player-content">
+            <div class="now-playing">
+                <button class="play-toggle" aria-label="Play Radio">
+                    <i class="fas fa-play"></i>
                 </button>
-                
-                <div class="meta-data">
-                    <div class="show-title">Breakfast with Jem</div>
-                    <div class="presenter-name">Live now • 08:00 - 10:00</div>
+                <div class="show-info">
+                    <h4>
+                        Don't Mug Me Off! 
+                        <span class="live-badge">
+                            ON AIR 
+                            <div class="visualizer">
+                                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                            </div>
+                        </span>
+                    </h4>
+                    <p class="track-desc">The authentic girly show you can't miss...</p>
                 </div>
             </div>
-
-            <div class="next-up-info">
-                <div class="next-label">Coming up next</div>
-                <div style="font-weight:bold; color: var(--lsr-dark);">Indie Hour</div>
-                <div style="font-size:0.8rem; color: var(--lsr-dark); opacity: 0.7;">10:00 - 11:00</div>
+            
+            <div class="up-next-pill">
+                <strong>NEXT:</strong> LSTV.MP3
             </div>
         </div>
+    </div>
 
-        <nav class="main-nav">
-            <a href="#listen" class="nav-link active" data-page="listen">Listen</a>
-            <a href="#schedule" class="nav-link" data-page="schedule">Schedule</a>
-            <a href="#about" class="nav-link" data-page="about">About</a>
-            <a href="#involved" class="nav-link" data-page="involved">Join Us</a>
-        </nav>
-    </header>
-
-    <main id="content-wrapper">
-        </main>
-
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-section">
-                <h4>About Us</h4>
-                <p class="footer-desc">
-                    <strong>Leeds Student Radio 2026.</strong><br>
-                    Broadcasting live from Leeds University Union since 1976. We are the official sound of students in Leeds.
-                </p>
-            </div>
-
-            <div class="footer-section">
-                <h4>Connect</h4>
-                <div class="footer-links">
-                    <a href="#" target="_blank">Instagram</a>
-                    <a href="#" target="_blank">Twitter / X</a>
-                    <a href="#" target="_blank">TikTok</a>
-                    <a href="mailto:station-manager@thisislsr.com">Contact via Email</a>
-                </div>
-            </div>
-
-            <div class="footer-section">
-                <h4>Our Sponsors</h4>
-                <div class="sponsor-bar">
-                    <img src="https://via.placeholder.com/100x40/ffffff/000000?text=LUU" alt="LUU" class="sponsor-logo">
-                    <img src="https://via.placeholder.com/100x40/ffffff/000000?text=Bar+One" alt="Sponsor" class="sponsor-logo">
-                </div>
-                <p style="font-size: 0.75rem; margin-top: 10px; opacity: 0.6;">Powered by the support of our partners.</p>
-            </div>
+    <nav class="main-nav">
+        <div class="container nav-inner">
+            <a href="#" class="brand-logo">Leeds <span>Student Radio</span></a>
+            
+            <div class="mobile-toggle"><i class="fas fa-bars"></i></div>
+            
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link">Our Schedule</a></li>
+                <li><a href="#" class="nav-link">Listen Live</a></li>
+                <li><a href="#" class="nav-link">Get Involved</a></li>
+                <li><a href="#" class="nav-link">About Us</a></li>
+            </ul>
         </div>
+    </nav>
 
-        <div class="copyright-bar">
-            © 2026 Leeds Student Radio. All rights reserved.
+    <main class="container">
+        
+        <section class="section-grid grid-3">
+            <article class="card">
+                <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/316c00_e270ed388b21449d9bdd56622dbeb4ec~mv2.jpg.webp?raw=true" alt="SRA Awards" loading="lazy">
+                <div class="card-badge">Awards</div>
+                <div class="card-overlay">
+                    <h2 class="card-title font-handwritten">Officially the UK's best student radio 2023 & 2024!</h2>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/IMG_3624.jpeg?raw=true" alt="Committee" loading="lazy">
+                <div class="card-badge"><i class="fab fa-instagram"></i> News</div>
+                <div class="card-overlay">
+                    <h2 class="card-title font-handwritten">Meet our new 2025/26 committee</h2>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/JadeLSR%20(1).webp?raw=true" alt="BBC Radio 1" loading="lazy">
+                <div class="card-badge"><i class="fab fa-tiktok"></i> Viral</div>
+                <div class="card-overlay">
+                    <h2 class="card-title font-handwritten">BBC Radio 1 Surprises LSR with JADE</h2>
+                </div>
+            </article>
+        </section>
+
+        <section class="section-grid grid-2">
+            <article class="card card-wide">
+                <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/IMG_8848%20(1).webp?raw=true" alt="Studio 2" loading="lazy">
+                <div class="card-overlay">
+                    <div style="margin-bottom: auto;">
+                        <span class="text-uppercase text-bold" style="border-bottom: 2px solid var(--brand-red);">Facilities</span>
+                    </div>
+                    <h3 class="text-uppercase text-bold">Book Studio 2</h3>
+                    <p style="font-size: 0.9rem; margin-top: 5px;">Record your podcast or practice on our CDJs/Turntables.</p>
+                     <div class="platform-links">
+                        <a href="#" class="platform-tag spotify"><i class="fa-solid fa-clock"></i>Book Now</a>
+                       
+                    </div>
+                </div>
+            </article>
+
+            <article class="card card-wide">
+                <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/IMG_3725.jpeg?raw=true" alt="Podcast" loading="lazy">
+                <div class="card-overlay">
+                    <div style="margin-bottom: auto;">
+                        <span class="text-uppercase text-bold" style="border-bottom: 2px solid var(--brand-red);">Catch Up</span>
+                    </div>
+                    <h3 class="text-uppercase text-bold">Latest Podcasts</h3>
+                    <div class="platform-links">
+                        <a href="#" class="platform-tag spotify"><i class="fab fa-spotify"></i> Spotify</a>
+                        <a href="#" class="platform-tag soundcloud"><i class="fab fa-soundcloud"></i> SoundCloud</a>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <aside class="sponsor-strip">
+            <div class="sponsor-label">Partner</div>
+            <div class="sponsor-body">
+                <div class="sponsor-logo">
+                    <img src="https://stepzach.github.io/leedstestradio/316c00_e85e432bbd2e4e15a926db384684cf02~mv2.png.avif" alt="Sponsor Logo">
+                </div>
+                <div class="sponsor-text">
+                    <h5>Discover Your Future</h5>
+                    <p>Develop and decide your future with appointments, events, and vacancies from our university partners.</p>
+                </div>
+                <a href="#" class="cta-btn" style="margin-left:auto; white-space: nowrap;">Find Out More</a>
+            </div>
+        </aside>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4 style="color: white;">The Sound Of Students in Leeds</h4>
+                    <p>Broadcasting live every day during term time from the heart of Leeds University Union. The sound of students since 1976.</p>
+                    <div class="social-links" style="margin-top: 20px;">
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Station</h4>
+                    <ul>
+                        <li><a href="#">Schedule</a></li>
+                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">Alumni</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Advertise</a></li>
+                        <li><a href="#">Complaint</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Disclaimer</h4>
+                    <p style="font-size: 0.8rem; line-height: 1.6;">Views expressed are those of the individual presenters and do not necessarily represent Leeds Student Radio or Leeds University Union.</p>
+                </div>
+            </div>
+
+            <div class="copyright">
+                &copy; 2026 Leeds Student Radio. Designed with &#9829; in Leeds.
+            </div>
         </div>
     </footer>
 
-    <audio id="audio-stream" preload="none">
-        <source src="https://icecast.radiofrance.fr/fip-midfi.mp3" type="audio/mpeg">
-    </audio>
-
     <script>
-        // --- 1. CONTENT DATA ---
-        // Updated to use the new class names: theme-red, theme-dark, theme-white
-        const pages = {
-            listen: `
-                <div class="bento-grid">
-                    
-                    <article class="bento-card area-main theme-red">
-                        <div class="main-show-layout">
-                            <img src="https://via.placeholder.com/400/1a0505/ffffff?text=Show+Image" alt="Live Show" class="main-show-img">
-                            <div class="main-show-details">
-                                <span class="main-show-tag">Live On Air</span>
-                                <h2 class="main-show-h2">Breakfast with Jem</h2>
-                                <p style="font-size: 1.1rem; margin-bottom:10px; opacity: 0.8;">Hosted by Jemima Smith</p>
-                                <p style="font-size: 1.1rem; line-height: 1.4; margin-bottom: 20px; opacity: 0.9;">Wake up the right way with the best indie tunes, campus news, and special guests from the Leeds music scene.</p>
-                                
-                                <button class="play-btn btn-inverse" style="width: 70px; height: 70px;" onclick="toggleRadio()">
-                                    <svg class="icon-play" viewBox="0 0 24 24" style="width:30px; height:30px"><path d="M8 5v14l11-7z"/></svg>
-                                    <svg class="icon-pause" viewBox="0 0 24 24" style="width:30px; height:30px"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                </button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="bento-card area-chat theme-dark">
-                        <h3 class="chat-header">Studio Chat</h3>
-                        <div class="chat-container">
-                            <div class="chat-msg"><strong>Mod:</strong> Welcome to the stream!</div>
-                            <div class="chat-msg"><strong>Sarah:</strong> loving this track!</div>
-                            <div class="chat-msg"><strong>User123:</strong> what's the song name?</div>
-                            <div class="chat-msg"><strong>Jem (Host):</strong> It's 'Wet Leg' coming up next!</div>
-                            <div style="flex:1"></div> 
-                        </div>
-                        <input type="text" placeholder="Type a message..." class="chat-input">
-                    </article>
-
-                    <article class="bento-card area-alt theme-white">
-                        <h4 style="text-transform:uppercase; color:var(--lsr-red); font-size:0.8rem; margin-bottom:10px; font-weight:800; border-bottom: 2px solid var(--lsr-red); display:inline-block;">LSR Extra</h4>
-                        <div class="alt-stream-inner">
-                            <img src="https://via.placeholder.com/80/cd3232/fff?text=Alt" class="alt-thumb">
-                            <div>
-                                <h3 style="color:var(--lsr-dark); font-weight:900;">LSR Sports</h3>
-                                <p style="font-size:0.8rem; color:var(--lsr-dark);">Live commentary: Leeds vs Beckett Varsity.</p>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="bento-card area-spotify bg-white" style="overflow:hidden; background:white; padding:0;">
-                         <iframe style="border-radius:0px" src="https://open.spotify.com/embed/episode/43cbK41qJ7171d579t44X0?utm_source=generator&theme=0" width="100%" height="100%" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                    </article>
-
-                    <article class="bento-card area-soundcloud bg-white" style="overflow:hidden; min-height: 160px; background:white; padding:0;">
-                        <iframe width="100%" height="160" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1126063360&color=%23cd3232&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-                    </article>
-                </div>
-            `,
-            schedule: `
-                <h1 class="page-title">Weekly Schedule</h1>
-                <div class="bento-card theme-white">
-                    <h2>Monday</h2>
-                    <ul style="list-style: inside; line-height: 2; color: var(--lsr-dark);">
-                        <li><strong>09:00</strong> - The Morning After</li>
-                        <li><strong>11:00</strong> - Leeds Life</li>
-                        <li><strong>13:00</strong> - Politics Hour</li>
-                    </ul>
-                </div>
-            `,
-            about: `
-                <h1 class="page-title">About LSR</h1>
-                <div class="bento-card theme-red">
-                    <h2>Who We Are</h2>
-                    <p style="margin-top:10px; font-size:1.1rem;">Leeds Student Radio is the official radio station of Leeds University Union.</p>
-                </div>
-            `,
-            involved: `
-                <h1 class="page-title">Get Involved</h1>
-                <div class="bento-card theme-dark">
-                    <h2>Join the Team</h2>
-                    <p style="margin-top:10px;">Applications open every semester. Come find us in the Union!</p>
-                </div>
-            `
-        };
-
-        // --- 2. NAVIGATION LOGIC ---
-        const contentWrapper = document.getElementById('content-wrapper');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        function loadPage(pageKey) {
-            contentWrapper.style.opacity = '0';
-            setTimeout(() => {
-                contentWrapper.innerHTML = pages[pageKey] || pages['listen'];
-                contentWrapper.style.opacity = '1';
-                history.pushState(null, null, `#${pageKey}`);
-            }, 300);
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if(link.dataset.page === pageKey) link.classList.add('active');
+        document.addEventListener('DOMContentLoaded', () => {
+            // Player Logic
+            const playBtn = document.querySelector('.play-toggle');
+            const icon = playBtn.querySelector('i');
+            const bars = document.querySelectorAll('.bar');
+            
+            playBtn.addEventListener('click', () => {
+                const isPlaying = icon.classList.contains('fa-pause');
+                
+                if (isPlaying) {
+                    icon.classList.remove('fa-pause');
+                    icon.classList.add('fa-play');
+                    // Stop visualizer animation
+                    bars.forEach(bar => bar.style.animationPlayState = 'paused');
+                } else {
+                    icon.classList.remove('fa-play');
+                    icon.classList.add('fa-pause');
+                    // Start visualizer animation
+                    bars.forEach(bar => bar.style.animationPlayState = 'running');
+                }
             });
-        }
 
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                loadPage(link.dataset.page);
+            // Mobile Menu Logic
+            const mobileBtn = document.querySelector('.mobile-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            const navIcon = mobileBtn.querySelector('i');
+
+            mobileBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                
+                if (navMenu.classList.contains('active')) {
+                    navIcon.classList.remove('fa-bars');
+                    navIcon.classList.add('fa-times');
+                } else {
+                    navIcon.classList.remove('fa-times');
+                    navIcon.classList.add('fa-bars');
+                }
+            });
+
+            // Sticky Header Shadow on Scroll
+            window.addEventListener('scroll', () => {
+                const nav = document.querySelector('.main-nav');
+                if(window.scrollY > 10) {
+                    nav.style.boxShadow = "0 4px 20px rgba(0,0,0,0.1)";
+                } else {
+                    nav.style.boxShadow = "none";
+                }
             });
         });
-
-        const initialPage = location.hash.replace('#', '') || 'listen';
-        loadPage(initialPage);
-
-
-        // --- 3. AUDIO PLAYER LOGIC ---
-        const audio = document.getElementById('audio-stream');
-        let isPlaying = false;
-
-        window.toggleRadio = function() {
-            if (!isPlaying) {
-                audio.play();
-                isPlaying = true;
-                document.body.classList.add('audio-playing');
-            } else {
-                audio.pause();
-                isPlaying = false;
-                document.body.classList.remove('audio-playing');
-            }
-        };
-
     </script>
 </body>
 </html>
