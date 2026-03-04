@@ -11,7 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Permanent+Marker&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+   
+   <link href="https://fonts.googleapis.com/css2?family=Asap+Condensed:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;family=BBH+Sans+Bogle&amp;family=Bitcount+Single+Ink:wght@100..900&amp;family=Caveat:wght@400..700&amp;family=Indie+Flower&amp;family=Noto+Sans:wdth,wght@62.5..100,100..900&amp;family=Pathway+Extreme:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&amp;family=Rubik:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet" media="all" onload="this.media='all'">
+   
     <style>
   
         /* --- VARIABLES --- */
@@ -61,8 +63,9 @@
 
         /* Typography Utilities */
         .font-handwritten {
-            font-family: 'Permanent Marker', cursive;
-            line-height: 1.2;
+           font-family: Indie Flower;
+               line-height: 1.1rem;
+    font-size: 1.4em;
         }
         .text-uppercase { text-transform: uppercase; letter-spacing: 0.5px; }
         .text-bold { font-weight: 800; }
@@ -75,13 +78,25 @@
 
         /* --- PLAYER BAR (Top) --- */
         .player-bar {
-            background: var(--bg-dark);
+            background: none;
             color: var(--text-light);
             padding: 0px 0;
             position: relative;
             z-index: 200;
-            border-bottom: 2px solid var(--brand-dark);
+                border: solid 2px black;
+    margin: 10px 20px;
+    border-radius: var(--radius-md);
+            
         }
+            .player-bar::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, transparent 35%), linear-gradient(to bottom, rgba(0, 0, 0, 0.0) 0%, transparent 25%);
+        z-index: 1;
+        border-radius: var(--radius-md);
+        pointer-events: none;
+    }
 
         .player-content {
             display: flex;
@@ -185,7 +200,9 @@
             z-index: 100;
             box-shadow: 0 4px 20px rgba(0,0,0,0.2);
             height: var(--header-height);
-            border-bottom: 1px solid rgba(0,0,0,0.3);
+               border: solid 2px black;
+    margin: 0px 20px;
+    border-radius: var(--radius-md);
         }
 
         .nav-inner {
@@ -261,8 +278,8 @@
 
         .section-grid {
             display: grid;
-            gap: 25px;
-            margin-bottom: 25px;
+            gap: 20px;
+            margin-bottom: 20px;
         }
         
         .grid-3 { grid-template-columns: repeat(3, 1fr); }
@@ -359,6 +376,7 @@
             display: flex;
             align-items: center;
             box-shadow: var(--shadow-card);
+            border: solid 2px black;
         }
 
         .sponsor-label {
@@ -570,7 +588,7 @@
         <section class="section-grid grid-3">
             <article class="card">
                 <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/316c00_e270ed388b21449d9bdd56622dbeb4ec~mv2.jpg.webp?raw=true" alt="SRA Awards" loading="lazy">
-                <div class="card-badge">Awards</div>
+                <div class="card-badge"><i class="fa-solid fa-link"></i> Awards RECAP</div>
                 <div class="card-overlay">
                     <h2 class="card-title font-handwritten">Officially the UK's best student radio 2023 & 2024!</h2>
                 </div>
@@ -578,15 +596,15 @@
 
             <article class="card">
                 <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/IMG_3624.jpeg?raw=true" alt="Committee" loading="lazy">
-                <div class="card-badge"><i class="fab fa-instagram"></i> News</div>
+                <div class="card-badge"><i class="fab fa-instagram"></i> SEE THE POST</div>
                 <div class="card-overlay">
-                    <h2 class="card-title font-handwritten">Meet our new 2025/26 committee</h2>
+                    <h2 class="card-title font-handwritten">Meet our 2025/26 committee, announced on Instagram</h2>
                 </div>
             </article>
 
             <article class="card">
-                <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/JadeLSR%20(1).webp?raw=true" alt="BBC Radio 1" loading="lazy">
-                <div class="card-badge"><i class="fab fa-tiktok"></i> Viral</div>
+                <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/JadeLSR%20(1).webp?raw=true" alt="BBC Radio 1" loading="lazy" style="object-position:top; scale:1.1;">
+                <div class="card-badge"><i class="fab fa-tiktok"></i> WATCH THE INTERVIEW</div>
                 <div class="card-overlay">
                     <h2 class="card-title font-handwritten">BBC Radio 1 Surprises LSR with JADE</h2>
                 </div>
@@ -595,36 +613,38 @@
 
         <section class="section-grid grid-2">
             <article class="card card-wide">
-                <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/IMG_8848%20(1).webp?raw=true" alt="Studio 2" loading="lazy">
+                <img src="https://static.wixstatic.com/media/ba8903_9bdc5be316f5493f8a43f8f3ec9203c8~mv2.jpg/v1/fill/w_1669,h_1112,al_c/ba8903_9bdc5be316f5493f8a43f8f3ec9203c8~mv2.jpg" alt="Mixes" loading="lazy">
+                 <div class="card-badge"><i class="fab fa-soundcloud"></i> Listen on SOUNDCLOUD</div> 
                 <div class="card-overlay">
-                    <div style="margin-bottom: auto;">
-                        <span class="text-uppercase text-bold" style="border-bottom: 2px solid var(--brand-red);">Facilities</span>
-                    </div>
-                    <h3 class="text-uppercase text-bold">Book Studio 2</h3>
-                    <p style="font-size: 0.9rem; margin-top: 5px;">Record your podcast or practice on our CDJs/Turntables.</p>
-                     <div class="platform-links">
-                        <a href="#" class="platform-tag spotify"><i class="fa-solid fa-clock"></i>Book Now</a>
-                       
-                    </div>
+                    <h2 class="card-title font-handwritten">Listen to the latest from our resident Djs</h2>
                 </div>
             </article>
 
             <article class="card card-wide">
                 <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/IMG_3725.jpeg?raw=true" alt="Podcast" loading="lazy">
+                 <div class="card-badge"><i class="fab fa-instagram"></i> Listen on SPOTIFY</div>
                 <div class="card-overlay">
-                    <div style="margin-bottom: auto;">
-                        <span class="text-uppercase text-bold" style="border-bottom: 2px solid var(--brand-red);">Catch Up</span>
-                    </div>
-                    <h3 class="text-uppercase text-bold">Latest Podcasts</h3>
-                    <div class="platform-links">
-                        <a href="#" class="platform-tag spotify"><i class="fab fa-spotify"></i> Spotify</a>
-                        <a href="#" class="platform-tag soundcloud"><i class="fab fa-soundcloud"></i> SoundCloud</a>
-                    </div>
+                    <h2 class="card-title font-handwritten">Catch up with the latest podcasts from LSR members</h2>
                 </div>
             </article>
         </section>
 
         <aside class="sponsor-strip">
+            <div class="sponsor-label">STUDIO 2</div>
+            <div class="sponsor-body">
+               
+                <div class="sponsor-text">
+                    <h5>Book our Studio</h5>
+                    <p>If you'd like to record your podcast or make use of our CDJs/Turntable, LSR's Studio 2 is available for our members to book out.</p>
+                </div>
+                 <div class="sponsor-text">
+                  
+                    <p>PLEASE NOTE: You must have received training and be an LSR member to use our booking system.</p>
+                </div>
+                <a href="#" class="cta-btn" style="margin-left:auto; white-space: nowrap;">Book now</a>
+            </div>
+        </aside>
+   <aside class="sponsor-strip">
             <div class="sponsor-label">Partner</div>
             <div class="sponsor-body">
                 <div class="sponsor-logo">
@@ -637,7 +657,6 @@
                 <a href="#" class="cta-btn" style="margin-left:auto; white-space: nowrap;">Find Out More</a>
             </div>
         </aside>
-
     </main>
 
     <footer class="main-footer">
