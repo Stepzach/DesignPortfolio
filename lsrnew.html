@@ -111,8 +111,8 @@
 }
 
 .thumbnail {
-    width: 85px;
-    height: 85px;
+    width: 70px;
+    height: 70px;
     border-radius: 12px;
     object-fit: cover;
     border: 1px solid rgba(255,255,255,0.2);
@@ -121,6 +121,7 @@
 }
 
 .play-toggle {
+
     width: 48px;
     height: 48px;
     border-radius: 50%;
@@ -133,6 +134,8 @@
     border: 2px solid rgba(0, 0, 0, 0.1);
     transition: var(--transition);
     flex-shrink: 0;
+    margin-left:2px;
+   
 }
 
 .play-toggle .fas {
@@ -144,8 +147,9 @@
 }
 
 .play-toggle:hover {
-    transform: scale(1.08);
+    transform: scale(1.07);
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    
 }
 
 .show-info {
@@ -351,20 +355,24 @@
             box-shadow: var(--shadow-card);
             cursor: pointer;
             border: 2px solid black;
-            filter: brightness(1.2);
+            filter: brightness(1.1);
+             opacity: 0.95;
         }
 
         .card-wide { aspect-ratio: 16 / 9; }
 
         .card img {
+       
             opacity: 1;
-            transition: transform 0.6s ease;
+            transition: 0.9s ease;
+            
         }
 
         .card:hover img {
-          
-            opacity: 0.95;
-            filter: brightness(0.9);
+           transform: scale(1.01);
+            opacity: 1;
+            filter: brightness(0.92);
+            
         }
 
         .card-overlay {
@@ -392,13 +400,21 @@
             z-index: 10;
             text-transform: uppercase;
             border: 1px solid rgba(0,0,0,0.1);
+               transition: 0.4s ease;
         }
         /* Target the badge ONLY when the card is hovered */
 .card:hover .card-badge {
-  background: var(--brand-dark);
-  color: #ffffff;
-   transition: var(--transition);
+  
+  transform: scale(1.1);
+   transition: 0.5s ease;
+  
 }
+.card-badge:hover {
+  
+ 
+   text-decoration: underline;
+}
+
 
         .card-title {
             font-size: 1.4rem;
@@ -542,7 +558,7 @@
         .footer-col ul {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 12px;
         }
 
         .footer-col a {
@@ -567,7 +583,7 @@
 
         .banner-text {
             font-size: 1rem;
-            line-height: 1.1;
+            line-height: 1.2;
            
             margin-bottom: 15px;
         }
@@ -581,7 +597,7 @@
 
         .info-text {
             font-size: 1rem;
-            line-height: 1.1;
+            line-height: 1.2;
        
             margin-bottom: 20px;
         }
