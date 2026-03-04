@@ -538,7 +538,7 @@
         /* New Grouped Flex Container for the Middle */
         .footer-links-group {
             display: flex;
-            gap: 50px; /* Adjust gap between the 3 link columns here */
+            gap: 68px; /* Adjust gap between the 3 link columns here */
             justify-content: center;
            
           
@@ -564,7 +564,7 @@
             text-transform: uppercase;
             
             font-size: 1.2rem;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             letter-spacing: 0.5px;
         }
 
@@ -616,17 +616,28 @@
         }
 
         .disclaimer-link {
-            font-size: 1rem;
-            text-decoration: underline;
-            font-weight: 400;
+           
+          text-align: center;
+          
+            line-height:1;
+           
+        }
+         .disclaimer-link:hover {
+           text-decoration:underline;
+           
+        }
+         .zach:hover {
+           text-decoration:underline;
+           cursor:pointer;
         }
 
         .copyright {
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #ffffff;
-            padding-top: 1px;
-            font-weight: 300;
+            padding-top: 0px;
+            font-weight: 100;
+              line-height:1;
         }
 
         /* --- RESPONSIVE ADJUSTMENTS --- */
@@ -845,14 +856,15 @@
                 </div>
 
                 <div class="footer-col col-info">
-                    <p class="info-text">Leeds Student Radio is a student radio station broadcasting every day during term time, from the heart of Leeds University</p>
-                    <a href="#" class="disclaimer-link">Disclaimer</a>
+                    <p class="info-text">Leeds Student Radio is a student radio station broadcasting every day during term time, from the heart of Leeds University<br><br>Website designed by  <span href="#" class="zach">Zach</span></p>
+                   
                 </div>
                 
             </div>
 
             <div class="copyright">
-                &copy; Leeds Student Radio 2026
+                &copy; Leeds Student Radio 2026  - 
+                 <a href="#" class="disclaimer-link">Disclaimer</a>
             </div>
         </div>
     </footer>
