@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Leeds Student Radio - The UK's best student radio station. Listen live, check the schedule, and get involved.">
-    <title>Leeds Student Radio | Live</title>
+    <title>Leeds Student Radio | About Us</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,193 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://raw.githack.com/Stepzach/DesignPortfolio/main/generalstyle.css">
     <style>
-    
+        /* --- ABOUT PAGE SPECIFIC STYLES --- */
+        .about-page-wrapper {
+            background-color: #cb3131; /* Matches the red in the screenshot */
+            color: #ffffff;
+            padding: 0px 20px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .about-top-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-col h2 {
+            font-family: 'Indie Flower', cursive;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .about-col p {
+            line-height: 1.5;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .about-col .group-img {
+            width: 100%;
+            border-radius: 12px;
+            margin-top: 15px;
+            border: 2px solid #111; /* Slight border to match cards */
+            height:auto;
+        }
+
+        .formation-links-heading {
+            font-weight: 800;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .formation-links {
+            list-style-type: disc;
+            padding-left: 20px;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .formation-links li {
+            margin-bottom: 8px;
+        }
+
+        .formation-links a {
+            color: white;
+            text-decoration: underline;
+            text-transform: uppercase;
+        }
+
+        .formation-links a:hover {
+            color: #f0f0f0;
+        }
+
+        /* --- COMMITTEE GRID STYLES --- */
+        .committee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 40px auto 0;
+        }
+
+        .committee-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid #111;
+            aspect-ratio: 1; /* Makes the cards square */
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .committee-card:hover {
+            transform: scale(1.03);
+        }
+
+        .committee-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .committee-info {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            /* Text shadow to ensure the white text is readable over varied image backgrounds */
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8), -1px -1px 4px rgba(0,0,0,0.8); 
+        }
+
+        .committee-name {
+            font-family: 'Indie Flower', cursive;
+            font-size: 1.6rem;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .committee-role {
+            font-family: 'Indie Flower', cursive;
+            font-size: 1.2rem;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        /* --- MODAL STYLES --- */
+        .modal-overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: #cb3131;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #111;
+            max-width: 90%;
+            max-height: 90vh;
+            text-align: center;
+            position: relative;
+            color: #fff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.8rem;
+            color: #fff;
+            cursor: pointer;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 60vh;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            object-fit: contain;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 850px) {
+            .about-top-grid { 
+                grid-template-columns: 1fr; 
+            }
+        }
+
+        /* NEW: 2-column layout for small screens */
+        @media (max-width: 600px) {
+            .committee-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px; /* slightly smaller gap for mobile */
+            }
+            .committee-name {
+                font-size: 1.5rem;
+            }
+            .committee-role {
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -69,15 +255,46 @@
         </nav>
     </div>
 
-  
-    <main class="container">
-        <section style="padding: 40px 0;">
-            <h1 class="font-handwritten" style="font-size: 3rem; margin-bottom: 20px;">About Leeds Student Radio</h1>
-            <p style="line-height: 1.6; margin-bottom: 20px;">
-                We are the official student radio station of the University of Leeds...
-            </p>
-        </section>
+    <main>
+        <div class="about-page-wrapper">
+            <div class="about-top-grid">
+                
+                <div class="about-col">
+                    <h2>About</h2>
+                    <p>Leeds Student Radio is a student radio station broadcasting every day during term time from Leeds University Union at the University of Leeds. The station is run by an elected committee of student volunteers, and the management of the station is overseen by a full-time station manager employed by Leeds University Union.</p>
+                    <p>The station also provides live DJs for venues within Leeds University Union and the City of Leeds.</p>
+                    <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/631D8876-B212-4911-B678-EBDC6FD139D2_1_201_a.jpeg?raw=true" alt="Leeds Student Radio Team" class="group-img">
+                </div>
+
+                <div class="about-col">
+                    <h2>Formation</h2>
+                    <p>In the 1960s, a group of students formed 'Network 4' and broadcast black-and-white programmes on a closed circuit around the university.</p>
+                    <p>In 1968, Leeds University Union built a radio studio with an adjoining control room on the top floor of the students' union building.</p>
+                    <p>It was built so that 'Network 4' could produce programmes for BBC Radio Leeds, with student productions including concerts, debates, and dramas, as well as a weekly 30-minute news programme called <strong>'University City'</strong>.</p>
+                    <p>In the late 1990s, TV presenter <strong>Anita Rani</strong> worked at the radio station.</p>
+                    
+                    <div class="formation-links-heading">More about us on:</div>
+                    <ul class="formation-links">
+                        <li><a href="https://en.wikipedia.org/wiki/Leeds_Student_Radio" target="_blank" rel="noopener noreferrer">WIKIPEDIA</a></li>
+                        <li><a href="https://www.luu.org.uk" target="_blank" rel="noopener noreferrer">LEEDS UNIVERSITY UNION</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="committee-grid" id="committee-grid-container">
+                <p>Loading committee...</p>
+            </div>
+        </div>
     </main>
+
+    <div class="modal-overlay" id="committee-modal">
+        <div class="modal-content">
+            <span class="modal-close" id="modal-close-btn">&times;</span>
+            <img id="modal-img" src="" alt="">
+            <h3 class="committee-name" id="modal-name"></h3>
+            <p class="committee-role" id="modal-role"></p>
+        </div>
+    </div>
 
     <footer class="main-footer">
         <div class="container footer-container">
@@ -175,8 +392,103 @@
             if (navMenu.classList.contains('active')) toggleMenu();
         });
 
-        // --- 3. GOOGLE SHEETS LIVE/NEXT UPDATE LOGIC ---
-        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRoXcefXiUOFuRnA6DpheBwR2CJ4Zs09o68IG9in3w2WwncXybxsbVDWwQY6u6MSpmFDiRrx83MO8M3/pub?output=csv';
+        // --- 3. CSV PARSER FUNCTION ---
+        function parseCSV(str) {
+            const arr = [];
+            let quote = false;  
+            let row = 0, col = 0;
+            
+            for (let c = 0; c < str.length; c++) {
+                let cc = str[c], nc = str[c+1];
+                arr[row] = arr[row] || [];
+                arr[row][col] = arr[row][col] || '';
+
+                if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
+                if (cc == '"') { quote = !quote; continue; }
+                if (cc == ',' && !quote) { ++col; continue; }
+                if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
+                if (cc == '\n' && !quote) { ++row; col = 0; continue; }
+                if (cc == '\r' && !quote) { ++row; col = 0; continue; }
+
+                arr[row][col] += cc;
+            }
+            return arr;
+        }
+
+        // --- 4. MODAL LOGIC FOR COMMITTEE ---
+        const modal = document.getElementById('committee-modal');
+        const modalImg = document.getElementById('modal-img');
+        const modalName = document.getElementById('modal-name');
+        const modalRole = document.getElementById('modal-role');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+
+        function openModal(name, role, imgSrc) {
+            modalName.innerText = name;
+            modalRole.innerText = role;
+            modalImg.src = imgSrc;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        modalCloseBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal(); // close if background clicked
+        });
+
+        // --- 5. COMMITTEE DATA FETCH LOGIC ---
+        // Assuming your sheet is public and data is on the first tab.
+        const committeeSheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRoXcefXiUOFuRnA6DpheBwR2CJ4Zs09o68IG9in3w2WwncXybxsbVDWwQY6u6MSpmFDiRrx83MO8M3/pub?gid=2123499295&output=csv';
+        async function fetchCommitteeData() {
+            try {
+                const response = await fetch(committeeSheetUrl);
+                const data = await response.text();
+                const rows = parseCSV(data);
+                
+                rows.shift(); // Remove the header row (id, Name, Role, Image Link)
+
+                const grid = document.getElementById('committee-grid-container');
+                grid.innerHTML = ''; // Clear "Loading..." text
+
+                rows.forEach(row => {
+                    // Make sure row has data
+                    if (row.length < 3) return; 
+
+                    const id = row[0];
+                    const name = row[1];
+                    const role = row[2];
+                    const imgLink = row[3] || 'https://via.placeholder.com/300x300?text=No+Image';
+
+                    // Create card element
+                    const card = document.createElement('div');
+                    card.className = 'committee-card';
+                    card.innerHTML = `
+                        <img src="${imgLink}" alt="${name}">
+                        <div class="committee-info">
+                            <h3 class="committee-name">${name}</h3>
+                            <p class="committee-role">${role}</p>
+                        </div>
+                    `;
+
+                    // Add click event for modal
+                    card.addEventListener('click', () => openModal(name, role, imgLink));
+
+                    grid.appendChild(card);
+                });
+
+            } catch (error) {
+                console.error("Failed to fetch committee data", error);
+                document.getElementById('committee-grid-container').innerHTML = '<p>Failed to load committee members.</p>';
+            }
+        }
+
+        fetchCommitteeData();
+
+
+        // --- 6. SCHEDULE GOOGLE SHEETS LIVE/NEXT UPDATE LOGIC ---
+        const scheduleSheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRoXcefXiUOFuRnA6DpheBwR2CJ4Zs09o68IG9in3w2WwncXybxsbVDWwQY6u6MSpmFDiRrx83MO8M3/pub?output=csv';
 
         function timeToMinutes(timeStr) {
             if (!timeStr) return 0;
@@ -184,7 +496,6 @@
             return (hours || 0) * 60 + (minutes || 0);
         }
 
-        // --- NEW: MEDIA SESSION API FUNCTION ---
         function updateMediaSession(show) {
             if ('mediaSession' in navigator) {
                 const title = show && show.title ? show.title : "LSR Jukebox";
@@ -192,11 +503,8 @@
                 const defaultImage = "https://github.com/Leeds-student-radio/Lsr/blob/main/316c00_e270ed388b21449d9bdd56622dbeb4ec~mv2.jpg.webp?raw=true";
                 const artworkUrl = show && show.image ? show.image : defaultImage;
 
-                // Logic for "Too many hosts"
                 if (show && show.host) {
-                    // Count hosts by splitting at commas or '&' or 'and'
                     const hostCount = show.host.split(/,|&|\band\b/i).length;
-                    // If 3 or fewer hosts, and string isn't crazy long, use their names. Otherwise fallback.
                     if (hostCount <= 3 && show.host.length < 50) {
                         artist = show.host.trim();
                     }
@@ -220,7 +528,7 @@
 
         async function fetchScheduleData() {
             try {
-                const response = await fetch(sheetUrl);
+                const response = await fetch(scheduleSheetUrl);
                 const data = await response.text();
                 const rows = parseCSV(data);
                 
@@ -252,7 +560,7 @@
                         end: timeToMinutes(row[7]),
                         rawStart: row[6],
                         rawEnd: row[7],
-                        host: row[8] // Assuming "Hosts" is the 9th column (index 8). Change if needed!
+                        host: row[8]
                     };
                 }).sort((a, b) => a.start - b.start);
 
@@ -286,7 +594,6 @@
                     document.getElementById('up-next-desc').innerText = "Check the schedule page for more info.";
                 }
 
-                // Update the browser lock screen/media hub styling!
                 updateMediaSession(liveShow);
 
             } catch (error) {
@@ -294,32 +601,10 @@
             }
         }
 
-        function parseCSV(str) {
-            const arr = [];
-            let quote = false;  
-            let row = 0, col = 0;
-            
-            for (let c = 0; c < str.length; c++) {
-                let cc = str[c], nc = str[c+1];
-                arr[row] = arr[row] || [];
-                arr[row][col] = arr[row][col] || '';
-
-                if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
-                if (cc == '"') { quote = !quote; continue; }
-                if (cc == ',' && !quote) { ++col; continue; }
-                if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
-                if (cc == '\n' && !quote) { ++row; col = 0; continue; }
-                if (cc == '\r' && !quote) { ++row; col = 0; continue; }
-
-                arr[row][col] += cc;
-            }
-            return arr;
-        }
-
         fetchScheduleData();
         setInterval(fetchScheduleData, 180000);
 
-        // --- 4. SEAMLESS PAGE ROUTING LOGIC ---
+        // --- 7. SEAMLESS PAGE ROUTING LOGIC ---
         document.body.addEventListener('click', async (e) => {
             const link = e.target.closest('a');
             
@@ -354,6 +639,11 @@
                     
                     if (navMenu.classList.contains('active')) {
                         toggleMenu();
+                    }
+
+                    // Re-fire committee data fetch if coming back to this page dynamically
+                    if (url.includes('about')) {
+                        fetchCommitteeData();
                     }
                 }
             } catch (error) {
