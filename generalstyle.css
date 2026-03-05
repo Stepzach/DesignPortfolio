@@ -118,7 +118,7 @@
         .play-toggle:hover { transform: scale(1.07); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
 
         .show-info { display: flex; flex-direction: column; gap: 4px; overflow: hidden; }
-        .info-header { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .info-header { display: flex; align-items: center; gap: px; flex-wrap: wrap; }
         .info-header h4 { font-size: 1rem; color: #ffffff; text-transform: uppercase; margin: 0; }
 
         .track-desc {
