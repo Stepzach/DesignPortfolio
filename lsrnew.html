@@ -89,7 +89,7 @@
     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
     color: var(--text-light);
     position: relative;
-    z-index: 200;
+    z-index: 200000;
     max-width: var(--container-width);
 }
 .player-bar::before {
@@ -854,41 +854,80 @@
             .up-next-pill, .track-desc { display: none; }
             
             .mobile-toggle { display: block; }
-            .nav-menu {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--brand-dark);
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 20px;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-                transition: 0.4s ease-in-out;
-                border-bottom: 2px solid rgba(0,0,0,0.2);
-            }
+          .mobile-overlay {
+        position: fixed;
+        top: 64px;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5); /* Darkens the rest of the page */
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        z-index: 90; /* Sits below the nav container (z-index 100) */
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+    }
+    
+    .mobile-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
 
-            .nav-menu.active { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
-            
-            .nav-menu li { width: 100%; }
-            .nav-link { display: block; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); color: #ffffff; }
-            .nav-link::after { display: none; }
-            .cta-btn { display: block; text-align: center; margin-top: 15px; }
-            
-            /* Mobile Dropdown reset */
-            .dropdown-menu {
-                position: static;
-                transform: none;
-                opacity: 1;
-                visibility: visible;
-                box-shadow: none;
-                padding-left: 15px;
-                border-top: none;
-                min-width: auto;
-                display: none;
-                background: rgba(0,0,0,0.15);
-            }
+    /* 2. The Upgraded Dropdown Menu */
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        
+        /* Glassmorphism Effect */
+        background: rgba(160, 43, 43, 0.85); /* Semi-transparent brand-dark */
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 20px 25px;
+        
+        /* Smooth Fade & Slide instead of clip-path */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        
+        border-bottom: 2px solid black;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    }
+
+    .nav-menu.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    
+    .nav-menu li { width: 100%; }
+
+    /* 3. Prettier Mobile Links */
+    .nav-link { 
+        display: block; 
+        padding: 15px 20px; 
+        border-bottom: 1px solid rgba(255,255,255,0.1); 
+        color: #ffffff; 
+        border-radius: var(--radius-sm);
+        transition: all 0.2s ease;
+    }
+    
+    .nav-menu li:last-child .nav-link {
+        border-bottom: none;
+    }
+    
+    .nav-link::after { display: none; }
+    
+    /* Interactive tap effect */
+  
+
+    .cta-btn { display: block; text-align: center; margin-top: 15px; }
             .has-dropdown:hover .dropdown-menu { display: block; }
 
             /* Unified Sponsor Stack */
@@ -951,7 +990,7 @@
     </style>
 </head>
 <body>
-
+<div class="mobile-overlay"></div>
 <div class="player-bar">
     <div class="player-section now-playing">
         <button class="play-toggle" aria-label="Play Radio">
@@ -1124,31 +1163,35 @@
             });
 
             // Mobile Menu Logic
-            const mobileBtn = document.querySelector('.mobile-toggle');
-            const navMenu = document.querySelector('.nav-menu');
-            const navIcon = mobileBtn.querySelector('i');
+          // Mobile Menu Logic
+const mobileBtn = document.querySelector('.mobile-toggle');
+const navMenu = document.querySelector('.nav-menu');
+const navIcon = mobileBtn.querySelector('i');
+const overlay = document.querySelector('.mobile-overlay'); // Grab the new overlay
 
-            mobileBtn.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-                
-                if (navMenu.classList.contains('active')) {
-                    navIcon.classList.remove('fa-bars');
-                    navIcon.classList.add('fa-times');
-                } else {
-                    navIcon.classList.remove('fa-times');
-                    navIcon.classList.add('fa-bars');
-                }
-            });
+// Helper function to toggle states
+function toggleMenu() {
+    const isActive = navMenu.classList.toggle('active');
+    overlay.classList.toggle('active');
+    
+    if (isActive) {
+        navIcon.classList.remove('fa-bars');
+        navIcon.classList.add('fa-times');
+    } else {
+        navIcon.classList.remove('fa-times');
+        navIcon.classList.add('fa-bars');
+    }
+}
 
-            // Sticky Header Shadow on Scroll
-            window.addEventListener('scroll', () => {
-                const nav = document.querySelector('.main-nav');
-                if(window.scrollY > 10) {
-                    nav.style.boxShadow = "0 4px 20px rgba(0,0,0,0.1)";
-                } else {
-                    nav.style.boxShadow = "none";
-                }
-            });
+// Open/Close on button click
+mobileBtn.addEventListener('click', toggleMenu);
+
+// Close menu if user clicks the blurred background
+overlay.addEventListener('click', () => {
+    if (navMenu.classList.contains('active')) {
+        toggleMenu();
+    }
+});
         });
     </script>
 </body>
