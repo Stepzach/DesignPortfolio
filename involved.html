@@ -509,9 +509,13 @@ setInterval(fetchScheduleData, 180000);
                     }
 
                     // Re-fire data fetch if coming back to this page dynamically
-                    if (url.includes('involved')) {
-                        fetchApplyData();
-                    }
+                   // Re-fire data fetch if coming back to this page dynamically
+if (url.includes('involved')) {
+    fetchApplyData();
+}
+if (url.includes('about')) {
+    fetchCommitteeData();
+}
                 }
             } catch (error) {
                 console.error("Failed to load page dynamically. Falling back to hard reload.", error);
