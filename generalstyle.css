@@ -5,6 +5,7 @@
             color: #ffffff;
             padding: 0px 20px;
             font-family: 'Montserrat', sans-serif;
+            margin-top:-20px;
         }
 
         .about-top-grid {
@@ -684,7 +685,5 @@
             .copyright { padding: 20px; }
         }
         
-        main {
-    padding: 20px 0;
-     }
+       
     </style>
