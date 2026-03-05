@@ -1,4 +1,135 @@
     
+        .get-involved-intro {
+            color: #fff;
+            padding: 0px 20px;
+            margin-top:-20px;
+        }
+        
+        .get-involved-intro .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .intro-left, .intro-right {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .get-involved-intro h1, .get-involved-intro h2 {
+            font-family: 'Indie Flower', cursive;
+            margin-bottom: 20px;
+        }
+        
+        .get-involved-intro h1 { font-size: 3.5rem; }
+        .get-involved-intro h2 { font-size: 2.8rem; }
+        
+        .get-involved-intro p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        
+        .collage-img {
+            width: 100%;
+            height:auto;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        
+        .tip {
+            margin-bottom: 25px;
+        }
+        
+        .tip h3 {
+            font-family: 'Indie Flower', cursive;
+            font-size: 1.6rem;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-thickness: 1px;
+            font-weight: normal;
+            margin-bottom: 5px;
+        }
+        
+        .tip p {
+            font-size: 1.05rem;
+            margin-bottom: 0;
+        }
+
+        .apply-section {
+            padding: 0 20px 60px 20px;
+        }
+        
+        .apply-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 20px;
+        }
+        
+        .apply-box {
+            background-color: #c92a2a; 
+            border: 2px solid #8f1818;
+            border-radius: 15px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
+        }
+        
+        .apply-box h3 {
+            font-family: 'Asap Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            color: white;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+        
+        .shows-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .show-link {
+            display: inline-block;
+            border: 1px solid white;
+            border-radius: 8px;
+            padding: 8px 15px;
+            color: white;
+            text-decoration: none;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.1rem;
+            transition: background-color 0.2s;
+            flex: 1 1 calc(50% - 15px);
+            box-sizing: border-box;
+            background-color: transparent;
+        }
+        
+        .show-link:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .box-footer {
+            font-family: 'Indie Flower', cursive;
+            font-size: 1rem;
+            color: white;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .get-involved-intro h1 { font-size: 2.8rem; }
+            .get-involved-intro h2 { font-size: 2.3rem; }
+            .show-link { flex: 1 1 100%; }
+            .apply-grid { grid-template-columns: 1fr; }
+        }
         /* --- ABOUT PAGE SPECIFIC STYLES --- */
         .about-page-wrapper {
             background-color: #cb3131; /* Matches the red in the screenshot */
