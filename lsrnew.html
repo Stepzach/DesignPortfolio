@@ -660,6 +660,9 @@
         
         /* --- RESPONSIVE --- */
         @media (max-width: 992px) {
+        
+       
+
             .section-grid.grid-3 { 
                 display: flex; 
                 overflow-x: auto; 
@@ -676,13 +679,13 @@
             }
 
             /* Adjust cards to take full width and stack content */
-            .section-grid.grid-3 .card { 
-                min-width: 100%; 
-                flex: 0 0 100%; 
+         .section-grid.grid-3 .card { 
+                min-width: 85%; /* Changed from 100% */
+                flex: 0 0 85%;  /* Changed from 100% */
                 scroll-snap-align: center; 
                 display: flex;
                 flex-direction: column;
-                aspect-ratio: auto; /* Remove the 1/1 square constraint */
+                aspect-ratio: auto; 
             }
 
             /* Lock the image height so it doesn't stretch infinitely */
@@ -692,7 +695,21 @@
                 width: 100%;
                 object-fit: cover;
             }
+             .section-grid.grid-2 .card { 
+                min-width: 85%; /* Changed from 100% */
+                flex: 0 0 85%;  /* Changed from 100% */
+                scroll-snap-align: center; 
+                display: flex;
+                flex-direction: column;
+                aspect-ratio: auto; 
+            }
 
+           .section-grid.grid-2 .card img {
+                height: 60vw;
+                max-height: 350px;
+                width: 100%;
+                object-fit: cover;
+            }
             /* Move the overlay to the bottom as a normal block */
            
             
@@ -728,6 +745,12 @@
 }
 
         @media (max-width: 768px) {
+        
+         .container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 15px 15px;
+}
             :root { --header-height: 50px; }
             
             .up-next-pill, .track-desc { display: none; }
@@ -791,7 +814,7 @@
         margin: 0px;
         border:none;
         border-radius:0;
-        border-bottom: solid 2px black;
+      
             }
             .player-bar:before {
    
@@ -812,7 +835,7 @@
     margin: 0px;
     border:none;
     border-radius:0px;
-   
+     border-top: solid 2px black;
      border-bottom: solid 2px black;
    
 }
@@ -913,7 +936,7 @@
             <span class="dot active"></span>
             <span class="dot"></span>
             <span class="dot"></span>
-            <p style="font-size:0.8rem; margin-left:4px; margin-top:-2px;">swipe for more</p>
+           
         </div>
 
         <section class="section-grid grid-2">
@@ -1039,15 +1062,18 @@
                     nav.style.boxShadow = "none";
                 }
             });
-            // --- Carousel Logic for Mobile ---
+           // --- Carousel Logic for Mobile ---
             const carousel = document.querySelector('.grid-3');
             const dots = document.querySelectorAll('#grid-3-dots .dot');
 
             if (carousel && dots.length > 0) {
                 // Sync dots when user swipes
                 carousel.addEventListener('scroll', () => {
-                    // Calculate which card is currently in view
-                    const scrollIndex = Math.round(carousel.scrollLeft / carousel.clientWidth);
+                    // Get the actual width of a single card + the gap
+                    const firstCard = carousel.querySelector('.card');
+                    const cardWidth = firstCard.offsetWidth;
+                    // Calculate index based on the card width instead of container width
+                    const scrollIndex = Math.round(carousel.scrollLeft / cardWidth);
                     
                     dots.forEach((dot, index) => {
                         dot.classList.toggle('active', index === scrollIndex);
@@ -1057,8 +1083,10 @@
                 // Allow clicking dots to scroll to the card
                 dots.forEach((dot, index) => {
                     dot.addEventListener('click', () => {
+                        const targetCard = carousel.querySelectorAll('.card')[index];
+                        // Scroll to the exact position of the target card
                         carousel.scrollTo({
-                            left: carousel.clientWidth * index,
+                            left: targetCard.offsetLeft - carousel.offsetLeft,
                             behavior: 'smooth'
                         });
                     });
