@@ -683,6 +683,101 @@
             overlay.addEventListener('click', () => {
                 if (navMenu.classList.contains('active')) toggleMenu();
             });
+            document.addEventListener('DOMContentLoaded', () => {
+    
+    // --- 1. PLAYER & UI LOGIC (Your existing code) ---
+    const playBtn = document.querySelector('.play-toggle');
+    const icon = playBtn.querySelector('i');
+    const bars = document.querySelectorAll('.bar');
+    
+    playBtn.addEventListener('click', () => {
+        const isPlaying = icon.classList.contains('fa-pause');
+        
+        if (isPlaying) {
+            icon.classList.replace('fa-pause', 'fa-play');
+            bars.forEach(bar => bar.style.animationPlayState = 'paused');
+        } else {
+            icon.classList.replace('fa-play', 'fa-pause');
+            bars.forEach(bar => bar.style.animationPlayState = 'running');
+        }
+    });
+
+    const mobileBtn = document.querySelector('.mobile-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    const navIcon = mobileBtn.querySelector('i');
+    const overlay = document.querySelector('.mobile-overlay');
+
+    function toggleMenu() {
+        const isActive = navMenu.classList.toggle('active');
+        overlay.classList.toggle('active');
+        
+        if (isActive) {
+            navIcon.classList.replace('fa-bars', 'fa-times');
+        } else {
+            navIcon.classList.replace('fa-times', 'fa-bars');
+        }
+    }
+
+    mobileBtn.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', () => {
+        if (navMenu.classList.contains('active')) toggleMenu();
+    });
+
+    // --- 2. SEAMLESS PAGE ROUTING LOGIC ---
+    
+    // Intercept clicks on links
+    document.body.addEventListener('click', async (e) => {
+        const link = e.target.closest('a');
+        
+        // Only intercept local links that don't open in a new tab
+        if (link && link.origin === window.location.origin && link.target !== '_blank') {
+            e.preventDefault(); 
+            
+            const url = link.href;
+            if (url === window.location.href) return; 
+            
+            // Update the URL in the browser
+            window.history.pushState({}, "", url);
+            await loadPage(url);
+        }
+    });
+
+    // Handle the browser's Back/Forward buttons
+    window.addEventListener('popstate', async () => {
+        await loadPage(window.location.href);
+    });
+
+    // The function that fetches and swaps the <main> content
+    async function loadPage(url) {
+        try {
+            const response = await fetch(url);
+            const htmlString = await response.text();
+            
+            const parser = new DOMParser();
+            const newDocument = parser.parseFromString(htmlString, "text/html");
+            
+            const newMain = newDocument.querySelector('main');
+            const currentMain = document.querySelector('main');
+            
+            if (newMain && currentMain) {
+                // Swap the content!
+                currentMain.innerHTML = newMain.innerHTML;
+                document.title = newDocument.title;
+                
+                // Close the mobile menu if someone clicks a link while it's open
+                if (navMenu.classList.contains('active')) {
+                    toggleMenu();
+                }
+
+                // NOTE: If you ever add buttons inside your <main> section that need 
+                // JavaScript, you will need to re-attach their event listeners right here.
+            }
+        } catch (error) {
+            console.error("Failed to load page dynamically. Falling back to hard reload.", error);
+            window.location.assign(url);
+        }
+    }
+});
         });
     </script>
 </body>
