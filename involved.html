@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Leeds Student Radio - The UK's best student radio station. Listen live, check the schedule, and get involved.">
+    <title>Leeds Student Radio | Get Involved</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Open+Sans:wght@400;600&family=Indie+Flower&family=Asap+Condensed:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://raw.githack.com/Stepzach/DesignPortfolio/main/generalstyle.css">
+  
+   
+</head>
+<body>
+    <audio id="radio-player" preload="none">
+        <source src="https://streamer.radio.co/s986435880/listen" type="audio/mpeg">
+    </audio>
+
+    <div class="mobile-overlay"></div>
+    
+    <div class="player-bar">
+        <div class="player-section now-playing">
+            <button class="play-toggle" aria-label="Play Radio">
+                <i class="fas fa-play"></i>
+            </button>
+            <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/316c00_e270ed388b21449d9bdd56622dbeb4ec~mv2.jpg.webp?raw=true" alt="Now Playing Thumbnail" class="thumbnail" id="live-now-img">
+            
+            <div class="show-info">
+                <div class="info-header">
+                    <h4 id="live-now-title">Loading...</h4>
+                    <span class="live-badge">ON AIR</span>
+                    <div class="visualizer">
+                        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                    </div>
+                </div>
+                <p class="track-desc" id="live-now-desc">Fetching live show details...</p>
+            </div>
+        </div>
+
+        <div class="player-section up-next">
+            <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/316c00_e270ed388b21449d9bdd56622dbeb4ec~mv2.jpg.webp?raw=true" alt="Up Next Thumbnail" class="thumbnail" id="up-next-img">
+            
+            <div class="show-info">
+                <div class="info-header">
+                    <h4 id="up-next-title">Loading...</h4>
+                    <span class="next-badge">UP NEXT</span>
+                </div>
+                <p class="track-desc" id="up-next-desc">Fetching next show details...</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="nav-container">
+        <nav class="main-nav">
+            <div class="container nav-inner">
+                <a href="/DesignPortfolio/lsrnew" class="brand-logo nav-link">Leeds<span> Student Radio</span></a>
+                <div class="mobile-toggle"><i class="fas fa-bars"></i></div>
+                <ul class="nav-menu">
+                    <li><a href="/DesignPortfolio/schedule.html" class="nav-link">Our Schedule</a></li>
+                    <li><a href="/DesignPortfolio/listen.html" class="nav-link">Listen Live</a></li>
+                    <li><a href="/DesignPortfolio/involved.html" class="nav-link">Get Involved</a></li>
+                    <li><a href="/DesignPortfolio/about.html" class="nav-link">About Us</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <main>
+        <section class="get-involved-intro">
+            <div class="container">
+                <div class="intro-left">
+                    <h1>Get Involved</h1>
+                    <p>Are you a student in Leeds? Want to get involved with the UK's best student radio? Why not apply to be on one of our shows! Choose from our range of existing core shows below or pitch an idea for your very own.</p>
+                   
+                    
+                    <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/gandr-collage%202.jpg?raw=true" alt="LSR Presenters Collage" class="collage-img">
+                </div>
+                
+                <div class="intro-right">
+                    <h2>Tips & Tricks</h2>
+                    
+                    <div class="tip">
+                        <h3>Show us your personality:</h3>
+                        <p>We want to know what you're interested in and what you'd be like on the radio!</p>
+                    </div>
+                    
+                    <div class="tip">
+                        <h3>Be original:</h3>
+                        <p>Make yourself stand out and show us your best ideas!</p>
+                    </div>
+                    
+                    <div class="tip">
+                        <h3>Be available:</h3>
+                        <p>The more times you're free, the more likely you are to get a show!</p>
+                    </div>
+                    
+                    <div class="tip">
+                        <h3>No one-word answers:</h3>
+                        <p>We want to see your passion and enthusiasm shine through. A few succinct sentences are perfect!</p>
+                    </div>
+                    
+                    <div class="tip">
+                        <h3>Take your time:</h3>
+                        <p>Applications are open for a week, so think carefully about what you want to apply for, what you can feasibly commit to, and why you want to be part of our society!</p>
+                    </div>
+                     <p style="font-style: italic; margin-bottom: 30px;">Applications for Semester 2 are now closed</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="apply-section">
+            <div class="apply-grid" id="apply-grid">
+                <p style="color: white; text-align: center; font-family: 'Open Sans', sans-serif;">Loading application forms...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <div class="footer-grid">
+                <div class="footer-col col-banner">
+                    <p class="banner-text">Discover, develop and decide your future with appointments, events and vacancies</p>
+                    <img src="https://stepzach.github.io/leedstestradio/316c00_e85e432bbd2e4e15a926db384684cf02~mv2.png.avif" alt="Careers Service Banner" class="careers-banner">
+                </div>
+
+                <div class="footer-links-group">
+                    <div class="footer-col">
+                        <h4>NAVIGATE</h4>
+                        <ul>
+                            <li><a href="#">Schedule</a></li>
+                            <li><a href="#">Listen</a></li>
+                            <li><a href="#">Get Involved</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <h4>SOCIAL</h4>
+                        <ul>
+                            <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                            <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
+                            <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col col-official">
+                        <h4>OFFICIAL</h4>
+                        <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Awards</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-col col-info">
+                    <p class="info-text">Leeds Student Radio is a student radio station broadcasting every day during term time, from the heart of Leeds University<br><br>Website designed by  <span href="#" class="zach">Zach</span></p>
+                </div>
+            </div>
+
+            <div class="copyright">
+                &copy; Leeds Student Radio 2026  -  
+                 <a href="#" class="disclaimer-link">Disclaimer</a>
+            </div>
+        </div>
+    </footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // --- 1. PLAYER & UI LOGIC ---
+        const playBtn = document.querySelector('.play-toggle');
+        const icon = playBtn.querySelector('i');
+        const bars = document.querySelectorAll('.bar');
+        const radioPlayer = document.getElementById('radio-player'); 
+
+        bars.forEach(bar => bar.style.animationPlayState = 'paused');
+        
+        playBtn.addEventListener('click', () => {
+            const isPlaying = icon.classList.contains('fa-pause');
+            
+            if (isPlaying) {
+                radioPlayer.pause();
+                icon.classList.replace('fa-pause', 'fa-play');
+                bars.forEach(bar => bar.style.animationPlayState = 'paused');
+            } else {
+                radioPlayer.play();
+                icon.classList.replace('fa-play', 'fa-pause');
+                bars.forEach(bar => bar.style.animationPlayState = 'running');
+            }
+        });
+
+        // --- 2. MOBILE MENU LOGIC ---
+        const mobileBtn = document.querySelector('.mobile-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        const navIcon = mobileBtn.querySelector('i');
+        const overlay = document.querySelector('.mobile-overlay');
+
+        function toggleMenu() {
+            const isActive = navMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            
+            if (isActive) {
+                navIcon.classList.replace('fa-bars', 'fa-times');
+            } else {
+                navIcon.classList.replace('fa-times', 'fa-bars');
+            }
+        }
+
+        mobileBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', () => {
+            if (navMenu.classList.contains('active')) toggleMenu();
+        });
+
+        // --- 3. CSV PARSER FUNCTION ---
+        function parseCSV(str) {
+            const arr = [];
+            let quote = false;  
+            let row = 0, col = 0;
+            
+            for (let c = 0; c < str.length; c++) {
+                let cc = str[c], nc = str[c+1];
+                arr[row] = arr[row] || [];
+                arr[row][col] = arr[row][col] || '';
+
+                if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
+                if (cc == '"') { quote = !quote; continue; }
+                if (cc == ',' && !quote) { ++col; continue; }
+                if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
+                if (cc == '\n' && !quote) { ++row; col = 0; continue; }
+                if (cc == '\r' && !quote) { ++row; col = 0; continue; }
+
+                arr[row][col] += cc;
+            }
+            return arr;
+        }
+
+        // --- GET INVOLVED DATA FETCH LOGIC ---
+        const applySheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRoXcefXiUOFuRnA6DpheBwR2CJ4Zs09o68IG9in3w2WwncXybxsbVDWwQY6u6MSpmFDiRrx83MO8M3/pub?gid=2045188384&output=csv';
+
+        async function fetchApplyData() {
+            const grid = document.getElementById('apply-grid');
+            if (!grid) return; 
+
+            try {
+                const response = await fetch(applySheetUrl);
+                const data = await response.text();
+                const rows = parseCSV(data);
+                
+                rows.shift(); // Remove the header row
+
+                grid.innerHTML = ''; // Clear "Loading..." text
+                
+                const categoriesMap = {};
+
+                rows.forEach(row => {
+                    // Assuming columns: Id [0], Category [1], Show Name [2], Form Link [3]
+                    if (!row || row.length < 3 || !row[1] || row[1].trim() === '') return; 
+
+                    const category = row[1].trim();
+                    const showName = row[2] ? row[2].trim() : '';
+                    const formLink = row[3] ? row[3].trim() : '#';
+
+                    if (!categoriesMap[category]) {
+                        categoriesMap[category] = [];
+                    }
+                    
+                    categoriesMap[category].push({ showName, formLink });
+                });
+
+                // Generate HTML for each box
+                for (const [category, shows] of Object.entries(categoriesMap)) {
+                    const box = document.createElement('div');
+                    box.className = 'apply-box';
+
+                    const title = document.createElement('h3');
+                    title.innerText = category;
+                    box.appendChild(title);
+
+                    const showsContainer = document.createElement('div');
+                    showsContainer.className = 'shows-container';
+
+                    shows.forEach(show => {
+                        const link = document.createElement('a');
+                        link.className = 'show-link';
+                        link.href = show.formLink;
+                        link.target = '_blank';
+                        link.innerText = `> ${show.showName}`;
+                        showsContainer.appendChild(link);
+                    });
+
+                    box.appendChild(showsContainer);
+
+                    // Optional matching for the handwritten footer text
+                    let footerText = `*Find out more about ${category} on our Instagram @thisislsr`;
+                    if (category.toLowerCase().includes('weekend')) footerText = '*Learn more about our weekend shows over at @thisislsr_weekend';
+                    else if (category.toLowerCase().includes('daytime')) footerText = '*Find out more about any of LSR\'s daytime shows over on insta @thisislsr_daytime';
+                    else if (category.toLowerCase().includes('news')) footerText = '*Find out more about LSR\'s news team head on our dedicated news insta @thisislsr_news';
+                    else if (category.toLowerCase().includes('sports')) footerText = '*Got questions about our sports team? Head on over to insta @thisislsr_sport';
+                    else if (category.toLowerCase().includes('breakfast') || category.toLowerCase().includes('hometime')) footerText = '*Find out more about Breakfast or Hometime on Instagram @thisislsr_breakfast @thisislsr_hometime';
+                    else if (category.toLowerCase().includes('podcast') || category.toLowerCase().includes('own show')) footerText = 'Our schedule ranges from arts, comedy and music to sport, film and politics so no matter what you\'re interested in, we\'ll help you get it on-air (we even have shows about Taylor Swift and Eurovision... so anything goes!)';
+
+                    const footer = document.createElement('p');
+                    footer.className = 'box-footer';
+                    footer.innerText = footerText;
+                    box.appendChild(footer);
+
+                    grid.appendChild(box);
+                }
+
+            } catch (error) {
+                console.error("Failed to fetch apply forms data", error);
+                grid.innerHTML = '<p style="color:white; font-family: \'Open Sans\', sans-serif;">Failed to load application forms.</p>';
+            }
+        }
+
+        fetchApplyData();
+
+       // --- 6. SCHEDULE GOOGLE SHEETS LIVE/NEXT UPDATE LOGIC ---
+// ADD YOUR GID HERE:
+const scheduleSheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRoXcefXiUOFuRnA6DpheBwR2CJ4Zs09o68IG9in3w2WwncXybxsbVDWwQY6u6MSpmFDiRrx83MO8M3/pub?output=csv&gid=0';
+
+function timeToMinutes(timeStr) {
+    if (!timeStr) return -1;
+    const parts = timeStr.split(':').map(n => parseInt(n, 10));
+    // Failsafe in case of weird formatting
+    if (parts.length < 2 || isNaN(parts[0]) || isNaN(parts[1])) return -1;
+    return parts[0] * 60 + parts[1];
+}
+
+// ... (keep your updateMediaSession function exactly as it is) ...
+
+async function fetchScheduleData() {
+    try {
+        const response = await fetch(scheduleSheetUrl);
+        const data = await response.text();
+        const rows = parseCSV(data);
+        
+        rows.shift(); // Remove headers
+        
+        const now = new Date();
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const currentDay = days[now.getDay()];
+        const currentMinutes = now.getHours() * 60 + now.getMinutes();
+        
+        // Remember to change this if it's week A!
+        const currentWeekType = 'B'; 
+        
+        let liveShow = null;
+        let nextShow = null;
+        
+        const todayShows = rows.filter(row => {
+            if(row.length < 8) return false;
+            const day = row[4] ? row[4].trim() : '';
+            const week = row[5] ? row[5].trim() : '';
+            return day.toLowerCase() === currentDay.toLowerCase() && week.toUpperCase().includes(currentWeekType);
+        });
+
+        const parsedShows = todayShows.map(row => {
+            return {
+                title: row[1] || "LSR Show",
+                description: row[2] || "Non-stop student radio.",
+                image: row[3] || "https://github.com/Leeds-student-radio/Lsr/blob/main/316c00_e270ed388b21449d9bdd56622dbeb4ec~mv2.jpg.webp?raw=true",
+                start: timeToMinutes(row[6]),
+                end: timeToMinutes(row[7]),
+                rawStart: row[6],
+                rawEnd: row[7],
+                host: row[8] || ""
+            };
+        }).filter(show => show.start !== -1 && show.end !== -1) // Remove invalid times
+          .sort((a, b) => a.start - b.start);
+
+        for (let i = 0; i < parsedShows.length; i++) {
+            const show = parsedShows[i];
+            
+            // Fixes the midnight crossover bug
+            const isLive = (show.start <= show.end) 
+                ? (currentMinutes >= show.start && currentMinutes < show.end)
+                : (currentMinutes >= show.start || currentMinutes < show.end);
+
+            if (isLive) {
+                liveShow = show;
+                // Grab the next show if it exists
+                if (i + 1 < parsedShows.length) nextShow = parsedShows[i + 1];
+                break;
+            } else if (show.start > currentMinutes && !liveShow) {
+                nextShow = show;
+                break;
+            }
+        }
+
+        // Apply DOM updates securely with fallbacks
+        if (liveShow) {
+            document.getElementById('live-now-title').innerText = liveShow.title;
+            document.getElementById('live-now-img').src = liveShow.image;
+            document.getElementById('live-now-desc').innerText = liveShow.description;
+        } else {
+            document.getElementById('live-now-title').innerText = "LSR Jukebox";
+            document.getElementById('live-now-desc').innerText = "Non-stop student radio.";
+        }
+
+        if (nextShow) {
+            document.getElementById('up-next-title').innerText = nextShow.title;
+            document.getElementById('up-next-img').src = nextShow.image;
+            document.getElementById('up-next-desc').innerText = nextShow.description;
+        } else {
+            document.getElementById('up-next-title').innerText = "Nothing Scheduled";
+            document.getElementById('up-next-desc').innerText = "Check the schedule page for more info.";
+        }
+
+        updateMediaSession(liveShow);
+
+    } catch (error) {
+        console.error("Failed to fetch schedule data from Google Sheets", error);
+    }
+}
+
+fetchScheduleData();
+setInterval(fetchScheduleData, 180000);
+
+        // --- 7. SEAMLESS PAGE ROUTING LOGIC ---
+        document.body.addEventListener('click', async (e) => {
+            const link = e.target.closest('a');
+            
+            if (link && link.origin === window.location.origin && link.target !== '_blank') {
+                e.preventDefault(); 
+                const url = link.href;
+                if (url === window.location.href) return; 
+                
+                window.history.pushState({}, "", url);
+                await loadPage(url);
+            }
+        });
+
+        window.addEventListener('popstate', async () => {
+            await loadPage(window.location.href);
+        });
+
+        async function loadPage(url) {
+            try {
+                const response = await fetch(url);
+                const htmlString = await response.text();
+                
+                const parser = new DOMParser();
+                const newDocument = parser.parseFromString(htmlString, "text/html");
+                
+                const newMain = newDocument.querySelector('main');
+                const currentMain = document.querySelector('main');
+                
+                if (newMain && currentMain) {
+                    currentMain.innerHTML = newMain.innerHTML;
+                    document.title = newDocument.title;
+                    
+                    if (navMenu.classList.contains('active')) {
+                        toggleMenu();
+                    }
+
+                    // Re-fire data fetch if coming back to this page dynamically
+                    if (url.includes('involved')) {
+                        fetchApplyData();
+                    }
+                }
+            } catch (error) {
+                console.error("Failed to load page dynamically. Falling back to hard reload.", error);
+                window.location.assign(url);
+            }
+        }
+    });
+</script>
+</body>
+</html>
