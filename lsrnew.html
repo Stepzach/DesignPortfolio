@@ -652,6 +652,15 @@
         @media (max-width: 768px) {
             .main-footer { margin: 0px; padding: 0; border:none; }
             .footer-links-group { flex-direction: row; gap: 25px; padding: 30px; border-top:solid 2px black; justify-content: center; }
+                .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+       
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+   
+    }
+       
         }
         
         /* --- RESPONSIVE --- */
@@ -776,6 +785,7 @@
    
 }
 
+
             /* Share padding/margins on mobile */
             .section-grid.grid-3,
             .section-grid.grid-2 {
@@ -784,11 +794,32 @@
                 padding-left: 15px;
                 padding-right: 15px;
             }
-
+            
+            
+.section-grid.grid-2 {
+                direction: rtl; /* Forces scroll to start at the end */
+                padding-right: 15px; /* Start padding for RTL */
+                padding-left: 0; /* Browsers ignore left padding here, so we use margin below */
+            }
+            .section-grid.grid-2 .card {
+                direction: ltr; /* Resets text inside the card */
+            }
+            .section-grid.grid-2 .card:last-child {
+                margin-left: 15px; /* Adds space at the END (far left) */
+            }
          .container {
     max-width: var(--container-width);
     margin: 0 auto;
     padding: 15px 15px;
+    
+        
+    
+}
+ main.container {
+   
+    
+        padding-bottom:0px;
+    
 }
             :root { --header-height: 50px; }
             
