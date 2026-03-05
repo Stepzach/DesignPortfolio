@@ -224,207 +224,188 @@
             return arr;
         }
 
-        // --- 4. MODAL LOGIC FOR COMMITTEE ---
-       // Remove the global const declarations for the modal and replace them with this:
+        // --- GET INVOLVED DATA FETCH LOGIC ---
+        const applySheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRoXcefXiUOFuRnA6DpheBwR2CJ4Zs09o68IG9in3w2WwncXybxsbVDWwQY6u6MSpmFDiRrx83MO8M3/pub?gid=2045188384&output=csv';
 
-function openModal(name, role, imgSrc) {
-    const modal = document.getElementById('committee-modal');
-    document.getElementById('modal-name').innerText = name;
-    document.getElementById('modal-role').innerText = role;
-    document.getElementById('modal-img').src = imgSrc;
-    modal.classList.add('active');
-}
+        async function fetchApplyData() {
+            const grid = document.getElementById('apply-grid');
+            if (!grid) return; 
 
-function closeModal() {
-    const modal = document.getElementById('committee-modal');
-    if (modal) modal.classList.remove('active');
-}
-
-// Delegate events for closing the modal using the document body 
-// (so it works even after the SPA router swaps the HTML)
-document.body.addEventListener('click', (e) => {
-    const modal = document.getElementById('committee-modal');
-    if (!modal) return;
-
-    // Close on 'X' button click
-    if (e.target.id === 'modal-close-btn') {
-        closeModal();
-    }
-    // Close on background click
-    if (e.target === modal) {
-        closeModal();
-    }
-});
-
-      // --- 5. COMMITTEE DATA FETCH LOGIC ---
-const committeeSheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRoXcefXiUOFuRnA6DpheBwR2CJ4Zs09o68IG9in3w2WwncXybxsbVDWwQY6u6MSpmFDiRrx83MO8M3/pub?gid=2123499295&output=csv';
-
-async function fetchCommitteeData() {
-    // 1. Guard Clause: If the grid isn't on the current page, exit immediately safely.
-    const grid = document.getElementById('committee-grid-container');
-    if (!grid) return; 
-
-    try {
-        const response = await fetch(committeeSheetUrl);
-        const data = await response.text();
-        const rows = parseCSV(data);
-        
-        rows.shift(); // Remove the header row
-
-        grid.innerHTML = ''; // Clear "Loading..." text
-
-        rows.forEach(row => {
-            // 2. Relaxed Filter: Only skip if the row is entirely empty or missing a Name (column 1)
-            if (!row || !row[1] || row[1].trim() === '') return; 
-
-            const id = row[0];
-            const name = row[1].trim();
-            // Provide fallbacks in case a cell is blank in the Google Sheet
-            const role = row[2] ? row[2].trim() : 'Committee Member'; 
-            const imgLink = row[3] ? row[3].trim() : 'https://via.placeholder.com/300x300?text=No+Image';
-
-            // Create card element
-            const card = document.createElement('div');
-            card.className = 'committee-card';
-            card.innerHTML = `
-                <img src="${imgLink}" alt="${name}">
-                <div class="committee-info">
-                    <h3 class="committee-name">${name}</h3>
-                    <p class="committee-role">${role}</p>
-                </div>
-            `;
-
-            // Add click event for modal
-            card.addEventListener('click', () => openModal(name, role, imgLink));
-
-            grid.appendChild(card);
-        });
-
-    } catch (error) {
-        console.error("Failed to fetch committee data", error);
-        // We know 'grid' exists here because of the guard clause at the top
-        grid.innerHTML = '<p>Failed to load committee members.</p>';
-    }
-}
-
-fetchCommitteeData();
-
-        // --- 6. SCHEDULE GOOGLE SHEETS LIVE/NEXT UPDATE LOGIC ---
-        const scheduleSheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRoXcefXiUOFuRnA6DpheBwR2CJ4Zs09o68IG9in3w2WwncXybxsbVDWwQY6u6MSpmFDiRrx83MO8M3/pub?output=csv';
-
-        function timeToMinutes(timeStr) {
-            if (!timeStr) return 0;
-            const [hours, minutes] = timeStr.split(':').map(Number);
-            return (hours || 0) * 60 + (minutes || 0);
-        }
-
-        function updateMediaSession(show) {
-            if ('mediaSession' in navigator) {
-                const title = show && show.title ? show.title : "LSR Jukebox";
-                let artist = "Leeds Student Radio";
-                const defaultImage = "https://github.com/Leeds-student-radio/Lsr/blob/main/316c00_e270ed388b21449d9bdd56622dbeb4ec~mv2.jpg.webp?raw=true";
-                const artworkUrl = show && show.image ? show.image : defaultImage;
-
-                if (show && show.host) {
-                    const hostCount = show.host.split(/,|&|\band\b/i).length;
-                    if (hostCount <= 3 && show.host.length < 50) {
-                        artist = show.host.trim();
-                    }
-                }
-
-                navigator.mediaSession.metadata = new MediaMetadata({
-                    title: title,
-                    artist: artist,
-                    album: "Leeds Student Radio",
-                    artwork: [
-                        { src: artworkUrl, sizes: '96x96', type: 'image/jpeg' },
-                        { src: artworkUrl, sizes: '128x128', type: 'image/jpeg' },
-                        { src: artworkUrl, sizes: '192x192', type: 'image/jpeg' },
-                        { src: artworkUrl, sizes: '256x256', type: 'image/jpeg' },
-                        { src: artworkUrl, sizes: '384x384', type: 'image/jpeg' },
-                        { src: artworkUrl, sizes: '512x512', type: 'image/jpeg' }
-                    ]
-                });
-            }
-        }
-
-        async function fetchScheduleData() {
             try {
-                const response = await fetch(scheduleSheetUrl);
+                const response = await fetch(applySheetUrl);
                 const data = await response.text();
                 const rows = parseCSV(data);
                 
-                rows.shift();
+                rows.shift(); // Remove the header row
+
+                grid.innerHTML = ''; // Clear "Loading..." text
                 
-                const now = new Date();
-                const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-                const currentDay = days[now.getDay()];
-                const currentMinutes = now.getHours() * 60 + now.getMinutes();
-                
-                const currentWeekType = 'B'; 
-                
-                let liveShow = null;
-                let nextShow = null;
-                
-                const todayShows = rows.filter(row => {
-                    if(row.length < 8) return false;
-                    const day = row[4] ? row[4].trim() : '';
-                    const week = row[5] ? row[5].trim() : '';
-                    return day.toLowerCase() === currentDay.toLowerCase() && week.toUpperCase().includes(currentWeekType);
+                const categoriesMap = {};
+
+                rows.forEach(row => {
+                    // Assuming columns: Id [0], Category [1], Show Name [2], Form Link [3]
+                    if (!row || row.length < 3 || !row[1] || row[1].trim() === '') return; 
+
+                    const category = row[1].trim();
+                    const showName = row[2] ? row[2].trim() : '';
+                    const formLink = row[3] ? row[3].trim() : '#';
+
+                    if (!categoriesMap[category]) {
+                        categoriesMap[category] = [];
+                    }
+                    
+                    categoriesMap[category].push({ showName, formLink });
                 });
 
-                const parsedShows = todayShows.map(row => {
-                    return {
-                        title: row[1],
-                        description: row[2],
-                        image: row[3],
-                        start: timeToMinutes(row[6]),
-                        end: timeToMinutes(row[7]),
-                        rawStart: row[6],
-                        rawEnd: row[7],
-                        host: row[8]
-                    };
-                }).sort((a, b) => a.start - b.start);
+                // Generate HTML for each box
+                for (const [category, shows] of Object.entries(categoriesMap)) {
+                    const box = document.createElement('div');
+                    box.className = 'apply-box';
 
-                for (let i = 0; i < parsedShows.length; i++) {
-                    const show = parsedShows[i];
-                    if (currentMinutes >= show.start && currentMinutes < show.end) {
-                        liveShow = show;
-                        if (i + 1 < parsedShows.length) nextShow = parsedShows[i + 1];
-                        break;
-                    } else if (show.start > currentMinutes && !liveShow) {
-                        nextShow = show;
-                        break;
-                    }
+                    const title = document.createElement('h3');
+                    title.innerText = category;
+                    box.appendChild(title);
+
+                    const showsContainer = document.createElement('div');
+                    showsContainer.className = 'shows-container';
+
+                    shows.forEach(show => {
+                        const link = document.createElement('a');
+                        link.className = 'show-link';
+                        link.href = show.formLink;
+                        link.target = '_blank';
+                        link.innerText = `> ${show.showName}`;
+                        showsContainer.appendChild(link);
+                    });
+
+                    box.appendChild(showsContainer);
+
+                    // Optional matching for the handwritten footer text
+                    let footerText = `*Find out more about ${category} on our Instagram @thisislsr`;
+                    if (category.toLowerCase().includes('weekend')) footerText = '*Learn more about our weekend shows over at @thisislsr_weekend';
+                    else if (category.toLowerCase().includes('daytime')) footerText = '*Find out more about any of LSR\'s daytime shows over on insta @thisislsr_daytime';
+                    else if (category.toLowerCase().includes('news')) footerText = '*Find out more about LSR\'s news team head on our dedicated news insta @thisislsr_news';
+                    else if (category.toLowerCase().includes('sports')) footerText = '*Got questions about our sports team? Head on over to insta @thisislsr_sport';
+                    else if (category.toLowerCase().includes('breakfast') || category.toLowerCase().includes('hometime')) footerText = '*Find out more about Breakfast or Hometime on Instagram @thisislsr_breakfast @thisislsr_hometime';
+                    else if (category.toLowerCase().includes('podcast') || category.toLowerCase().includes('own show')) footerText = 'Our schedule ranges from arts, comedy and music to sport, film and politics so no matter what you\'re interested in, we\'ll help you get it on-air (we even have shows about Taylor Swift and Eurovision... so anything goes!)';
+
+                    const footer = document.createElement('p');
+                    footer.className = 'box-footer';
+                    footer.innerText = footerText;
+                    box.appendChild(footer);
+
+                    grid.appendChild(box);
                 }
-
-                if (liveShow) {
-                    if (liveShow.title) document.getElementById('live-now-title').innerText = liveShow.title;
-                    if (liveShow.image) document.getElementById('live-now-img').src = liveShow.image;
-                    if (liveShow.description) document.getElementById('live-now-desc').innerText = liveShow.description;
-                } else {
-                    document.getElementById('live-now-title').innerText = "LSR Jukebox";
-                    document.getElementById('live-now-desc').innerText = "Non-stop student radio.";
-                }
-
-                if (nextShow) {
-                    if (nextShow.title) document.getElementById('up-next-title').innerText = nextShow.title;
-                    if (nextShow.image) document.getElementById('up-next-img').src = nextShow.image;
-                    if (nextShow.description) document.getElementById('up-next-desc').innerText = nextShow.description;
-                } else {
-                    document.getElementById('up-next-title').innerText = "Nothing Scheduled";
-                    document.getElementById('up-next-desc').innerText = "Check the schedule page for more info.";
-                }
-
-                updateMediaSession(liveShow);
 
             } catch (error) {
-                console.error("Failed to fetch schedule data from Google Sheets", error);
+                console.error("Failed to fetch apply forms data", error);
+                grid.innerHTML = '<p style="color:white; font-family: \'Open Sans\', sans-serif;">Failed to load application forms.</p>';
             }
         }
 
-        fetchScheduleData();
-        setInterval(fetchScheduleData, 180000);
+        fetchApplyData();
+
+       // --- 6. SCHEDULE GOOGLE SHEETS LIVE/NEXT UPDATE LOGIC ---
+// ADD YOUR GID HERE:
+const scheduleSheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRoXcefXiUOFuRnA6DpheBwR2CJ4Zs09o68IG9in3w2WwncXybxsbVDWwQY6u6MSpmFDiRrx83MO8M3/pub?output=csv&gid=0';
+
+function timeToMinutes(timeStr) {
+    if (!timeStr) return -1;
+    const parts = timeStr.split(':').map(n => parseInt(n, 10));
+    // Failsafe in case of weird formatting
+    if (parts.length < 2 || isNaN(parts[0]) || isNaN(parts[1])) return -1;
+    return parts[0] * 60 + parts[1];
+}
+
+// ... (keep your updateMediaSession function exactly as it is) ...
+
+async function fetchScheduleData() {
+    try {
+        const response = await fetch(scheduleSheetUrl);
+        const data = await response.text();
+        const rows = parseCSV(data);
+        
+        rows.shift(); // Remove headers
+        
+        const now = new Date();
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const currentDay = days[now.getDay()];
+        const currentMinutes = now.getHours() * 60 + now.getMinutes();
+        
+        // Remember to change this if it's week A!
+        const currentWeekType = 'B'; 
+        
+        let liveShow = null;
+        let nextShow = null;
+        
+        const todayShows = rows.filter(row => {
+            if(row.length < 8) return false;
+            const day = row[4] ? row[4].trim() : '';
+            const week = row[5] ? row[5].trim() : '';
+            return day.toLowerCase() === currentDay.toLowerCase() && week.toUpperCase().includes(currentWeekType);
+        });
+
+        const parsedShows = todayShows.map(row => {
+            return {
+                title: row[1] || "LSR Show",
+                description: row[2] || "Non-stop student radio.",
+                image: row[3] || "https://github.com/Leeds-student-radio/Lsr/blob/main/316c00_e270ed388b21449d9bdd56622dbeb4ec~mv2.jpg.webp?raw=true",
+                start: timeToMinutes(row[6]),
+                end: timeToMinutes(row[7]),
+                rawStart: row[6],
+                rawEnd: row[7],
+                host: row[8] || ""
+            };
+        }).filter(show => show.start !== -1 && show.end !== -1) // Remove invalid times
+          .sort((a, b) => a.start - b.start);
+
+        for (let i = 0; i < parsedShows.length; i++) {
+            const show = parsedShows[i];
+            
+            // Fixes the midnight crossover bug
+            const isLive = (show.start <= show.end) 
+                ? (currentMinutes >= show.start && currentMinutes < show.end)
+                : (currentMinutes >= show.start || currentMinutes < show.end);
+
+            if (isLive) {
+                liveShow = show;
+                // Grab the next show if it exists
+                if (i + 1 < parsedShows.length) nextShow = parsedShows[i + 1];
+                break;
+            } else if (show.start > currentMinutes && !liveShow) {
+                nextShow = show;
+                break;
+            }
+        }
+
+        // Apply DOM updates securely with fallbacks
+        if (liveShow) {
+            document.getElementById('live-now-title').innerText = liveShow.title;
+            document.getElementById('live-now-img').src = liveShow.image;
+            document.getElementById('live-now-desc').innerText = liveShow.description;
+        } else {
+            document.getElementById('live-now-title').innerText = "LSR Jukebox";
+            document.getElementById('live-now-desc').innerText = "Non-stop student radio.";
+        }
+
+        if (nextShow) {
+            document.getElementById('up-next-title').innerText = nextShow.title;
+            document.getElementById('up-next-img').src = nextShow.image;
+            document.getElementById('up-next-desc').innerText = nextShow.description;
+        } else {
+            document.getElementById('up-next-title').innerText = "Nothing Scheduled";
+            document.getElementById('up-next-desc').innerText = "Check the schedule page for more info.";
+        }
+
+        updateMediaSession(liveShow);
+
+    } catch (error) {
+        console.error("Failed to fetch schedule data from Google Sheets", error);
+    }
+}
+
+fetchScheduleData();
+setInterval(fetchScheduleData, 180000);
 
         // --- 7. SEAMLESS PAGE ROUTING LOGIC ---
         document.body.addEventListener('click', async (e) => {
@@ -463,9 +444,9 @@ fetchCommitteeData();
                         toggleMenu();
                     }
 
-                    // Re-fire committee data fetch if coming back to this page dynamically
-                    if (url.includes('about')) {
-                        fetchCommitteeData();
+                    // Re-fire data fetch if coming back to this page dynamically
+                    if (url.includes('involved')) {
+                        fetchApplyData();
                     }
                 }
             } catch (error) {
