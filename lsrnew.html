@@ -486,7 +486,7 @@
             width: 400px;
             height: auto;
             object-fit: contain;
-           
+            
         }
 
         .sponsor-text h5 { color: #ffffff; text-transform: uppercase; margin-bottom: 5px; font-weight: 800; }
@@ -540,18 +540,18 @@
             display: flex;
             gap: 68px; /* Adjust gap between the 3 link columns here */
             justify-content: center;
-           
+            
           
         }
 
         /* Vertical Dividers */
         .col-banner {
-           
+            
             padding-right: 30px;
             
         }
         .col-official {
-           
+            
             padding-right: 30px;
         }
         .col-info {
@@ -577,7 +577,7 @@
         .footer-col a {
             color: #ffffff;
             font-size: 1rem;
-           
+            
             display: flex;
             align-items: center;
             transition: var(--transition);
@@ -597,7 +597,7 @@
         .banner-text {
             font-size: 1rem;
             line-height: 1.2;
-           
+            
             margin-bottom: 15px;
         }
 
@@ -616,11 +616,11 @@
         }
 
         .disclaimer-link {
-           
+            
           text-align: center;
           
             line-height:1;
-           
+            
         }
          .disclaimer-link:hover {
            text-decoration:underline;
@@ -661,7 +661,7 @@
         /* --- RESPONSIVE --- */
         @media (max-width: 992px) {
         
-       
+        
 
             .section-grid.grid-3 { 
                 display: flex; 
@@ -669,10 +669,17 @@
                 scroll-snap-type: x mandatory; 
                 scroll-behavior: smooth;
                 padding-bottom: 0;
-                margin-bottom: 10px;
+                margin-bottom: 20px;
                 /* Hide scrollbars for a cleaner look */
                 scrollbar-width: none; 
                 -ms-overflow-style: none;
+                
+                margin-left: -28px;
+                margin-right: -28px;
+                
+                /* 2. Push the cards back inside so they align with the rest of the page */
+                padding-left: 28px;
+                padding-right: 28px;
             }
             .section-grid.grid-3::-webkit-scrollbar { 
                 display: none; 
@@ -690,8 +697,8 @@
 
             /* Lock the image height so it doesn't stretch infinitely */
             .section-grid.grid-3 .card img {
-                height: 60vw;
-                max-height: 350px;
+                height: 70vw;
+                max-height: 360px;
                 width: 100%;
                 object-fit: cover;
             }
@@ -710,32 +717,51 @@
                 width: 100%;
                 object-fit: cover;
             }
-            /* Move the overlay to the bottom as a normal block */
-           
+            
+            /* Give card text a little extra padding at the bottom for the dots */
+            .section-grid.grid-3 .card-overlay {
+                padding-bottom: 30px; 
+            }
             
             .section-grid.grid-3 .card-title {
                 margin-top: 0;
             }
 
-            /* Styling for the new dots */
+            /* --- NEW CAROUSEL WRAPPER & DOT POSITIONING --- */
+            .carousel-wrapper {
+                position: relative; /* Context for absolutely positioned dots */
+                background: none;
+            }
+
             .carousel-dots {
                 display: flex;
-                justify-content: center;
-                gap: 10px;
-                margin-bottom: 10px;
+                position: absolute; /* Hover over the cards */
+                bottom: 15px; /* Adjust this to move them up or down inside the card */
+                left: 20px;
+                right: 0;
+               
+                justify-content: start;
+                gap: 6px;
+                z-index: 20; /* Make sure they are above the card overlay */
+                pointer-events: none; /* Allows swiping exactly on top of the dots */
             }
             .carousel-dots .dot {
-                width: 10px;
-                height: 10px;
-                background: rgba(255, 255, 255, 0.3);
+                pointer-events: auto; /* Re-enable clicks on the dots themselves */
+                width: 6px; /* Slightly smaller for a discreet look */
+                height: 6px;
+                background: rgba(255, 255, 255, 0.4);
                 border-radius: 50%;
                 cursor: pointer;
                 transition: var(--transition);
+                box-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Pop slightly off the background */
             }
             .carousel-dots .dot.active {
                 background: #ffffff;
                 transform: scale(1.3);
             }
+             .card-overlay {
+            padding: 20px;
+        }
         }
         main { 
     padding: 40px 0; 
@@ -745,7 +771,12 @@
 }
 
         @media (max-width: 768px) {
-        
+        .section-grid.grid-3 {
+                margin-left: -15px;
+                margin-right: -15px;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
          .container {
     max-width: var(--container-width);
     margin: 0 auto;
@@ -814,7 +845,7 @@
         margin: 0px;
         border:none;
         border-radius:0;
-      
+       
             }
             .player-bar:before {
    
@@ -906,39 +937,39 @@
 </div>
     <main class="container">
         
-        <section class="section-grid grid-3">
-            <article class="card">
-                <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/316c00_e270ed388b21449d9bdd56622dbeb4ec~mv2.jpg.webp?raw=true" alt="SRA Awards" loading="lazy">
-                <div class="card-badge"><i class="fa-solid fa-link"></i> Awards RECAP</div>
-                <div class="card-overlay">
-                    <h2 class="card-title font-handwritten">Officially the UK's best student radio 2023 & 2024!</h2>
-                </div>
-            </article>
+        <div class="carousel-wrapper">
+            <section class="section-grid grid-3">
+                <article class="card">
+                    <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/316c00_e270ed388b21449d9bdd56622dbeb4ec~mv2.jpg.webp?raw=true" alt="SRA Awards" loading="lazy">
+                    <div class="card-badge"><i class="fa-solid fa-link"></i> Awards RECAP</div>
+                    <div class="card-overlay">
+                        <h2 class="card-title font-handwritten">Officially the UK's best student radio 2023 & 2024!</h2>
+                    </div>
+                </article>
 
-            <article class="card">
-                <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/IMG_3624.jpeg?raw=true" alt="Committee" loading="lazy">
-                <div class="card-badge"><i class="fab fa-instagram"></i> SEE THE POST</div>
-                <div class="card-overlay">
-                    <h2 class="card-title font-handwritten">Meet our 2025/26 committee, announced on Instagram</h2>
-                </div>
-            </article>
+                <article class="card">
+                    <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/IMG_3624.jpeg?raw=true" alt="Committee" loading="lazy">
+                    <div class="card-badge"><i class="fab fa-instagram"></i> SEE THE POST</div>
+                    <div class="card-overlay">
+                        <h2 class="card-title font-handwritten">Meet our 2025/26 committee, announced on Instagram</h2>
+                    </div>
+                </article>
 
-            <article class="card">
-                <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/JadeLSR%20(1).webp?raw=true" alt="BBC Radio 1" loading="lazy" style="object-position:top; scale:1.1;">
-                <div class="card-badge"><i class="fab fa-tiktok"></i> WATCH THE INTERVIEW</div>
-                <div class="card-overlay">
-                    <h2 class="card-title font-handwritten">BBC Radio 1 Surprises LSR with JADE</h2>
-                </div>
-            </article>
-        </section>
-      
-        <div class="carousel-dots" id="grid-3-dots">
-            <span class="dot active"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-           
+                <article class="card">
+                    <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/JadeLSR%20(1).webp?raw=true" alt="BBC Radio 1" loading="lazy" style="object-position:top; scale:1.1;">
+                    <div class="card-badge"><i class="fab fa-tiktok"></i> WATCH THE INTERVIEW</div>
+                    <div class="card-overlay">
+                        <h2 class="card-title font-handwritten">BBC Radio 1 Surprises LSR with JADE</h2>
+                    </div>
+                </article>
+            </section>
+          
+            <div class="carousel-dots" id="grid-3-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
         </div>
-
         <section class="section-grid grid-2">
             <article class="card card-wide">
                 <img src="https://static.wixstatic.com/media/ba8903_9bdc5be316f5493f8a43f8f3ec9203c8~mv2.jpg/v1/fill/w_1669,h_1112,al_c/ba8903_9bdc5be316f5493f8a43f8f3ec9203c8~mv2.jpg" alt="Mixes" loading="lazy">
@@ -1001,7 +1032,7 @@
 
                 <div class="footer-col col-info">
                     <p class="info-text">Leeds Student Radio is a student radio station broadcasting every day during term time, from the heart of Leeds University<br><br>Website designed by  <span href="#" class="zach">Zach</span></p>
-                   
+                    
                 </div>
                 
             </div>
