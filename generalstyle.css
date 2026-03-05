@@ -185,7 +185,7 @@
         .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 100%; }
         
         .brand-logo {
-            font-size: 1.8rem;
+            font-size: 1.8rem !important;
             font-weight: 900;
             color: #ffffff;
             text-transform: uppercase;
