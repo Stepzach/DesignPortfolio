@@ -178,6 +178,58 @@
                 bars.forEach(bar => bar.style.animationPlayState = 'running');
             }
         });
+        // --- 5. COMMITTEE DATA FETCH LOGIC ---
+const committeeSheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRoXcefXiUOFuRnA6DpheBwR2CJ4Zs09o68IG9in3w2WwncXybxsbVDWwQY6u6MSpmFDiRrx83MO8M3/pub?gid=2123499295&output=csv';
+
+async function fetchCommitteeData() {
+    // 1. Guard Clause: If the grid isn't on the current page, exit immediately safely.
+    const grid = document.getElementById('committee-grid-container');
+    if (!grid) return; 
+
+    try {
+        const response = await fetch(committeeSheetUrl);
+        const data = await response.text();
+        const rows = parseCSV(data);
+        
+        rows.shift(); // Remove the header row
+
+        grid.innerHTML = ''; // Clear "Loading..." text
+
+        rows.forEach(row => {
+            // 2. Relaxed Filter: Only skip if the row is entirely empty or missing a Name (column 1)
+            if (!row || !row[1] || row[1].trim() === '') return; 
+
+            const id = row[0];
+            const name = row[1].trim();
+            // Provide fallbacks in case a cell is blank in the Google Sheet
+            const role = row[2] ? row[2].trim() : 'Committee Member'; 
+            const imgLink = row[3] ? row[3].trim() : 'https://via.placeholder.com/300x300?text=No+Image';
+
+            // Create card element
+            const card = document.createElement('div');
+            card.className = 'committee-card';
+            card.innerHTML = `
+                <img src="${imgLink}" alt="${name}">
+                <div class="committee-info">
+                    <h3 class="committee-name">${name}</h3>
+                    <p class="committee-role">${role}</p>
+                </div>
+            `;
+
+            // Add click event for modal
+            card.addEventListener('click', () => openModal(name, role, imgLink));
+
+            grid.appendChild(card);
+        });
+
+    } catch (error) {
+        console.error("Failed to fetch committee data", error);
+        // We know 'grid' exists here because of the guard clause at the top
+        grid.innerHTML = '<p>Failed to load committee members.</p>';
+    }
+}
+
+fetchCommitteeData();
 
         // --- 2. MOBILE MENU LOGIC ---
         const mobileBtn = document.querySelector('.mobile-toggle');
