@@ -134,7 +134,7 @@
     transition: var(--transition);
     flex-shrink: 0;
     margin-left:2px;
-   
+    
 }
 
 .play-toggle .fas {
@@ -639,10 +639,6 @@
             font-weight: 100;
               line-height:1;
         }
-        .carousel-dots {
-                display:none;
-               
-            }
 
         /* --- RESPONSIVE ADJUSTMENTS --- */
         @media (max-width: 1100px) {
@@ -660,10 +656,10 @@
         
         /* --- RESPONSIVE --- */
         @media (max-width: 992px) {
-        
-        
-
-            .section-grid.grid-3 { 
+            
+            /* Combined Carousel Container Styles */
+            .section-grid.grid-3,
+            .section-grid.grid-2 { 
                 display: flex; 
                 overflow-x: auto; 
                 scroll-snap-type: x mandatory; 
@@ -677,18 +673,29 @@
                 margin-left: -28px;
                 margin-right: -28px;
                 
-                /* 2. Push the cards back inside so they align with the rest of the page */
+                /* Push the cards back inside so they align with the rest of the page */
                 padding-left: 28px;
                 padding-right: 28px;
             }
-            .section-grid.grid-3::-webkit-scrollbar { 
+
+            .section-grid.grid-3::-webkit-scrollbar,
+            .section-grid.grid-2::-webkit-scrollbar { 
                 display: none; 
             }
 
+            /* --- MAGIC TRICK for Grid 2 (Start scrolled to the end) --- */
+            .section-grid.grid-2 {
+                direction: rtl; /* Forces scroll to start at the end (right) */
+            }
+            .section-grid.grid-2 .card {
+                direction: ltr; /* Resets text inside the card to normal */
+            }
+            /* -------------------------------------------------------- */
+
             /* Adjust cards to take full width and stack content */
-         .section-grid.grid-3 .card { 
-                min-width: 90%; /* Changed from 100% */
-                flex: 0 0 90%;  /* Changed from 100% */
+            .section-grid.grid-3 .card { 
+                min-width: 90%; 
+                flex: 0 0 90%; 
                 scroll-snap-align: center; 
                 display: flex;
                 flex-direction: column;
@@ -702,16 +709,17 @@
                 width: 100%;
                 object-fit: cover;
             }
-             .section-grid.grid-2 .card { 
-                min-width: 85%; /* Changed from 100% */
-                flex: 0 0 85%;  /* Changed from 100% */
+            
+            .section-grid.grid-2 .card { 
+                min-width: 85%; 
+                flex: 0 0 85%; 
                 scroll-snap-align: center; 
                 display: flex;
                 flex-direction: column;
                 aspect-ratio: auto; 
             }
 
-           .section-grid.grid-2 .card img {
+            .section-grid.grid-2 .card img {
                 height: 54vw;
                 max-height: 350px;
                 width: 100%;
@@ -726,14 +734,6 @@
             .section-grid.grid-3 .card-title {
                 margin-top: 0;
             }
-
-            /* --- NEW CAROUSEL WRAPPER & DOT POSITIONING --- */
-            .carousel-wrapper {
-                position: relative; /* Context for absolutely positioned dots */
-                background: none;
-            }
-
-           
         }
         main { 
     padding: 40px 0; 
@@ -759,12 +759,15 @@
    
 }
 
-        .section-grid.grid-3 {
+            /* Share padding/margins on mobile */
+            .section-grid.grid-3,
+            .section-grid.grid-2 {
                 margin-left: -15px;
                 margin-right: -15px;
                 padding-left: 15px;
                 padding-right: 15px;
             }
+
          .container {
     max-width: var(--container-width);
     margin: 0 auto;
@@ -819,11 +822,7 @@
             .sponsor-body .cta-btn { margin-right:auto; }
             .sponsor-logo img { width: 100%; border-radius: 10px; }
             
-            /* Mobile Grid fix */
-            .grid-2 { display: flex; flex-direction: column; }
-            .card, .card-wide { width: 100%; aspect-ratio: 4/3; }
-            
-            
+            /* NOTE: Removed the old grid-2 stack rules here so it stays a carousel */
             
             .player-section.up-next { display:none; }
             
@@ -912,7 +911,7 @@
   <div class="nav-container">
     <nav class="main-nav">
         <div class="container nav-inner">
-            <a href="#" class="brand-logo"><u>Leeds</u> <span>Student Radio</span></a>
+            <a href="#" class="brand-logo">Leeds<span>Student Radio</span></a>
             
             <div class="mobile-toggle"><i class="fas fa-bars"></i></div>
             
@@ -927,35 +926,32 @@
 </div>
     <main class="container">
         
-        <div class="carousel-wrapper">
-            <section class="section-grid grid-3">
-                <article class="card">
-                    <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/316c00_e270ed388b21449d9bdd56622dbeb4ec~mv2.jpg.webp?raw=true" alt="SRA Awards" loading="lazy">
-                    <div class="card-badge"><i class="fa-solid fa-link"></i> Awards RECAP</div>
-                    <div class="card-overlay">
-                        <h2 class="card-title font-handwritten">Officially the UK's best student radio 2023 & 2024!</h2>
-                    </div>
-                </article>
+        <section class="section-grid grid-3">
+            <article class="card">
+                <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/316c00_e270ed388b21449d9bdd56622dbeb4ec~mv2.jpg.webp?raw=true" alt="SRA Awards" loading="lazy">
+                <div class="card-badge"><i class="fa-solid fa-link"></i> Awards RECAP</div>
+                <div class="card-overlay">
+                    <h2 class="card-title font-handwritten">Officially the UK's best student radio 2023 & 2024!</h2>
+                </div>
+            </article>
 
-                <article class="card">
-                    <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/IMG_3624.jpeg?raw=true" alt="Committee" loading="lazy">
-                    <div class="card-badge"><i class="fab fa-instagram"></i> SEE THE POST</div>
-                    <div class="card-overlay">
-                        <h2 class="card-title font-handwritten">Meet our 2025/26 committee, announced on Instagram</h2>
-                    </div>
-                </article>
+            <article class="card">
+                <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/IMG_3624.jpeg?raw=true" alt="Committee" loading="lazy">
+                <div class="card-badge"><i class="fab fa-instagram"></i> SEE THE POST</div>
+                <div class="card-overlay">
+                    <h2 class="card-title font-handwritten">Meet our 2025/26 committee, announced on Instagram</h2>
+                </div>
+            </article>
 
-                <article class="card">
-                    <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/JadeLSR%20(1).webp?raw=true" alt="BBC Radio 1" loading="lazy" style="object-position:top; scale:1.1;">
-                    <div class="card-badge"><i class="fab fa-tiktok"></i> WATCH THE INTERVIEW</div>
-                    <div class="card-overlay">
-                        <h2 class="card-title font-handwritten">BBC Radio 1 Surprises LSR with JADE</h2>
-                    </div>
-                </article>
-            </section>
-          
-          
-        </div>
+            <article class="card">
+                <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/JadeLSR%20(1).webp?raw=true" alt="BBC Radio 1" loading="lazy" style="object-position:top; scale:1.1;">
+                <div class="card-badge"><i class="fab fa-tiktok"></i> WATCH THE INTERVIEW</div>
+                <div class="card-overlay">
+                    <h2 class="card-title font-handwritten">BBC Radio 1 Surprises LSR with JADE</h2>
+                </div>
+            </article>
+        </section>
+
         <section class="section-grid grid-2">
             <article class="card card-wide">
                 <img src="https://static.wixstatic.com/media/ba8903_9bdc5be316f5493f8a43f8f3ec9203c8~mv2.jpg/v1/fill/w_1669,h_1112,al_c/ba8903_9bdc5be316f5493f8a43f8f3ec9203c8~mv2.jpg" alt="Mixes" loading="lazy">
@@ -973,8 +969,6 @@
                 </div>
             </article>
         </section>
-
-     
 
     </main>
 
@@ -1079,36 +1073,6 @@
                     nav.style.boxShadow = "none";
                 }
             });
-           // --- Carousel Logic for Mobile ---
-            const carousel = document.querySelector('.grid-3');
-            const dots = document.querySelectorAll('#grid-3-dots .dot');
-
-            if (carousel && dots.length > 0) {
-                // Sync dots when user swipes
-                carousel.addEventListener('scroll', () => {
-                    // Get the actual width of a single card + the gap
-                    const firstCard = carousel.querySelector('.card');
-                    const cardWidth = firstCard.offsetWidth;
-                    // Calculate index based on the card width instead of container width
-                    const scrollIndex = Math.round(carousel.scrollLeft / cardWidth);
-                    
-                    dots.forEach((dot, index) => {
-                        dot.classList.toggle('active', index === scrollIndex);
-                    });
-                });
-
-                // Allow clicking dots to scroll to the card
-                dots.forEach((dot, index) => {
-                    dot.addEventListener('click', () => {
-                        const targetCard = carousel.querySelectorAll('.card')[index];
-                        // Scroll to the exact position of the target card
-                        carousel.scrollTo({
-                            left: targetCard.offsetLeft - carousel.offsetLeft,
-                            behavior: 'smooth'
-                        });
-                    });
-                });
-            }
         });
     </script>
 </body>
