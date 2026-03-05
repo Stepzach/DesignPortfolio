@@ -639,9 +639,6 @@
             font-weight: 100;
               line-height:1;
         }
-        .carousel-dots {
-    display: none; 
-}
 
         /* --- RESPONSIVE ADJUSTMENTS --- */
         @media (max-width: 1100px) {
@@ -659,9 +656,71 @@
         
         /* --- RESPONSIVE --- */
         @media (max-width: 992px) {
-            .grid-3 { grid-template-columns: 1fr 1fr; }
-            .section-grid { overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 20px; display: flex; }
-            .section-grid .card { min-width: 300px; scroll-snap-align: center; }
+            .section-grid.grid-3 { 
+                display: flex; 
+                overflow-x: auto; 
+                scroll-snap-type: x mandatory; 
+                scroll-behavior: smooth;
+                padding-bottom: 0;
+                margin-bottom: 10px;
+                /* Hide scrollbars for a cleaner look */
+                scrollbar-width: none; 
+                -ms-overflow-style: none;
+            }
+            .section-grid.grid-3::-webkit-scrollbar { 
+                display: none; 
+            }
+
+            /* Adjust cards to take full width and stack content */
+            .section-grid.grid-3 .card { 
+                min-width: 100%; 
+                flex: 0 0 100%; 
+                scroll-snap-align: center; 
+                display: flex;
+                flex-direction: column;
+                aspect-ratio: auto; /* Remove the 1/1 square constraint */
+            }
+
+            /* Lock the image height so it doesn't stretch infinitely */
+            .section-grid.grid-3 .card img {
+                height: 60vw;
+                max-height: 350px;
+                width: 100%;
+                object-fit: cover;
+            }
+
+            /* Move the overlay to the bottom as a normal block */
+            .section-grid.grid-3 .card-overlay {
+                position: relative;
+                background: var(--brand-dark);
+                padding: 20px;
+                justify-content: center;
+                text-align: center;
+            }
+            
+            .section-grid.grid-3 .card-title {
+                margin-top: 0;
+            }
+
+            /* Styling for the new dots */
+            .carousel-dots {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                margin-bottom: 40px;
+            }
+            .carousel-dots .dot {
+                width: 10px;
+                height: 10px;
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 50%;
+                cursor: pointer;
+                transition: var(--transition);
+            }
+            .carousel-dots .dot.active {
+                background: #ffffff;
+                transform: scale(1.3);
+            }
         }
 
         @media (max-width: 768px) {
@@ -715,7 +774,7 @@
             .sponsor-logo img { width: 100%; border-radius: 10px; }
             
             /* Mobile Grid fix */
-            .grid-3, .grid-2 { display: flex; flex-direction: column; }
+            .grid-2 { display: flex; flex-direction: column; }
             .card, .card-wide { width: 100%; aspect-ratio: 4/3; }
             
             
@@ -763,87 +822,9 @@
     font-weight: 800;
    
 }
-/* Add inside @media (max-width: 768px) */
-
-/* --- NEW CAROUSEL STYLES (Mobile Only) --- */
-.carousel-wrapper {
-    width: 100%;
-    overflow: hidden;
-}
-
-/* Force the grid into a horizontal swipeable row */
-.carousel-wrapper .grid-3 {
-    display: flex !important; /* Forces override of your other grid rules */
-    flex-direction: row !important;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    gap: 15px;
-    padding-bottom: 10px;
-    scrollbar-width: none; 
-    -ms-overflow-style: none; 
-}
-.carousel-wrapper .grid-3::-webkit-scrollbar { 
-    display: none; 
-}
-
-/* Restructure the cards for mobile */
-.carousel-wrapper .grid-3 .card {
-    min-width: 85vw;
-    width: 85vw !important; /* Forces override of your 100% width rule */
-    scroll-snap-align: center;
-    display: flex;
-    flex-direction: column;
-    aspect-ratio: auto !important; /* Removes the 4/3 constraint */
-    height: auto;
-}
-
-.carousel-wrapper .grid-3 .card img {
-    height: 250px;
-    width: 100%;
-    object-fit: cover;
-    transform: none; 
-}
-
-.carousel-wrapper .grid-3 .card-overlay {
-    position: relative; 
-    padding: 15px;
-    flex-grow: 1; 
-    background: linear-gradient(to bottom, #181818, #000); 
-}
-
-.carousel-wrapper .grid-3 .card-title {
-    font-size: 1.3rem;
-    margin-top: 0;
-    text-shadow: none;
-}
-
-/* Show and style the dots */
-.carousel-dots {
-    display: flex; /* This will reveal the dots on mobile */
-    justify-content: center;
-    gap: 8px;
-    margin-top: 5px;
-    margin-bottom: 25px;
-}
-
-.dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    border: 1px solid #000;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.dot.active {
-    background: #ffffff;
-    transform: scale(1.3);
-}
 
         }
-     
+    
     </style>
 </head>
 <body>
@@ -898,39 +879,38 @@
 </div>
     <main class="container">
         
-      <div class="carousel-wrapper">
-    <section class="section-grid grid-3">
-        <article class="card">
-            <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/316c00_e270ed388b21449d9bdd56622dbeb4ec~mv2.jpg.webp?raw=true" alt="SRA Awards" loading="lazy">
-            <div class="card-badge"><i class="fa-solid fa-link"></i> Awards RECAP</div>
-            <div class="card-overlay">
-                <h2 class="card-title font-handwritten">Officially the UK's best student radio 2023 & 2024!</h2>
-            </div>
-        </article>
+        <section class="section-grid grid-3">
+            <article class="card">
+                <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/316c00_e270ed388b21449d9bdd56622dbeb4ec~mv2.jpg.webp?raw=true" alt="SRA Awards" loading="lazy">
+                <div class="card-badge"><i class="fa-solid fa-link"></i> Awards RECAP</div>
+                <div class="card-overlay">
+                    <h2 class="card-title font-handwritten">Officially the UK's best student radio 2023 & 2024!</h2>
+                </div>
+            </article>
 
-        <article class="card">
-            <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/IMG_3624.jpeg?raw=true" alt="Committee" loading="lazy">
-            <div class="card-badge"><i class="fab fa-instagram"></i> SEE THE POST</div>
-            <div class="card-overlay">
-                <h2 class="card-title font-handwritten">Meet our 2025/26 committee, announced on Instagram</h2>
-            </div>
-        </article>
+            <article class="card">
+                <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/IMG_3624.jpeg?raw=true" alt="Committee" loading="lazy">
+                <div class="card-badge"><i class="fab fa-instagram"></i> SEE THE POST</div>
+                <div class="card-overlay">
+                    <h2 class="card-title font-handwritten">Meet our 2025/26 committee, announced on Instagram</h2>
+                </div>
+            </article>
 
-        <article class="card">
-            <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/JadeLSR%20(1).webp?raw=true" alt="BBC Radio 1" loading="lazy" style="object-position:top; scale:1.1;">
-            <div class="card-badge"><i class="fab fa-tiktok"></i> WATCH THE INTERVIEW</div>
-            <div class="card-overlay">
-                <h2 class="card-title font-handwritten">BBC Radio 1 Surprises LSR with JADE</h2>
-            </div>
-        </article>
-    </section>
-    
-    <div class="carousel-dots">
-        <div class="dot active" data-index="0"></div>
-        <div class="dot" data-index="1"></div>
-        <div class="dot" data-index="2"></div>
-    </div>
-</div>
+            <article class="card">
+                <img src="https://github.com/Leeds-student-radio/Lsr/blob/main/JadeLSR%20(1).webp?raw=true" alt="BBC Radio 1" loading="lazy" style="object-position:top; scale:1.1;">
+                <div class="card-badge"><i class="fab fa-tiktok"></i> WATCH THE INTERVIEW</div>
+                <div class="card-overlay">
+                    <h2 class="card-title font-handwritten">BBC Radio 1 Surprises LSR with JADE</h2>
+                </div>
+            </article>
+        </section>
+      
+        <div class="carousel-dots" id="grid-3-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+
         <section class="section-grid grid-2">
             <article class="card card-wide">
                 <img src="https://static.wixstatic.com/media/ba8903_9bdc5be316f5493f8a43f8f3ec9203c8~mv2.jpg/v1/fill/w_1669,h_1112,al_c/ba8903_9bdc5be316f5493f8a43f8f3ec9203c8~mv2.jpg" alt="Mixes" loading="lazy">
@@ -1005,9 +985,9 @@
         </div>
     </footer>
 
- <script>
+    <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Player Logic ---
+            // Player Logic
             const playBtn = document.querySelector('.play-toggle');
             const icon = playBtn.querySelector('i');
             const bars = document.querySelectorAll('.bar');
@@ -1018,21 +998,24 @@
                 if (isPlaying) {
                     icon.classList.remove('fa-pause');
                     icon.classList.add('fa-play');
+                    // Stop visualizer animation
                     bars.forEach(bar => bar.style.animationPlayState = 'paused');
                 } else {
                     icon.classList.remove('fa-play');
                     icon.classList.add('fa-pause');
+                    // Start visualizer animation
                     bars.forEach(bar => bar.style.animationPlayState = 'running');
                 }
             });
 
-            // --- Mobile Menu Logic ---
+            // Mobile Menu Logic
             const mobileBtn = document.querySelector('.mobile-toggle');
             const navMenu = document.querySelector('.nav-menu');
             const navIcon = mobileBtn.querySelector('i');
 
             mobileBtn.addEventListener('click', () => {
                 navMenu.classList.toggle('active');
+                
                 if (navMenu.classList.contains('active')) {
                     navIcon.classList.remove('fa-bars');
                     navIcon.classList.add('fa-times');
@@ -1042,7 +1025,7 @@
                 }
             });
 
-            // --- Sticky Header Shadow ---
+            // Sticky Header Shadow on Scroll
             window.addEventListener('scroll', () => {
                 const nav = document.querySelector('.main-nav');
                 if(window.scrollY > 10) {
@@ -1051,33 +1034,26 @@
                     nav.style.boxShadow = "none";
                 }
             });
-            
-            // --- Carousel Dots Logic ---
-            const carousel = document.querySelector('.carousel-wrapper .grid-3');
-            const dots = document.querySelectorAll('.dot');
-            const cards = document.querySelectorAll('.carousel-wrapper .card');
+            // --- Carousel Logic for Mobile ---
+            const carousel = document.querySelector('.grid-3');
+            const dots = document.querySelectorAll('#grid-3-dots .dot');
 
-            if (carousel && dots.length > 0 && cards.length > 0) {
-                // Update dots on swipe
+            if (carousel && dots.length > 0) {
+                // Sync dots when user swipes
                 carousel.addEventListener('scroll', () => {
-                    let scrollPosition = carousel.scrollLeft;
-                    let cardWidth = cards[0].offsetWidth + 15; // Width + gap
+                    // Calculate which card is currently in view
+                    const scrollIndex = Math.round(carousel.scrollLeft / carousel.clientWidth);
                     
-                    let activeIndex = Math.round(scrollPosition / cardWidth);
-                    
-                    if (activeIndex >= 0 && activeIndex < dots.length) {
-                        dots.forEach(dot => dot.classList.remove('active'));
-                        dots[activeIndex].classList.add('active');
-                    }
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('active', index === scrollIndex);
+                    });
                 });
 
-                // Make dots clickable
-                dots.forEach(dot => {
-                    dot.addEventListener('click', (e) => {
-                        const index = parseInt(e.target.getAttribute('data-index'));
-                        const cardWidth = cards[0].offsetWidth + 15;
+                // Allow clicking dots to scroll to the card
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
                         carousel.scrollTo({
-                            left: index * cardWidth,
+                            left: carousel.clientWidth * index,
                             behavior: 'smooth'
                         });
                     });
