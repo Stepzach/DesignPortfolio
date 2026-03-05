@@ -650,8 +650,8 @@
         }
 
         @media (max-width: 768px) {
-            .main-footer { margin: 10px; padding: 30px 20px 20px; }
-            .footer-links-group { flex-direction: column; gap: 30px; }
+            .main-footer { margin: 0px; padding: 0; border:none; }
+            .footer-links-group { flex-direction: row; gap: 25px; padding: 30px; border-top:solid 2px black; justify-content: center; }
         }
         
         /* --- RESPONSIVE --- */
@@ -711,8 +711,8 @@
             }
             
             .section-grid.grid-2 .card { 
-                min-width: 85%; 
-                flex: 0 0 85%; 
+                min-width: 90%; 
+                flex: 0 0 90%; 
                 scroll-snap-align: center; 
                 display: flex;
                 flex-direction: column;
@@ -744,6 +744,23 @@
 
         @media (max-width: 768px) {
         
+        .copyright {
+   padding:20px;
+}
+
+
+            .col-info {
+        display:none;
+    }
+
+            .col-banner {
+      border: solid 2px black;
+      padding:20px;
+      border-radius: var(--radius-md);
+      margin: 15px;
+    }
+    
+    
         .card-badge {
     position: absolute;
     top: 15px;
