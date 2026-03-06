@@ -619,7 +619,7 @@ overflow-x: auto;
         }
         .get-involved-intro {
             color: #fff;
-            padding: 0px 20px;
+            padding: 0px 28px;
             
         }
         
@@ -743,7 +743,19 @@ overflow-x: auto;
         }
 
         @media (max-width: 768px) {
-
+               .about-page-wrapper {
+           
+            padding: 0px 20px;
+           
+          
+        }
+              
+ .get-involved-intro {
+           
+            padding: 0px 5px;
+            
+        }
+              
 .container-homepage {
     max-width: var(--container-width);
     margin: 0 auto;
@@ -766,7 +778,7 @@ overflow-x: auto;
         .about-page-wrapper {
             background-color: #cb3131; /* Matches the red in the screenshot */
             color: #ffffff;
-            padding: 0px 20px;
+            padding: 0px 28px;
             font-family: 'Montserrat', sans-serif;
           
         }
@@ -904,7 +916,7 @@ overflow-x: auto;
             
             border-radius: 15px;
             border: 2px solid #111;
-            max-width: 90%;
+            
             max-height: 90vh;
             text-align: center;
             position: relative;
@@ -945,6 +957,10 @@ overflow-x: auto;
 .get-involved-intro,
 .about-page-wrapper {
     padding-top: 20px;
+}
+       .committee-grid {
+    
+    margin: 40px 20px;
 }
        
        }
@@ -1394,6 +1410,8 @@ overflow-x: auto;
         }
 
         @media (max-width: 768px) {
+
+              
             :root { --header-height: 50px; }
             .container { padding: 15px; }
             .player-bar {
