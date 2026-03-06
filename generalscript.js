@@ -476,6 +476,7 @@ function updateNavLinks() {
             if (newMain && currentMain) {
                 currentMain.innerHTML = newMain.innerHTML;
                 document.title = newDoc.title;
+             window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 updateNavLinks();
              
                 if (navMenu && navMenu.classList.contains('active')) toggleMenu();
