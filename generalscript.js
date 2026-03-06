@@ -492,21 +492,36 @@
     setInterval(fetchScheduleData, 180000);
 });
 
+// --- FIREBASE IMPORTS ---
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp, Timestamp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+import { getDatabase, ref, onValue, set, remove } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
 
-   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-    import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-    import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp, Timestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+// --- CONFIGS ---
+const chatConfig = { 
+    apiKey: "AIzaSyDSGLLwH1BVYQVY1FLkAUe3XUmIYu2Nfhc", 
+    authDomain: "lsrchat-6ffb1.firebaseapp.com", 
+    projectId: "lsrchat-6ffb1", 
+    storageBucket: "lsrchat-6ffb1.firebasestorage.app", 
+    messagingSenderId: "333921149565", 
+    appId: "1:333921149565:web:c5dcced8299b1527994714" 
+}; 
 
-    const firebaseConfig = { 
-        apiKey: "AIzaSyDSGLLwH1BVYQVY1FLkAUe3XUmIYu2Nfhc", 
-        authDomain: "lsrchat-6ffb1.firebaseapp.com", 
-        projectId: "lsrchat-6ffb1", 
-        storageBucket: "lsrchat-6ffb1.firebasestorage.app", 
-        messagingSenderId: "333921149565", 
-        appId: "1:333921149565:web:c5dcced8299b1527994714" 
-    }; 
+const counterConfig = {
+    apiKey: "AIzaSyAiqChgrcb4pn4LKjRO-zILVRs59CBCFes",
+    authDomain: "lsrlivecount.firebaseapp.com",
+    databaseURL: "https://lsrlivecount-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "lsrlivecount",
+    storageBucket: "lsrlivecount.firebasestorage.app",
+    messagingSenderId: "540310303767",
+    appId: "1:540310303767:web:82125bd428eaee173c1852"
+};
 
-    let db, auth, userId, messagesCollection;
+// Global variables to be shared
+let db, auth, messagesCollection;
+
+// --- CHAT & COUNTER SYSTEM ---
 function initChatSystem() {
     const chatMessages = document.getElementById('chat-messages');
     const chatForm = document.getElementById('chat-form');
@@ -514,29 +529,23 @@ function initChatSystem() {
     const messageInput = document.getElementById('message-input');
     const loadingSpinner = document.getElementById('loading-spinner');
 
-    // --- Consistent Color Logic ---
-    const avatarColors = [
-        '#ff4b2b', '#3498db', '#2ecc71', '#f1c40f', 
-        '#9b59b6', '#e67e22', '#1abc9c', '#e91e63',
-        '#00bcd4', '#607d8b'
-    ];
+    if (!chatMessages || !chatForm) return; // Guard for pages without chat
+
+    const avatarColors = ['#ff4b2b', '#3498db', '#2ecc71', '#f1c40f', '#9b59b6', '#e67e22', '#1abc9c', '#e91e63', '#00bcd4', '#607d8b'];
 
     function getAvatarColor(name) {
         let hash = 0;
         const searchName = name.toLowerCase().trim();
-        for (let i = 0; i < searchName.length; i++) {
-            hash = searchName.charCodeAt(i) + ((hash << 5) - hash);
-        }
-        const index = Math.abs(hash % avatarColors.length);
-        return avatarColors[index];
+        for (let i = 0; i < searchName.length; i++) { hash = searchName.charCodeAt(i) + ((hash << 5) - hash); }
+        return avatarColors[Math.abs(hash % avatarColors.length)];
     }
 
     function displayMessage(messageData) {
         const name = messageData.name || 'Anonymous';
         const text = messageData.text || '';
         const createdAt = messageData.createdAt;
-
         let timestampString = '';
+        
         if (createdAt && typeof createdAt.toDate === 'function') {
             const date = createdAt.toDate();
             timestampString = `[${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}]`;
@@ -544,102 +553,78 @@ function initChatSystem() {
 
         const msgDiv = document.createElement('div');
         msgDiv.className = 'message-entry';
-
-        // ICON CREATION
+        
         const iconDiv = document.createElement('div');
         iconDiv.className = 'message-icon';
-        
-        // Apply the color based on the NAME
         iconDiv.style.backgroundColor = getAvatarColor(name);
         iconDiv.textContent = name.charAt(0).toUpperCase();
 
         const textDiv = document.createElement('div');
-        const p = document.createElement('p');
-        
-        const timeSpan = document.createElement('span');
-        timeSpan.className = 'message-timestamp';
-        timeSpan.textContent = timestampString;
-
-        const strong = document.createElement('strong');
-        strong.className = 'message-author';
-        strong.textContent = name;
-
-        p.appendChild(timeSpan);
-        p.appendChild(strong);
-        p.appendChild(document.createTextNode(`: ${text}`));
-        textDiv.appendChild(p);
+        textDiv.innerHTML = `<p><span class="message-timestamp">${timestampString}</span> <strong class="message-author">${name}</strong>: ${text}</p>`;
         
         msgDiv.appendChild(iconDiv);
         msgDiv.appendChild(textDiv);
         chatMessages.appendChild(msgDiv);
     }
 
-    function scrollToBottom() {
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
     async function handleSendMessage(e) {
         e.preventDefault();
         const messageText = messageInput.value.trim();
         const displayName = displayNameInput.value.trim() || 'Anonymous';
-
         if (messageText === '' || !messagesCollection) return;
-
-        const expirationDate = new Date(Date.now() + (30 * 24 * 60 * 60 * 1000));
-
         try {
             await addDoc(messagesCollection, {
                 name: displayName,
                 text: messageText,
                 createdAt: serverTimestamp(),
-                expiresAt: Timestamp.fromDate(expirationDate)
+                expiresAt: Timestamp.fromDate(new Date(Date.now() + (30 * 24 * 60 * 60 * 1000)))
             });
             messageInput.value = '';
-        } catch (error) {
-            console.error("Error sending message: ", error);
-        }
-    }
-
-    function setupMessageListener() {
-        if (!db) return;
-        messagesCollection = collection(db, "messages");
-        const q = query(messagesCollection, orderBy("createdAt", "asc"));
-
-        onSnapshot(q, (querySnapshot) => {
-            if (loadingSpinner) loadingSpinner.style.display = 'none';
-            chatMessages.innerHTML = ''; 
-
-            if (querySnapshot.empty) {
-                chatMessages.innerHTML = '<p style="text-align:center; color:#888;">No messages yet. Be the first!</p>';
-                return;
-            }
-
-            querySnapshot.forEach((doc) => displayMessage(doc.data()));
-            scrollToBottom();
-        });
-    }
-
-    async function initializeFirebase() {
-        try {
-            const app = initializeApp(firebaseConfig);
-            db = getFirestore(app);
-            auth = getAuth(app);
-
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    userId = user.uid;
-                    setupMessageListener();
-                }
-            });
-
-            await signInAnonymously(auth);
-        } catch (error) {
-            console.error("Firebase fail:", error);
-            if (loadingSpinner) loadingSpinner.style.display = 'none';
-            chatMessages.innerHTML = '<p>Connection Error.</p>';
-        }
+        } catch (err) { console.error("Send Error:", err); }
     }
 
     chatForm.addEventListener('submit', handleSendMessage);
-    initializeFirebase();
+    
+    // Initialize Apps
+    const chatApp = initializeApp(chatConfig, "chat");
+    const counterApp = initializeApp(counterConfig, "counter");
+
+    db = getFirestore(chatApp);
+    auth = getAuth(chatApp);
+    const rtdb = getDatabase(counterApp);
+
+    // --- LIVE COUNTER LOGIC ---
+    const liveId = sessionStorage.getItem('liveId') || Math.random().toString(36).substring(2);
+    sessionStorage.setItem('liveId', liveId);
+    const userRef = ref(rtdb, 'active/' + liveId);
+    
+    set(userRef, Date.now());
+    setInterval(() => set(userRef, Date.now()), 30000);
+    window.addEventListener("beforeunload", () => remove(userRef));
+
+    const activeRef = ref(rtdb, 'active');
+    onValue(activeRef, snap => {
+        const data = snap.val() || {};
+        const activeUsers = Object.values(data).filter(ts => Date.now() - ts < 300000).length;
+        const countEl = document.getElementById("live-count");
+        if (countEl) countEl.textContent = activeUsers;
+    });
+
+    // --- AUTH & CHAT SNAPSHOT ---
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            messagesCollection = collection(db, "messages");
+            const q = query(messagesCollection, orderBy("createdAt", "asc"));
+            onSnapshot(q, (snapshot) => {
+                if (loadingSpinner) loadingSpinner.style.display = 'none';
+                chatMessages.innerHTML = snapshot.empty ? '<p style="text-align:center; color:#888;">No messages yet.</p>' : '';
+                snapshot.forEach(doc => displayMessage(doc.data()));
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            });
+        }
+    });
+    signInAnonymously(auth);
 }
+
+// Ensure the function is available to your router
+window.initChatSystem = initChatSystem;
