@@ -431,7 +431,7 @@ overflow-x: auto;
     /* The alternate stream stays as a row (horizontal) */
     .alt-card {
         flex-direction: row;
-        padding: 15px;
+       
     }
 
     .alt-card .img-container {
@@ -745,6 +745,12 @@ overflow-x: auto;
         }
 
         @media (max-width: 768px) {
+
+              .close-modal {
+    position: fixed !important;
+    top: 8% !important;
+    right: 10% !important;
+                        }
                .about-page-wrapper {
            
            padding: 15px 20px !important;
