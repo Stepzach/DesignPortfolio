@@ -998,7 +998,7 @@ overflow-x: auto;
         .text-uppercase { text-transform: uppercase; letter-spacing: 0.5px; }
         .text-bold { font-weight: 800; }
 
-        .container {
+        .container-homepage {
             max-width: var(--container-width);
             margin: 0 auto;
             padding: 20px 28px;
