@@ -750,7 +750,10 @@ hr {
         }
 
         @media (max-width: 768px) {
-
+.card-play-btn  {
+         border: none !important;
+      
+        }
               .close-modal {
           top: 8px !important;
         right: 8px !important;
@@ -785,6 +788,7 @@ hr {
 }
               .listen-grid  {
               padding: 15px;
+                            padding-top: 5px;
 }
               
             .get-involved-intro h1 { font-size: 2.8rem; }
