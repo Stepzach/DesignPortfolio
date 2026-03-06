@@ -1234,9 +1234,9 @@ overflow-x: auto;
             transition: var(--transition);
         } 
         .nav-link:hover,
-.brand-logo.nav-link.active { color: #ffffff; }
+.nav-link.active::after { color: #ffffff; }
         .nav-link:hover::after,
-.brand-logo.nav-link.active { width: 100%; }
+.nav-link.active::after { width: 100%; }
 
         .mobile-toggle { display: none; font-size: 1.5rem; color: #ffffff; cursor: pointer; }
 
