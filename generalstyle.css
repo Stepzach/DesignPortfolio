@@ -761,6 +761,7 @@ overflow-x: auto;
     max-width: var(--container-width);
     margin: 0 auto;
     padding: 10px 0px !important;
+          overflow: hidden;
 }
               main {
     padding: 10px 0 !important;
@@ -1472,6 +1473,7 @@ overflow-x: auto;
                 transform: translateY(-10px);
                 border-bottom: 2px solid #8f1818;
                 box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+                  gap:10px !important;
             }
 
                 .nav-menu .nav-link {
@@ -1490,7 +1492,7 @@ overflow-x: auto;
          
             .nav-link::after { display: none; }
 
-            .section-grid.grid-3, .section-grid.grid-2 { margin: 0 -15px; padding: 0 15px; }
+            .section-grid.grid-3, .section-grid.grid-2 { margin: 0 -15px; }
             
             .section-grid.grid-3 { padding-bottom: 15px; }
             .card-title { font-size: 1.2rem; }
