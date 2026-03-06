@@ -323,8 +323,10 @@
         if (nextShow) {
             const nextT = document.getElementById('up-next-title');
             const nextI = document.getElementById('up-next-img');
+            const nextD = document.getElementById('up-next-desc'); 
             if(nextT) nextT.innerText = nextShow.title;
             if(nextI) nextI.src = nextShow.image;
+         if(nextD) nextD.innerText = nextShow.description;
         }
     }
 
