@@ -1442,4 +1442,92 @@ overflow-x: auto;
         }
         
        
-   
+   /* Base Styles (Desktop/Default) */
+.chat-input-area {
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.chat-input-area input {
+    border: none;
+    border-radius: 8px; /* Slightly rounder for modern feel */
+    padding: 12px;
+    font-family: 'Open Sans', sans-serif;
+    outline: none;
+}
+
+/* Mobile Specific Optimizations */
+@media (max-width: 600px) {
+    .chat-input-area {
+        gap: 8px;
+        padding: 10px;
+    }
+
+    /* Collapse Name Input: Small by default, expands on focus */
+    .name-input {
+        width: 60px; 
+        transition: width 0.3s ease;
+        font-size: 0.8rem;
+    }
+
+    .name-input:focus {
+        width: 100px;
+    }
+
+    .msg-input {
+        flex: 1; /* Takes up all remaining space */
+        min-width: 0; /* Prevents flex items from overflowing */
+    }
+
+    /* Transform Send Button into an Arrow */
+    .send-btn {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%; /* Circular button */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        background: #fff; /* White circle */
+        border: none;
+        position: relative;
+    }
+
+    .btn-text {
+        display: none; /* Hide "Send" text */
+    }
+
+    /* CSS Upward Arrow */
+    .send-btn::before {
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-top: 3px solid var(--brand-dark); /* Arrow color */
+        border-right: 3px solid var(--brand-dark);
+        transform: rotate(-45deg);
+        margin-top: 4px;
+    }
+}
+/* Mobile Specific Optimizations */
+@media (max-width: 600px) {
+    .chat-input-area {
+        gap: 8px;
+        padding: 10px;
+    }
+
+    /* Change font-size to 16px to prevent iOS auto-zoom */
+    .chat-input-area input {
+        font-size: 16px !important;
+    }
+
+    .name-input {
+        width: 69px; 
+        transition: width 0.3s ease;
+        /* font-size: 0.8rem;  <-- Remove or override this */
+    }
+
+    /* ... rest of your code ... */
+}
