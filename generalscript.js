@@ -328,52 +328,59 @@
         }
     }
 
-    function renderSchedule(weekLetter) {
-        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-        const grid = document.getElementById('schedule-grid');
-        if (!grid) return;
-        const realWeek = getCurrentWeekType();
-        grid.innerHTML = '';
+   function renderSchedule(weekLetter) {
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const grid = document.getElementById('schedule-grid');
+    if (!grid) return; 
 
-        days.forEach(day => {
-            const dayCol = document.createElement('div');
-            dayCol.className = `schedule-day-column day-${day}`;
-            dayCol.innerHTML = `<h3 class="day-title">${day}</h3>`;
+    const realWeek = getCurrentWeekType();
+    grid.innerHTML = ''; // Clear previous
 
-            const filteredShows = allScheduleRows.filter(row => {
-                const rowDay = row[4]?.trim() || '';
-                const rowWeek = row[5]?.trim().toUpperCase() || '';
-                return rowDay.toLowerCase() === day.toLowerCase() && 
-                       (rowWeek.includes(weekLetter) || rowWeek.includes('EVERY'));
-            });
+    days.forEach(day => {
+        const dayCol = document.createElement('div');
+        // Match the class used in your CSS
+        dayCol.className = `schedule-day-column day-${day}`; 
+        dayCol.innerHTML = `<h3 class="day-title">${day}</h3>`;
 
-            filteredShows.sort((a, b) => timeToMinutes(a[6]) - timeToMinutes(b[6]));
-
-            filteredShows.forEach(row => {
-                const show = {
-                    title: row[1], desc: row[2], img: row[3] || "https://via.placeholder.com/300",
-                    day: row[4], week: row[5], start: row[6], end: row[7], host: row[8]
-                };
-                const showEl = document.createElement('div');
-                showEl.className = 'show-card';
-                const isActuallyNow = isShowLive(show.day, show.start, show.end);
-                if (isActuallyNow && weekLetter === realWeek) {
-                    showEl.classList.add('is-live');
-                }
-                showEl.innerHTML = `
-                    <img src="${show.img}" alt="${show.title}">
-                    <div class="show-card-meta">
-                        <h4>${show.title}</h4>
-                        <p>${show.start} - ${show.end}</p>
-                    </div>
-                `;
-                showEl.onclick = () => openShowModal(show);
-                dayCol.appendChild(showEl);
-            });
-            grid.appendChild(dayCol);
+        const filteredShows = allScheduleRows.filter(row => {
+            const rowDay = row[4]?.trim() || '';
+            const rowWeek = row[5]?.trim().toUpperCase() || '';
+            return rowDay.toLowerCase() === day.toLowerCase() && 
+                   (rowWeek.includes(weekLetter) || rowWeek.includes('EVERY'));
         });
-        initMobileSchedule();
-    }
+
+        filteredShows.sort((a, b) => timeToMinutes(a[6]) - timeToMinutes(b[6]));
+
+        if (filteredShows.length === 0) {
+            dayCol.innerHTML += `<p class="no-shows">No shows scheduled</p>`;
+        }
+
+        filteredShows.forEach(row => {
+            const show = {
+                title: row[1], desc: row[2], img: row[3] || "https://via.placeholder.com/300",
+                day: row[4], week: row[5], start: row[6], end: row[7], host: row[8]
+            };
+            const showEl = document.createElement('div');
+            showEl.className = 'show-card';
+            if (isShowLive(show.day, show.start, show.end) && weekLetter === realWeek) {
+                showEl.classList.add('is-live');
+            }
+            showEl.innerHTML = `
+                <img src="${show.img}" alt="${show.title}">
+                <div class="show-card-meta">
+                    <h4>${show.title}</h4>
+                    <p>${show.start} - ${show.end}</p>
+                </div>
+            `;
+            showEl.onclick = () => openShowModal(show);
+            dayCol.appendChild(showEl);
+        });
+        grid.appendChild(dayCol);
+    });
+
+    // Re-initialize mobile visibility after rendering
+    setTimeout(() => initMobileSchedule(), 50); 
+}
 
     function updateWeekUI(week) {
         document.querySelectorAll('.week-btn').forEach(btn => {
