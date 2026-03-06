@@ -751,7 +751,11 @@ overflow-x: auto;
            
           
         }
-              
+              .committee-name {
+    
+    font-size: 1.2rem  !important;
+   
+}
  .get-involved-intro {
            
             padding: 0px 5px;
