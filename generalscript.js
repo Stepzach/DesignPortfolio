@@ -508,6 +508,7 @@ updateNavLinks();
     window.addEventListener('popstate', () => loadPage(window.location.href));
 
     // Start everything
+    updateNavLinks();
     fetchScheduleData();
     fetchCommitteeData();
     fetchApplyData();
