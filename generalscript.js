@@ -486,6 +486,9 @@
     fetchScheduleData();
     fetchCommitteeData();
     fetchApplyData();
+  if (window.location.pathname.includes('listen')) {
+        initChatSystem();
+    }
     setInterval(fetchScheduleData, 180000);
 });
 
