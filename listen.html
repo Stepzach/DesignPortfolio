@@ -11,8 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Open+Sans:wght@400;600&family=Indie+Flower&family=Asap+Condensed:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://raw.githack.com/Stepzach/DesignPortfolio/main/generalstyle.css">
-     <script type="module" src="https://raw.githack.com/Stepzach/DesignPortfolio/main/generalscript.js" defer></script>
-  
+   <script type="module" src="https://raw.githack.com/Stepzach/DesignPortfolio/main/generalscript.js" defer></script>
+    
 </head>
 <body>
     <audio id="radio-player" preload="none">
@@ -95,31 +95,29 @@
                     </div>
                     <div class="card-content">
                         <h2>Alternate Stream</h2>
-                        
-                        <p>LSR alternate live stream runs 24/7 with a chilled mix of hand-picked tracks. Expect smooth, relaxing tunes all day.</p>
+                        <p>LSR alternate live stream runs 24/7 with a chilled mix of hand-picked tracks.</p>
                     </div>
                 </div>
             </div>
 
             <div class="lsr-card chat-card">
                 <div class="chat-header">
-                    <span class="active-count">Active: 9</span>
+                    <span class="active-count">Active: <span id="live-count">0</span></span>
                     <h3>Live Chat</h3>
                 </div>
-                <div class="chat-messages">
-                    <div class="message"><span class="timestamp">[23:59]</span> <span class="username">Millie Waff:</span> Goodnight deep after dark I love you</div>
-                    <div class="message"><span class="timestamp">[23:59]</span> <span class="username">Millie Waff:</span> 🚙 🚙</div>
-                    <div class="message"><span class="timestamp">[23:59]</span> <span class="username">Matty:</span> Thanks for the boogie broski</div>
-                    <div class="message"><span class="timestamp">[07:07]</span> <span class="username">Anonymous:</span> who up then</div>
-                    <div class="message"><span class="timestamp">[07:10]</span> <span class="username">Anonymous:</span> lmao cool</div>
-                    <div class="message"><span class="timestamp">[09:04]</span> <span class="username">Anonymous:</span> Great opening tune breakfast team</div>
-                    <div class="message"><span class="timestamp">[09:30]</span> <span class="username">Sarah:</span> LOVING this track!!</div>
+                <div class="chat-messages" id="chat-messages">
+                    <div id="loading-spinner">
+                        <svg class="spinner-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" style="opacity: 0.25;"></circle>
+                            <path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </div>
                 </div>
-                <div class="chat-input-area">
-                    <input type="text" placeholder="Name" class="name-input">
-                    <input type="text" placeholder="Add a message..." class="msg-input">
-                    <button class="send-btn">Send</button>
-                </div>
+                <form id="chat-form" class="chat-input-area">
+                    <input type="text" id="display-name" placeholder="Name" class="name-input">
+                    <input type="text" id="message-input" placeholder="Add a message..." class="msg-input" required>
+                    <button type="submit" class="send-btn">Send</button>
+                </form>
             </div>
         </div>
     </main>
@@ -128,51 +126,22 @@
         <div class="container footer-container">
             <div class="footer-grid">
                 <div class="footer-col col-banner">
-                    <p class="banner-text">Discover, develop and decide your future with appointments, events and vacancies</p>
+                    <p class="banner-text">Discover, develop and decide your future</p>
                     <img src="https://stepzach.github.io/leedstestradio/316c00_e85e432bbd2e4e15a926db384684cf02~mv2.png.avif" alt="Careers Service Banner" class="careers-banner">
                 </div>
-
                 <div class="footer-links-group">
                     <div class="footer-col">
                         <h4>NAVIGATE</h4>
-                        <ul>
-                            <li><a href="#">Schedule</a></li>
-                            <li><a href="#">Listen</a></li>
-                            <li><a href="#">Get Involved</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-col">
-                        <h4>SOCIAL</h4>
-                        <ul>
-                            <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
-                            <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
-                            <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-col col-official">
-                        <h4>OFFICIAL</h4>
-                        <ul>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Awards</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
+                        <ul><li><a href="#">Schedule</a></li><li><a href="#">Listen</a></li></ul>
                     </div>
                 </div>
-
                 <div class="footer-col col-info">
-                    <p class="info-text">Leeds Student Radio is a student radio station broadcasting every day during term time, from the heart of Leeds University<br><br>Website designed by  <span href="#" class="zach">Zach</span></p>
+                    <p class="info-text">Leeds Student Radio © 2026. Designed by <span class="zach">Zach</span></p>
                 </div>
-            </div>
-
-            <div class="copyright">
-                &copy; Leeds Student Radio 2026  -  
-                 <a href="#" class="disclaimer-link">Disclaimer</a>
             </div>
         </div>
     </footer>
 
-
+  
 </body>
 </html>
