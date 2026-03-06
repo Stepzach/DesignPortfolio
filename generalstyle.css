@@ -153,7 +153,7 @@ overflow-x: auto;
 
 .week-selector {
        display: inline-flex;
-    background: var(--brand-dark);
+    background: rgb(160 43 43 / 22%);
     border-radius: 50px;
     border: 1px solid #8f1818;
 }
