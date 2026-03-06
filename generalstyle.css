@@ -1232,9 +1232,11 @@ overflow-x: auto;
             height: 3px;
             background: #ffffff;
             transition: var(--transition);
-        }
-        .nav-link:hover { color: #ffffff; }
-        .nav-link:hover::after { width: 100%; }
+        } 
+        .nav-link:hover,
+.brand-logo.nav-link.active { color: #ffffff; }
+        .nav-link:hover::after,
+.brand-logo.nav-link.active { width: 100%; }
 
         .mobile-toggle { display: none; font-size: 1.5rem; color: #ffffff; cursor: pointer; }
 
@@ -1491,7 +1493,8 @@ overflow-x: auto;
         border-radius: var(--radius-sm);
         background: #D62828 !important;
     }
-    .nav-menu .nav-link:hover {
+    .nav-menu .nav-link:hover,
+              .nav-link.active {
        
         background: #e54747 !important;
     }
