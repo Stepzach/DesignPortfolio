@@ -485,3 +485,152 @@
     fetchApplyData();
     setInterval(fetchScheduleData, 180000);
 });
+   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp, Timestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    const firebaseConfig = { 
+        apiKey: "AIzaSyDSGLLwH1BVYQVY1FLkAUe3XUmIYu2Nfhc", 
+        authDomain: "lsrchat-6ffb1.firebaseapp.com", 
+        projectId: "lsrchat-6ffb1", 
+        storageBucket: "lsrchat-6ffb1.firebasestorage.app", 
+        messagingSenderId: "333921149565", 
+        appId: "1:333921149565:web:c5dcced8299b1527994714" 
+    }; 
+
+    let db, auth, userId, messagesCollection;
+
+    const chatMessages = document.getElementById('chat-messages');
+    const chatForm = document.getElementById('chat-form');
+    const displayNameInput = document.getElementById('display-name');
+    const messageInput = document.getElementById('message-input');
+    const loadingSpinner = document.getElementById('loading-spinner');
+
+    // --- Consistent Color Logic ---
+    const avatarColors = [
+        '#ff4b2b', '#3498db', '#2ecc71', '#f1c40f', 
+        '#9b59b6', '#e67e22', '#1abc9c', '#e91e63',
+        '#00bcd4', '#607d8b'
+    ];
+
+    function getAvatarColor(name) {
+        let hash = 0;
+        const searchName = name.toLowerCase().trim();
+        for (let i = 0; i < searchName.length; i++) {
+            hash = searchName.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        const index = Math.abs(hash % avatarColors.length);
+        return avatarColors[index];
+    }
+
+    function displayMessage(messageData) {
+        const name = messageData.name || 'Anonymous';
+        const text = messageData.text || '';
+        const createdAt = messageData.createdAt;
+
+        let timestampString = '';
+        if (createdAt && typeof createdAt.toDate === 'function') {
+            const date = createdAt.toDate();
+            timestampString = `[${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}]`;
+        }
+
+        const msgDiv = document.createElement('div');
+        msgDiv.className = 'message-entry';
+
+        // ICON CREATION
+        const iconDiv = document.createElement('div');
+        iconDiv.className = 'message-icon';
+        
+        // Apply the color based on the NAME
+        iconDiv.style.backgroundColor = getAvatarColor(name);
+        iconDiv.textContent = name.charAt(0).toUpperCase();
+
+        const textDiv = document.createElement('div');
+        const p = document.createElement('p');
+        
+        const timeSpan = document.createElement('span');
+        timeSpan.className = 'message-timestamp';
+        timeSpan.textContent = timestampString;
+
+        const strong = document.createElement('strong');
+        strong.className = 'message-author';
+        strong.textContent = name;
+
+        p.appendChild(timeSpan);
+        p.appendChild(strong);
+        p.appendChild(document.createTextNode(`: ${text}`));
+        textDiv.appendChild(p);
+        
+        msgDiv.appendChild(iconDiv);
+        msgDiv.appendChild(textDiv);
+        chatMessages.appendChild(msgDiv);
+    }
+
+    function scrollToBottom() {
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    async function handleSendMessage(e) {
+        e.preventDefault();
+        const messageText = messageInput.value.trim();
+        const displayName = displayNameInput.value.trim() || 'Anonymous';
+
+        if (messageText === '' || !messagesCollection) return;
+
+        const expirationDate = new Date(Date.now() + (30 * 24 * 60 * 60 * 1000));
+
+        try {
+            await addDoc(messagesCollection, {
+                name: displayName,
+                text: messageText,
+                createdAt: serverTimestamp(),
+                expiresAt: Timestamp.fromDate(expirationDate)
+            });
+            messageInput.value = '';
+        } catch (error) {
+            console.error("Error sending message: ", error);
+        }
+    }
+
+    function setupMessageListener() {
+        if (!db) return;
+        messagesCollection = collection(db, "messages");
+        const q = query(messagesCollection, orderBy("createdAt", "asc"));
+
+        onSnapshot(q, (querySnapshot) => {
+            if (loadingSpinner) loadingSpinner.style.display = 'none';
+            chatMessages.innerHTML = ''; 
+
+            if (querySnapshot.empty) {
+                chatMessages.innerHTML = '<p style="text-align:center; color:#888;">No messages yet. Be the first!</p>';
+                return;
+            }
+
+            querySnapshot.forEach((doc) => displayMessage(doc.data()));
+            scrollToBottom();
+        });
+    }
+
+    async function initializeFirebase() {
+        try {
+            const app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            auth = getAuth(app);
+
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    userId = user.uid;
+                    setupMessageListener();
+                }
+            });
+
+            await signInAnonymously(auth);
+        } catch (error) {
+            console.error("Firebase fail:", error);
+            if (loadingSpinner) loadingSpinner.style.display = 'none';
+            chatMessages.innerHTML = '<p>Connection Error.</p>';
+        }
+    }
+
+    chatForm.addEventListener('submit', handleSendMessage);
+    initializeFirebase();
