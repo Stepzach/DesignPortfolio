@@ -278,7 +278,7 @@
             end: timeToMinutes(row[7]),
             rawStart: row[6],
             rawEnd: row[7],
-            host: row[8] || "LSR Presenter"
+            host: row[8] || "Leeds Student Radio"
         })).filter(s => s.start !== -1).sort((a, b) => a.start - b.start);
 
         let liveShow = null;
