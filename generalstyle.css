@@ -752,9 +752,9 @@ hr {
         @media (max-width: 768px) {
 
               .close-modal {
-    position: fixed !important;
-    top: 8% !important;
-    right: 10% !important;
+          top: 8px !important;
+        right: 8px !important;
+        background: none;
                         }
                .about-page-wrapper {
            
@@ -1467,8 +1467,14 @@ hr {
             .player-bar:before { border-radius: 0; }
             .player-section.up-next, .up-next-pill, .track-desc { display: none; }
             .thumbnail { width: 40px; height: 40px; }
-            .play-toggle { width: 42px; height: 42px; }
+            .play-toggle { width: 42px; height: 42px; margin: 2px;}
 
+              .player-bar {
+  
+  
+    padding: 8px 25px !important;
+  }
+      
             .main-nav { margin: 0; border: none; border-radius: 0; border-bottom: solid 2px #8f1818; background: var(--bg-body); }
             .nav-container { padding-top: 0; }
             .brand-logo { font-size: 1.4rem; }
