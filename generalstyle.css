@@ -3,6 +3,11 @@ overflow-x: auto;
 
     
 }
+hr {
+   
+    border: Solid 1px #8f1818;
+    margin: 15px;
+}
 
 /* Schedule Grid Styles */
 .schedule-grid {
