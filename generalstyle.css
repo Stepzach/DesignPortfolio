@@ -1491,6 +1491,10 @@ overflow-x: auto;
         border-radius: var(--radius-sm);
         background: #D62828 !important;
     }
+    .nav-menu .nav-link:hover {
+       
+        background: #e54747 !important;
+    }
 
               
             .nav-menu.active { opacity: 1; visibility: visible; transform: translateY(0); }
