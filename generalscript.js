@@ -460,6 +460,9 @@
                 if (url.includes('involved')) fetchApplyData();
                 if (url.includes('about')) fetchCommitteeData();
                 if (url.includes('listen') || url.includes('schedule')) fetchScheduleData();
+             if (url.includes('listen')) {
+                initChatSystem(); 
+            }
 
                 fetchScheduleData();
             }
@@ -485,6 +488,8 @@
     fetchApplyData();
     setInterval(fetchScheduleData, 180000);
 });
+
+
    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
     import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp, Timestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
@@ -499,7 +504,7 @@
     }; 
 
     let db, auth, userId, messagesCollection;
-
+function initChatSystem() {
     const chatMessages = document.getElementById('chat-messages');
     const chatForm = document.getElementById('chat-form');
     const displayNameInput = document.getElementById('display-name');
@@ -634,3 +639,4 @@
 
     chatForm.addEventListener('submit', handleSendMessage);
     initializeFirebase();
+}
