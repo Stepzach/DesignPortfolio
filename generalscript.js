@@ -445,7 +445,24 @@ box.appendChild(showsContainer);
         });
         setActiveDay(todayName);
     }
+function updateNavLinks() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-menu .nav-link');
 
+    navLinks.forEach(link => {
+        // Remove active class from all first
+        link.classList.remove('active');
+
+        // Get the href attribute (e.g., "/DesignPortfolio/listen.html")
+        const href = link.getAttribute('href');
+
+        // If the current URL path contains the href of the link, make it active
+        // This handles cases like 'listen.html' matching '/listen'
+        if (href && currentPath.includes(href.replace('.html', ''))) {
+            link.classList.add('active');
+        }
+    });
+}
     // --- 7. ROUTING & INIT ---
     async function loadPage(url) {
         try {
@@ -459,7 +476,8 @@ box.appendChild(showsContainer);
             if (newMain && currentMain) {
                 currentMain.innerHTML = newMain.innerHTML;
                 document.title = newDoc.title;
-
+updateNavLinks();
+             
                 if (navMenu && navMenu.classList.contains('active')) toggleMenu();
 
                 updatePlayButtons(!radioPlayer.paused);
