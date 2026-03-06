@@ -339,6 +339,66 @@ overflow-x: auto;
     overflow: hidden;
 }
 
+
+     /* Essential styles for the dynamic message list */
+        .chat-messages {
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 0px 15px;
+            width:100%;
+            height: auto; /* Adjust based on your design */
+        }
+        .message-entry {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            animation: fadeIn 0.3s ease;
+             font-size: 0.85rem;
+             color:whitesmoke;
+             font-family: 'Montserrat', sans-serif;
+        }
+        .message-icon {
+            background: #ff4b2b;
+            color: white;
+            min-width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        .message-timestamp {
+            font-size: 0.7rem;
+            color: #ffb7b7;
+            margin-right: 5px;
+        }
+        .message-author {
+        font-size: 1.05rem;
+            color: white;
+            font-weight: 800;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        #loading-spinner {
+            text-align: center;
+            padding: 20px;
+        }
+        .spinner-svg {
+            animation: rotate 2s linear infinite;
+            width: 30px;
+            height: 30px;
+            color: #ff4b2b;
+        }
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
 /* --- RESPONSIVE ADJUSTMENTS --- */
 
 @media (max-width: 1024px) {
