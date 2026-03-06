@@ -152,7 +152,7 @@ overflow-x: auto;
 .week-selector {
     display: inline-flex;
     background: rgba(255, 255, 255, 0.1);
-    padding: 5px;
+   
     border-radius: 50px;
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -167,10 +167,12 @@ overflow-x: auto;
     font-weight: bold;
     transition: 0.3s;
 }
-
+.day-title {
+    margin-bottom: 5px;
+      }
 .week-btn.active {
     background: var(--brand-dark);
-    box-shadow: 0 4px 15px rgba(255, 0, 85, 0.3);
+   
 }
 
 .week-indicator {
@@ -187,7 +189,7 @@ overflow-x: auto;
     /* justify-content: space-evenly; */ /* No longer needed with flex: 1 */
     width: 100%; /* Ensure container spans full width */
     padding: 5px;
-    gap: 8px; /* Your consistent gap */
+   
     position: sticky;
     top: 0; /* Sticky usually needs a top value to function */
     z-index: 20;
@@ -202,7 +204,8 @@ overflow-x: auto;
 .day-btn {
     flex: 1; /* Changed from 0 0 auto to allow resizing */
     min-width: 0; /* Crucial: allows flex items to shrink below their content width if needed */
-    padding: 8px 5px; /* Reduced side padding to handle smaller screens */
+   padding: 8px 3px;
+    font-size: 1rem;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     background: rgba(255, 255, 255, 0.05);
@@ -220,8 +223,8 @@ overflow-x: auto;
 .day-btn.active {
     background: var(--brand-dark);
     border-color: var(--brand-dark);
-    box-shadow: 0 4px 15px rgba(255, 0, 85, 0.4);
-    transform: translateY(-2px);
+   
+   
 }
 /* Live Pulse Indicator for Day Nav */
 .day-btn.is-today::after {
@@ -741,7 +744,11 @@ overflow-x: auto;
 
         @media (max-width: 768px) {
 
-
+.container-homepage {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 10px 0px;
+}
               main {
     padding: 10px 0 !important;
    
@@ -894,7 +901,7 @@ overflow-x: auto;
 
         .modal-content {
             background: #cb3131;
-            padding: 20px;
+            
             border-radius: 15px;
             border: 2px solid #111;
             max-width: 90%;
