@@ -719,18 +719,18 @@ overflow-x: auto;
         }
         
         .show-link {
-            display: inline-block;
-            border: 1px solid white;
-            border-radius: 8px;
-            padding: 8px 15px;
-            color: white;
-            text-decoration: none;
-            font-family: 'Open Sans', sans-serif;
-            font-size: 1.1rem;
-            transition: background-color 0.2s;
-            flex: 1 1 calc(50% - 15px);
-            box-sizing: border-box;
-            background-color: transparent;
+              display: inline-block;
+    border: 2px solid #8f1818;
+    border-radius: 8px;
+    padding: 8px 15px;
+    color: white;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1rem;
+    transition: background-color 0.2s;
+    flex: 1 1 calc(50% - 15px);
+    box-sizing: border-box;
+    background-color: rgb(160 43 43 / 33%);
         }
         
         .show-link:hover {
@@ -937,7 +937,7 @@ overflow-x: auto;
             background: #cb3131;
             
             border-radius: 15px;
-            border: 2px solid #111;
+            border: 2px solid #8f1818;
             
             max-height: 90vh;
             text-align: center;
