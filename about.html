@@ -368,7 +368,35 @@ function timeToMinutes(timeStr) {
     return parts[0] * 60 + parts[1];
 }
 
-// ... (keep your updateMediaSession function exactly as it is) ...
+function updateMediaSession(show) {
+            if ('mediaSession' in navigator) {
+                const title = show && show.title ? show.title : "No show live";
+                let artist = "Leeds Student Radio";
+                const defaultImage = "https://github.com/Leeds-student-radio/Lsr/blob/main/316c00_e270ed388b21449d9bdd56622dbeb4ec~mv2.jpg.webp?raw=true";
+                const artworkUrl = show && show.image ? show.image : defaultImage;
+
+                if (show && show.host) {
+                    const hostCount = show.host.split(/,|&|\band\b/i).length;
+                    if (hostCount <= 2 && show.host.length < 30) {
+                        artist = show.host.trim();
+                    }
+                }
+
+                navigator.mediaSession.metadata = new MediaMetadata({
+                    title: title,
+                    artist: artist,
+                  
+                    artwork: [
+                        { src: artworkUrl, sizes: '96x96', type: 'image/jpeg' },
+                        { src: artworkUrl, sizes: '128x128', type: 'image/jpeg' },
+                        { src: artworkUrl, sizes: '192x192', type: 'image/jpeg' },
+                        { src: artworkUrl, sizes: '256x256', type: 'image/jpeg' },
+                        { src: artworkUrl, sizes: '384x384', type: 'image/jpeg' },
+                        { src: artworkUrl, sizes: '512x512', type: 'image/jpeg' }
+                    ]
+                });
+            }
+        }
 
 async function fetchScheduleData() {
     try {
@@ -435,8 +463,8 @@ async function fetchScheduleData() {
             document.getElementById('live-now-img').src = liveShow.image;
             document.getElementById('live-now-desc').innerText = liveShow.description;
         } else {
-            document.getElementById('live-now-title').innerText = "LSR Jukebox";
-            document.getElementById('live-now-desc').innerText = "Non-stop student radio.";
+            document.getElementById('live-now-title').innerText = "No show live";
+            document.getElementById('live-now-desc').innerText = "Check the schedule page for more info.";
         }
 
         if (nextShow) {
