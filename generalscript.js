@@ -152,17 +152,22 @@
                 box.className = 'apply-box';
                 box.innerHTML = `<h3>${category}</h3>`;
 
-                const showsContainer = document.createElement('div');
-                showsContainer.className = 'shows-container';
-                shows.forEach(show => {
-                    const link = document.createElement('a');
-                    link.className = 'show-link';
-                    link.href = show.formLink;
-                    link.target = '_blank';
-                    link.innerText = `> ${show.showName}`;
-                    showsContainer.appendChild(link);
-                });
-                box.appendChild(showsContainer);
+               const showsContainer = document.createElement('div');
+showsContainer.className = 'shows-container';
+
+shows.forEach(show => {
+    const link = document.createElement('a');
+    link.className = 'show-link';
+    link.href = show.formLink;
+    link.target = '_blank';
+    
+    // Use innerHTML to render the Font Awesome icon tag
+    link.innerHTML = `<i class="fas fa-link"></i> ${show.showName}`;
+    
+    showsContainer.appendChild(link);
+});
+
+box.appendChild(showsContainer);
 
                 let footerText = `*Find out more about ${category} on our Instagram @thisislsr`;
                 const catLower = category.toLowerCase();
