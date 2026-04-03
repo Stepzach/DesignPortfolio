@@ -68,7 +68,7 @@ img{display:block;width:100%;height:100%;object-fit:cover;}
 /* ─── HERO ────────────────────────────────────── */
 .hero{
     position:relative;
-    min-height:92vh;
+    min-height:90vh;
     display:flex;
     align-items:flex-end;
     overflow:hidden;
@@ -107,7 +107,7 @@ img{display:block;width:100%;height:100%;object-fit:cover;}
     padding-left:12px;
 }
 
-.hero-content{position:relative;z-index:2;padding:60px 50px;width:100%;max-width:900px;}
+.hero-content{position:relative;z-index:2;padding:0px 50px;width:100%;max-width:900px;}
 
 .hero-kicker{
     display:inline-block;
@@ -122,7 +122,7 @@ img{display:block;width:100%;height:100%;object-fit:cover;}
     font-family:'Playfair Display',serif;
     font-size:clamp(3rem,7vw,6rem);
     font-weight:900;
-    line-height:1;
+    line-height:0.9;
     margin-bottom:24px;
     color:#fff;
     text-shadow:0 4px 20px rgba(0,0,0,0.4);
@@ -137,7 +137,7 @@ img{display:block;width:100%;height:100%;object-fit:cover;}
     font-size:1.15rem;
     color:rgba(255,255,255,0.85);
     max-width:520px;
-    line-height:1.7;
+    line-height:1.3;
     margin-bottom:36px;
 }
 
@@ -167,7 +167,7 @@ img{display:block;width:100%;height:100%;object-fit:cover;}
 @keyframes scroll-line{0%,100%{transform:scaleY(1);opacity:1;}50%{transform:scaleY(0.4);opacity:0.3;}}
 
 /* ─── SECTION SHARED ──────────────────────────── */
-section{padding:80px 20px;}
+section{padding:20px 20px;}
 .section-inner{max-width:var(--max);margin:0 auto;}
 
 .section-label{
@@ -432,7 +432,7 @@ section{padding:80px 20px;}
 .map-link:hover{background:#fff;transform:scale(1.04);}
 
 /* ─── CONTACT ──────────────────────────────────── */
-.contact{background:var(--deeper);}
+
 .contact .section-inner{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -632,7 +632,7 @@ section{padding:80px 20px;}
 @media(min-width:769px){.legalsmall{display:none;}}
 </style>
 </head>
-<body>
+<body style="isolation: isolate;">
 
 <!-- ─── NAV ──────────────────────────────────────── -->
 <div class="nav-container">
@@ -654,41 +654,34 @@ section{padding:80px 20px;}
 <section class="hero" id="home">
     <div class="hero-bg"></div>
 
-    <div class="hero-year">Est. 1994</div>
+    
     <div class="hero-badge"><i class="fas fa-star"></i>&nbsp; Leeds' Most Loved Sandwich Shop</div>
 
     <div class="hero-content">
         <div class="hero-kicker"><i class="fas fa-map-marker-alt"></i>&nbsp; 164 Woodhouse Lane · Leeds</div>
         <h1 class="hero-title serif">
-            Handcrafted<br>
-            with love,<br>
+            Ciabatta &amp;<br>focaccia<br>
             <em>since 1994.</em>
         </h1>
-        <p class="hero-sub">Gourmet ciabatta & focaccia sandwiches with bold Mediterranean and Middle Eastern flavours — baked fresh every morning, served under the big red canopy opposite the Parkinson Building.</p>
-        <div class="hero-ctas">
-            <a href="#whatwedo" class="btn btn-primary"><i class="fas fa-bread-slice"></i> Our Menu</a>
-            <a href="#contact" class="btn btn-outline"><i class="fas fa-phone"></i> Order & Catering</a>
-        </div>
+        <p class="hero-sub">Gourmet ciabatta &amp; focaccia sandwiches with bold Mediterranean and Middle Eastern flavours — baked fresh every morning, served under the big red canopy opposite the Parkinson Building.</p>
+        
     </div>
 
-    <div class="hero-scroll">
-        <span>Scroll</span>
-        <div class="hero-scroll-line"></div>
-    </div>
+    
 </section>
 
 <!-- ─── ETHOS ─────────────────────────────────────── -->
 <section class="ethos" id="ethos">
     <div class="section-inner">
-        <div class="ethos-text reveal">
+        <div class="ethos-text reveal in-view">
             <div class="section-label"><i class="fas fa-seedling"></i> Our Ethos</div>
             <h2 class="section-heading serif">Food made from<em> local suppliers.</em></h2>
             <p class="section-body">We believe a great sandwich starts long before the filling. It begins with flour, water, time, and respect. Everything we make — our bread, our coffee, our sandwiches — is crafted with the same attention a baker gives their craft: slowly, thoughtfully, and with genuine care for the person eating it.</p>
-            <p class="tagline handwritten">"Real food, real people,<br>real Leeds since 1994."</p>
+            
         </div>
 
         <div class="ethos-cards">
-            <div class="ethos-card reveal reveal-delay-1">
+            <div class="ethos-card reveal reveal-delay-1 in-view">
                 <img src="https://bakery164.com/wp-content/uploads/Sandwich-of-the-Week-21-26-October-at-Cafe-164-Leeds.jpg" alt="Our Sandwiches" loading="lazy">
                 <div class="ethos-card-body">
                     <div class="ethos-card-icon"><i class="fas fa-drumstick-bite"></i></div>
@@ -698,7 +691,7 @@ section{padding:80px 20px;}
 </p>
                 </div>
             </div>
-            <div class="ethos-card reveal reveal-delay-2">
+            <div class="ethos-card reveal reveal-delay-2 in-view">
                 <img src="https://bakery164.com/wp-content/uploads/164_074A6886e_2018-300x300.jpg" alt="Our Bread" loading="lazy">
                 <div class="ethos-card-body">
                     <div class="ethos-card-icon"><i class="fas fa-bread-slice"></i></div>
@@ -706,7 +699,7 @@ section{padding:80px 20px;}
                     <p class="ethos-card-desc">Our craft is handmade ciabatta and focaccia bread, which we make every night in our bakery.</p>
                 </div>
             </div>
-            <div class="ethos-card reveal reveal-delay-3">
+            <div class="ethos-card reveal reveal-delay-3 in-view">
                 <img src="https://bakery164.com/wp-content/uploads/164_074A9823e_2018-300x300.jpg" alt="Our Coffee" loading="lazy">
                 <div class="ethos-card-body">
                     <div class="ethos-card-icon"><i class="fas fa-coffee"></i></div>
@@ -725,12 +718,12 @@ section{padding:80px 20px;}
 <!-- ─── WHAT WE DO ───────────────────────────────── -->
 <section class="whatwedo" id="whatwedo">
     <div class="section-inner">
-        <div class="reveal">
+        <div class="reveal in-view">
             <div class="section-label"><i class="fas fa-layer-group"></i> What We Do</div>
             <h2 class="section-heading serif">More than <em>a sandwich.</em></h2>
         </div>
 
-        <div class="whatwedo-tabs reveal">
+        <div class="whatwedo-tabs reveal in-view">
             <button class="tab-btn active" data-tab="bakery"><i class="fas fa-bread-slice"></i>&nbsp; The Bakery</button>
             <button class="tab-btn" data-tab="students"><i class="fas fa-graduation-cap"></i>&nbsp; Students</button>
             <button class="tab-btn" data-tab="sandwiches"><i class="fas fa-lightbulb"></i>&nbsp; Sandwich Ideas</button>
@@ -739,12 +732,12 @@ section{padding:80px 20px;}
         <!-- Bakery Tab -->
         <div class="tab-panel active" id="tab-bakery">
             <div class="bakery-panel">
-                <div class="bakery-img reveal">
+                <div class="bakery-img reveal in-view">
                     <img src="https://bakery164.com/wp-content/uploads/164_074A9792e_2018.jpg" alt="Freshly baked ciabatta and focaccia at Bakery 164" loading="lazy">
                 </div>
-                <div class="bakery-text reveal reveal-delay-1">
+                <div class="bakery-text reveal reveal-delay-1 in-view">
                     <div class="section-label"><i class="fas fa-fire"></i> Baked In-House</div>
-                    <h3 class="section-heading serif">Ciabatta & <em>Focaccia.</em></h3>
+                    <h3 class="section-heading serif">Ciabatta &amp; <em>Focaccia.</em></h3>
                     <p class="section-body">Every loaf we use starts in our own kitchen. Our ciabatta is airy, chewy, and perfectly crisped — our focaccia is pillowy, herb-kissed and drizzled with good olive oil. Both are baked fresh each morning so that by the time you're hungry, your bread is at its best.</p>
                     <p class="section-body" style="margin-top:16px;">We don't compromise on the foundation. Because a great sandwich deserves great bread.</p>
                     <div class="bread-types">
@@ -761,14 +754,14 @@ section{padding:80px 20px;}
             <div class="students-panel">
                 <div class="student-card reveal">
                     <div class="student-card-icon">🎉</div>
-                    <h3 class="student-card-title serif">Events & <em>Pop-Ups</em></h3>
+                    <h3 class="student-card-title serif">Events &amp; <em>Pop-Ups</em></h3>
                     <p class="student-card-body">We love being part of Leeds student life. From freshers' week pop-ups to society events, we bring the same quality food we serve daily to your campus moments. Get in touch and let's make your event a little more delicious.</p>
                     <br>
                     <a href="#contact" class="btn btn-outline" style="width:fit-content;padding:10px 22px;font-size:0.8rem;">Talk to us <i class="fas fa-arrow-right" style="margin-left:6px;"></i></a>
                 </div>
                 <div class="student-card reveal reveal-delay-1">
                     <div class="student-card-icon">🤝</div>
-                    <h3 class="student-card-title serif">Sponsorship & <em>Partnerships</em></h3>
+                    <h3 class="student-card-title serif">Sponsorship &amp; <em>Partnerships</em></h3>
                     <p class="student-card-body">We're proud neighbours of the University of Leeds. If you're a student society, sports team, or media group looking for a local food sponsor, we'd love to hear from you. We support the people who make this city great.</p>
                     <br>
                     <a href="#contact" class="btn btn-outline" style="width:fit-content;padding:10px 22px;font-size:0.8rem;">Sponsor enquiry <i class="fas fa-arrow-right" style="margin-left:6px;"></i></a>
@@ -819,10 +812,10 @@ section{padding:80px 20px;}
 <section class="location" id="location">
     <div class="section-inner">
         <div class="location-info">
-            <div class="section-label reveal"><i class="fas fa-map-marker-alt"></i> Find Us</div>
-            <h2 class="section-heading serif reveal">Right opposite <em>Parkinson.</em></h2>
+            <div class="section-label reveal in-view"><i class="fas fa-map-marker-alt"></i> Find Us</div>
+            <h2 class="section-heading serif reveal in-view">Right opposite <em>Parkinson.</em></h2>
 
-            <div class="info-block reveal">
+            <div class="info-block reveal in-view">
                 <div class="info-block-title"><i class="fas fa-location-dot"></i> Address</div>
                 <address>
                     164 Woodhouse Lane<br>
@@ -831,10 +824,10 @@ section{padding:80px 20px;}
                 </address>
             </div>
 
-            <div class="info-block reveal">
+            <div class="info-block reveal in-view">
                 <div class="info-block-title"><i class="fas fa-clock"></i> Opening Times</div>
                 <div class="hours-row">
-                    <span class="hours-day">Monday <span class="today-badge">Today</span></span>
+                    <span class="hours-day">Monday </span>
                     <span class="hours-time">7:00 am – 6:00 pm</span>
                 </div>
                 <div class="hours-row">
@@ -850,7 +843,7 @@ section{padding:80px 20px;}
                     <span class="hours-time">7:00 am – 6:00 pm</span>
                 </div>
                 <div class="hours-row">
-                    <span class="hours-day">Friday</span>
+                    <span class="hours-day">Friday<span class="today-badge">Today</span></span>
                     <span class="hours-time">7:00 am – 6:00 pm</span>
                 </div>
                 <div class="hours-row">
@@ -863,19 +856,14 @@ section{padding:80px 20px;}
                 </div>
             </div>
 
-            <div class="info-block reveal">
+            <div class="info-block reveal in-view">
                 <div class="info-block-title"><i class="fas fa-bus"></i> Getting Here</div>
                 <p>We're directly on Woodhouse Lane opposite the iconic Parkinson Building at the University of Leeds. Look for the big red canopy — you can't miss us. Bus stops 1, 2 and 28 stop right outside.</p>
             </div>
         </div>
 
-        <div class="map-wrapper reveal reveal-delay-1">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2356.543810041088!2d-1.556688584167!3d53.80677298008684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48795c1d9b2d1c83%3A0x6a4b3c8e1f2d9c0a!2sBakery%20164!5e0!3m2!1sen!2suk!4v1680000000000!5m2!1sen!2suk"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                title="Bakery 164 on Google Maps">
+        <div class="map-wrapper reveal reveal-delay-1 in-view">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2356.543810041088!2d-1.556688584167!3d53.80677298008684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48795c1d9b2d1c83%3A0x6a4b3c8e1f2d9c0a!2sBakery%20164!5e0!3m2!1sen!2suk!4v1680000000000!5m2!1sen!2suk" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Bakery 164 on Google Maps">
             </iframe>
             <div class="map-footer">
                 <div>
@@ -893,11 +881,11 @@ section{padding:80px 20px;}
 <section class="contact" id="contact">
     <div class="section-inner">
         <div class="contact-text">
-            <div class="section-label reveal"><i class="fas fa-phone"></i> Get In Touch</div>
-            <h2 class="section-heading serif reveal">Catering, delivery & <em>everything else.</em></h2>
-            <p class="section-body reveal">Whether you're feeding ten people at a meeting or two hundred at a conference, we bring the same Bakery 164 quality to your event. Bespoke menus, freshly made platters, and flexible delivery across Leeds.</p>
+            <div class="section-label reveal in-view"><i class="fas fa-phone"></i> Get In Touch</div>
+            <h2 class="section-heading serif reveal in-view">Catering, delivery &amp; <em>everything else.</em></h2>
+            <p class="section-body reveal in-view">Whether you're feeding ten people at a meeting or two hundred at a conference, we bring the same Bakery 164 quality to your event. Bespoke menus, freshly made platters, and flexible delivery across Leeds.</p>
 
-            <div class="contact-cards reveal">
+            <div class="contact-cards reveal in-view">
                 <div class="contact-card">
                     <div class="contact-card-icon">🍱</div>
                     <div class="contact-card-title">Catering</div>
@@ -920,7 +908,7 @@ section{padding:80px 20px;}
                 </div>
             </div>
 
-            <a href="tel:+441132456789" class="phone-block reveal">
+            <a href="tel:+441132456789" class="phone-block reveal in-view">
                 <div class="phone-icon"><i class="fas fa-phone"></i></div>
                 <div>
                     <div class="phone-label">Call Us Directly</div>
@@ -928,14 +916,14 @@ section{padding:80px 20px;}
                 </div>
             </a>
 
-            <div style="display:flex;gap:14px;flex-wrap:wrap;" class="reveal">
+            <div style="display:flex;gap:14px;flex-wrap:wrap;" class="reveal in-view">
                 <a href="https://www.instagram.com/bakery164/" target="_blank" class="btn btn-outline" style="gap:10px;"><i class="fab fa-instagram" style="font-size:1.2rem;"></i> @bakery164</a>
                 <a href="mailto:hello@bakery164.com" class="btn btn-primary" style="gap:10px;"><i class="fas fa-envelope"></i> hello@bakery164.com</a>
             </div>
         </div>
 
-        <div class="contact-visual reveal reveal-delay-1">
-            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/60/82/57/bakery-164-in-leeds-2018.jpg?w=1200&h=1200&s=1" alt="Inside Bakery 164" loading="lazy">
+        <div class="contact-visual reveal reveal-delay-1 in-view">
+            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/60/82/57/bakery-164-in-leeds-2018.jpg?w=1200&amp;h=1200&amp;s=1" alt="Inside Bakery 164" loading="lazy">
             <div class="contact-visual-tag">
                 <p class="handwritten">"Drop in, say hello and let us make you something <span>delicious.</span> That's what we're here for."</p>
             </div>
@@ -981,13 +969,68 @@ section{padding:80px 20px;}
         </div>
         <div class="footer-col col-info">
             <p class="info-text">Bakery 164 is a renowned gourmet sandwich shop located in Leeds, directly opposite the University of Leeds' Parkinson Building.<br><br>
-            <a href="https://stephenszachary.com" target="_blank" class="disclaimer-link">Website by: <u>Zach</u></a><br>
-            <a href="/legal" class="zach"><u>Privacy &amp; Terms of Use</u></a></p>
+            <br>
+            </p>
         </div>
     </div>
-    <div class="copyright">&copy; Bakery 164 &nbsp;·&nbsp; <a href="/legal" class="legalsmall">Privacy &amp; Terms of Use</a></div>
+    <div class="copyright">© Bakery 164 &nbsp;·&nbsp; <a href="/legal" class="legalsmall">Privacy &amp; Terms of Use</a></div>
 </footer>
 
+<script>
+// Mobile nav toggle
+const mobileBtn = document.querySelector('.mobile-toggle');
+const navMenu   = document.querySelector('.nav-menu');
+const navIcon   = mobileBtn?.querySelector('i');
+if(mobileBtn){
+    mobileBtn.addEventListener('click',()=>{
+        const isActive = navMenu.classList.toggle('active');
+        if(navIcon) navIcon.classList.replace(isActive?'fa-bars':'fa-times', isActive?'fa-times':'fa-bars');
+    });
+}
+// Close menu on nav link click
+document.querySelectorAll('.nav-menu .nav-link').forEach(l=>l.addEventListener('click',()=>{
+    navMenu.classList.remove('active');
+    if(navIcon){navIcon.classList.replace('fa-times','fa-bars');}
+}));
+
+// Tabs
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+        document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+        btn.classList.add('active');
+        const panel = document.getElementById('tab-'+btn.dataset.tab);
+        if(panel){
+            panel.classList.add('active');
+            // re-trigger reveals inside panel
+            panel.querySelectorAll('.reveal').forEach(el=>{ el.classList.remove('in-view'); setTimeout(()=>el.classList.add('in-view'),50); });
+        }
+    });
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in-view'); });
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// Dynamic "Today" badge
+(function(){
+    const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const today=days[new Date().getDay()];
+    document.querySelectorAll('.hours-day').forEach(el=>{
+        if(el.textContent.trim().startsWith(today)){
+            let badge=el.querySelector('.today-badge');
+            if(!badge){badge=document.createElement('span');badge.className='today-badge';badge.textContent='Today';el.appendChild(badge);}
+        } else {
+            const b=el.querySelector('.today-badge');if(b)b.remove();
+        }
+    });
+})();
+</script>
+
+
+<div id="thunderbit-crx-side-bar" style="display:block;opacity:1;pointer-events:all;top:0;right:0;z-index:9007199254740991;position:fixed;pointer-events:none;user-select:none;"></div><button id="open-side-panel" style="width:0;height:0;opacity:0;user-select:none;pointer-events:all;position:absolute;bottom:0;right:0;padding:0;border:0;outline:none;"></button></body>
 <script>
 // Mobile nav toggle
 const mobileBtn = document.querySelector('.mobile-toggle');
