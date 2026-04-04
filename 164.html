@@ -357,7 +357,7 @@ section { padding: 20px 40px; }
 .students-hero .section-inner {
     display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center;
 }
-.students-hero-img { overflow: hidden; border-radius: var(--radius-md);     max-height: 400px;
+.students-hero-img { overflow: hidden;      max-height: 400px;
     object-fit: cover;
     object-position: center; }
 .students-hero-text p { font-size: 1.05rem; color: var(--yellow); line-height: 1.5; margin-bottom: 20px; }
@@ -391,6 +391,7 @@ section { padding: 20px 40px; }
         "address map"
         "hours map"
         "getting map";
+        align-items: center;
 }
 .loc-head { grid-area: head; }
 .loc-address { grid-area: address; }
@@ -418,9 +419,9 @@ section { padding: 20px 40px; }
 }
 .map-wrapper {
     grid-area: map;
-    border-radius: var(--radius-md); overflow: hidden;
+    overflow: hidden;
     display: flex; flex-direction: column;
-    height: 100%;
+    height: 90%;
 }
 .map-wrapper iframe {
     width: 100%;
@@ -1168,12 +1169,12 @@ section { padding: 20px 40px; }
     <div class="section-inner">
         <div class="students-hero-text reveal in-view">
    
-            <h2 class="section-heading">Proud neighbours<br>of <span class="highlight">Leeds University</span></h2>
+            <h2 class="section-heading">164 ♡<br><span class="highlight">Leeds Students</span></h2>
             <p>We've been feeding students, lecturers, and staff opposite the Parkinson Building since 1994. If you go to the University of Leeds, we're your local — and we love it that way.</p>
             <p>Whether you need fuel between lectures, something special for your society event, or you're looking for a local brand to partner with, we'd love to hear from you.</p>
         </div>
         <div class="students-hero-img reveal reveal-delay-1 in-view">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Parkinson_Leeds_Uni_3_27_August_2017.jpg" alt="Bakery 164 outside the University of Leeds" loading="lazy">
+            <img src="https://pbs.twimg.com/media/DX8O0l6WAAECAZn.jpg" alt="Bakery 164 outside the University of Leeds" loading="lazy">
         </div>
     </div>
 </section>
@@ -1240,18 +1241,8 @@ section { padding: 20px 40px; }
     </div>
 </section>
 
-<!-- ─── STUDENT INSTAGRAM CALLOUT ──────────────── -->
-<section >
-    <div class="section-inner">
-        <div class="sandwiches-panel reveal in-view" style="max-width:700px; margin:0 auto;">
-            <h3 class="student-card-title">Tag us in <span class="highlight">your campus life.</span></h3>
-            <p class="section-body" style="font-size:0.95rem; margin-bottom:24px; text-align:center;">Show us where Bakery 164 ends up — library desk, lecture hall, park on a sunny day. Tag us on Instagram and you might get featured on our feed.</p>
-            <a href="https://www.instagram.com/bakery164/" target="_blank" class="insta-btn" style="margin-top:auto;">
-                <i class="fab fa-instagram"></i>bakery164
-            </a>
-        </div>
-    </div>
-</section>
+
+
 
 </div><!-- /page-students -->
 
