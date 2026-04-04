@@ -51,7 +51,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .hero .highlight { color: var(--yellow);  }
 
 /* ─── NAV ─────────────────────────────────────── */
-.nav-container { position: sticky; top: 0; z-index: 200; padding: 10px 20px 0; }
+.nav-container { position: sticky; top: 0; z-index: 200;}
 .main-nav {
     background: var(--yellow);
     height: var(--hh);
@@ -78,19 +78,21 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .hero {
     position: relative;
     min-height: 89vh;
-    display: flex;
-    align-items: flex-end;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--yellow);
     overflow: hidden;
     margin: 12px 20px 0;
     border-radius: 20px;
 }
 .hero-bg {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 55%, transparent 100%),
-                url('https://github.com/Stepzach/DesignPortfolio/blob/main/il_fullxfull.3674435107_8rx0%20(1).webp?raw=true') center/cover no-repeat;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: url('https://github.com/Stepzach/DesignPortfolio/blob/main/il_fullxfull.3674435107_8rx0%20(1).webp?raw=true') center/cover no-repeat;
     transition: transform 8s ease;
 }
-.hero:hover .hero-bg { transform: scale(1.03); }
+
 
 .hero-badge {
     position: absolute; top: 30px; left: 30px;
@@ -115,7 +117,8 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 .hero-content {
     position: relative; z-index: 2; padding: 60px 50px; width: 100%;
-    align-items: flex-end; display: flex; flex-direction: column;
+    background: var(--red);
+    display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
 }
 
 .hero-kicker {
@@ -133,11 +136,11 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
     line-height: 1;
     margin-bottom: 24px;
     color: var(--yellow); 
-    text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+   
 }
 
 .hero-sub {
-    font-size: 1.15rem; color: rgba(255,255,255,0.85);
+    font-size: 1.15rem; color: var(--yellow);
     max-width: 520px; line-height: 1.3;
 }
 
@@ -273,7 +276,7 @@ section { padding: 80px 20px; }
     font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0px;
     padding: 18px 20px; border-radius: var(--radius-pill); transition: var(--trans);
 }
-.insta-btn:hover { background: var(--dark-red); color: #fff; transform: scale(1.04); box-shadow: var(--shadow-xl); }
+.insta-btn:hover { color: #fff; transform: scale(1.01); }
 
 /* ─── LOCATION ─────────────────────────────────── */
 .location { background: var(--yellow); }
@@ -368,8 +371,8 @@ section { padding: 80px 20px; }
 .phone-label { font-size: 0.75rem; text-transform: uppercase; color: var(--red); margin-bottom: 4px; }
 .phone-number { font-size: 1.6rem; font-weight: 900; color: var(--red); }
 
-.contact-visual { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 3/4; }
-.contact-visual:hover img { transform: scale(1.04); }
+.contact-visual { position: relative; overflow: hidden; aspect-ratio: 4/4; max-height:500px; width:100%;}
+ 
 .contact-visual-tag {
     position: absolute; bottom: 24px; left: 24px; right: 24px;
     background: rgba(0,0,0,0.75); backdrop-filter: blur(10px);
@@ -377,14 +380,14 @@ section { padding: 80px 20px; }
 }
 .contact-visual-tag p { font-size: 1.1rem; font-weight: 600; font-style: italic; color: rgba(255,255,255,0.9); line-height: 1.4; }
 
-/* ─── FOOTER ───────────────────────────────────── */
+/* ─── FOOTER  ───────────────────────────────────── */
 .main-footer {
     margin: 0 0px 0px; padding: 32px 24px 16px;
-    color: var(--yellow);
-      background: var(--red); 
+    color: var(--red);
+      background: var(--yellow); 
 }
-.main-footer a { color: var(--yellow); }
-.main-footer a:hover { color: rgba(255,255,255,0.8); transform: translateX(3px); }
+.main-footer a { color: var(--red); }
+.main-footer a:hover { color: #e50f29bd; transform: translateX(3px); }
 .footer-grid {
     display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 30px; margin-bottom: 20px; padding-bottom: 25px;
     border-bottom: 1px solid rgba(255,255,255,0.1); align-items: start;
@@ -395,7 +398,7 @@ section { padding: 80px 20px; }
 .footer-col a { display: flex; align-items: center; gap: 8px; font-size: 1rem; transition: var(--trans); }
 .banner-text, .info-text { font-size: 1rem; text-align: center; }
 .copyright { text-align: center; font-size: 0.85rem; font-weight: 300; }
-.copyright a { color: rgba(255,255,255,0.7); }
+.copyright a { color: #e50f29bd; }
 .copyright a:hover { text-decoration: underline; }
 
 /* ─── ANIMATIONS & UTILITIES ───────────────────── */
@@ -407,6 +410,49 @@ section { padding: 80px 20px; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 
 /* ─── RESPONSIVE ───────────────────────────────── */
+@media(min-width: 800px) {
+    .ethos-text {
+
+    padding-right: 40px;
+    
+    }
+}
+
+/* NEW: Large Screen Layout for "What We Do" Cards */
+@media(min-width: 1101px) {
+    .whatwedo-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto 1fr auto;
+        column-gap: 30px;
+        row-gap: 20px;
+    }
+    .bakery-panel {
+        /* Unboxes the image and text to participate directly in the parent grid */
+        display: contents; 
+    }
+    .bakery-img {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        height: 100%;
+        width:100%;
+    }
+    .bakery-text {
+        grid-column: 2;
+        grid-row: 1;
+    }
+    .students-panel {
+        grid-column: 2;
+        grid-row: 2;
+        align-self: end; /* Pushes the cards to the bottom edge of the image height */
+    }
+    .sandwiches-panel {
+        grid-column: 1 / span 2;
+        grid-row: 3;
+        margin-top: 20px;
+    }
+}
+
 @media(max-width: 1100px) {
     .ethos .section-inner, .contact .section-inner, .footer-grid { grid-template-columns: 1fr; }
     
@@ -433,11 +479,26 @@ section { padding: 80px 20px; }
 
 @media(max-width: 768px) {
 
+.ethos {
+        scroll-margin-top: 35px; /* Adjust this number to push it higher/lower */
+    }
+    
+    .whatwedo {
+        scroll-margin-top: 50px; /* Adjust this number to push it higher/lower */
+    }
+    
+     .location {
+        scroll-margin-top: 50px; /* Adjust this number to push it higher/lower */
+    }
+    .contact {
+        scroll-margin-top: 50px; /* Adjust this number to push it higher/lower */
+    }
+    
 .nav-container {
 border-bottom: solid 1px var(--red);
 }
 .hero-sub { display:none; }
-.hero-content { align-items: flex-start; }
+.hero-content { align-items: flex-start; background: transparent; }
 .hero-title { line-height:0.85; font-size:2.2rem; }
 .hero-kicker { font-weight: 700; font-size: 0.7rem; padding: 5px 12px; letter-spacing: 0.5px; margin-bottom: 18px; }
 .hero { padding: 5px 0px 5px; }
@@ -471,7 +532,7 @@ border-bottom: solid 1px var(--red);
 }
      .nav-link img { margin-left:-20px !important; padding:0;  height: auto;  }
     .nav-link::after { display: none; }
-    .hero { margin: 0; border-radius: 0; min-height: 85vh; }
+    .hero { margin: 0; border-radius: 0; min-height: 85vh; display: flex; align-items: flex-start; background: transparent; }
     .hero-content { padding: 20px 24px; }
     .hero-year { display: none; }
     section { padding: 16px 16px; }
@@ -495,7 +556,6 @@ border-bottom: solid 1px var(--red);
     .ethos-card:nth-child(3) img { grid-column: 1; }
     .ethos-card:nth-child(3) .ethos-card-body { grid-column: 2; text-align: left; }
 
-.hero { display: flex; align-items: flex-start; }
 .hero-bg {
     position: absolute; inset: 0;
     background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.3) 55%, transparent 100%),
@@ -529,6 +589,7 @@ border-bottom: solid 1px var(--red);
         object-fit: cover;
     }
 }
+
 </style>
 </head>
 <body>
@@ -676,10 +737,7 @@ border-bottom: solid 1px var(--red);
         <!-- MOVED THE MAP BLOCK INTO THE MAIN FLOW FOR GRID MANAGEMENT -->
         <div class="map-wrapper loc-map reveal reveal-delay-1 in-view">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2356.543810041088!2d-1.556688584167!3d53.80677298008684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48795c1d9b2d1c83%3A0x6a4b3c8e1f2d9c0a!2sBakery%20164!5e0!3m2!1sen!2suk!4v1680000000000!5m2!1sen!2suk" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Bakery 164 on Google Maps"></iframe>
-            <div class="map-footer">
-                <div class="map-address">📍 164 Woodhouse Lane, Leeds LS2 9HB</div>
-                <a href="https://maps.google.com/?q=Bakery+164+Leeds" target="_blank" class="map-link">Open in Maps <i class="fas fa-external-link-alt" style="font-size:0.7rem;margin-left:4px;"></i></a>
-            </div>
+           
         </div>
 
         <div class="info-block loc-hours reveal in-view">
