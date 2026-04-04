@@ -8,7 +8,7 @@
     <meta name="description" content="Gourmet sandwiches, artisan bread and specialty coffee opposite the University of Leeds since 1994.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat&family=Gochi+Hand&family=Patrick+Hand&family=Permanent+Marker&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
@@ -84,7 +84,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .hero-bg {
     position: absolute; inset: 0;
     background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 55%, transparent 100%),
-                url('https://zacrosso.com/cdn/shop/products/il_fullxfull.3674435107_8rx0.jpg?v=1694629624&width=1946') center/cover no-repeat;
+                url('https://github.com/Stepzach/DesignPortfolio/blob/main/il_fullxfull.3674435107_8rx0%20(1).webp?raw=true') center/cover no-repeat;
     transition: transform 8s ease;
 }
 .hero:hover .hero-bg { transform: scale(1.03); }
@@ -301,7 +301,7 @@ section { padding: 80px 20px; }
 .hours-row:not(:last-child) { border-bottom: 1px solid rgba(255,255,255,0.08); }
 .hours-day { font-weight: 700; }
 .hours-time { color: var(--yellow); font-size: 0.95rem; }
-.hours-closed { color: rgba(205,50,50,0.9); font-weight: 700; }
+.hours-closed { color: rgb(255 183 94); font-weight: 700; }
 .today-badge {
     background: var(--yellow); color: var(--red); font-size: 0.65rem; font-weight: 900;
     padding: 2px 8px; border-radius: var(--radius-pill); text-transform: uppercase; margin-left: 8px;
@@ -355,7 +355,7 @@ section { padding: 80px 20px; }
     width: 54px; height: 54px; background: var(--yellow); color: var(--red);
     border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0;
 }
-.phone-label { font-size: 0.75rem; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 4px; }
+.phone-label { font-size: 0.75rem; text-transform: uppercase; color: var(--yellow); margin-bottom: 4px; }
 .phone-number { font-size: 1.6rem; font-weight: 900; color: var(--yellow); }
 
 .contact-visual { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 3/4; }
@@ -369,7 +369,7 @@ section { padding: 80px 20px; }
 
 /* ─── FOOTER ───────────────────────────────────── */
 .main-footer {
-    margin: 0 20px 20px; padding: 32px 24px 16px;
+    margin: 0 20px 0px; padding: 32px 24px 16px;
     color: var(--yellow);
 }
 .footer-grid {
@@ -432,13 +432,28 @@ section { padding: 80px 20px; }
     .nav-menu {
         position: absolute; top: 100%; left: 0; width: 100%;
         background: var(--red); flex-direction: column; align-items: flex-start;
-        padding: 15px 20px 25px; opacity: 0; visibility: hidden; transform: translateY(-10px);
+        padding: 15px 20px 25px; opacity: 0; visibility: hidden; transform: translateY(0px);
         border-bottom: 2px solid var(--yellow); box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         gap: 10px; transition: all 0.3s ease-in-out;
     }
     .nav-menu.active { opacity: 1; visibility: visible; transform: translateY(0); }
-    .nav-menu li { width: 100%; }
-    .nav-link { margin-left:-10px; }
+    .nav-menu li { 
+    width: 100%; 
+    border: solid 1px var(--yellow); 
+    border-radius: 12px;
+    padding: 0; /* Remove padding from LI */
+    overflow: hidden; /* Ensures the link corners don't overlap the border-radius */
+}
+
+.nav-link { 
+    color: var(--yellow) !important;
+    display: flex; /* Makes the anchor a flex container */
+    align-items: center; 
+    width: 100%; /* Spans full width of LI */
+    height: 100%; 
+    padding: 12px 20px; /* Move the padding here so the whole area is clickable */
+}
+     .nav-link img { margin-left:-20px !important; padding:0;  height: auto;  }
     .nav-link::after { display: none; }
     .hero { margin: 0; border-radius: 0; min-height: 85vh; }
     .hero-content { padding: 20px 24px; }
@@ -468,7 +483,7 @@ section { padding: 80px 20px; }
 .hero-bg {
     position: absolute; inset: 0;
     background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.3) 55%, transparent 100%),
-                url('https://zacrosso.com/cdn/shop/products/il_fullxfull.3674435107_8rx0.jpg?v=1694629624&width=1946') center/cover no-repeat;
+                url('https://github.com/Stepzach/DesignPortfolio/blob/main/il_fullxfull.3674435107_8rx0%20(1).webp?raw=true') center/cover no-repeat;
     transition: transform 8s ease;
 }
 .ethos-text { z-index:3; } 
@@ -542,21 +557,21 @@ section { padding: 80px 20px; }
 
         <div class="ethos-cards">
             <div class="ethos-card reveal reveal-delay-1 in-view">
-                <img src="https://bakery164.com/wp-content/uploads/Sandwich-of-the-Week-21-26-October-at-Cafe-164-Leeds.jpg" alt="Our Sandwiches" loading="lazy">
+                <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/Sandwich-of-the-Week-21-26-October-at-Cafe-164-Leeds%20(1).jpg?raw=true" alt="Our Sandwiches" loading="lazy">
                 <div class="ethos-card-body">
                     <h3 class="ethos-card-title">Sandwiches</h3>
                     <p class="ethos-card-desc">We specialise in sandwiches. Our range of fillings is vast, and we have a huge selection of vegetarian and vegan fillings.</p>
                 </div>
             </div>
             <div class="ethos-card reveal reveal-delay-2 in-view">
-                <img src="https://bakery164.com/wp-content/uploads/164_074A6886e_2018-300x300.jpg" alt="Our Bread" loading="lazy">
+                <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/164_074A6886e_2018-300x300%20(1).jpg?raw=true" alt="Our Bread" loading="lazy">
                 <div class="ethos-card-body">
                     <h3 class="ethos-card-title">Bread</h3>
                     <p class="ethos-card-desc">Our craft is handmade ciabatta and focaccia bread, which we make every night in our bakery.</p>
                 </div>
             </div>
             <div class="ethos-card reveal reveal-delay-3 in-view">
-                <img src="https://bakery164.com/wp-content/uploads/164_074A9823e_2018-300x300.jpg" alt="Our Coffee" loading="lazy">
+                <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/164_074A9823e_2018-300x300%20(1).jpg?raw=true" alt="Our Coffee" loading="lazy">
                 <div class="ethos-card-body">
                     <h3 class="ethos-card-title">Coffee</h3>
                     <p class="ethos-card-desc">We also serve Italian-style coffee, dark-roasted for traditional tastes.</p>
@@ -579,7 +594,7 @@ section { padding: 80px 20px; }
         <div class="whatwedo-content">
             <div class="bakery-panel">
                 <div class="bakery-img reveal in-view">
-                    <img src="https://bakery164.com/wp-content/uploads/164_074A9792e_2018.jpg" alt="Freshly baked ciabatta and focaccia at Bakery 164" loading="lazy">
+                    <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/164_074A9792e_2018%20(1).jpg?raw=true" alt="Freshly baked ciabatta and focaccia at Bakery 164" loading="lazy">
                 </div>
                 <div class="bakery-text reveal reveal-delay-1 in-view">
                     <h3 class="section-heading">Ciabatta &amp; <span class="highlight">Focaccia</span></h3>
@@ -605,7 +620,7 @@ section { padding: 80px 20px; }
 <!-- 👇 NEW IMAGE: Only visible on smaller screens 👇 -->
             <div class="mobile-sandwich-img reveal">
                 <!-- Feel free to swap this URL out with the specific image you want to use -->
-                <img src="https://bakery164.com/wp-content/uploads/Sandwich-of-the-Week-21-26-October-at-Cafe-164-Leeds.jpg" alt="Bakery 164 Special Sandwich" loading="lazy">
+                <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/Sandwich-of-the-Week-21-26-October-at-Cafe-164-Leeds%20(1).jpg?raw=true" alt="Bakery 164 Special Sandwich" loading="lazy">
             </div>
             
             <div class="sandwiches-panel reveal">
@@ -698,10 +713,8 @@ section { padding: 80px 20px; }
         </div>
 
         <div class="contact-visual reveal reveal-delay-1 in-view">
-            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/60/82/57/bakery-164-in-leeds-2018.jpg?w=1200&amp;h=1200&amp;s=1" alt="Inside Bakery 164" loading="lazy">
-            <div class="contact-visual-tag">
-                <p>"Drop in, say hello and let us make you something <span class="highlight">delicious.</span> That's what we're here for."</p>
-            </div>
+            <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/bakery-164-in-leeds-2018%20(1).jpg?raw=true" alt="Inside Bakery 164" loading="lazy">
+            
         </div>
     </div>
 </section>
@@ -747,36 +760,50 @@ section { padding: 80px 20px; }
 <script>
 // Mobile nav toggle
 const mobileBtn = document.querySelector('.mobile-toggle');
-const navMenu   = document.querySelector('.nav-menu');
-const navIcon   = mobileBtn?.querySelector('i');
-if(mobileBtn){
-    mobileBtn.addEventListener('click',()=>{
+const navMenu = document.querySelector('.nav-menu');
+const navIcon = mobileBtn?.querySelector('i');
+
+if (mobileBtn) {
+    mobileBtn.addEventListener('click', () => {
         const isActive = navMenu.classList.toggle('active');
-        if(navIcon) navIcon.classList.replace(isActive?'fa-bars':'fa-times', isActive?'fa-times':'fa-bars');
+        // FIXED: Corrected the order of class replacement
+        if (isActive) {
+            navIcon.classList.replace('fa-bars', 'fa-times');
+        } else {
+            navIcon.classList.replace('fa-times', 'fa-bars');
+        }
     });
 }
+
 // Close menu on nav link click
-document.querySelectorAll('.nav-menu .nav-link').forEach(l=>l.addEventListener('click',()=>{
-    navMenu.classList.remove('active');
-    if(navIcon){navIcon.classList.replace('fa-times','fa-bars');}
-}));
+document.querySelectorAll('.nav-menu .nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        if (navIcon) {
+            navIcon.classList.replace('fa-times', 'fa-bars');
+        }
+    });
+});
 
 // Scroll reveal
-const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in-view'); });
-},{threshold:0.12});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in-view'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // Dynamic "Today" badge
-(function(){
-    const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    const today=days[new Date().getDay()];
-    document.querySelectorAll('.hours-day').forEach(el=>{
-        if(el.textContent.trim().startsWith(today)){
-            let badge=el.querySelector('.today-badge');
-            if(!badge){badge=document.createElement('span');badge.className='today-badge';badge.textContent='Today';el.appendChild(badge);}
-        } else {
-            const b=el.querySelector('.today-badge');if(b)b.remove();
+(function() {
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const today = days[new Date().getDay()];
+    document.querySelectorAll('.hours-day').forEach(el => {
+        if (el.textContent.trim().startsWith(today)) {
+            let badge = el.querySelector('.today-badge');
+            if (!badge) {
+                badge = document.createElement('span');
+                badge.className = 'today-badge';
+                badge.textContent = 'Today';
+                el.appendChild(badge);
+            }
         }
     });
 })();
