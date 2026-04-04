@@ -270,10 +270,10 @@ section { padding: 20px 40px; }
          aspect-ratio: 6 / 5 !important;
     border: solid 1px var(--red);
 }
-.gallery-item:hover { transform: translateY(-6px); }
+
 
 .gallery-item img { transition: 0.8s ease; }
-.gallery-item:hover img { transform: scale(1.08); filter: brightness(0.8); }
+.gallery-item:hover img { transform: scale(1.01); }
 .gallery-caption {
     position: absolute; bottom: 0; left: 0; right: 0;
     background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, transparent 100%);
@@ -741,6 +741,65 @@ section { padding: 20px 40px; }
     .bakery-story .section-inner { grid-template-columns: 1fr; }
     .students-hero .section-inner { grid-template-columns: 1fr; }
 }
+
+    /* ─── INGREDIENTS GRAPHIC ─────────────────────── */
+.ingredients-section { 
+    background: var(--red); 
+    padding: 60px 0; 
+}
+
+/* Default Mobile Stack */
+.ingredients-inner { 
+    max-width: var(--max); 
+    margin: 0 auto; 
+    padding: 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Image hidden on mobile by default */
+.ingredients-image-side {
+    display: none;
+}
+
+/* The Graphic Box */
+.ingredients-graphic {
+    border: 1px solid var(--yellow); 
+    border-radius: 20px; 
+    overflow: hidden;
+    background: rgba(255,235,119,0.02);
+}
+
+/* DESKTOP LAYOUT (1101px and up) */
+@media(min-width: 1101px) {
+    .ingredients-inner {
+        flex-direction: row; /* Side by side */
+        align-items: stretch; /* Forces equal height */
+    }
+
+    /* Left Side (Image) */
+    .ingredients-image-side {
+        display: block;
+        flex: 1; /* Takes 50% */
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .ingredients-image-side img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Fills height perfectly */
+    }
+
+    /* Right Side (Content) */
+    .ingredients-content-side {
+        flex: 1; /* Takes 50% */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Centers text vertically */
+    }
+}
 </style>
 </head>
 <body>
@@ -1023,97 +1082,77 @@ section { padding: 20px 40px; }
 <!-- ─── INGREDIENTS GRAPHIC ─────────────────────── -->
 <section class="ingredients-section">
     <div class="ingredients-inner">
-        <div class="section-label reveal in-view"> No preservatives</div>
-        <h2 class="section-heading reveal in-view">Five ingredients.<br><span class="highlight">Thirty years.</span></h2>
-        <p class="section-body reveal in-view" style="margin-bottom: 40px;">Our bread contains just 5 ingredients. Our dough is hand mixed, and hand shaped into each individual sandwich, every day, by us.</p>
-
-        <div class="ingredients-graphic reveal in-view">
-
-            <div class="ingredient-row">
-                <div class="ingredient-pct">85<span style="font-size:1rem;">%</span></div>
-                <div class="ingredient-info">
-                    <h4>Flour</h4>
-                    <p>Strong white flour</p>
-                </div>
-                <div class="ingredient-bar-wrap">
-                    <div class="ingredient-bar" data-width="85" style="width:0%"></div>
-                </div>
-            </div>
-
-            <div class="ingredient-row">
-                <div class="ingredient-pct">6<span style="font-size:1rem;">%</span></div>
-                <div class="ingredient-info">
-                    <h4>Water</h4>
-                    <p>Good-old Yorkshire water</p>
-                </div>
-                <div class="ingredient-bar-wrap">
-                    <div class="ingredient-bar" data-width="6" style="width:0%"></div>
-                </div>
-            </div>
-
-            <div class="ingredient-row">
-                <div class="ingredient-pct">6<span style="font-size:1rem;">%</span></div>
-                <div class="ingredient-info">
-                    <h4>Olive Oil</h4>
-                    <p>Extra virgin olive oil</p>
-                </div>
-                <div class="ingredient-bar-wrap">
-                    <div class="ingredient-bar" data-width="6" style="width:0%"></div>
-                </div>
-            </div>
-
-            <div class="ingredient-row">
-                <div class="ingredient-pct">2<span style="font-size:1rem;">%</span></div>
-                <div class="ingredient-info">
-                    <h4>Yeast</h4>
-                    <p>Fresh yeast</p>
-                </div>
-                <div class="ingredient-bar-wrap">
-                    <div class="ingredient-bar" data-width="2" style="width:0%"></div>
-                </div>
-            </div>
-
-            <div class="ingredient-row">
-                <div class="ingredient-pct small">&lt;1<span style="font-size:0.8rem;">%</span></div>
-                <div class="ingredient-info">
-                    <h4>Sea Salt</h4>
-                    <p>A handful of sea salt</p>
-                </div>
-                <div class="ingredient-bar-wrap">
-                    <div class="ingredient-bar" data-width="1" style="width:0%"></div>
-                </div>
-            </div>
-
+        
+        <div class="ingredients-image-side reveal">
+            <img src="https://bakery164.com/wp-content/uploads/164_074A8707e_2018.jpg" alt="Fresh Bakery Ingredients">
         </div>
+
+        <div class="ingredients-content-side">
+            <div class="section-label reveal">No preservatives</div>
+            <h2 class="section-heading reveal">Five ingredients.<br></h2>
+            <p class="section-body reveal" style="margin-bottom: 30px;">Our bread contains just 5 ingredients. Our dough is hand mixed, and hand shaped into each individual sandwich, every day, by us.</p>
+
+            <div class="ingredients-graphic reveal">
+                <div class="ingredient-row">
+                    <div class="ingredient-pct">85<span style="font-size:1rem;">%</span></div>
+                    <div class="ingredient-info">
+                        <h4>Flour</h4>
+                        <p>Strong white flour</p>
+                    </div>
+                    <div class="ingredient-bar-wrap">
+                        <div class="ingredient-bar" data-width="85" style="width:0%"></div>
+                    </div>
+                </div>
+
+                <div class="ingredient-row">
+                    <div class="ingredient-pct">6<span style="font-size:1rem;">%</span></div>
+                    <div class="ingredient-info">
+                        <h4>Water</h4>
+                        <p>Good-old Yorkshire water</p>
+                    </div>
+                    <div class="ingredient-bar-wrap">
+                        <div class="ingredient-bar" data-width="6" style="width:0%"></div>
+                    </div>
+                </div>
+
+                <div class="ingredient-row">
+                    <div class="ingredient-pct">6<span style="font-size:1rem;">%</span></div>
+                    <div class="ingredient-info">
+                        <h4>Olive Oil</h4>
+                        <p>Extra virgin olive oil</p>
+                    </div>
+                    <div class="ingredient-bar-wrap">
+                        <div class="ingredient-bar" data-width="6" style="width:0%"></div>
+                    </div>
+                </div>
+
+                <div class="ingredient-row">
+                    <div class="ingredient-pct">2<span style="font-size:1rem;">%</span></div>
+                    <div class="ingredient-info">
+                        <h4>Yeast</h4>
+                        <p>Fresh yeast</p>
+                    </div>
+                    <div class="ingredient-bar-wrap">
+                        <div class="ingredient-bar" data-width="2" style="width:0%"></div>
+                    </div>
+                </div>
+
+                <div class="ingredient-row">
+                    <div class="ingredient-pct small">&lt;1<span style="font-size:0.8rem;">%</span></div>
+                    <div class="ingredient-info">
+                        <h4>Sea Salt</h4>
+                        <p>A handful of sea salt</p>
+                    </div>
+                    <div class="ingredient-bar-wrap">
+                        <div class="ingredient-bar" data-width="1" style="width:0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>
 
-<div class="section-divider"></div>
-
-<!-- ─── BAKERY IMAGES ───────────────────────────── -->
-<section class="bakery-images">
-    <div class="section-inner">
-        <div class="section-label reveal in-view"><i class="fas fa-camera"></i> Inside the Bakery</div>
-        <h2 class="section-heading reveal in-view">Where the <span class="highlight">magic happens.</span></h2>
-        <div class="bakery-img-grid">
-            <div class="bakery-img-item reveal in-view">
-                <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/bakery-164-in-leeds-2018%20(1).jpg?raw=true" alt="Bakery 164 exterior" loading="lazy">
-            </div>
-            <div class="bakery-img-item reveal reveal-delay-1 in-view">
-                <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/164_074A6886e_2018-300x300%20(1).jpg?raw=true" alt="Freshly baked bread" loading="lazy">
-            </div>
-            <div class="bakery-img-item reveal reveal-delay-2 in-view">
-                <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/164_074A9823e_2018-300x300%20(1).jpg?raw=true" alt="Coffee at Bakery 164" loading="lazy">
-            </div>
-            <div class="bakery-img-item reveal in-view">
-                <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/164_074A9792e_2018%20(1).jpg?raw=true" alt="Inside Bakery 164" loading="lazy">
-            </div>
-            <div class="bakery-img-item reveal reveal-delay-1 in-view">
-                <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/Sandwich-of-the-Week-21-26-October-at-Cafe-164-Leeds%20(1).jpg?raw=true" alt="Sandwich of the week" loading="lazy">
-            </div>
-        </div>
-    </div>
-</section>
 
 </div><!-- /page-bakery -->
 
