@@ -6,633 +6,455 @@
     <title>Bakery 164 – Leeds</title>
     <meta name="description" content="Gourmet sandwiches, artisan bread and specialty coffee opposite the University of Leeds since 1994.">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Montserrat:wght@400;600;700;900&family=Indie+Flower&family=Asap+Condensed:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 :root {
-    --red:      rgb(205, 50, 50);
-    --dark-red: rgb(205, 50, 50);
-    --deeper:   rgb(100, 18, 18);
-    --yellow:   rgb(255,255,102);
-    --cream:    #faf7f0;
-    --ink:      #1a1008;
-    --radius-sm:  6px;
-    --radius-md:  14px;
-    --radius-pill:50px;
-    --shadow:   0 6px 28px rgba(0,0,0,0.18);
-    --shadow-xl:0 20px 60px rgba(0,0,0,0.35);
-    --trans:    all 0.35s cubic-bezier(0.25,0.8,0.25,1);
-    --max:      1680px;
-    --hh:       58px;
+    --red: rgb(200 51 51 / 91%);
+    --dark-red: #A32424;
+    --deeper: #641212;
+    --yellow: #FFEB77;
+    --cream: #FAF7F0;
+    --ink: #1A1008;
+    --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --radius-sm: 6px;
+    --radius-md: 14px;
+    --radius-pill: 50px;
+    --shadow: 0 6px 28px rgba(0,0,0,0.18);
+    --shadow-xl: 0 20px 60px rgba(0,0,0,0.35);
+    --trans: all 0.3s ease;
+    --max: 1680px;
+    --hh: 58px;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:'Montserrat',sans-serif;background:var(--red);color:#fff;overflow-x:hidden;}
-a{text-decoration:none;color:inherit;transition:var(--trans);}
-ul{list-style:none;}
-img{display:block;width:100%;height:100%;object-fit:cover;}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { 
+    font-family: var(--font-main); 
+    background: var(--red); 
+    color: #fff; 
+    overflow-x: hidden; 
+    line-height: 1.2;
+}
+a { text-decoration: none; color: inherit; transition: var(--trans); }
+ul { list-style: none; }
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
-/* ─── TYPOGRAPHY ──────────────────────────────── */
-.serif       {font-family:'Playfair Display',serif;}
-.handwritten {font-family:'Indie Flower',cursive;}
-.condensed   {font-family:'Asap Condensed',sans-serif;}
+/* ─── TYPOGRAPHY HELPERS ──────────────────────── */
+.bold-italic { font-weight: 700; font-style: italic; }
+.highlight { color: var(--yellow); font-style: italic; }
 
 /* ─── NAV ─────────────────────────────────────── */
-.nav-container{position:sticky;top:0;z-index:200;padding:10px 20px 0;}
-.main-nav{
-    background:var(--yellow);
-    height:var(--hh);
-    border-radius:var(--radius-md);
-    box-shadow:0 4px 20px rgba(0,0,0,0.2);
+.nav-container { position: sticky; top: 0; z-index: 200; padding: 10px 20px 0; }
+.main-nav {
+    background: var(--yellow);
+    height: var(--hh);
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
-.nav-inner{
-    max-width:var(--max);
-    margin:0 auto;
-    padding:0 28px;
-    height:100%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.nav-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 28px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-.brand-logo{font-size:1.8rem;font-weight:900;color:var(--red);text-transform:uppercase;letter-spacing:0px;}
-.nav-menu{display:flex;gap:28px;align-items:center;}
-.nav-link{font-weight:700;font-size:1rem;text-transform:uppercase;color:var(--red);position:relative;padding:5px 0;}
-.nav-link::after{content:'';position:absolute;bottom:0;left:0;width:0;height:3px;background:var(--red);transition:var(--trans);}
-.nav-link:hover::after{width:100%;}
-.mobile-toggle{display:none;font-size:1.8rem;color:var(--red);cursor:pointer;}
+.brand-logo { font-size: 1.8rem; font-weight: 900; color: var(--red); text-transform: uppercase; }
+.nav-menu { display: flex; gap: 28px; align-items: center; }
+.nav-link { font-weight: 700; font-size: 1rem; text-transform: uppercase; color: var(--red); position: relative; padding: 5px 0; }
+.nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 3px; background: var(--red); transition: var(--trans); }
+.nav-link:hover::after { width: 100%; }
+.mobile-toggle { display: none; font-size: 1.8rem; color: var(--red); cursor: pointer; }
 
 /* ─── HERO ────────────────────────────────────── */
-.hero{
-    position:relative;
-    min-height:90vh;
-    display:flex;
-    align-items:flex-end;
-    overflow:hidden;
-    margin:12px 20px 0;
-    border-radius:20px;
+.hero {
+    position: relative;
+    min-height: 89vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    margin: 12px 20px 0;
+    border-radius: 20px;
 }
-.hero-bg{
-    position:absolute;inset:0;
-    background:
-        linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 55%, transparent 100%),
-        url('https://zacrosso.com/cdn/shop/products/il_fullxfull.3674435107_8rx0.jpg?v=1694629624&width=1946') center/cover no-repeat;
-    transition:transform 8s ease;
+.hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 55%, transparent 100%),
+                url('https://zacrosso.com/cdn/shop/products/il_fullxfull.3674435107_8rx0.jpg?v=1694629624&width=1946') center/cover no-repeat;
+    transition: transform 8s ease;
 }
-.hero:hover .hero-bg{transform:scale(1.03);}
+.hero:hover .hero-bg { transform: scale(1.03); }
 
-.hero-badge{
-    position:absolute;top:30px;right:30px;
-    background:var(--yellow);color:var(--red);
-    font-weight:900;font-size:0.75rem;
-    padding:8px 18px;border-radius:var(--radius-pill);
-    text-transform:uppercase;letter-spacing:1px;
-    animation:pulse-badge 3s ease-in-out infinite;
-    box-shadow:0 0 0 0 rgba(255,255,102,0.6);
+.hero-badge {
+    position: absolute; top: 30px; left: 30px;
+    background: var(--yellow); color: var(--red);
+    font-weight: 900; font-size: 0.75rem;
+    padding: 8px 18px; border-radius: var(--radius-pill);
+    text-transform: uppercase; letter-spacing: 1px;
+    animation: pulse-badge 3s ease-in-out infinite;
 }
-@keyframes pulse-badge{
-    0%,100%{box-shadow:0 0 0 0 rgba(255,255,102,0.6);}
-    50%{box-shadow:0 0 0 14px rgba(255,255,102,0);}
+@keyframes pulse-badge {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,102,0.6); }
+    50% { box-shadow: 0 0 0 14px rgba(255,255,102,0); }
 }
 
-.hero-year{
-    position:absolute;top:30px;left:30px;
-    font-family:'Playfair Display',serif;
-    font-style:italic;font-size:1.1rem;
-    color:rgba(255,255,255,0.7);
-    border-left:3px solid var(--yellow);
-    padding-left:12px;
+.hero-year {
+    position: absolute; top: 30px; left: 30px;
+    font-style: italic; font-size: 1.1rem; font-weight: bold;
+    color: rgba(255,255,255,0.7);
+    border-left: 3px solid var(--yellow);
+    padding-left: 12px;
 }
 
-.hero-content{position:relative;z-index:2;padding:0px 50px;width:100%;max-width:900px;}
-
-.hero-kicker{
-    display:inline-block;
-    background:var(--yellow);color:var(--red);
-    font-weight:900;font-size:0.8rem;
-    padding:5px 14px;border-radius:var(--radius-pill);
-    text-transform:uppercase;letter-spacing:2px;
-    margin-bottom:22px;
+.hero-content {
+    position: relative; z-index: 2; padding: 60px 50px; width: 100%;
+    align-items: flex-end; display: flex; flex-direction: column;
 }
 
-.hero-title{
-    font-family:'Playfair Display',serif;
-    font-size:clamp(3rem,7vw,6rem);
-    font-weight:900;
-    line-height:0.9;
-    margin-bottom:24px;
-    color:#fff;
-    text-shadow:0 4px 20px rgba(0,0,0,0.4);
-}
-.hero-title em{
-    font-style:italic;
-    color:var(--yellow);
-    display:block;
+.hero-kicker {
+    display: inline-block;
+    background: var(--yellow); color: var(--red);
+    font-weight: 900; font-size: 0.8rem;
+    padding: 5px 14px; border-radius: var(--radius-pill);
+    text-transform: uppercase; letter-spacing: 2px;
+    margin-bottom: 22px;
 }
 
-.hero-sub{
-    font-size:1.15rem;
-    color:rgba(255,255,255,0.85);
-    max-width:520px;
-    line-height:1.3;
-    margin-bottom:36px;
+.hero-title {
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 24px;
+    color: #fff;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
 
-.hero-ctas{display:flex;gap:16px;flex-wrap:wrap;}
-.btn{
-    display:inline-flex;align-items:center;gap:8px;
-    font-weight:800;font-size:0.9rem;text-transform:uppercase;letter-spacing:1px;
-    padding:14px 28px;border-radius:var(--radius-pill);
-    transition:var(--trans);cursor:pointer;border:none;
+.hero-sub {
+    font-size: 1.15rem; color: rgba(255,255,255,0.85);
+    max-width: 520px; line-height: 1.3;
 }
-.btn-primary{background:var(--yellow);color:var(--red);}
-.btn-primary:hover{background:#fff;transform:translateY(-2px);box-shadow:var(--shadow);}
-.btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.5);}
-.btn-outline:hover{background:rgba(255,255,255,0.15);border-color:#fff;transform:translateY(-2px);}
 
-.hero-scroll{
-    position:absolute;bottom:30px;right:50px;
-    display:flex;flex-direction:column;align-items:center;gap:8px;
-    font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;
-    color:rgba(255,255,255,0.6);
+.btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;
+    padding: 14px 28px; border-radius: var(--radius-pill);
+    transition: var(--trans); cursor: pointer; border: none;
 }
-.hero-scroll-line{
-    width:2px;height:50px;
-    background:linear-gradient(to bottom,rgba(255,255,255,0.6),transparent);
-    animation:scroll-line 1.8s ease-in-out infinite;
-}
-@keyframes scroll-line{0%,100%{transform:scaleY(1);opacity:1;}50%{transform:scaleY(0.4);opacity:0.3;}}
+.btn-primary { background: var(--yellow); color: var(--red); }
+.btn-primary:hover { background: #fff; transform: translateY(-2px); box-shadow: var(--shadow); }
+.btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.5); }
+.btn-outline:hover { background: rgba(255,255,255,0.15); border-color: #fff; transform: translateY(-2px); }
 
 /* ─── SECTION SHARED ──────────────────────────── */
-section{padding:20px 20px;}
-.section-inner{max-width:var(--max);margin:0 auto;}
+section { padding: 80px 20px; }
+.section-inner { max-width: var(--max); margin: 0 auto; }
 
-.section-label{
-    display:inline-flex;align-items:center;gap:10px;
-    background:var(--yellow);color:var(--red);
-    font-weight:900;font-size:0.75rem;text-transform:uppercase;letter-spacing:2px;
-    padding:6px 16px;border-radius:var(--radius-pill);
-    margin-bottom:20px;
+.section-label {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--yellow); color: var(--red);
+    font-weight: 900; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;
+    padding: 6px 16px; border-radius: var(--radius-pill);
+    margin-bottom: 20px;
 }
-.section-label i{font-size:0.9rem;}
-
-.section-heading{
-    font-family:'Playfair Display',serif;
-    font-size:clamp(2.2rem,5vw,4rem);
-    font-weight:900;line-height:1.05;
-    margin-bottom:16px;
+.section-heading {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 900; line-height: 1.05;
+    margin-bottom: 16px;
 }
-.section-heading em{font-style:italic;color:var(--yellow);}
-
-.section-body{
-    font-size:1.1rem;line-height:1.75;
-    color:rgba(255,255,255,0.8);
-    max-width:640px;
+.section-body {
+    font-size: 1.1rem; line-height: 1.75;
+    color: rgba(255,255,255,0.8);
+    max-width: 640px;
 }
 
 /* ─── ETHOS ────────────────────────────────────── */
-.ethos{background:var(--dark-red);}
-.ethos .section-inner{
-    display:grid;
-    grid-template-columns:1fr 1.8fr;
-    gap:60px;align-items:center;
-}
-.ethos-text .section-body{margin-top:20px;}
-.ethos-text .tagline{
-    font-family:'Indie Flower',cursive;
-    font-size:1.5rem;
-    color:var(--yellow);
-    margin-top:28px;
-    line-height:1.4;
-}
+.ethos { background: var(--red); }
+.ethos .section-inner {
+    display: grid; grid-template-columns: 1fr 1.8fr; gap: 60px; align-items: center; border:solid 2px var(--yellow); border-radius:10px; padding:15px 15px; background: rgb(218 71 71);
+} 
+.ethos-text .section-body { margin-top: 20px;  line-height:1.2; }
 
-.ethos-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-.ethos-card{
-    position:relative;
-    border-radius:var(--radius-md);
-    overflow:hidden;
-    aspect-ratio:3/4;
-    cursor:pointer;
-    border:2px solid rgba(255,255,102,0.2);
-    transition:var(--trans);
+.ethos-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.ethos-card {
+    position: relative; border-radius: var(--radius-md); overflow: hidden;
+    aspect-ratio: 3/4; cursor: pointer; border:1px solid var(--yellow);
+    transition: var(--trans); color: var(--yellow);
 }
-.ethos-card:hover{border-color:var(--yellow);transform:translateY(-6px);box-shadow:var(--shadow-xl);}
-.ethos-card img{transition:0.8s ease;}
-.ethos-card:hover img{transform:scale(1.06);filter:brightness(0.85);}
+.ethos-card:hover { border-color: var(--yellow); transform: translateY(-6px); }
+.ethos-card img { transition: 0.8s ease; }
+.ethos-card:hover img { transform: scale(1.06); filter: brightness(0.85); }
 
-.ethos-card-body{
-    position:absolute;inset:0;
-    background:linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
-    display:flex;flex-direction:column;justify-content:flex-end;
-    padding:22px 18px;
+.ethos-card-body {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 22px 18px;
 }
-.ethos-card-icon{
-    width:40px;height:40px;
-    background:var(--yellow);color:var(--red);
-    border-radius:50%;display:flex;align-items:center;justify-content:center;
-    font-size:1.1rem;margin-bottom:10px;
-    flex-shrink:0;
+.ethos-card-icon {
+    width: 40px; height: 40px;
+    background: var(--yellow); color: var(--red);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; margin-bottom: 10px; flex-shrink: 0;
 }
-.ethos-card-title{font-size:1.3rem;font-weight:800;margin-bottom:6px;}
-.ethos-card-desc{font-size:0.85rem;color:rgba(255,255,255,0.75);line-height:1.5;}
+.ethos-card-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 6px; }
+.ethos-card-desc { font-size: 0.85rem; color: rgba(255,255,255,0.75); line-height: 1.5; }
 
 /* ─── WHAT WE DO ──────────────────────────────── */
-.whatwedo{background:var(--red);}
+.whatwedo { background: var(--red); }
+.whatwedo-tabs { display: flex; gap: 10px; margin-bottom: 50px; flex-wrap: wrap; }
+.tab-btn {
+    font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;
+    padding: 10px 24px; border-radius: var(--radius-pill);
+    border: 2px solid rgba(255,255,255,0.3);
+    color: #fff; cursor: pointer; background: transparent;
+    transition: var(--trans); font-family: inherit;
+}
+.tab-btn.active, .tab-btn:hover { background: var(--yellow); color: var(--red); border-color: var(--yellow); }
 
-.whatwedo-tabs{display:flex;gap:10px;margin-bottom:50px;flex-wrap:wrap;}
-.tab-btn{
-    font-weight:800;font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;
-    padding:10px 24px;border-radius:var(--radius-pill);
-    border:2px solid rgba(255,255,255,0.3);
-    color:#fff;cursor:pointer;background:transparent;
-    transition:var(--trans);
-}
-.tab-btn.active,.tab-btn:hover{background:var(--yellow);color:var(--red);border-color:var(--yellow);}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
 
-.tab-panel{display:none;}
-.tab-panel.active{display:block;}
+.bakery-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; }
+.bakery-img {
+    border-radius: var(--radius-md); overflow: hidden; aspect-ratio: 4/3;
+    border: 3px solid rgba(255,255,102,0.3); position: relative;
+}
+.bakery-text .section-heading { font-size: clamp(2rem, 4vw, 3.2rem); }
+.bread-types { display: flex; gap: 14px; margin-top: 10px; flex-wrap: wrap; }
+.bread-chip {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25);
+    padding: 10px 18px; border-radius: var(--radius-pill);
+    font-weight: 700; font-size: 0.9rem; transition: var(--trans); cursor: default;
+}
+.bread-chip:hover { background: var(--yellow); color: var(--red); }
+.bread-chip i { font-size: 1rem; color: var(--yellow); }
+.bread-chip:hover i { color: var(--red); }
 
-/* Bakery panel */
-.bakery-panel{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:30px;align-items:center;
+.students-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.student-card {
+    background: rgba(0,0,0,0.25); border: 2px solid rgba(255,255,102,0.2);
+    border-radius: var(--radius-md); padding: 36px 32px;
+    transition: var(--trans); position: relative; overflow: hidden;
 }
-.bakery-img{
-    border-radius:var(--radius-md);
-    overflow:hidden;
-    aspect-ratio:4/3;
-    border:3px solid rgba(255,255,102,0.3);
-    position:relative;
-}
-.bakery-img::after{
-    content:'';position:absolute;inset:0;
-    background:linear-gradient(135deg,rgba(205,50,50,0.15) 0%,transparent 60%);
-    pointer-events:none;
-}
-.bakery-text .section-label{margin-bottom:16px;}
-.bakery-text .section-heading{font-size:clamp(2rem,4vw,3.2rem);}
-.bakery-text .section-body{margin:16px 0 28px;}
+.student-card:hover { border-color: var(--yellow); transform: translateY(-4px); }
+.student-card-icon { font-size: 2.2rem; margin-bottom: 20px; }
+.student-card-title { font-size: 1.5rem; font-weight: 900; margin-bottom: 12px; }
+.student-card-body { font-size: 0.95rem; color: rgba(255,255,255,0.8); }
 
-.bread-types{display:flex;gap:14px;margin-top:10px;flex-wrap:wrap;}
-.bread-chip{
-    display:flex;align-items:center;gap:8px;
-    background:rgba(255,255,255,0.1);
-    border:1px solid rgba(255,255,255,0.25);
-    padding:10px 18px;border-radius:var(--radius-pill);
-    font-weight:700;font-size:0.9rem;
-    transition:var(--trans);cursor:default;
+.sandwiches-panel {
+    background: rgba(0,0,0,0.2); border: 2px dashed rgba(255,255,102,0.4);
+    border-radius: 20px; padding: 56px; text-align: center;
 }
-.bread-chip:hover{background:var(--yellow);color:var(--red);}
-.bread-chip i{font-size:1rem;color:var(--yellow);}
-.bread-chip:hover i{color:var(--red);}
-
-/* Students panel */
-.students-panel{display:grid;grid-template-columns:1fr 1fr;gap:30px;}
-.student-card{
-    background:rgba(0,0,0,0.25);
-    border:2px solid rgba(255,255,102,0.2);
-    border-radius:var(--radius-md);
-    padding:36px 32px;
-    transition:var(--trans);
-    position:relative;
-    overflow:hidden;
+.sandwiches-panel .section-heading { font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 16px; }
+.sandwiches-panel .section-body { margin: 0 auto 36px; text-align: center; font-size: 1.15rem; }
+.sandwich-steps { display: flex; justify-content: center; gap: 30px; margin-bottom: 40px; flex-wrap: wrap; }
+.sandwich-step { display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 0 0 160px; }
+.step-num {
+    width: 52px; height: 52px; background: var(--yellow); color: var(--red);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 1.3rem;
 }
-.student-card::before{
-    content:'';position:absolute;top:-40px;right:-40px;
-    width:120px;height:120px;
-    background:rgba(255,255,102,0.05);
-    border-radius:50%;
-    transition:var(--trans);
+.step-label { font-size: 0.85rem; font-weight: 700; text-align: center; }
+.insta-btn {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--yellow); color: var(--red);
+    font-weight: 900; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;
+    padding: 18px 40px; border-radius: var(--radius-pill); transition: var(--trans);
 }
-.student-card:hover{border-color:var(--yellow);transform:translateY(-4px);}
-.student-card:hover::before{transform:scale(2.5);}
-.student-card-icon{font-size:2.2rem;margin-bottom:20px;}
-.student-card-title{font-size:1.5rem;font-weight:900;margin-bottom:12px;}
-.student-card-body{font-size:0.95rem;line-height:1.7;color:rgba(255,255,255,0.8);}
-
-/* Sandwiches panel */
-.sandwiches-panel{
-    background:rgba(0,0,0,0.2);
-    border:2px dashed rgba(255,255,102,0.4);
-    border-radius:20px;
-    padding:56px;
-    text-align:center;
-    position:relative;
-    overflow:hidden;
-}
-.sandwich-deco{
-    position:absolute;
-    font-size:10rem;opacity:0.04;
-    pointer-events:none;
-}
-.sandwich-deco.left{left:-20px;top:50%;transform:translateY(-50%);}
-.sandwich-deco.right{right:-20px;top:50%;transform:translateY(-50%);}
-
-.sandwiches-panel .section-heading{font-size:clamp(2rem,4vw,3.5rem);margin-bottom:16px;}
-.sandwiches-panel .section-body{margin:0 auto 36px;text-align:center;font-size:1.15rem;}
-.sandwich-steps{
-    display:flex;justify-content:center;gap:30px;
-    margin-bottom:40px;flex-wrap:wrap;
-}
-.sandwich-step{
-    display:flex;flex-direction:column;align-items:center;gap:10px;
-    flex:0 0 160px;
-}
-.step-num{
-    width:52px;height:52px;
-    background:var(--yellow);color:var(--red);
-    border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    font-weight:900;font-size:1.3rem;
-}
-.step-label{font-size:0.85rem;font-weight:700;text-align:center;line-height:1.4;}
-.insta-btn{
-    display:inline-flex;align-items:center;gap:12px;
-    background:var(--yellow);color:var(--red);
-    font-weight:900;font-size:1.1rem;text-transform:uppercase;letter-spacing:1px;
-    padding:18px 40px;border-radius:var(--radius-pill);
-    transition:var(--trans);
-}
-.insta-btn i{font-size:1.4rem;}
-.insta-btn:hover{background:#fff;transform:scale(1.04);box-shadow:var(--shadow-xl);}
+.insta-btn:hover { background: #fff; transform: scale(1.04); box-shadow: var(--shadow-xl); }
 
 /* ─── LOCATION ─────────────────────────────────── */
-.location{background:var(--dark-red);}
-.location .section-inner{
-    display:grid;
-    grid-template-columns:1fr 1.6fr;
-    gap:50px;align-items:start;
+.location { background: var(--red); }
+.location .section-inner { display: grid; grid-template-columns: 1fr 1.6fr; gap: 50px; align-items: start; }
+.info-block {
+    background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,102,0.2);
+    border-radius: var(--radius-md); padding: 24px; margin-bottom: 18px;
 }
-.location-info{}
-.location-info .section-heading{margin-bottom:30px;}
-
-.info-block{
-    background:rgba(0,0,0,0.25);
-    border:1px solid rgba(255,255,102,0.2);
-    border-radius:var(--radius-md);
-    padding:24px;
-    margin-bottom:18px;
+.info-block-title {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 900; font-size: 0.85rem; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--yellow); margin-bottom: 14px;
 }
-.info-block-title{
-    display:flex;align-items:center;gap:10px;
-    font-weight:900;font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;
-    color:var(--yellow);margin-bottom:14px;
+.info-block p, .info-block address { font-style: normal; font-size: 1rem; color: rgba(255,255,255,0.85); }
+.hours-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; }
+.hours-row:not(:last-child) { border-bottom: 1px solid rgba(255,255,255,0.08); }
+.hours-day { font-weight: 700; }
+.hours-time { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+.hours-closed { color: rgba(205,50,50,0.9); font-weight: 700; }
+.today-badge {
+    background: var(--yellow); color: var(--red); font-size: 0.65rem; font-weight: 900;
+    padding: 2px 8px; border-radius: var(--radius-pill); text-transform: uppercase; margin-left: 8px;
 }
-.info-block-title i{font-size:1.1rem;}
-.info-block p,.info-block address{
-    font-style:normal;
-    font-size:1rem;line-height:1.9;
-    color:rgba(255,255,255,0.85);
+.map-wrapper {
+    border-radius: var(--radius-md); overflow: hidden; border: 3px solid rgba(255,255,102,0.25);
+    box-shadow: var(--shadow-xl); position: sticky; top: 80px;
 }
-.hours-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;}
-.hours-row:not(:last-child){border-bottom:1px solid rgba(255,255,255,0.08);}
-.hours-day{font-weight:700;}
-.hours-time{color:rgba(255,255,255,0.7);font-size:0.95rem;}
-.hours-closed{color:rgba(205,50,50,0.9);font-weight:700;}
-.today-badge{
-    background:var(--yellow);color:var(--red);
-    font-size:0.65rem;font-weight:900;
-    padding:2px 8px;border-radius:var(--radius-pill);
-    text-transform:uppercase;margin-left:8px;
-    vertical-align:middle;
+.map-wrapper iframe { width: 100%; height: 480px; display: block; border: none; filter: saturate(0.8) contrast(1.1); }
+.map-footer {
+    background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); padding: 16px 22px;
+    display: flex; justify-content: space-between; align-items: center;
 }
-
-.map-wrapper{
-    border-radius:var(--radius-md);
-    overflow:hidden;
-    border:3px solid rgba(255,255,102,0.25);
-    box-shadow:var(--shadow-xl);
-    position:sticky;
-    top:80px;
+.map-address { font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+.map-link {
+    font-weight: 800; font-size: 0.8rem; text-transform: uppercase;
+    background: var(--yellow); color: var(--red); padding: 8px 18px;
+    border-radius: var(--radius-pill); transition: var(--trans);
 }
-.map-wrapper iframe{
-    width:100%;
-    height:480px;
-    display:block;
-    border:none;
-    filter:saturate(0.8) contrast(1.1);
-}
-.map-footer{
-    background:rgba(0,0,0,0.5);
-    backdrop-filter:blur(8px);
-    padding:16px 22px;
-    display:flex;justify-content:space-between;align-items:center;
-}
-.map-address{font-size:0.9rem;color:rgba(255,255,255,0.8);}
-.map-link{
-    font-weight:800;font-size:0.8rem;text-transform:uppercase;letter-spacing:1px;
-    background:var(--yellow);color:var(--red);
-    padding:8px 18px;border-radius:var(--radius-pill);
-    transition:var(--trans);
-}
-.map-link:hover{background:#fff;transform:scale(1.04);}
+.map-link:hover { background: #fff; transform: scale(1.04); }
 
 /* ─── CONTACT ──────────────────────────────────── */
+.contact { background: var(--red); }
+.contact .section-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.contact-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 36px; }
+.contact-card {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,102,0.2);
+    border-radius: var(--radius-md); padding: 24px; transition: var(--trans);
+}
+.contact-card:hover { background: rgba(255,255,102,0.1); border-color: var(--yellow); transform: translateY(-4px); }
+.contact-card-icon { font-size: 1.8rem; margin-bottom: 12px; }
+.contact-card-title { font-weight: 900; font-size: 1rem; margin-bottom: 8px; }
+.contact-card-desc { font-size: 0.88rem; color: rgba(255,255,255,0.7); }
 
-.contact .section-inner{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:60px;align-items:center;
+.phone-block {
+    display: flex; align-items: center; gap: 20px;
+    background: rgba(255,255,102,0.1); border: 2px solid var(--yellow);
+    border-radius: var(--radius-md); padding: 22px 28px; margin-bottom: 20px; transition: var(--trans);
 }
+.phone-block:hover { background: rgba(255,255,102,0.18); }
+.phone-icon {
+    width: 54px; height: 54px; background: var(--yellow); color: var(--red);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0;
+}
+.phone-label { font-size: 0.75rem; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 4px; }
+.phone-number { font-size: 1.6rem; font-weight: 900; color: var(--yellow); }
 
-.contact-text .section-heading{margin-bottom:20px;}
-.contact-text .section-body{margin-bottom:32px;}
-
-.contact-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:36px;}
-.contact-card{
-    background:rgba(255,255,255,0.06);
-    border:1px solid rgba(255,255,102,0.2);
-    border-radius:var(--radius-md);
-    padding:24px;
-    transition:var(--trans);
+.contact-visual { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 3/4; }
+.contact-visual:hover img { transform: scale(1.04); }
+.contact-visual-tag {
+    position: absolute; bottom: 24px; left: 24px; right: 24px;
+    background: rgba(0,0,0,0.75); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,102,0.3); border-radius: var(--radius-md); padding: 18px 22px;
 }
-.contact-card:hover{background:rgba(255,255,102,0.1);border-color:var(--yellow);transform:translateY(-4px);}
-.contact-card-icon{font-size:1.8rem;margin-bottom:12px;}
-.contact-card-title{font-weight:900;font-size:1rem;margin-bottom:8px;}
-.contact-card-desc{font-size:0.88rem;line-height:1.6;color:rgba(255,255,255,0.7);}
-
-.phone-block{
-    display:flex;align-items:center;gap:20px;
-    background:rgba(255,255,102,0.1);
-    border:2px solid var(--yellow);
-    border-radius:var(--radius-md);
-    padding:22px 28px;
-    margin-bottom:20px;
-    transition:var(--trans);
-}
-.phone-block:hover{background:rgba(255,255,102,0.18);}
-.phone-icon{
-    width:54px;height:54px;
-    background:var(--yellow);color:var(--red);
-    border-radius:50%;flex-shrink:0;
-    display:flex;align-items:center;justify-content:center;
-    font-size:1.4rem;
-}
-.phone-label{font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.6);margin-bottom:4px;}
-.phone-number{font-size:1.6rem;font-weight:900;color:var(--yellow);}
-
-.contact-visual{
-    position:relative;
-    border-radius:20px;
-    overflow:hidden;
-    aspect-ratio:3/4;
-}
-.contact-visual img{
-    object-fit:cover;
-    width:100%;height:100%;
-    transition:0.9s ease;
-}
-.contact-visual:hover img{transform:scale(1.04);}
-.contact-visual-tag{
-    position:absolute;bottom:24px;left:24px;right:24px;
-    background:rgba(0,0,0,0.75);backdrop-filter:blur(10px);
-    border:1px solid rgba(255,255,102,0.3);
-    border-radius:var(--radius-md);padding:18px 22px;
-}
-.contact-visual-tag p{font-family:'Indie Flower',cursive;font-size:1.2rem;line-height:1.5;color:rgba(255,255,255,0.9);}
-.contact-visual-tag p span{color:var(--yellow);}
-
-/* ─── CARDS (original hero cards) ─────────────── */
-.news-section{padding:0 20px 40px;}
-.news-section .section-inner{max-width:var(--max);margin:0 auto;}
-.news-heading{
-    font-family:'Playfair Display',serif;
-    font-size:1.6rem;font-weight:700;font-style:italic;
-    color:rgba(255,255,255,0.6);
-    margin-bottom:20px;padding-bottom:12px;
-    border-bottom:1px solid rgba(255,255,255,0.1);
-}
-
-.section-grid{display:grid;gap:18px;}
-.grid-3{grid-template-columns:repeat(3,1fr);}
-.card{
-    background:#000;border-radius:var(--radius-md);overflow:hidden;
-    position:relative;aspect-ratio:1/1;box-shadow:var(--shadow);cursor:pointer;
-    border:2px solid #8f1818;filter:brightness(1.1);
-}
-.card img{transition:0.9s ease;}
-.card:hover img{transform:scale(1.05);filter:brightness(0.85);}
-.card-overlay{
-    position:absolute;inset:0;
-    background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.2) 60%,transparent 100%);
-    padding:25px;display:flex;flex-direction:column;justify-content:flex-end;
-    color:#fff;
-}
-.card-badge{
-    position:absolute;top:18px;right:18px;
-    background:var(--yellow);color:var(--dark-red);
-    font-weight:800;font-size:0.7rem;padding:6px 12px;
-    border-radius:var(--radius-pill);text-transform:uppercase;letter-spacing:0.5px;
-    z-index:10;transition:0.4s ease;
-}
-.card:hover .card-badge{transform:scale(1.1);}
-.card-title{font-family:'Indie Flower',cursive;font-size:1.3rem;color:#fff;margin-top:8px;line-height:1.2;text-shadow:0 2px 4px rgba(0,0,0,0.5);}
+.contact-visual-tag p { font-size: 1.1rem; font-weight: 600; font-style: italic; color: rgba(255,255,255,0.9); line-height: 1.4; }
 
 /* ─── FOOTER ───────────────────────────────────── */
-.main-footer{
-    margin:0 20px 20px;padding:32px 24px 16px;
-    border:2px solid var(--yellow);border-radius:var(--radius-md);
-    font-family:'Montserrat',sans-serif;
-    color:var(--yellow);
+.main-footer {
+    margin: 0 20px 20px; padding: 32px 24px 16px;
+    border: 2px solid var(--yellow); border-radius: var(--radius-md);
+    color: var(--yellow);
 }
-.footer-grid{
-    display:grid;grid-template-columns:1fr 1.5fr 1fr;
-    gap:30px;margin-bottom:20px;padding-bottom:25px;
-    border-bottom:1px solid rgba(255,255,255,0.1);align-items:start;
+.footer-grid {
+    display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 30px; margin-bottom: 20px; padding-bottom: 25px;
+    border-bottom: 1px solid rgba(255,255,255,0.1); align-items: start;
 }
-.footer-col{display:flex;flex-direction:column;}
-.footer-links-group{display:flex;gap:60px;justify-content:center;}
-.footer-col h4{font-family:'Asap Condensed',sans-serif;text-transform:uppercase;font-size:1.2rem;margin-bottom:14px;letter-spacing:0.5px;}
-.footer-col ul{display:flex;flex-direction:column;gap:12px;}
-.footer-col a{display:flex;align-items:center;gap:8px;font-size:1rem;transition:var(--trans);}
-.footer-col a i{font-size:1.2rem;width:24px;}
-.footer-col a:hover{color:rgba(255,255,255,0.8);transform:translateX(3px);}
-.banner-text,.info-text{font-size:1rem;line-height:1.5;text-align:center;}
-.disclaimer-link,.zach{color:rgba(255,255,255,0.7);font-size:0.9rem;text-align:center;justify-content:center;margin-top:8px;}
-.disclaimer-link:hover,.zach:hover{text-decoration:underline;}
-.copyright{text-align:center;font-size:0.85rem;font-weight:300;}
+.footer-links-group { display: flex; gap: 60px; justify-content: center; }
+.footer-col h4 { text-transform: uppercase; font-size: 1.1rem; font-weight: 800; margin-bottom: 14px; letter-spacing: 0.5px; }
+.footer-col ul { display: flex; flex-direction: column; gap: 12px; }
+.footer-col a { display: flex; align-items: center; gap: 8px; font-size: 1rem; transition: var(--trans); }
+.footer-col a:hover { color: rgba(255,255,255,0.8); transform: translateX(3px); }
+.banner-text, .info-text { font-size: 1rem; text-align: center; }
+.copyright { text-align: center; font-size: 0.85rem; font-weight: 300; }
+.copyright a { color: rgba(255,255,255,0.7); }
+.copyright a:hover { text-decoration: underline; }
 
-/* ─── DIVIDER ──────────────────────────────────── */
-.section-divider{
-    height:1px;
-    background:linear-gradient(to right,transparent,rgba(255,255,102,0.3),transparent);
-    margin:0 20px;
-}
-
-/* ─── ANIMATIONS ───────────────────────────────── */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease, transform 0.7s ease;}
-.reveal.in-view{opacity:1;transform:none;}
-.reveal-delay-1{transition-delay:0.1s;}
-.reveal-delay-2{transition-delay:0.2s;}
-.reveal-delay-3{transition-delay:0.3s;}
+/* ─── ANIMATIONS & UTILITIES ───────────────────── */
+.section-divider { height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,102,0.3), transparent); margin: 0 20px; }
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.in-view { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
 
 /* ─── RESPONSIVE ───────────────────────────────── */
-@media(max-width:1100px){
-    .ethos .section-inner{grid-template-columns:1fr;}
-    .ethos-text{max-width:600px;}
-    .location .section-inner{grid-template-columns:1fr;}
-    .map-wrapper{position:static;}
-    .contact .section-inner{grid-template-columns:1fr;}
-    .contact-visual{display:none;}
-    .footer-grid{grid-template-columns:1fr;}
-    .footer-links-group{flex-wrap:wrap;gap:30px;}
-    .bakery-panel{grid-template-columns:1fr;}
-    .students-panel{grid-template-columns:1fr;}
+@media(max-width: 1100px) {
+    .ethos .section-inner, .location .section-inner, .contact .section-inner, .footer-grid { grid-template-columns: 1fr; }
+    .map-wrapper { position: static; }
+    .contact-visual { display: none; }
+    .footer-links-group { flex-wrap: wrap; gap: 30px; }
+    .bakery-panel, .students-panel { grid-template-columns: 1fr; }
 }
-@media(max-width:768px){
-    :root{--hh:50px;}
-    .nav-container{padding:0;}
-    .main-nav{border-radius:0;margin:0;}
-    .brand-logo{font-size:1.4rem;}
-    .mobile-toggle{display:block;}
-    .nav-menu{
-        position:absolute;top:100%;left:0;width:100%;
-        background:var(--red);flex-direction:column;
-        align-items:flex-start;padding:15px 20px 25px;
-        opacity:0;visibility:hidden;transform:translateY(-10px);
-        border-bottom:2px solid var(--yellow);
-        box-shadow:0 15px 30px rgba(0,0,0,0.3);gap:10px;
-        transition:all 0.3s ease-in-out;
-    }
-    .nav-menu.active{opacity:1;visibility:visible;transform:translateY(0);}
-    .nav-menu li{width:100%;}
-    .nav-link{
-        display:block;padding:16px 20px;
-        border:1px solid var(--yellow);border-radius:var(--radius-sm);
-        color:var(--yellow) !important;background:rgba(0,0,0,0.2);
-        font-size:1rem;
-    }
-    .nav-link::after{display:none;}
-    .hero{margin:0;border-radius:0;min-height:85vh;}
-    .hero-content{padding:40px 24px;}
-    .hero-year{display:none;}
-    .hero-scroll{display:none;}
-    section{padding:56px 16px;}
-    .ethos-cards{grid-template-columns:1fr;gap:14px;}
-    .ethos-card{aspect-ratio:16/9;}
-    .sandwiches-panel{padding:36px 24px;}
-    .sandwich-steps{gap:20px;}
-    .contact-cards{grid-template-columns:1fr;}
-    .section-grid.grid-3{
-        display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
-        scrollbar-width:none;-ms-overflow-style:none;
-        margin:0 -16px;padding:0 16px;gap:14px;
-    }
-    .section-grid.grid-3::-webkit-scrollbar{display:none;}
-    .section-grid.grid-3 .card{min-width:85%;flex:0 0 85%;scroll-snap-align:center;aspect-ratio:auto;height:auto;}
-    .section-grid.grid-3 .card img{height:55vw;max-height:300px;}
-    .main-footer{margin:0;border:none;border-radius:0;}
-    .hero-badge{top:16px;right:16px;font-size:0.68rem;padding:6px 14px;}
-    .whatwedo-tabs{justify-content:center;}
+@media(max-width: 768px) {
+.hero-sub {
+    display:none;
+    
 }
-@media(min-width:769px){.legalsmall{display:none;}}
+.hero-content {
+   align-items: flex-start;
+    
+}
+.hero-title {
+    line-height:0.85;
+}
+.hero-kicker {
+   
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding: 5px 12px;
+
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+}
+.hero {
+ padding: 5px 0px 5px;
+}
+    :root { --hh: 50px; }
+    .nav-container { padding: 0; }
+    .main-nav { border-radius: 0; }
+    .mobile-toggle { display: block; }
+    .nav-menu {
+        position: absolute; top: 100%; left: 0; width: 100%;
+        background: var(--red); flex-direction: column; align-items: flex-start;
+        padding: 15px 20px 25px; opacity: 0; visibility: hidden; transform: translateY(-10px);
+        border-bottom: 2px solid var(--yellow); box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        gap: 10px; transition: all 0.3s ease-in-out;
+    }
+    .nav-menu.active { opacity: 1; visibility: visible; transform: translateY(0); }
+    .nav-menu li { width: 100%; }
+    .nav-link { display: block; padding: 16px 20px; border: 1px solid var(--yellow); border-radius: var(--radius-sm); color: var(--yellow) !important; background: rgba(0,0,0,0.2); }
+    .nav-link::after { display: none; }
+    .hero { margin: 0; border-radius: 0; min-height: 85vh; }
+    .hero-content { padding: 40px 24px; }
+    .hero-year { display: none; }
+    section { padding: 16px 16px; }
+    /* --- UPDATED ETHOS MOBILE STYLES --- */
+.ethos-cards { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 0; /* Gap is handled by margin-top for overlap */
+    padding-bottom: 10px;
+}
+
+.ethos-card { 
+    width: 55%; /* Slightly more than 50% looks better for overlap */
+    aspect-ratio: 5/4; 
+    margin-top: -70px; /* This creates the vertical overlap */
+    z-index: 1;
+}
+
+/* Ensure the first card doesn't overlap the text above it */
+.ethos-card:first-child { 
+    margin-top: -37px; 
+}
+
+/* Pattern: Right, Left, Right */
+.ethos-card:nth-child(1) { align-self: flex-start; }
+.ethos-card:nth-child(2) { align-self: flex-end; z-index: 2; }
+.ethos-card:nth-child(3) { align-self: flex-start; z-index: 1; }
+
+/* Adjusting card body text for the smaller size */
+.ethos-card-title { font-size: 1rem; }
+.ethos-card-desc { display: none; } /* Hide desc on small screens to keep it clean */
+.ethos-card-body { padding: 12px; }
+    .sandwiches-panel { padding: 36px 24px; }
+    .contact-cards { grid-template-columns: 1fr; }
+    .main-footer { margin: 0; border: none; border-radius: 0; }
+    .hero-badge { top: 16px; right: 16px; font-size: 0.68rem; padding: 6px 14px; }
+}
 </style>
 </head>
-<body style="isolation: isolate;">
+<body>
 
 <!-- ─── NAV ──────────────────────────────────────── -->
 <div class="nav-container">
@@ -653,60 +475,51 @@ section{padding:20px 20px;}
 <!-- ─── HERO ─────────────────────────────────────── -->
 <section class="hero" id="home">
     <div class="hero-bg"></div>
-
-    
-    <div class="hero-badge"><i class="fas fa-star"></i>&nbsp; Leeds' Most Loved Sandwich Shop</div>
+  
+  
 
     <div class="hero-content">
-        <div class="hero-kicker"><i class="fas fa-map-marker-alt"></i>&nbsp; 164 Woodhouse Lane · Leeds</div>
-        <h1 class="hero-title serif">
+        <div class="hero-kicker"><i class="fas fa-map-marker-alt"></i>&nbsp; 164 Woodhouse Lane</div>
+        <h1 class="hero-title">
             Ciabatta &amp;<br>focaccia<br>
-            <em>since 1994.</em>
+            <span class="highlight">since 1994.</span>
         </h1>
         <p class="hero-sub">Gourmet ciabatta &amp; focaccia sandwiches with bold Mediterranean and Middle Eastern flavours — baked fresh every morning, served under the big red canopy opposite the Parkinson Building.</p>
-        
     </div>
-
-    
 </section>
 
 <!-- ─── ETHOS ─────────────────────────────────────── -->
 <section class="ethos" id="ethos">
     <div class="section-inner">
         <div class="ethos-text reveal in-view">
-            <div class="section-label"><i class="fas fa-seedling"></i> Our Ethos</div>
-            <h2 class="section-heading serif">Food made from<em> local suppliers.</em></h2>
+            <div class="section-label">Our Ethos</div>
+            <h2 class="section-heading">Ingredients from <span class="highlight">local suppliers</span></h2>
             <p class="section-body">We believe a great sandwich starts long before the filling. It begins with flour, water, time, and respect. Everything we make — our bread, our coffee, our sandwiches — is crafted with the same attention a baker gives their craft: slowly, thoughtfully, and with genuine care for the person eating it.</p>
-            
         </div>
 
         <div class="ethos-cards">
             <div class="ethos-card reveal reveal-delay-1 in-view">
                 <img src="https://bakery164.com/wp-content/uploads/Sandwich-of-the-Week-21-26-October-at-Cafe-164-Leeds.jpg" alt="Our Sandwiches" loading="lazy">
                 <div class="ethos-card-body">
-                    <div class="ethos-card-icon"><i class="fas fa-drumstick-bite"></i></div>
-                    <h3 class="ethos-card-title">Our Sandwiches</h3>
-                    <p class="ethos-card-desc">We specialise in sandwiches. Our range of fillings is vast, and we have a huge selection of vegetarian and vegan fillings.
-
-</p>
+                   
+                    <h3 class="ethos-card-title">Sandwiches</h3>
+                    <p class="ethos-card-desc">We specialise in sandwiches. Our range of fillings is vast, and we have a huge selection of vegetarian and vegan fillings.</p>
                 </div>
             </div>
             <div class="ethos-card reveal reveal-delay-2 in-view">
                 <img src="https://bakery164.com/wp-content/uploads/164_074A6886e_2018-300x300.jpg" alt="Our Bread" loading="lazy">
                 <div class="ethos-card-body">
-                    <div class="ethos-card-icon"><i class="fas fa-bread-slice"></i></div>
-                    <h3 class="ethos-card-title">Our Bread</h3>
+                   
+                    <h3 class="ethos-card-title">Bread</h3>
                     <p class="ethos-card-desc">Our craft is handmade ciabatta and focaccia bread, which we make every night in our bakery.</p>
                 </div>
             </div>
             <div class="ethos-card reveal reveal-delay-3 in-view">
                 <img src="https://bakery164.com/wp-content/uploads/164_074A9823e_2018-300x300.jpg" alt="Our Coffee" loading="lazy">
                 <div class="ethos-card-body">
-                    <div class="ethos-card-icon"><i class="fas fa-coffee"></i></div>
-                    <h3 class="ethos-card-title">Our Coffee</h3>
-                    <p class="ethos-card-desc">We also serve Italian-style coffee, dark-roasted for traditional tastes.
-
-</p>
+                  
+                    <h3 class="ethos-card-title">Coffee</h3>
+                    <p class="ethos-card-desc">We also serve Italian-style coffee, dark-roasted for traditional tastes.</p>
                 </div>
             </div>
         </div>
@@ -719,8 +532,8 @@ section{padding:20px 20px;}
 <section class="whatwedo" id="whatwedo">
     <div class="section-inner">
         <div class="reveal in-view">
-            <div class="section-label"><i class="fas fa-layer-group"></i> What We Do</div>
-            <h2 class="section-heading serif">More than <em>a sandwich.</em></h2>
+            <div class="section-label">What We Do</div>
+            <h2 class="section-heading">More than <span class="highlight">a sandwich.</span></h2>
         </div>
 
         <div class="whatwedo-tabs reveal in-view">
@@ -729,39 +542,33 @@ section{padding:20px 20px;}
             <button class="tab-btn" data-tab="sandwiches"><i class="fas fa-lightbulb"></i>&nbsp; Sandwich Ideas</button>
         </div>
 
-        <!-- Bakery Tab -->
         <div class="tab-panel active" id="tab-bakery">
             <div class="bakery-panel">
                 <div class="bakery-img reveal in-view">
                     <img src="https://bakery164.com/wp-content/uploads/164_074A9792e_2018.jpg" alt="Freshly baked ciabatta and focaccia at Bakery 164" loading="lazy">
                 </div>
                 <div class="bakery-text reveal reveal-delay-1 in-view">
-                    <div class="section-label"><i class="fas fa-fire"></i> Baked In-House</div>
-                    <h3 class="section-heading serif">Ciabatta &amp; <em>Focaccia.</em></h3>
+                    <div class="section-label">Baked In-House</div>
+                    <h3 class="section-heading">Ciabatta &amp; <span class="highlight">Focaccia.</span></h3>
                     <p class="section-body">Every loaf we use starts in our own kitchen. Our ciabatta is airy, chewy, and perfectly crisped — our focaccia is pillowy, herb-kissed and drizzled with good olive oil. Both are baked fresh each morning so that by the time you're hungry, your bread is at its best.</p>
                     <p class="section-body" style="margin-top:16px;">We don't compromise on the foundation. Because a great sandwich deserves great bread.</p>
-                    <div class="bread-types">
-                        <div class="bread-chip"><i class="fas fa-bread-slice"></i> Ciabatta</div>
-                        <div class="bread-chip"><i class="fas fa-bread-slice"></i> Focaccia</div>
-                        <div class="bread-chip"><i class="fas fa-leaf"></i> Daily Specials</div>
-                    </div>
+                   
                 </div>
             </div>
         </div>
 
-        <!-- Students Tab -->
         <div class="tab-panel" id="tab-students">
             <div class="students-panel">
                 <div class="student-card reveal">
                     <div class="student-card-icon">🎉</div>
-                    <h3 class="student-card-title serif">Events &amp; <em>Pop-Ups</em></h3>
+                    <h3 class="student-card-title">Events &amp; <span class="highlight">Pop-Ups</span></h3>
                     <p class="student-card-body">We love being part of Leeds student life. From freshers' week pop-ups to society events, we bring the same quality food we serve daily to your campus moments. Get in touch and let's make your event a little more delicious.</p>
                     <br>
                     <a href="#contact" class="btn btn-outline" style="width:fit-content;padding:10px 22px;font-size:0.8rem;">Talk to us <i class="fas fa-arrow-right" style="margin-left:6px;"></i></a>
                 </div>
                 <div class="student-card reveal reveal-delay-1">
                     <div class="student-card-icon">🤝</div>
-                    <h3 class="student-card-title serif">Sponsorship &amp; <em>Partnerships</em></h3>
+                    <h3 class="student-card-title">Sponsorship &amp; <span class="highlight">Partnerships</span></h3>
                     <p class="student-card-body">We're proud neighbours of the University of Leeds. If you're a student society, sports team, or media group looking for a local food sponsor, we'd love to hear from you. We support the people who make this city great.</p>
                     <br>
                     <a href="#contact" class="btn btn-outline" style="width:fit-content;padding:10px 22px;font-size:0.8rem;">Sponsor enquiry <i class="fas fa-arrow-right" style="margin-left:6px;"></i></a>
@@ -769,37 +576,19 @@ section{padding:20px 20px;}
             </div>
         </div>
 
-        <!-- Sandwiches Ideas Tab -->
         <div class="tab-panel" id="tab-sandwiches">
             <div class="sandwiches-panel reveal">
-                <div class="sandwich-deco left">🥪</div>
-                <div class="sandwich-deco right">🥪</div>
                 <div class="section-label" style="justify-content:center;"><i class="fas fa-lightbulb"></i> Open Call</div>
-                <h3 class="section-heading serif">Got a <em>sandwich idea?</em></h3>
+                <h3 class="section-heading">Got a <span class="highlight">sandwich idea?</span></h3>
                 <p class="section-body">We're always experimenting. If you've got a flavour combination you'd love to see on the menu — send it to us on Instagram. The best ideas might just end up as a weekly special (and we'll give you the credit).</p>
-
                 <div class="sandwich-steps">
-                    <div class="sandwich-step">
-                        <div class="step-num">1</div>
-                        <div class="step-label">Dream up your<br>ideal sandwich</div>
-                    </div>
-                    <div class="sandwich-step">
-                        <div class="step-num">2</div>
-                        <div class="step-label">DM or tag us<br>on Instagram</div>
-                    </div>
-                    <div class="sandwich-step">
-                        <div class="step-num">3</div>
-                        <div class="step-label">We test it in<br>the kitchen</div>
-                    </div>
-                    <div class="sandwich-step">
-                        <div class="step-num">4</div>
-                        <div class="step-label">It might hit<br>the menu!</div>
-                    </div>
+                    <div class="sandwich-step"><div class="step-num">1</div><div class="step-label">Dream up your<br>ideal sandwich</div></div>
+                    <div class="sandwich-step"><div class="step-num">2</div><div class="step-label">DM or tag us<br>on Instagram</div></div>
+                    <div class="sandwich-step"><div class="step-num">3</div><div class="step-label">We test it in<br>the kitchen</div></div>
+                    <div class="sandwich-step"><div class="step-num">4</div><div class="step-label">It might hit<br>the menu!</div></div>
                 </div>
-
                 <a href="https://www.instagram.com/bakery164/" target="_blank" class="insta-btn">
-                    <i class="fab fa-instagram"></i>
-                    Send us your idea @bakery164
+                    <i class="fab fa-instagram"></i> Send us your idea @bakery164
                 </a>
             </div>
         </div>
@@ -813,47 +602,22 @@ section{padding:20px 20px;}
     <div class="section-inner">
         <div class="location-info">
             <div class="section-label reveal in-view"><i class="fas fa-map-marker-alt"></i> Find Us</div>
-            <h2 class="section-heading serif reveal in-view">Right opposite <em>Parkinson.</em></h2>
+            <h2 class="section-heading reveal in-view">Right opposite <span class="highlight">Parkinson.</span></h2>
 
             <div class="info-block reveal in-view">
                 <div class="info-block-title"><i class="fas fa-location-dot"></i> Address</div>
-                <address>
-                    164 Woodhouse Lane<br>
-                    Leeds, LS2 9HB<br>
-                    United Kingdom
-                </address>
+                <address>164 Woodhouse Lane<br>Leeds, LS2 9HB<br>United Kingdom</address>
             </div>
 
             <div class="info-block reveal in-view">
                 <div class="info-block-title"><i class="fas fa-clock"></i> Opening Times</div>
-                <div class="hours-row">
-                    <span class="hours-day">Monday </span>
-                    <span class="hours-time">7:00 am – 6:00 pm</span>
-                </div>
-                <div class="hours-row">
-                    <span class="hours-day">Tuesday</span>
-                    <span class="hours-time">7:00 am – 6:00 pm</span>
-                </div>
-                <div class="hours-row">
-                    <span class="hours-day">Wednesday</span>
-                    <span class="hours-time">7:00 am – 6:00 pm</span>
-                </div>
-                <div class="hours-row">
-                    <span class="hours-day">Thursday</span>
-                    <span class="hours-time">7:00 am – 6:00 pm</span>
-                </div>
-                <div class="hours-row">
-                    <span class="hours-day">Friday<span class="today-badge">Today</span></span>
-                    <span class="hours-time">7:00 am – 6:00 pm</span>
-                </div>
-                <div class="hours-row">
-                    <span class="hours-day">Saturday</span>
-                    <span class="hours-time">11:00 am – 5:00 pm</span>
-                </div>
-                <div class="hours-row">
-                    <span class="hours-day">Sunday</span>
-                    <span class="hours-time hours-closed">Closed</span>
-                </div>
+                <div class="hours-row"><span class="hours-day">Monday</span><span class="hours-time">7:00 am – 6:00 pm</span></div>
+                <div class="hours-row"><span class="hours-day">Tuesday</span><span class="hours-time">7:00 am – 6:00 pm</span></div>
+                <div class="hours-row"><span class="hours-day">Wednesday</span><span class="hours-time">7:00 am – 6:00 pm</span></div>
+                <div class="hours-row"><span class="hours-day">Thursday</span><span class="hours-time">7:00 am – 6:00 pm</span></div>
+                <div class="hours-row"><span class="hours-day">Friday</span><span class="hours-time">7:00 am – 6:00 pm</span></div>
+                <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">11:00 am – 5:00 pm</span></div>
+                <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time hours-closed">Closed</span></div>
             </div>
 
             <div class="info-block reveal in-view">
@@ -863,12 +627,9 @@ section{padding:20px 20px;}
         </div>
 
         <div class="map-wrapper reveal reveal-delay-1 in-view">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2356.543810041088!2d-1.556688584167!3d53.80677298008684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48795c1d9b2d1c83%3A0x6a4b3c8e1f2d9c0a!2sBakery%20164!5e0!3m2!1sen!2suk!4v1680000000000!5m2!1sen!2suk" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Bakery 164 on Google Maps">
-            </iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2356.543810041088!2d-1.556688584167!3d53.80677298008684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48795c1d9b2d1c83%3A0x6a4b3c8e1f2d9c0a!2sBakery%20164!5e0!3m2!1sen!2suk!4v1680000000000!5m2!1sen!2suk" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Bakery 164 on Google Maps"></iframe>
             <div class="map-footer">
-                <div>
-                    <div class="map-address">📍 164 Woodhouse Lane, Leeds LS2 9HB</div>
-                </div>
+                <div class="map-address">📍 164 Woodhouse Lane, Leeds LS2 9HB</div>
                 <a href="https://maps.google.com/?q=Bakery+164+Leeds" target="_blank" class="map-link">Open in Maps <i class="fas fa-external-link-alt" style="font-size:0.7rem;margin-left:4px;"></i></a>
             </div>
         </div>
@@ -882,30 +643,14 @@ section{padding:20px 20px;}
     <div class="section-inner">
         <div class="contact-text">
             <div class="section-label reveal in-view"><i class="fas fa-phone"></i> Get In Touch</div>
-            <h2 class="section-heading serif reveal in-view">Catering, delivery &amp; <em>everything else.</em></h2>
+            <h2 class="section-heading reveal in-view">Catering, delivery &amp; <span class="highlight">everything else.</span></h2>
             <p class="section-body reveal in-view">Whether you're feeding ten people at a meeting or two hundred at a conference, we bring the same Bakery 164 quality to your event. Bespoke menus, freshly made platters, and flexible delivery across Leeds.</p>
 
             <div class="contact-cards reveal in-view">
-                <div class="contact-card">
-                    <div class="contact-card-icon">🍱</div>
-                    <div class="contact-card-title">Catering</div>
-                    <div class="contact-card-desc">Corporate lunches, events, and office catering. We design menus around your needs, delivered on time and looking great.</div>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-card-icon">🛵</div>
-                    <div class="contact-card-title">Delivery</div>
-                    <div class="contact-card-desc">Can't make it in? We deliver across central Leeds. Contact us directly to arrange — especially useful for large orders.</div>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-card-icon">🤝</div>
-                    <div class="contact-card-title">Partnerships</div>
-                    <div class="contact-card-desc">Student societies, local businesses, community organisations — we love working with the people of Leeds.</div>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-card-icon">💬</div>
-                    <div class="contact-card-title">Just Say Hello</div>
-                    <div class="contact-card-desc">Feedback, ideas, compliments, complaints. We read everything. Don't be shy — pop in or drop us a message.</div>
-                </div>
+                <div class="contact-card"><div class="contact-card-icon">🍱</div><div class="contact-card-title">Catering</div><div class="contact-card-desc">Corporate lunches, events, and office catering. We design menus around your needs, delivered on time and looking great.</div></div>
+                <div class="contact-card"><div class="contact-card-icon">🛵</div><div class="contact-card-title">Delivery</div><div class="contact-card-desc">Can't make it in? We deliver across central Leeds. Contact us directly to arrange — especially useful for large orders.</div></div>
+                <div class="contact-card"><div class="contact-card-icon">🤝</div><div class="contact-card-title">Partnerships</div><div class="contact-card-desc">Student societies, local businesses, community organisations — we love working with the people of Leeds.</div></div>
+                <div class="contact-card"><div class="contact-card-icon">💬</div><div class="contact-card-title">Just Say Hello</div><div class="contact-card-desc">Feedback, ideas, compliments, complaints. We read everything. Don't be shy — pop in or drop us a message.</div></div>
             </div>
 
             <a href="tel:+441132456789" class="phone-block reveal in-view">
@@ -925,7 +670,7 @@ section{padding:20px 20px;}
         <div class="contact-visual reveal reveal-delay-1 in-view">
             <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/60/82/57/bakery-164-in-leeds-2018.jpg?w=1200&amp;h=1200&amp;s=1" alt="Inside Bakery 164" loading="lazy">
             <div class="contact-visual-tag">
-                <p class="handwritten">"Drop in, say hello and let us make you something <span>delicious.</span> That's what we're here for."</p>
+                <p>"Drop in, say hello and let us make you something <span class="highlight">delicious.</span> That's what we're here for."</p>
             </div>
         </div>
     </div>
@@ -933,16 +678,11 @@ section{padding:20px 20px;}
 
 <div class="section-divider"></div>
 
-
-
-
 <!-- ─── FOOTER ─────────────────────────────────────── -->
 <footer class="main-footer">
     <div class="footer-grid">
         <div class="footer-col col-banner">
-            <p class="banner-text">Monday to Friday 7am – 6pm<br>
-            Saturday 11am – 5pm<br>
-            Sunday Closed<br><br>164 Woodhouse Lane, Leeds LS2 9HB</p>
+            <p class="banner-text">Monday to Friday 7am – 6pm<br>Saturday 11am – 5pm<br>Sunday Closed<br><br>164 Woodhouse Lane, Leeds LS2 9HB</p>
         </div>
         <div class="footer-links-group">
             <div class="footer-col">
@@ -968,12 +708,10 @@ section{padding:20px 20px;}
             </div>
         </div>
         <div class="footer-col col-info">
-            <p class="info-text">Bakery 164 is a renowned gourmet sandwich shop located in Leeds, directly opposite the University of Leeds' Parkinson Building.<br><br>
-            <br>
-            </p>
+            <p class="info-text">Bakery 164 is a renowned gourmet sandwich shop located in Leeds, directly opposite the University of Leeds' Parkinson Building.</p>
         </div>
     </div>
-    <div class="copyright">© Bakery 164 &nbsp;·&nbsp; <a href="/legal" class="legalsmall">Privacy &amp; Terms of Use</a></div>
+    <div class="copyright">© Bakery 164 &nbsp;·&nbsp; <a href="/legal">Privacy &amp; Terms of Use</a></div>
 </footer>
 
 <script>
@@ -1029,59 +767,5 @@ document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 })();
 </script>
 
-
-<div id="thunderbit-crx-side-bar" style="display:block;opacity:1;pointer-events:all;top:0;right:0;z-index:9007199254740991;position:fixed;pointer-events:none;user-select:none;"></div><button id="open-side-panel" style="width:0;height:0;opacity:0;user-select:none;pointer-events:all;position:absolute;bottom:0;right:0;padding:0;border:0;outline:none;"></button></body>
-<script>
-// Mobile nav toggle
-const mobileBtn = document.querySelector('.mobile-toggle');
-const navMenu   = document.querySelector('.nav-menu');
-const navIcon   = mobileBtn?.querySelector('i');
-if(mobileBtn){
-    mobileBtn.addEventListener('click',()=>{
-        const isActive = navMenu.classList.toggle('active');
-        if(navIcon) navIcon.classList.replace(isActive?'fa-bars':'fa-times', isActive?'fa-times':'fa-bars');
-    });
-}
-// Close menu on nav link click
-document.querySelectorAll('.nav-menu .nav-link').forEach(l=>l.addEventListener('click',()=>{
-    navMenu.classList.remove('active');
-    if(navIcon){navIcon.classList.replace('fa-times','fa-bars');}
-}));
-
-// Tabs
-document.querySelectorAll('.tab-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-        document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-        document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-        btn.classList.add('active');
-        const panel = document.getElementById('tab-'+btn.dataset.tab);
-        if(panel){
-            panel.classList.add('active');
-            // re-trigger reveals inside panel
-            panel.querySelectorAll('.reveal').forEach(el=>{ el.classList.remove('in-view'); setTimeout(()=>el.classList.add('in-view'),50); });
-        }
-    });
-});
-
-// Scroll reveal
-const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in-view'); });
-},{threshold:0.12});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-
-// Dynamic "Today" badge
-(function(){
-    const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    const today=days[new Date().getDay()];
-    document.querySelectorAll('.hours-day').forEach(el=>{
-        if(el.textContent.trim().startsWith(today)){
-            let badge=el.querySelector('.today-badge');
-            if(!badge){badge=document.createElement('span');badge.className='today-badge';badge.textContent='Today';el.appendChild(badge);}
-        } else {
-            const b=el.querySelector('.today-badge');if(b)b.remove();
-        }
-    });
-})();
-</script>
 </body>
 </html>
