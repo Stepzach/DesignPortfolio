@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bakery 164 – Leeds</title>
-    <meta name="theme-color" content="#e50f29">
+    <meta name="theme-color" content="#FFEB77">
     <meta name="description" content="Gourmet sandwiches, artisan bread and specialty coffee opposite the University of Leeds since 1994.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,7 +55,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 /* ─── NAV ─────────────────────────────────────── */
 .nav-container { position: sticky; top: 0; z-index: 200; }
 .main-nav {
-    background: var(--red);
+    background: var(--yellow);
     height: var(--hh);
     border-radius: var(--radius-md);
 }
@@ -73,7 +73,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .nav-link { font-weight: 700; font-size: 1rem; text-transform: uppercase; color: var(--yellow); position: relative; padding: 5px 0; cursor: pointer; }
 .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 3px; background: var(--yellow); transition: var(--trans); }
 .nav-link:hover::after, .nav-link.active-link::after { width: 100%; }
-.mobile-toggle { display: none; font-size: 1.8rem; color: var(--yellow); cursor: pointer; }
+.mobile-toggle { display: none; font-size: 1.8rem; color: var(--red); cursor: pointer; }
 
 /* ─── HERO ────────────────────────────────────── */
 .hero {
@@ -469,10 +469,10 @@ section { padding: 20px 40px; }
 /* ─── FOOTER ───────────────────────────────────── */
 .main-footer {
     margin: 0 0px 0px; padding: 32px 24px 16px;
-    color: var(--yellow);
-    background: var(--red);
+    color: var(--red);
+    background: var(--yellow);
 }
-.main-footer a { color: var(--yellow); }
+.main-footer a { color: var(--red); }
 .main-footer a:hover { color: #FFEB77bd; transform: translateX(3px); }
 .footer-grid {
     display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 30px; margin-bottom: 20px; padding-bottom: 25px;
@@ -484,7 +484,7 @@ section { padding: 20px 40px; }
 .footer-col a { display: flex; align-items: center; gap: 8px; font-size: 1rem; transition: var(--trans); }
 .banner-text, .info-text { font-size: 1rem; text-align: center; }
 .copyright { text-align: center; font-size: 0.85rem; font-weight: 300; }
-.copyright a { color: #FFEB77bd; }
+.copyright a { color: var(--red); }
 .copyright a:hover { text-decoration: underline; }
 
 /* ─── ANIMATIONS & UTILITIES ───────────────────── */
@@ -633,12 +633,25 @@ section { padding: 20px 40px; }
 }
 @media(max-width: 1270px) {
     .hidesmaller {
-   display:none;
+   display:none !important;
 }
     }
 @media(max-width: 768px) {
 
+   .footer-col.col-banner,
+ .footer-col.col-info {
+   display:none;
+}
+   .copyright {
+    border-top: solid 1px var(--red);
+    padding-top: 10px;
+}
+    .footer-grid {
    
+    padding-bottom: 0px;
+   
+}
+    
     
     .ethos .section-label,
     .hidesmall {
@@ -647,7 +660,7 @@ section { padding: 20px 40px; }
     .hero-title { color: var(--yellow) !important; }
     .hero .highlight { color: var(--yellow) !important; }
     .ethos { scroll-margin-top: 35px; }
-    .whatwedo { scroll-margin-top: 50px; }
+    .whatwedo { scroll-margin-top: 50px; padding-bottom:30px; }
     .location { scroll-margin-top: 50px; }
     .contact { scroll-margin-top: 50px; }
     .nav-container { border-bottom: solid 1px var(--yellow); }
