@@ -291,9 +291,9 @@ section { padding: 20px 40px; }
 .bakery-page { background: var(--red); }
 
 .bakery-story .section-inner {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center;
 }
-.bakery-story-img { overflow: hidden; border-radius: var(--radius-md);     max-height: 450px;
+.bakery-story-img { overflow: hidden;     max-height: 350px;
     object-fit: cover; }
 .bakery-story-text p { font-size: 1.05rem; color: var(--yellow); line-height: 1.5; margin-bottom: 20px; }
 
@@ -745,9 +745,11 @@ section { padding: 20px 40px; }
     /* ─── INGREDIENTS GRAPHIC ─────────────────────── */
 .ingredients-section { 
     background: var(--red); 
-    padding: 60px 0; 
+    padding: 20px 0; 
 }
-
+.ingredients-section .section-label { 
+        align-self: flex-start;
+}
 /* Default Mobile Stack */
 .ingredients-inner { 
     max-width: var(--max); 
@@ -766,7 +768,7 @@ section { padding: 20px 40px; }
 /* The Graphic Box */
 .ingredients-graphic {
     border: 1px solid var(--yellow); 
-    border-radius: 20px; 
+   
     overflow: hidden;
     background: rgba(255,235,119,0.02);
 }
@@ -782,7 +784,7 @@ section { padding: 20px 40px; }
     .ingredients-image-side {
         display: block;
         flex: 1; /* Takes 50% */
-        border-radius: 20px;
+       
         overflow: hidden;
     }
 
