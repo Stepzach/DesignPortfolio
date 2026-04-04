@@ -12,12 +12,12 @@
 
 <style>
 :root {
-    --red: rgb(200 51 51 / 91%);
+    --red: #e50f29;
     --dark-red: #A32424;
-    --deeper: #641212;
+    --deeper: #FFEB77;
     --yellow: #FFEB77;
-    --cream: #FAF7F0;
-    --ink: #1A1008;
+    --cream: #FFEB77;
+    --ink: #FFEB77;
     --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --radius-sm: 6px;
     --radius-md: 14px;
@@ -33,13 +33,13 @@
 html { scroll-behavior: smooth;  background: var(--yellow); }
 body { 
     font-family: var(--font-main); 
-     background: var(--red); 
+     background: #e50f29;
    
-    color: #fff; 
+    color: #FFEB77;
     overflow-x: hidden; 
     line-height: 1.2;
 }
-a { text-decoration: none; color: inherit; transition: var(--trans); }
+a { text-decoration: none; color: #FFEB77; transition: var(--trans); }
 ul { list-style: none; }
 img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
@@ -53,8 +53,8 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
     background: var(--yellow);
     height: var(--hh);
     border-radius: var(--radius-md);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    border-bottom: solid 3px var(--red);
+   
+    border-bottom: solid 1px #e50f29;
 }
 .nav-inner {
     max-width: var(--max);
@@ -171,27 +171,27 @@ section { padding: 80px 20px; }
 }
 .section-body {
     font-size: 1.1rem; line-height: 1.75;
-    color: rgba(255,255,255,0.8);
+    color: #FFEB77;
     max-width: 640px;
 }
 
 /* ─── ETHOS ────────────────────────────────────── */
-.ethos { background: var(--red); }
+.ethos { background: #e50f29; }
 .ethos .section-inner {
     display: grid; grid-template-columns: 1fr 1.8fr; gap: 60px; align-items: center; 
 } 
 
 .ethos-text {
-    border:solid 2px var(--yellow); border-radius:10px; padding:15px 15px; background: rgb(218 71 71); margin-top:-90px.
+     border-radius:51px 0px; padding:15px 15px; 
 } 
 
 .ethos-text .section-body { margin-top: 20px;  line-height:1.2; }
 
 .ethos-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; 
-  border:solid 2px var(--yellow); border-radius:10px; padding:15px 15px; background: rgb(218 71 71); }
+ padding:10px; }
 .ethos-card {
-    position: relative; border-radius: var(--radius-md); overflow: hidden;
-    aspect-ratio: 3/4; cursor: pointer; border:1px solid var(--yellow);
+    position: relative;  overflow: hidden;
+    aspect-ratio: 3/4; cursor: pointer; 
     transition: var(--trans); color: var(--yellow);
     
 }
@@ -430,43 +430,63 @@ section { padding: 80px 20px; }
     .nav-link { margin-left:-10px; }
     .nav-link::after { display: none; }
     .hero { margin: 0; border-radius: 0; min-height: 85vh; }
-    .hero-content { padding: 40px 24px; }
+    .hero-content { padding: 20px 24px; }
     .hero-year { display: none; }
     section { padding: 16px 16px; }
     /* --- UPDATED ETHOS MOBILE STYLES --- */
 .ethos-cards { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 0; /* Gap is handled by margin-top for overlap */
-    padding-bottom: 10px;
+        display: flex; 
+        flex-direction: column; 
+        padding-bottom: 0px;
+        padding-top: 0px;
+    }
+
+    .ethos-card { 
+        width: 45%; /* Keeping the smaller width for the overlap look */
+        aspect-ratio: auto; /* Allow height to grow for text */
+        margin-top: -160px; 
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        background: #e50f29; /* Matches section bg */
+    }
+
+    /* Keep the image at a consistent size */
+    .ethos-card img {
+        height: 170px; 
+        width: 100%;
+        object-fit: cover;
+      
+    }
+
+    /* THE FIX: Move text from 'overlay' to 'below' */
+    .ethos-card-body {
+        position: relative; /* Removes from overlay */
+        inset: auto;
+        background: transparent;
+        padding: 12px 5px;
+        display: block;
+    }
+
+    .ethos-card-title { 
+        font-size: 1.1rem; 
+        color: var(--yellow);
+        margin-top: 5px;
+    }
+
+    /* Keep description hidden or small to maintain the tight layout */
+    .ethos-card-desc { 
+        display: block; 
+        font-size: 0.8rem; 
+        line-height: 1.3;
+        color: var(--yellow);
+    }
+
+    /* Maintain your Right, Left, Right pattern */
+    .ethos-card:nth-child(1) { align-self: flex-start; margin-top: 0; }
+    .ethos-card:nth-child(2) { align-self: flex-end; z-index: 2; }
+    .ethos-card:nth-child(3) { align-self: flex-start; z-index: 3; }
 }
-
-.ethos-card { 
-    width: 55%; /* Slightly more than 50% looks better for overlap */
-    aspect-ratio: 5/4; 
-    margin-top: -70px; /* This creates the vertical overlap */
-    z-index: 1;
-}
-
-/* Ensure the first card doesn't overlap the text above it */
-.ethos-card:first-child { 
-    margin-top: -37px; 
-}
-
-/* Pattern: Right, Left, Right */
-.ethos-card:nth-child(1) { align-self: flex-start; }
-.ethos-card:nth-child(2) { align-self: flex-end; z-index: 2; }
-.ethos-card:nth-child(3) { align-self: flex-start; z-index: 1; }
-
-/* Adjusting card body text for the smaller size */
-.ethos-card-title { font-size: 1rem; }
-.ethos-card-desc { display: none; } /* Hide desc on small screens to keep it clean */
-.ethos-card-body { padding: 12px; }
-    .sandwiches-panel { padding: 36px 24px; }
-    .contact-cards { grid-template-columns: 1fr; }
-    .main-footer { margin: 0; border: none; border-radius: 0; }
-    .hero-badge { top: 16px; right: 16px; font-size: 0.68rem; padding: 6px 14px; }
-
 
 .hero {
    
@@ -477,15 +497,17 @@ section { padding: 80px 20px; }
 }
 .hero-bg {
     position: absolute; inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.2) 55%, transparent 100%),
+    background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.3) 55%, transparent 100%),
                 url('https://zacrosso.com/cdn/shop/products/il_fullxfull.3674435107_8rx0.jpg?v=1694629624&width=1946') center/cover no-repeat;
     transition: transform 8s ease;
-    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 99%);
-    mask-image: linear-gradient(to bottom, black 80%, transparent 99%);
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 99%);
+    mask-image: linear-gradient(to bottom, black 85%, transparent 99%);
 }
 .ethos-text {
-   margin-top:-90px; z-index:3;
+   margin-top:-20px; z-index:3;
 } 
+.body {
+background: var(--yellow); }
 }
 </style>
 </head>
