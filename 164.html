@@ -31,10 +31,10 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth;  background: var(--yellow); }
+html { scroll-behavior: smooth;  background: var(--red); }
 body { 
     font-family: var(--font-main); 
-     background: #e50f29;
+     background: var(--yellow); 
    
     color: #FFEB77;
     overflow-x: hidden; 
@@ -54,6 +54,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
     background: var(--yellow);
     height: var(--hh);
     border-radius: var(--radius-md);
+    
 }
 .nav-inner {
     max-width: var(--max);
@@ -173,22 +174,31 @@ section { padding: 80px 20px; }
 }
 
 /* ─── ETHOS ────────────────────────────────────── */
-.ethos { background: #e50f29; }
+.ethos { background: var(--yellow); }
 .ethos .section-inner {
     display: grid; grid-template-columns: 1fr 1.8fr; gap: 0px; align-items: center; 
 } 
 
+.ethos .section-label {
+   
+    background: var(--red);
+    color: var(--yellow);
+   
+}
+
+
+.ethos .highlight { color: var(--red); font-style: italic; }
 .ethos-text {
-     border-radius:51px 0px; padding:15px 0px; 
+     border-radius:51px 0px; padding:15px 0px; color: var(--red);
 } 
 
-.ethos-text .section-body { margin-top: 20px;  line-height:1.2; }
+.ethos-text .section-body { margin-top: 20px;  line-height:1.2; color:var(--red); }
 
 .ethos-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .ethos-card {
     position: relative;  overflow: hidden;
     aspect-ratio: 3/4; cursor: pointer; 
-    transition: var(--trans); color: var(--yellow);
+    transition: var(--trans); color: var(--);
 }
 .ethos-card:hover { border-color: var(--yellow); transform: translateY(-6px); }
 .ethos-card img { transition: 0.8s ease; }
@@ -369,8 +379,9 @@ section { padding: 80px 20px; }
 
 /* ─── FOOTER ───────────────────────────────────── */
 .main-footer {
-    margin: 0 20px 0px; padding: 32px 24px 16px;
+    margin: 0 0px 0px; padding: 32px 24px 16px;
     color: var(--yellow);
+      background: var(--red); 
 }
 .footer-grid {
     display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 30px; margin-bottom: 20px; padding-bottom: 25px;
@@ -420,6 +431,10 @@ section { padding: 80px 20px; }
 }
 
 @media(max-width: 768px) {
+
+.nav-container {
+border-bottom: solid 1px var(--red);
+}
 .hero-sub { display:none; }
 .hero-content { align-items: flex-start; }
 .hero-title { line-height:0.85; font-size:2.2rem; }
@@ -431,22 +446,22 @@ section { padding: 80px 20px; }
     .mobile-toggle { display: block; }
     .nav-menu {
         position: absolute; top: 100%; left: 0; width: 100%;
-        background: var(--red); flex-direction: column; align-items: flex-start;
-        padding: 15px 20px 25px; opacity: 0; visibility: hidden; transform: translateY(0px);
-        border-bottom: 2px solid var(--yellow); box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        background: var(--yellow); flex-direction: column; align-items: flex-start;
+        padding: 15px 20px 25px; opacity: 0; visibility: hidden; transform: translateY(-10px);
+        border-bottom: 1px solid var(--red); 
         gap: 10px; transition: all 0.3s ease-in-out;
     }
     .nav-menu.active { opacity: 1; visibility: visible; transform: translateY(0); }
     .nav-menu li { 
     width: 100%; 
-    border: solid 1px var(--yellow); 
+    border: solid 1px var(--red); 
     border-radius: 12px;
     padding: 0; /* Remove padding from LI */
     overflow: hidden; /* Ensures the link corners don't overlap the border-radius */
 }
 
 .nav-link { 
-    color: var(--yellow) !important;
+    color: var(--red) !important;
     display: flex; /* Makes the anchor a flex container */
     align-items: center; 
     width: 100%; /* Spans full width of LI */
@@ -468,8 +483,8 @@ section { padding: 80px 20px; }
     .ethos-card:hover { transform: none; } 
     .ethos-card img { height: 140px; width: 90%; object-fit: cover; position: relative; z-index: 2; }
     .ethos-card-body { position: relative; inset: auto; background: transparent; padding: 20px 10px; display: block; z-index: 1; height:100%; }
-    .ethos-card-title { font-size: 1.1rem; color: var(--yellow); margin-top: 0; line-height: 1.1; }
-    .ethos-card-desc { display: block; font-size: 0.8rem; line-height: 1.3; color: var(--yellow); margin-top: 4px; }
+    .ethos-card-title { font-size: 1.1rem; color: var(--red); margin-top: 0; line-height: 1.1; }
+    .ethos-card-desc { display: block; font-size: 0.9rem; line-height: 1.1; color: var(--red); margin-top: 4px; }
 
     .ethos-card:nth-child(1) { margin-top: 0; }
     .ethos-card:nth-child(1) img { grid-column: 1; }
@@ -717,7 +732,7 @@ section { padding: 80px 20px; }
             
         </div>
     </div>
-</section>
+</section> 
 
 <div class="section-divider"></div>
 
