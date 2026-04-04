@@ -257,7 +257,7 @@ section { padding: 80px 20px; }
 .menu-hero .section-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
 .menu-hero-img { overflow: hidden; aspect-ratio: 4/3; border-radius: var(--radius-md); }
 
-.sandwich-gallery { padding: 40px 20px 80px; background: var(--red); }
+.sandwich-gallery { background: var(--red); }
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -267,12 +267,10 @@ section { padding: 80px 20px; }
 .gallery-item {
     position: relative; overflow: hidden; border-radius: var(--radius-md);
     cursor: pointer; transition: var(--trans);
+         aspect-ratio: 6 / 5 !important;
 }
 .gallery-item:hover { transform: translateY(-6px); }
-.gallery-item:nth-child(4n+1) { aspect-ratio: 1/1; }
-.gallery-item:nth-child(4n+2) { aspect-ratio: 4/5; }
-.gallery-item:nth-child(4n+3) { aspect-ratio: 3/4; }
-.gallery-item:nth-child(4n) { aspect-ratio: 1/1; }
+
 .gallery-item img { transition: 0.8s ease; }
 .gallery-item:hover img { transform: scale(1.08); filter: brightness(0.8); }
 .gallery-caption {
@@ -290,11 +288,12 @@ section { padding: 80px 20px; }
 
 /* ─── OUR BAKERY PAGE ─────────────────────────── */
 .bakery-page { background: var(--red); }
-.bakery-story { padding: 60px 20px; }
+
 .bakery-story .section-inner {
     display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;
 }
-.bakery-story-img { overflow: hidden; aspect-ratio: 3/4; border-radius: var(--radius-md); }
+.bakery-story-img { overflow: hidden; border-radius: var(--radius-md);     max-height: 450px;
+    object-fit: cover; }
 .bakery-story-text p { font-size: 1.05rem; color: var(--yellow); line-height: 1.5; margin-bottom: 20px; }
 
 .bakery-process { padding: 40px 20px 60px; background: var(--red); }
@@ -312,7 +311,7 @@ section { padding: 80px 20px; }
 .process-card p { font-size: 0.9rem; color: rgba(255,235,119,0.8); line-height: 1.4; }
 
 /* ─── INGREDIENTS GRAPHIC ─────────────────────── */
-.ingredients-section { padding: 60px 20px; background: var(--red); }
+.ingredients-section { background: var(--red); }
 .ingredients-inner { max-width: var(--max); margin: 0 auto; }
 .ingredients-graphic {
     margin-top: 40px;
@@ -327,7 +326,7 @@ section { padding: 80px 20px; }
 .ingredient-row:last-child { border-bottom: none; }
 .ingredient-row:hover { background: rgba(255,235,119,0.04); }
 .ingredient-pct {
-    font-size: 2.2rem; font-weight: 900; font-family: 'Permanent Marker', cursive;
+    font-size: 2.2rem; font-weight: 900;
     color: var(--yellow); line-height: 1; text-align: right;
 }
 .ingredient-pct.small { font-size: 1.5rem; }
@@ -338,7 +337,7 @@ section { padding: 80px 20px; }
 }
 .ingredient-bar { height: 100%; background: var(--yellow); border-radius: 4px; transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
 
-.bakery-images { padding: 0 20px 60px; }
+
 .bakery-img-grid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
@@ -353,16 +352,16 @@ section { padding: 80px 20px; }
 
 /* ─── STUDENTS PAGE ───────────────────────────── */
 .students-page { background: var(--red); }
-.students-hero {
-    padding: 60px 20px 20px;
-}
+
 .students-hero .section-inner {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center;
 }
-.students-hero-img { overflow: hidden; aspect-ratio: 4/3; border-radius: var(--radius-md); }
+.students-hero-img { overflow: hidden; border-radius: var(--radius-md);     max-height: 400px;
+    object-fit: cover;
+    object-position: center; }
 .students-hero-text p { font-size: 1.05rem; color: var(--yellow); line-height: 1.5; margin-bottom: 20px; }
 
-.students-sections { padding: 40px 20px 80px; }
+
 .students-sections .section-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
 .students-section-card {
     border: 1px solid var(--yellow); border-radius: var(--radius-md); overflow: hidden;
@@ -392,7 +391,7 @@ section { padding: 80px 20px; }
         "hours map"
         "getting map";
 }
-.loc-head { grid-area: head; margin-bottom: 6px; }
+.loc-head { grid-area: head; }
 .loc-address { grid-area: address; }
 .loc-hours { grid-area: hours; }
 .loc-getting { grid-area: getting; }
@@ -628,7 +627,7 @@ section { padding: 80px 20px; }
     .mobile-sandwich-img img { width: 100%; height: 100%; object-fit: cover; }
 
     .gallery-grid { grid-template-columns: 1fr; }
-    .gallery-item { aspect-ratio: 4/3 !important; }
+    .gallery-item { aspect-ratio: 5/3 !important; }
     .process-grid { grid-template-columns: 1fr; }
     .ingredient-row { grid-template-columns: 55px 1fr; }
     .ingredient-bar-wrap { display: none; }
@@ -716,7 +715,7 @@ section { padding: 80px 20px; }
 
 <div class="section-divider"></div>
 
-<section class="whatwedo" id="whatwedo" style="padding-top:60px;">
+<section class="whatwedo" id="whatwedo" style="padding-top:10px;">
     <div class="section-inner">
         <div class="reveal in-view">
             <div class="section-label">What We Do</div>
@@ -751,17 +750,6 @@ section { padding: 80px 20px; }
         </div>
     </div>
 </section>
-
-
-<!-- ─── HOME QUICK LINKS ────────────────────────── -->
-<section class="home-links">
-    <div class="section-inner">
-       
-      
-    </div>
-</section>
-
-</div><!-- /page-home -->
 
 
 
@@ -845,7 +833,7 @@ section { padding: 80px 20px; }
 <div class="section-divider"></div>
 
 <!-- ─── GOT A SANDWICH IDEA ─────────────────────── -->
-<section style="padding: 60px 20px 80px; background: var(--red);">
+<section style="background: var(--red);">
     <div class="section-inner">
         <div class="sandwiches-panel reveal in-view" style="max-width:700px; margin:0 auto;">
             <h3 class="student-card-title">Got a <span class="highlight">sandwich idea?</span></h3>
@@ -1070,7 +1058,7 @@ section { padding: 80px 20px; }
 </section>
 
 <!-- ─── STUDENT INSTAGRAM CALLOUT ──────────────── -->
-<section style="padding: 20px 20px 80px;">
+<section >
     <div class="section-inner">
         <div class="sandwiches-panel reveal in-view" style="max-width:700px; margin:0 auto;">
             <h3 class="student-card-title">Tag us in <span class="highlight">your campus life.</span></h3>
@@ -1090,7 +1078,7 @@ section { padding: 80px 20px; }
 <!-- ═══════════════════════════════════════════════ -->
 <div class="page" id="page-location">
 
-<section class="location" id="location" style="padding-top:60px;">
+<section class="location" id="location" style="padding-top:10px;">
     <div class="section-inner location-grid">
 
         <div class="loc-head">
@@ -1129,7 +1117,7 @@ section { padding: 80px 20px; }
 <!-- ═══════════════════════════════════════════════ -->
 <div class="page" id="page-contact">
 
-<section class="contact" id="contact" style="padding-top:60px;">
+<section class="contact" id="contact" style="padding-top:10px;">
     <div class="section-inner">
         <div class="contact-text">
 
