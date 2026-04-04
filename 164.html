@@ -499,7 +499,22 @@ section { padding: 20px 40px; }
 .mobile-sandwich-img { display: none; }
 
 /* ─── RESPONSIVE ───────────────────────────────── */
+    @media(min-width: 1101px) {
+
+    .bakery-text {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+        }
 @media(min-width: 800px) {
+
+   
+
+    .ethos-card-desc { display:none; }
+    
     .ethos-text { padding-right: 40px; }
 
 
@@ -603,8 +618,19 @@ section { padding: 20px 40px; }
     .process-grid { grid-template-columns: 1fr 1fr; }
     .ingredient-row { grid-template-columns: 60px 1fr 120px; }
 }
-
+@media(max-width: 1270px) {
+    .hidesmaller {
+   display:none;
+}
+    }
 @media(max-width: 768px) {
+
+   
+    
+    .ethos .section-label,
+    .hidesmall {
+   display:none;
+}
     .hero-title { color: var(--yellow) !important; }
     .hero .highlight { color: var(--yellow) !important; }
     .ethos { scroll-margin-top: 35px; }
@@ -734,7 +760,7 @@ section { padding: 20px 40px; }
 <section class="hero" id="home">
     <div class="hero-bg"></div>
     <div class="hero-content">
-        <div class="hero-kicker"><i class="fas fa-map-marker-alt"></i>&nbsp; 164 Woodhouse Lane</div>
+        <div class="hero-kicker"><i class="fas fa-map-marker-alt"></i>&nbsp; 164 Woodhouse Lane<span class="hidesmall">, Leeds</span></div>
         <h1 class="hero-title">
             Ciabatta &amp;<br>Focaccia<br>
             <span class="highlight">since 1994</span>
@@ -782,8 +808,8 @@ section { padding: 20px 40px; }
 <section class="whatwedo" id="whatwedo" style="padding-top:10px;">
     <div class="section-inner">
         <div class="reveal in-view">
-            <div class="section-label">What We Do</div>
-            <h2 class="section-heading">Our<span class="highlight"> Speciality</span></h2>
+          
+            <h2 class="section-heading">Our<span class="highlight" style="margin-top:15px;"> Speciality</span></h2>
         </div>
 
         <div class="whatwedo-content">
@@ -799,6 +825,11 @@ section { padding: 20px 40px; }
 
             <p>Explore our full range of ciabatta and focaccia sandwiches, from classic combinations to weekly specials. A huge selection of vegetarian and vegan options too.</p>
             <span class="btn btn-outline" style="margin-top:16px;">View menu <i class="fas fa-arrow-right" style="margin-left:6px;"></i></span>
+            <div class="hidesmaller" style="display:flex; flex-direction: row; margin-top:20px;">
+            <span style="border-right: solid 1px var(--yellow); padding: 10px 30px; padding-left:0px;">No preservatives</span>
+             <span style="border-right: solid 1px var(--yellow); padding: 10px 30px;">5 Ingredients</span>
+              <span style=" padding: 10px 30px;">Made Fresh</span>
+            </div>
                 </div>
                 
              
