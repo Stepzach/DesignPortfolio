@@ -232,14 +232,14 @@ section { padding: 20px 40px; }
 }
 .sandwiches-panel .section-heading { font-size: 1.5rem; margin-bottom: 16px; }
 .sandwiches-panel .section-body { margin: 0 auto 36px; text-align: center; font-size: 0.95rem; }
-.sandwich-steps { display: flex; justify-content: center; gap: 20px; margin-bottom: 30px; flex-wrap: wrap; }
-.sandwich-step { display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 0 0 110px; }
+.sandwich-steps { display: flex; justify-content: center; gap: 8px; margin-bottom: 30px; flex-wrap: wrap; }
+.sandwich-step { display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 0 0 85px; }
 .step-num {
     width: 42px; height: 42px; background: var(--yellow); color: var(--red);
     border-radius: 50%; display: flex; align-items: center; justify-content: center;
     font-weight: 900; font-size: 1.3rem;
 }
-.step-label { font-size: 0.85rem; font-weight: 700; text-align: center; }
+.step-label { font-size: 0.7rem; font-weight: 500; text-align: center; }
 .insta-btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 12px;
     background: var(--yellow); color: var(--red);
@@ -260,14 +260,15 @@ section { padding: 20px 40px; }
 .sandwich-gallery { background: var(--red); }
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+   
     margin-top: 40px;
 }
 .gallery-item {
-    position: relative; overflow: hidden; border-radius: var(--radius-md);
+    position: relative; overflow: hidden;
     cursor: pointer; transition: var(--trans);
          aspect-ratio: 6 / 5 !important;
+    border: solid 1px var(--red);
 }
 .gallery-item:hover { transform: translateY(-6px); }
 
@@ -501,6 +502,8 @@ section { padding: 20px 40px; }
 /* ─── RESPONSIVE ───────────────────────────────── */
     @media(min-width: 1101px) {
 
+        .hidesmall1100  { display:none; }
+        
     .bakery-text {
     height: 100%;
     display: flex;
@@ -508,6 +511,14 @@ section { padding: 20px 40px; }
     justify-content: space-evenly;
     align-items: flex-start;
 }
+        .hrcejrb { display:flex; flex-direction: row; }
+       
+        
+        }
+     @media(max-width: 1100px) {
+
+      #hidelarger { display:none; }
+
         }
 @media(min-width: 800px) {
 
@@ -556,6 +567,7 @@ section { padding: 20px 40px; }
     .footer-links-group {
     border-right: solid 1px var(--red) !important;
     padding: 20px !important;
+        height: 100%;
 }
     .footer-col.col-info  {
    
@@ -716,8 +728,8 @@ section { padding: 20px 40px; }
     }
     .mobile-sandwich-img img { width: 100%; height: 100%; object-fit: cover; }
 
-    .gallery-grid { grid-template-columns: 1fr; }
-    .gallery-item { aspect-ratio: 5/3 !important; }
+   
+    .gallery-item { aspect-ratio: 1/1 !important; }
     .process-grid { grid-template-columns: 1fr; }
     .ingredient-row { grid-template-columns: 55px 1fr; }
     .ingredient-bar-wrap { display: none; }
@@ -809,7 +821,7 @@ section { padding: 20px 40px; }
     <div class="section-inner">
         <div class="reveal in-view">
           
-            <h2 class="section-heading">Our<span class="highlight" style="margin-top:15px;"> Speciality</span></h2>
+            <h2 class="section-heading" style="margin-top:15px;">Our<span class="highlight"> Speciality</span></h2>
         </div>
 
         <div class="whatwedo-content">
@@ -857,67 +869,102 @@ section { padding: 20px 40px; }
 
 
 
-<div class="section-divider"></div>
+
 
 <section class="sandwich-gallery">
     <div class="section-inner">
-     
-      <h2 class="section-heading reveal in-view">Made fresh,<br><span class="highlight">every morning.</span></h2>
-            <p class="section-body reveal in-view" style="margin-top:16px;">Every sandwich starts with bread baked overnight. Then we pile on fillings that are bold, seasonal, and always generously portioned. Below is a taste of what we do — but pop in and see what's on the board today.</p>
+     <div style="display:flex; flex-direction: row; gap:10px;">
+      <div><h2 class="section-heading reveal in-view">Made fresh,<br><span class="highlight">every morning.</span></h2>
+            <p class="section-body reveal in-view" style="margin-top:16px;">We sell exciting and unusual sandwiches that are packed with flavour, texture and are hearty in size. Our flavour combinations are largely a mixture of Italian and Middle Eastern tastes, while also catering to traditional palates with the more classically-oriented recipes.</p>
+            
+            </div>
+            
+          
+    <div class="section-inner" id="hidelarger">
+        <div class="sandwiches-panel reveal in-view" style="max-width:700px; margin:0 auto;">
+            <h3 class="student-card-title">Got a <span class="highlight">sandwich idea?</span></h3>
+            <p class="section-body" style="font-size:0.95rem; margin-bottom:24px; text-align:center;">We're always experimenting. If you've got a flavour combination you'd love to see on the menu — send it to us on Instagram. The best ideas might just end up as a weekly special (and we'll give you the credit).</p>
+            <div class="sandwich-steps" style="margin-bottom:0px;">
+                <div class="sandwich-step"><div class="step-num">1</div><div class="step-label">Dream up your<br>ideal sandwich</div></div>
+                <div class="sandwich-step"><div class="step-num">2</div><div class="step-label">DM or tag us<br>on Instagram</div></div>
+                <div class="sandwich-step"><div class="step-num">3</div><div class="step-label">We test it in<br>the kitchen</div></div>
+                <div class="sandwich-step"><div class="step-num">4</div><div class="step-label">It might hit<br>the menu!</div></div>
+            </div>
+           
+        </div>
+    </div>
 
+
+</div>
         <div class="gallery-grid">
 
             <div class="gallery-item reveal in-view">
-                <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/Sandwich-of-the-Week-21-26-October-at-Cafe-164-Leeds%20(1).jpg?raw=true" alt="Sandwich of the Week" loading="lazy">
+                <img src="https://bakery164.com/wp-content/uploads/164_074A9230e_2018-1024x683.jpg" alt="Sandwich of the Week" loading="lazy">
                 <div class="gallery-caption">
                     <span class="gallery-tag">Weekly Special</span>
                     <h4>Sandwich of the Week</h4>
-                    <p>Our rotating weekly special — always bold, always seasonal, always worth the queue.</p>
+                    
                 </div>
             </div>
 
             <div class="gallery-item reveal reveal-delay-1 in-view">
-                <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/164_074A6886e_2018-300x300%20(1).jpg?raw=true" alt="Fresh baked bread" loading="lazy">
+                <img src="https://bakery164.com/wp-content/uploads/Vegetarian-Sandwich-of-the-Week-21-26-October-at-Cafe-164-Leeds-1024x683.jpg" alt="Fresh baked bread" loading="lazy">
                 <div class="gallery-caption">
                     <span class="gallery-tag">Freshly Baked</span>
                     <h4>Our Ciabatta Base</h4>
-                    <p>Hand-shaped overnight and baked fresh every morning. The foundation of every sandwich we make.</p>
+                  
                 </div>
             </div>
 
             <div class="gallery-item reveal reveal-delay-2 in-view">
-                <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/164_074A9823e_2018-300x300%20(1).jpg?raw=true" alt="Coffee at Bakery 164" loading="lazy">
+                <img src="https://bakery164.com/wp-content/uploads/164_Sandwiches_074A3151e_2020-1024x683.jpg" alt="Coffee at Bakery 164" loading="lazy">
                 <div class="gallery-caption">
-                    <span class="gallery-tag">Drinks</span>
-                    <h4>Italian Coffee</h4>
-                    <p>Dark-roasted Italian-style espresso, the perfect companion to any sandwich.</p>
+                    <span class="gallery-tag">vegetables</span>
+                    <h4>Ciabatta Sandwich</h4>
+                   
                 </div>
             </div>
 
             <div class="gallery-item reveal in-view">
-                <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/164_074A9792e_2018%20(1).jpg?raw=true" alt="The bakery interior" loading="lazy">
+                <img src="https://bakery164.com/wp-content/uploads/164_Sandwiches_074A3043e_2020-1024x683.jpg" alt="The bakery interior" loading="lazy">
                 <div class="gallery-caption">
                     <span class="gallery-tag">Vegetarian</span>
                     <h4>Roasted Vegetable Focaccia</h4>
-                    <p>Seasonal roasted veg, sun-dried tomatoes and pesto on freshly baked focaccia.</p>
+                  
                 </div>
             </div>
 
             <div class="gallery-item reveal reveal-delay-1 in-view">
-                <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/bakery-164-in-leeds-2018%20(1).jpg?raw=true" alt="Bakery 164 exterior" loading="lazy">
+                <img src="https://bakery164.com/wp-content/uploads/164_Sandwiches-27Dec_074A2514e_2019-1024x683.jpg" alt="Bakery 164 exterior" loading="lazy">
                 <div class="gallery-caption">
                     <span class="gallery-tag">Classic</span>
                     <h4>The 164 Classic</h4>
-                    <p>Cured meats, olives, roasted peppers, and a generous handful of rocket on ciabatta.</p>
+                   
                 </div>
             </div>
 
             <div class="gallery-item reveal reveal-delay-2 in-view">
-                <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/Sandwich-of-the-Week-21-26-October-at-Cafe-164-Leeds%20(1).jpg?raw=true" alt="Vegan sandwich" loading="lazy">
+                <img src="https://bakery164.com/wp-content/uploads/164_074A8694e_2018-1024x683.jpg" alt="Vegan sandwich" loading="lazy">
                 <div class="gallery-caption">
                     <span class="gallery-tag">Vegan</span>
                     <h4>Middle Eastern Falafel</h4>
-                    <p>Crispy falafel, hummus, tabbouleh and pickled red onion on our signature focaccia.</p>
+                   
+                </div>
+            </div>
+             <div class="gallery-item reveal reveal-delay-2 in-view">
+                <img src="https://bakery164.com/wp-content/uploads/Sandwiches-by-164-November-2019-_074A2368e_2019-1024x683.jpg" alt="Vegan sandwich" loading="lazy">
+                <div class="gallery-caption">
+                    <span class="gallery-tag">idk</span>
+                    <h4>Example</h4>
+                   
+                </div>
+            </div>
+             <div class="gallery-item reveal reveal-delay-2 in-view">
+                <img src="https://bakery164.com/wp-content/uploads/164_Sandwiches_074A2975e_2020-1024x683.jpg" alt="Vegan sandwich" loading="lazy">
+                <div class="gallery-caption">
+                    <span class="gallery-tag">Chicken</span>
+                    <h4>Middle Eastern</h4>
+                   
                 </div>
             </div>
 
@@ -928,7 +975,7 @@ section { padding: 20px 40px; }
 <div class="section-divider"></div>
 
 <!-- ─── GOT A SANDWICH IDEA ─────────────────────── -->
-<section style="background: var(--red);">
+<section class="hidesmall1100" style="background: var(--red);">
     <div class="section-inner">
         <div class="sandwiches-panel reveal in-view" style="max-width:700px; margin:0 auto;">
             <h3 class="student-card-title">Got a <span class="highlight">sandwich idea?</span></h3>
