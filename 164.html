@@ -100,10 +100,13 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .brand-logo { font-size: 1.8rem; font-weight: 900; color: var(--yellow); text-transform: uppercase; }
 .nav-menu { display: flex; gap: 28px; align-items: center; z-index:19 }
 .nav-link { font-weight: 700; font-size: 1rem; text-transform: uppercase; color: var(--yellow); position: relative; padding: 5px 0; cursor: pointer; }
-.nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 3px; background: var(--yellow); transition: var(--trans); }
+.nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 3px; background: var(--red); transition: var(--trans); }
 .nav-link:hover::after, .nav-link.active-link::after { width: 100%; }
 .mobile-toggle { display: none; font-size: 1.8rem; color: var(--red); cursor: pointer; }
-
+/* Disable the animated underline for the home/logo link */
+.brand-logo.nav-link::after {
+    display: none !important;
+}
 /* ─── HERO ────────────────────────────────────── */
 .hero {
     position: relative;
@@ -781,24 +784,41 @@ section { padding: 40px 40px; }
     :root { --hh: 50px; }
     .nav-container { padding: 0; }
     .main-nav { border-radius: 0; }
-    .mobile-toggle { display: block; }
-    .nav-menu {
-        position: absolute; top: 100%; left: 0; width: 100%;
-        background: var(--red); flex-direction: column; align-items: flex-start;
-        padding: 15px 20px 25px; opacity: 0; visibility: hidden; transform: translateY(-10px);
-        border-bottom: 1px solid var(--yellow);
-        gap: 10px; transition: all 0.3s ease-in-out; z-index:19;
+    .mobile-toggle { display: block; padding: 20px;
+        padding-right: 1px;}
+       .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--yellow);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 0px 0px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        border-top: solid 1px var(--yellow);
+        gap: 0px;
+        transition: all 0.3s ease-in-out;
     }
+.nav-menu.active {
+     border-bottom: solid 1px var(--red);
+      }
+      .nav-menu .nav-link {
+        padding: 30px;
+          }
+    
     .nav-menu.active { opacity: 1; visibility: visible; transform: translateY(0); }
     .nav-menu li {
         width: 100%;
-        border: solid 1px var(--yellow);
-        border-radius: 12px;
-        padding: 0;
+                border-top: solid 1px var(--red);
+       
         overflow: hidden;
+            
     }
-    .nav-link {
-        color: var(--yellow) !important;
+       .nav-link {
+        color: var(--red) !important;
         display: flex;
         align-items: center;
         width: 100%;
@@ -806,7 +826,7 @@ section { padding: 40px 40px; }
         padding: 12px 20px;
     }
     .nav-link img { margin-left: -20px !important; padding: 0; height: auto; }
-    .nav-link::after { display: none; }
+   .nav-link::after { content: ''; position: absolute; bottom: 38px; left: 0px; width: 0px; max-width:20px; height: 2px; background: var(--red); transition: var(--trans); }
    .hero {
         /* dvh is the key to ignoring the mobile browser UI bars */
        height: calc(100svh - var(--hh)); 
