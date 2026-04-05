@@ -43,6 +43,35 @@ a { text-decoration: none; color: var(--yellow); transition: var(--trans); }
 ul { list-style: none; }
 img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
+/* ─── PAGE LOADER ─────────────────────────────── */
+#page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--red);
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+#page-loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+.spinner {
+    width: 80px;
+    height: auto;
+    object-fit: contain;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /* ─── TYPOGRAPHY HELPERS ──────────────────────── */
 .bold-italic { font-weight: 700; font-style: italic; }
 .highlight { color: var(--yellow); font-style: italic; }
@@ -69,7 +98,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
     align-items: center;
 }
 .brand-logo { font-size: 1.8rem; font-weight: 900; color: var(--yellow); text-transform: uppercase; }
-.nav-menu { display: flex; gap: 28px; align-items: center; }
+.nav-menu { display: flex; gap: 28px; align-items: center; z-index:19 }
 .nav-link { font-weight: 700; font-size: 1rem; text-transform: uppercase; color: var(--yellow); position: relative; padding: 5px 0; cursor: pointer; }
 .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 3px; background: var(--yellow); transition: var(--trans); }
 .nav-link:hover::after, .nav-link.active-link::after { width: 100%; }
@@ -293,7 +322,7 @@ section { padding: 40px 40px; }
 .bakery-story .section-inner {
     display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center;
 }
-.bakery-story-img { overflow: hidden;     max-height: 350px;
+.bakery-story-img { overflow: hidden;      max-height: 350px;
     object-fit: cover; }
 .bakery-story-text p { font-size: 1.05rem; color: var(--yellow); line-height: 1.5; margin-bottom: 20px; }
 
@@ -513,7 +542,7 @@ section { padding: 40px 40px; }
     align-items: flex-start;
 }
         .hrcejrb { display:flex; flex-direction: row; }
-       
+        
         
         }
 
@@ -677,7 +706,7 @@ section { padding: 40px 40px; }
     .phone-number { font-size: 1.2rem; font-weight: 600; color: var(--yellow); }
 
       .location-grid {
-       
+        
         grid-template-areas: "head" "address" "hours" "getting";
     }
     
@@ -730,8 +759,8 @@ section { padding: 40px 40px; }
         display: flex;
         flex-direction: row; 
         align-items: left;
-               justify-content: space-between;
-       
+                justify-content: space-between;
+        
         background: var(--red);
         border-bottom: solid 1px var(--yellow);
         border-top: solid 1px var(--yellow);
@@ -745,7 +774,7 @@ section { padding: 40px 40px; }
     }
    
     
-    .hero-title { line-height: 0.85; font-size: 1.9rem; text-align:left; }
+    .hero-title { line-height: 0.85; font-size: 1.9rem; text-align:left; margin-bottom:0; }
     .hero-kicker { font-weight: 700; font-size: 0.65rem; padding: 4px 8px; letter-spacing: 0.3px; margin-bottom: 8px;   margin-top: 10px;  background: var(--yellow);     width:auto;  align-self:start;  justify-self: auto;
     color: var(--red); }
     .hero { padding: 0px; }
@@ -758,7 +787,7 @@ section { padding: 40px 40px; }
         background: var(--red); flex-direction: column; align-items: flex-start;
         padding: 15px 20px 25px; opacity: 0; visibility: hidden; transform: translateY(-10px);
         border-bottom: 1px solid var(--yellow);
-        gap: 10px; transition: all 0.3s ease-in-out;
+        gap: 10px; transition: all 0.3s ease-in-out; z-index:19;
     }
     .nav-menu.active { opacity: 1; visibility: visible; transform: translateY(0); }
     .nav-menu li {
@@ -816,7 +845,7 @@ section { padding: 40px 40px; }
         flex: 0 0 75%;    /* Strictly 85% of the parent */
         width: 100%;
          background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 55%, transparent 100%),
-                    url('https://media.thetab.com/blogs.dir/13/files/2022/02/img-8101-784x1024.jpg') center/cover no-repeat;
+                     url('https://media.thetab.com/blogs.dir/13/files/2022/02/img-8101-784x1024.jpg') center/cover no-repeat;
         background-position: center;
     }
     
@@ -897,7 +926,7 @@ section { padding: 40px 40px; }
         flex: 1; /* Takes 50% */
        
         overflow: hidden;
-                align-content: center;
+                 align-content: center;
     }
 
     .ingredients-image-side img {
@@ -918,6 +947,11 @@ section { padding: 40px 40px; }
 </head>
 <body>
 
+<!-- ─── PAGE LOADER ──────────────────────────────── -->
+<div id="page-loader">
+    <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/Screenshot%202026-04-05%20at%2011.42.52.png?raw=true" alt="Loading..." class="spinner">
+</div>
+
 <!-- ─── NAV ──────────────────────────────────────── -->
 <div class="nav-container">
     <nav class="main-nav">
@@ -925,7 +959,7 @@ section { padding: 40px 40px; }
             <a href="#" class="brand-logo nav-link" data-page="home"><img src="https://github.com/Stepzach/DesignPortfolio/blob/main/Screenshot%202026-04-03%20at%2022.28.56-Photoroom.png?raw=true" style="width:120px;"></a>
             <div class="mobile-toggle"><i class="fas fa-bars"></i></div>
             <ul class="nav-menu">
-               
+                
                 <li><a class="nav-link" data-page="menu">Sandwiches</a></li>
                 <li><a class="nav-link" data-page="bakery">Bakery</a></li>
                 <li><a class="nav-link" data-page="students">Students</a></li>
@@ -1028,9 +1062,9 @@ section { padding: 40px 40px; }
                 
             </div>
 
-           
+            
 
-           
+            
         </div>
     </div>
 </section>
@@ -1067,7 +1101,7 @@ section { padding: 40px 40px; }
                 <div class="sandwich-step"><div class="step-num">3</div><div class="step-label">We test it in<br>the kitchen</div></div>
                 <div class="sandwich-step"><div class="step-num">4</div><div class="step-label">It might hit<br>the menu!</div></div>
             </div>
-           
+            
         </div>
     </div>
 
@@ -1098,7 +1132,7 @@ section { padding: 40px 40px; }
                 <div class="gallery-caption">
                     <span class="gallery-tag">vegetables</span>
                     <h4>Ciabatta Sandwich</h4>
-                   
+                    
                 </div>
             </div>
 
@@ -1116,7 +1150,7 @@ section { padding: 40px 40px; }
                 <div class="gallery-caption">
                     <span class="gallery-tag">Classic</span>
                     <h4>The 164 Classic</h4>
-                   
+                    
                 </div>
             </div>
 
@@ -1125,7 +1159,7 @@ section { padding: 40px 40px; }
                 <div class="gallery-caption">
                     <span class="gallery-tag">Vegan</span>
                     <h4>Middle Eastern Falafel</h4>
-                   
+                    
                 </div>
             </div>
              <div class="gallery-item reveal reveal-delay-2 in-view">
@@ -1133,7 +1167,7 @@ section { padding: 40px 40px; }
                 <div class="gallery-caption">
                     <span class="gallery-tag">idk</span>
                     <h4>Example</h4>
-                   
+                    
                 </div>
             </div>
              <div class="gallery-item reveal reveal-delay-2 in-view">
@@ -1141,7 +1175,7 @@ section { padding: 40px 40px; }
                 <div class="gallery-caption">
                     <span class="gallery-tag">Chicken</span>
                     <h4>Middle Eastern</h4>
-                   
+                    
                 </div>
             </div>
 
@@ -1300,7 +1334,7 @@ section { padding: 40px 40px; }
     <div class="section-inner">
 
         <div class="students-section-card reveal in-view">
-           
+            
             <div class="students-section-body">
               
                 <h3>Events &amp; Pop-Ups</h3>
@@ -1318,7 +1352,7 @@ section { padding: 40px 40px; }
                         <i class="fas fa-check perk-icon"></i>
                         <span class="perk-text">Large selection of vegetarian and vegan options available</span>
                     </div>
-                   
+                    
                 </div>
                 <a class="btn btn-outline" data-page-link="contact" style="margin-top:20px; width:fit-content; cursor:pointer;">
                     Get in touch <i class="fas fa-arrow-right" style="margin-left:6px;"></i>
@@ -1327,9 +1361,9 @@ section { padding: 40px 40px; }
         </div>
 
         <div class="students-section-card reveal reveal-delay-1 in-view">
-           
+            
             <div class="students-section-body">
-               
+                
                 <h3>Sponsorship &amp; Partnerships</h3>
                 <p>We support the people who make Leeds great. If you're a student society, sports team, media group, or creative project looking for a local food partner, we'd love to talk. We believe in backing the community we're part of.</p>
                 <div class="students-perks">
@@ -1337,7 +1371,7 @@ section { padding: 40px 40px; }
                         <i class="fas fa-check perk-icon"></i>
                         <span class="perk-text">Student society and sports team sponsorship</span>
                     </div>
-                   
+                    
                     <div class="perk-row">
                         <i class="fas fa-check perk-icon"></i>
                         <span class="perk-text">In-kind food sponsorship for events</span>
@@ -1498,32 +1532,90 @@ section { padding: 40px 40px; }
 </footer>
 
 <script>
-// ─── PAGE NAVIGATION ──────────────────────────────
+// ─── DOM ELEMENTS ─────────────────────────────────
 const pages = document.querySelectorAll('.page');
 const navLinks = document.querySelectorAll('[data-page]');
 const pageLinkBtns = document.querySelectorAll('[data-page-link]');
+const mobileBtn = document.querySelector('.mobile-toggle');
+const navMenu = document.querySelector('.nav-menu');
+const navIcon = mobileBtn?.querySelector('i');
 
-function showPage(pageId) {
-    pages.forEach(p => p.classList.remove('active'));
-    const target = document.getElementById('page-' + pageId);
-    if (target) {
-        target.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        // re-run reveal observer for newly shown elements
-        target.querySelectorAll('.reveal:not(.in-view)').forEach(el => observer.observe(el));
-        // animate ingredient bars if on bakery page
-        if (pageId === 'bakery') {
-            setTimeout(animateBars, 300);
-        }
+// ─── INITIAL LOAD HANDLING ──────────────────────────
+window.addEventListener('load', () => {
+    const loader = document.getElementById('page-loader');
+    if (loader) {
+        loader.classList.add('hidden');
     }
-    // update active nav link
-    navLinks.forEach(l => {
-        l.classList.remove('active-link');
-        if (l.dataset.page === pageId) l.classList.add('active-link');
-    });
-    // close mobile menu
-    navMenu.classList.remove('active');
+});
+
+// ─── PAGE NAVIGATION ──────────────────────────────
+function showPage(pageId) {
+    // 1. Close mobile menu
+    if (navMenu) navMenu.classList.remove('active');
     if (navIcon) navIcon.classList.replace('fa-times', 'fa-bars');
+
+    // 2. Show loader
+    const loader = document.getElementById('page-loader');
+    loader.classList.remove('hidden'); 
+
+    setTimeout(() => {
+        pages.forEach(p => p.classList.remove('active'));
+        const target = document.getElementById('page-' + pageId);
+        
+        if (target) {
+            target.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            target.querySelectorAll('.reveal:not(.in-view)').forEach(el => observer.observe(el));
+            if (pageId === 'bakery') setTimeout(animateBars, 300);
+        }
+        
+        navLinks.forEach(l => {
+            l.classList.remove('active-link');
+            if (l.dataset.page === pageId) l.classList.add('active-link');
+        });
+
+        // --- FIXED IMAGE HANDLING ---
+        const images = target ? Array.from(target.querySelectorAll('img')) : [];
+        let loadedCount = 0;
+
+        const hideLoader = () => loader.classList.add('hidden');
+
+        // If no images, or if we get stuck for more than 1.5 seconds, hide loader anyway
+        const backupTimeout = setTimeout(hideLoader, 1500);
+
+        if (images.length === 0) {
+            hideLoader();
+            clearTimeout(backupTimeout);
+        } else {
+            images.forEach(img => {
+                // If image is already loaded or has no source, count it immediately
+                if (img.complete || !img.src) {
+                    loadedCount++;
+                } else {
+                    img.addEventListener('load', () => {
+                        loadedCount++;
+                        if (loadedCount >= images.length) {
+                            hideLoader();
+                            clearTimeout(backupTimeout);
+                        }
+                    });
+                    img.addEventListener('error', () => {
+                        loadedCount++;
+                        if (loadedCount >= images.length) {
+                            hideLoader();
+                            clearTimeout(backupTimeout);
+                        }
+                    });
+                }
+            });
+
+            // Final check in case all were already complete
+            if (loadedCount >= images.length) {
+                hideLoader();
+                clearTimeout(backupTimeout);
+            }
+        }
+    }, 400); 
 }
 
 navLinks.forEach(link => {
@@ -1541,11 +1633,7 @@ pageLinkBtns.forEach(btn => {
     });
 });
 
-// ─── MOBILE NAV ───────────────────────────────────
-const mobileBtn = document.querySelector('.mobile-toggle');
-const navMenu = document.querySelector('.nav-menu');
-const navIcon = mobileBtn?.querySelector('i');
-
+// ─── MOBILE NAV TOGGLE ────────────────────────────
 if (mobileBtn) {
     mobileBtn.addEventListener('click', () => {
         const isActive = navMenu.classList.toggle('active');
