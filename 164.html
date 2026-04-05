@@ -773,6 +773,7 @@ section { padding: 40px 40px; }
 .ingredients-section { 
     background: var(--red); 
     padding: 20px 0; 
+    padding-bottom:40px;
 }
 .ingredients-section .section-label { 
         align-self: flex-start;
@@ -1278,7 +1279,7 @@ section { padding: 40px 40px; }
 <!-- ═══════════════════════════════════════════════ -->
 <div class="page" id="page-location">
 
-<section class="location" id="location" style="padding-top:10px;">
+<section class="location" id="location">
     <div class="section-inner location-grid">
 
         <div class="loc-head">
@@ -1317,16 +1318,27 @@ section { padding: 40px 40px; }
 <!-- ═══════════════════════════════════════════════ -->
 <div class="page" id="page-contact">
 
-<section class="contact" id="contact" style="padding-top:10px;">
+<section class="contact" id="contact" >
     <div class="section-inner">
         <div class="contact-text">
 
             <h2 class="section-heading reveal in-view">Get in Touch</h2>
             <p class="section-body reveal in-view">Whether you're feeding ten people at a meeting or two hundred at a conference, we bring the same Bakery 164 quality to your event.</p>
             <div class="contact-cards reveal in-view">
-                <div class="contact-card"><div class="contact-card-title">Catering</div><div class="contact-card-desc">Corporate lunches, events, and office catering. We design menus around your needs.</div></div>
-                <div class="contact-card"><div class="contact-card-title">Delivery</div><div class="contact-card-desc">Can't make it in? We deliver across central Leeds. Contact us directly to arrange.</div></div>
-            </div>
+    <!-- Catering Card -->
+    <div class="contact-card">
+        <i class="fa fa-utensils"></i>
+        <div class="contact-card-title">Catering</div>
+        <div class="contact-card-desc">Lunches, events, and society catering. We design menus around your needs.</div>
+    </div>
+
+    <!-- Delivery Card -->
+    <div class="contact-card">
+        <i class="fa fa-truck"></i>
+        <div class="contact-card-title">Delivery</div>
+        <div class="contact-card-desc">Can't make it in? We deliver across central Leeds. Contact us directly to arrange.</div>
+    </div>
+</div>
             <a href="tel:+441132456789" class="phone-block reveal in-view">
                 <div class="phone-icon"><i class="fas fa-phone"></i></div>
                 <div>
