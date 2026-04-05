@@ -320,7 +320,7 @@ section { padding: 40px 40px; }
 }
 .ingredient-row {
     display: grid; grid-template-columns: 80px 1fr 200px;
-    align-items: center; gap: 20px; padding: 22px 30px;
+    align-items: center; gap: 20px; padding: 12px 20px;
     border-bottom: 1px solid rgba(255,235,119,0.15);
     transition: var(--trans);
 }
@@ -645,6 +645,16 @@ section { padding: 40px 40px; }
     }
 @media(max-width: 768px) {
 
+    .phone-number { font-size: 1.2rem; font-weight: 600; color: var(--yellow); }
+
+      .location-grid {
+       
+        grid-template-areas: "head" "address" "hours" "getting";
+    }
+    
+    .map-wrapper {
+   display:none;
+}
     .nav-inner {
  
     padding: 0 16px;
@@ -772,7 +782,7 @@ section { padding: 40px 40px; }
     /* ─── INGREDIENTS GRAPHIC ─────────────────────── */
 .ingredients-section { 
     background: var(--red); 
-    padding: 20px 0; 
+    padding: 40px 0; 
     padding-bottom:40px;
 }
 .ingredients-section .section-label { 
@@ -814,11 +824,12 @@ section { padding: 40px 40px; }
         flex: 1; /* Takes 50% */
        
         overflow: hidden;
+                align-content: center;
     }
 
     .ingredients-image-side img {
         width: 100%;
-        height: 100%;
+        height: 90%;
         object-fit: cover; /* Fills height perfectly */
     }
 
@@ -927,7 +938,7 @@ section { padding: 40px 40px; }
             <p>Explore our full range of ciabatta and focaccia sandwiches, from classic combinations to weekly specials. A huge selection of vegetarian and vegan options too.</p>
             <span class="btn btn-outline" style="margin-top:16px;">View menu <i class="fas fa-arrow-right" style="margin-left:6px;"></i></span>
             <div class="hidesmaller" style="display:flex; flex-direction: row; margin-top:20px;">
-            <span style="border-right: solid 1px var(--yellow); padding: 10px 30px; padding-left:0px;">No preservatives</span>
+        
              <span style="border-right: solid 1px var(--yellow); padding: 10px 30px;">5 Ingredients</span>
               <span style=" padding: 10px 30px;">Made Fresh</span>
             </div>
@@ -963,7 +974,7 @@ section { padding: 40px 40px; }
 <section class="sandwich-gallery">
     <div class="section-inner">
      <div style="display:flex; flex-direction: row; gap:10px; justify-content: space-between;">
-      <div><h2 class="section-heading reveal in-view">Made fresh,<br><span class="highlight">every morning.</span></h2>
+      <div><h2 class="section-heading reveal in-view">Made fresh<br><span class="highlight">every morning</span></h2>
             <p class="section-body reveal in-view" style="margin-top:16px;">We sell exciting and unusual sandwiches that are packed with flavour, texture and are hearty in size. Our flavour combinations are largely a mixture of Italian and Middle Eastern tastes, while also catering to traditional palates with the more classically-oriented recipes.</p>
             
             </div>
@@ -1094,7 +1105,7 @@ section { padding: 40px 40px; }
     <div class="section-inner">
         <div class="bakery-story-text reveal in-view">
 
-            <h2 class="section-heading">Baking since <span class="highlight">1994.</span></h2>
+            <h2 class="section-heading">Baking since <span class="highlight">1994</span></h2>
             <p>We hand craft our ciabatta and focaccia bread. Made fresh, every day in our bakeries</p>
             <p>TEvery evening we hand mix and hand shape our ciabatta and focaccia dough, to make all the bread that will be used the next day. It’s baked overnight so it’s fresh first thing for our sandwich production.</p>
             <p>The recipe for our bread, which was first developed back in 1994, is simple, and designed primarily for one thing – to compliment a filling to make a great sandwich.</p>
@@ -1284,7 +1295,7 @@ section { padding: 40px 40px; }
 
         <div class="loc-head">
        
-            <h2 class="section-heading reveal in-view">Right opposite <span class="highlight">Parkinson.</span></h2>
+            <h2 class="section-heading reveal in-view">Right opposite <span class="highlight">Parkinson</span></h2>
         </div>
 
         <div class="info-block loc-address reveal in-view">
@@ -1308,6 +1319,7 @@ section { padding: 40px 40px; }
         </div>
 
     </div>
+    <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/Screenshot%202026-04-05%20at%2010.17.34.jpg?raw=true" style="margin-top:10px; min-height:350px; max-height:450px; width:100%; object-fit:cover;">
 </section>
 
 </div><!-- /page-location -->
@@ -1322,19 +1334,19 @@ section { padding: 40px 40px; }
     <div class="section-inner">
         <div class="contact-text">
 
-            <h2 class="section-heading reveal in-view">Get in Touch</h2>
+            <h2 class="section-heading reveal in-view">Get in touch</h2>
             <p class="section-body reveal in-view">Whether you're feeding ten people at a meeting or two hundred at a conference, we bring the same Bakery 164 quality to your event.</p>
             <div class="contact-cards reveal in-view">
     <!-- Catering Card -->
     <div class="contact-card">
-        <i class="fa fa-utensils"></i>
+        <i class="fa fa-utensils" style="margin-bottom:20px;"></i>
         <div class="contact-card-title">Catering</div>
         <div class="contact-card-desc">Lunches, events, and society catering. We design menus around your needs.</div>
     </div>
 
     <!-- Delivery Card -->
     <div class="contact-card">
-        <i class="fa fa-truck"></i>
+        <i class="fa fa-truck" style="margin-bottom:20px;"></i>
         <div class="contact-card-title">Delivery</div>
         <div class="contact-card-desc">Can't make it in? We deliver across central Leeds. Contact us directly to arrange.</div>
     </div>
@@ -1344,6 +1356,13 @@ section { padding: 40px 40px; }
                 <div>
                     <div class="phone-label">Call Us</div>
                     <div class="phone-number">0113 245 6789</div>
+                </div>
+            </a>
+              <a href="mailto:example@bakery164.com" class="phone-block reveal in-view">
+                <div class="phone-icon"><i class="fas fa-envelope"></i></div>
+                <div>
+                    <div class="phone-label">Email Us</div>
+                    <div class="phone-number">example@bakery164.com</div>
                 </div>
             </a>
         </div>
