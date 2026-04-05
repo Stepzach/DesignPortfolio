@@ -721,18 +721,27 @@ section { padding: 40px 40px; }
     .nav-container { border-bottom: solid 1px var(--red); }
     .hero-sub { display: none; }
     .hero-content {
-        flex: 0 0 20%;   
+        flex: 0 0 25%;   
         width: 100%;
         padding: 10px 20px; 
         display: flex;
-        flex-direction: column; 
+        flex-direction: row; 
         align-items: left;
+               justify-content: space-between;
        
         background: var(--red);
         border-bottom: solid 1px var(--yellow);
     }
-    .hero-title { line-height: 0.85; font-size: 2.1rem; text-align:left; }
-    .hero-kicker { font-weight: 700; font-size: 0.7rem; padding: 5px 12px; letter-spacing: 0.5px; margin-bottom: 18px;     background: var(--yellow);
+    
+     .her-side{
+       width: 100%;
+        display: flex;
+        flex-direction: column; 
+       
+    }
+    
+    .hero-title { line-height: 0.85; font-size: 2rem; text-align:left; }
+    .hero-kicker { font-weight: 700; font-size: 0.65rem; padding: 5px 12px; letter-spacing: 0.3px; margin-bottom: 12px;     background: var(--yellow);     width:auto;  align-self:start;  justify-self: auto;
     color: var(--red); }
     .hero { padding: 0px; }
     :root { --hh: 50px; }
@@ -799,7 +808,7 @@ section { padding: 40px 40px; }
    
     .hero-bg {
         position: relative; /* Changed from absolute to occupy space */
-        flex: 0 0 80%;    /* Strictly 85% of the parent */
+        flex: 0 0 75%;    /* Strictly 85% of the parent */
         width: 100%;
          background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 55%, transparent 100%),
                     url('https://media.thetab.com/blogs.dir/13/files/2022/02/img-8101-784x1024.jpg') center/cover no-repeat;
@@ -931,11 +940,14 @@ section { padding: 40px 40px; }
 <section class="hero" id="home">
     <div class="hero-bg"></div>
     <div class="hero-content">
-        <div class="hero-kicker"><i class="fas fa-map-marker-alt"></i>&nbsp; 164 Woodhouse Lane<span class="hidesmall">, Leeds</span></div>
+        <div class="her-side"><div class="hero-kicker"><i class="fas fa-map-marker-alt"></i>&nbsp; 164 Woodhouse Lane<span class="hidesmall">, Leeds</span></div>
         <h1 class="hero-title">
             Ciabatta &amp;<br>Focaccia<br>
             <span class="highlight">since 1994</span>
-        </h1>
+        </h1></div>
+        <img style="width: 25%;
+    padding: 20px 0px;
+    height: auto; max-height:130px; object-fit: contain;"src="https://github.com/Stepzach/DesignPortfolio/blob/main/Screenshot%202026-04-05%20at%2011.42.52.png?raw=true">
         <p class="hero-sub">Gourmet ciabatta &amp; focaccia sandwiches with bold Mediterranean and Middle Eastern flavours - baked fresh every morning, served under the big red canopy opposite the Parkinson Building.</p>
     </div>
 </section>
