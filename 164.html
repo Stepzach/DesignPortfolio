@@ -505,7 +505,7 @@ section { padding: 40px 40px; }
     background: var(--yellow);
 }
 .main-footer a { color: var(--red); }
-.main-footer a:hover { color: #FFEB77bd; transform: translateX(3px); }
+.main-footer a:hover { color: var(--red); transform: translateX(3px); }
 .footer-grid {
     display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 30px; margin-bottom: 20px; padding-bottom: 25px;
     border-bottom: 1px solid rgba(255,255,255,0.1); align-items: start;
@@ -632,6 +632,7 @@ section { padding: 40px 40px; }
     }
 
 @media(min-width: 1101px) {
+  
     .whatwedo-content {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -649,6 +650,7 @@ section { padding: 40px 40px; }
 }
 
 @media(max-width: 1100px) {
+      .hidhdizh { display: none; }
     .ethos .section-inner, .contact .section-inner, .footer-grid { grid-template-columns: 1fr; }
     .location-grid {
         grid-template-columns: 1fr;
@@ -1067,7 +1069,7 @@ section { padding: 40px 40px; }
          <br>
 
             <p>Explore our full range of ciabatta and focaccia sandwiches, from classic combinations to weekly specials. A huge selection of vegetarian and vegan options too.</p>
-            <span class="btn btn-outline" style="margin-top:16px;">View menu <i class="fas fa-arrow-right" style="margin-left:6px;"></i></span>
+            <span class="btn btn-outline" data-page="menu" style="margin-top:16px;">View menu <i class="fas fa-arrow-right" style="margin-left:6px;"></i></span>
             <div class="hidesmaller" style="display:flex; flex-direction: row; margin-top:20px;">
          <span style="border-right: solid 1px var(--yellow); padding: 10px 30px; padding-left:0px;">No preservatives</span>
              <span style="border-right: solid 1px var(--yellow); padding: 10px 30px;">5 Ingredients</span>
@@ -1238,7 +1240,7 @@ section { padding: 40px 40px; }
 
             <h2 class="section-heading">Baking since <span class="highlight">1994</span></h2>
             <p>We hand craft our ciabatta and focaccia bread. Made fresh, every day in our bakeries</p>
-            <p>TEvery evening we hand mix and hand shape our ciabatta and focaccia dough, to make all the bread that will be used the next day. It’s baked overnight so it’s fresh first thing for our sandwich production.</p>
+            <p>Every evening we hand mix and hand shape our ciabatta and focaccia dough, to make all the bread that will be used the next day. It’s baked overnight so it’s fresh first thing for our sandwich production.</p>
             <p>The recipe for our bread, which was first developed back in 1994, is simple, and designed primarily for one thing – to compliment a filling to make a great sandwich.</p>
         </div>
         <div class="bakery-story-img reveal reveal-delay-1 in-view">
@@ -1261,7 +1263,7 @@ section { padding: 40px 40px; }
 
         <div class="ingredients-content-side">
          
-            <h2 class="section-heading reveal">Five ingredients.<br></h2>
+            <h2 class="section-heading reveal">Five ingredients<br></h2>
             <p class="section-body reveal" >Our bread contains just 5 ingredients. Our dough is hand mixed, and hand shaped into each individual sandwich, every day, by us.</p>
 
             <div class="ingredients-graphic reveal">
@@ -1545,7 +1547,7 @@ section { padding: 40px 40px; }
             
         </div>
         <div class="footer-col col-info">
-            <p class="info-text">Bakery 164 is a renowned gourmet sandwich shop located in Leeds, directly opposite the University of Leeds' Parkinson Building.</p>
+            <p class="info-text">Bakery 164 is a renowned gourmet sandwich shop located in Leeds, directly opposite the University of Leeds' Parkinson Building.</p><div class="hidhdizh" style="width:100%; text-align:center;"><p style="text-align:center; margin-top:10px; display:flex; flex-direction: row; justify-content:center;">Website by <a style="margin-left:4px;"href="https://stephenszachary.com" taget="_blank"> Zach</a></p></div>
         </div>
     </div>
     <div class="copyright">© Bakery 164 &nbsp;·&nbsp; <a href="/legal">Privacy &amp; Terms of Use</a></div>
@@ -1560,19 +1562,16 @@ const mobileBtn = document.querySelector('.mobile-toggle');
 const navMenu = document.querySelector('.nav-menu');
 const navIcon = mobileBtn?.querySelector('i');
 
-// ─── INITIAL LOAD HANDLING ──────────────────────────
-window.addEventListener('load', () => {
-    const loader = document.getElementById('page-loader');
-    if (loader) {
-        loader.classList.add('hidden');
-    }
-});
-
 // ─── PAGE NAVIGATION ──────────────────────────────
-function showPage(pageId) {
+function showPage(pageId, updateHash = true) {
     // 1. Close mobile menu
     if (navMenu) navMenu.classList.remove('active');
     if (navIcon) navIcon.classList.replace('fa-times', 'fa-bars');
+
+    // Update URL hash without causing the page to visually jump
+    if (updateHash) {
+        history.pushState(null, null, '#' + pageId);
+    }
 
     // 2. Show loader
     const loader = document.getElementById('page-loader');
@@ -1608,7 +1607,6 @@ function showPage(pageId) {
             clearTimeout(backupTimeout);
         } else {
             images.forEach(img => {
-                // If image is already loaded or has no source, count it immediately
                 if (img.complete || !img.src) {
                     loadedCount++;
                 } else {
@@ -1629,7 +1627,6 @@ function showPage(pageId) {
                 }
             });
 
-            // Final check in case all were already complete
             if (loadedCount >= images.length) {
                 hideLoader();
                 clearTimeout(backupTimeout);
@@ -1648,7 +1645,8 @@ navLinks.forEach(link => {
 
 pageLinkBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
-        const pageId = btn.dataset.pageLink;
+        // Use data-page if available, otherwise fallback to data-page-link
+        const pageId = btn.dataset.page || btn.dataset.pageLink;
         if (pageId) showPage(pageId);
     });
 });
@@ -1675,7 +1673,6 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 function animateBars() {
     document.querySelectorAll('.ingredient-bar').forEach(bar => {
         const target = parseFloat(bar.dataset.width);
-        // scale bar to percentage of max (85%)
         const pct = (target / 85) * 100;
         bar.style.width = pct + '%';
     });
@@ -1698,8 +1695,31 @@ function animateBars() {
     });
 })();
 
-// Set home as default active nav link
-document.querySelector('[data-page="home"]')?.classList.add('active-link');
+// ─── ROUTING & INITIAL LOAD HANDLING ──────────────
+window.addEventListener('load', () => {
+    const loader = document.getElementById('page-loader');
+    if (loader) {
+        loader.classList.add('hidden');
+    }
+});
+
+function handleRouting() {
+    const hash = window.location.hash.substring(1); // Get hash without the '#'
+    // Check if the hash matches a real page, otherwise fall back to 'home'
+    const targetPage = document.getElementById('page-' + hash) ? hash : 'home';
+    showPage(targetPage, false); // false prevents pushing the state again on load/back button
+}
+
+// Listen for back/forward browser navigation
+window.addEventListener('hashchange', handleRouting);
+
+// Handle the initial page load based on URL
+if (window.location.hash) {
+    handleRouting();
+} else {
+    // Set home as default active nav link if no URL hash exists
+    document.querySelector('[data-page="home"]')?.classList.add('active-link');
+}
 </script>
 
 </body>
