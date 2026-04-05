@@ -643,7 +643,22 @@ section { padding: 40px 40px; }
    display:none !important;
 }
     }
+
+    @media(min-width: 769px) {
+
+         #hide678a {
+   display:none !important;
+}
+    }
+
+    
 @media(max-width: 768px) {
+
+    .main-footer {
+   
+    padding: 0px 24px 16px !important;
+   
+}
 
     .phone-number { font-size: 1.2rem; font-weight: 600; color: var(--yellow); }
 
@@ -688,8 +703,8 @@ section { padding: 40px 40px; }
     .contact { scroll-margin-top: 50px; }
     .nav-container { border-bottom: solid 1px var(--yellow); }
     .hero-sub { display: none; }
-    .hero-content { align-items: flex-start; background: transparent; }
-    .hero-title { line-height: 0.85; font-size: 2.2rem; }
+    .hero-content { align-items: flex-end; background: transparent; }
+    .hero-title { line-height: 0.85; font-size: 2.2rem; text-align:right; }
     .hero-kicker { font-weight: 700; font-size: 0.7rem; padding: 5px 12px; letter-spacing: 0.5px; margin-bottom: 18px; }
     .hero { padding: 5px 0px 5px; }
     :root { --hh: 50px; }
@@ -721,7 +736,7 @@ section { padding: 40px 40px; }
     }
     .nav-link img { margin-left: -20px !important; padding: 0; height: auto; }
     .nav-link::after { display: none; }
-    .hero { margin: 0; border-radius: 0; min-height: 85vh; display: flex; align-items: flex-start; background: transparent; }
+    .hero { margin: 0; border-radius: 0; min-height: 85vh; display: flex; align-items: flex-end; background: transparent; }
     .hero-content { padding: 20px 24px; }
     section { padding: 26px 16px; }
 
@@ -745,7 +760,7 @@ section { padding: 40px 40px; }
 
     .hero-bg {
         position: absolute; inset: 0;
-        background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.3) 55%, transparent 100%),
+        background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 55%, transparent 100%),
                     url('https://media.thetab.com/blogs.dir/13/files/2022/02/img-8101-784x1024.jpg') center/cover no-repeat;
         transition: transform 8s ease;
     }
@@ -756,7 +771,7 @@ section { padding: 40px 40px; }
     .bakery-text .section-heading {
         position: absolute; top: 0; 
         right: 0; width: 10%; writing-mode: vertical-rl;
-        margin: 0; padding-top: 0px; font-size: clamp(1.4rem, 4vw, 2rem);
+        margin: 0; padding-top: 0px; font-size: 1.2rem;
         line-height: 1; text-wrap: nowrap;
     }
     .mobile-sandwich-img {
@@ -1389,6 +1404,9 @@ section { padding: 40px 40px; }
                     <li><a href="https://www.tripadvisor.co.uk" target="_blank">Reviews</a></li>
                 </ul>
             </div>
+            <div class="footer-col" id="hide678a">
+              <div style="width:1px !important; z-index: 20; margin:0px 2px; background: var(--red); height:100%;"></div>
+            </div>
             <div class="footer-col">
                 <h4>Social</h4>
                 <ul>
@@ -1396,6 +1414,11 @@ section { padding: 40px 40px; }
                     <li><a href="https://www.tiktok.com/@bakery164" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></li>
                 </ul>
             </div>
+            
+            <div class="footer-col" id="hide678a">
+              <div style="width:1px !important; z-index: 20; margin:0px 2px; background: var(--red); height:100%;"></div>
+            </div>
+            
              <div class="footer-col">
                 <h4>More</h4>
                 <ul>
@@ -1403,6 +1426,7 @@ section { padding: 40px 40px; }
                     <li><a href="mailto:hello@bakery164.com"><i class="fas fa-envelope"></i> Email</a></li>
                 </ul>
             </div>
+            
         </div>
         <div class="footer-col col-info">
             <p class="info-text">Bakery 164 is a renowned gourmet sandwich shop located in Leeds, directly opposite the University of Leeds' Parkinson Building.</p>
