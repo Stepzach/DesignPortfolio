@@ -686,10 +686,56 @@ section { padding: 40px 40px; }
          .her-omg  {
    display:none !important;
 }
+
+        #line-thru  {
+   display:none !important;
+}
     }
 
     
 @media(max-width: 768px) {
+
+    .ingredients-section {
+    padding: 26px 0px !important;
+       
+     }
+    .ingredients-inner {
+    padding: 0px 16px !important;
+       
+     }
+    .ingredients-graphic  {
+  border-radius:0px;
+       
+     }
+
+
+    #line-thru {
+       
+    text-decoration: line-through;
+}
+
+   #line-under {
+    /* transform: translate(30px); */
+    position: absolute;
+    right: 36px;
+    margin-top: 10px;
+    /* text-transform: uppercase; */
+    text-decoration: underline;
+}
+
+    #width50 {
+    width: 50%;
+}
+    #widthandmove {
+    width: 40%;
+    position: relative;
+    right: 16px;
+    /* margin-top: -121px; */
+    height: 0px;
+    /* top: 0; */
+    transform: translate(150%, -50px);
+    text-align: right;
+}
 
     .sandwich-step:nth-of-type(4) {
   display: none;
@@ -942,6 +988,24 @@ section { padding: 40px 40px; }
    
     overflow: hidden;
     background: rgba(255,235,119,0.02);
+}
+
+
+@media(max-width: 486px) {
+ #line-under {
+   
+    right: 36px;
+    margin-top: 40px;
+    
+}
+}
+@media(max-width: 407px) {
+ #line-under {
+   
+    right: 36px;
+    margin-top: 60px;
+    
+}
 }
 
 /* DESKTOP LAYOUT (1101px and up) */
@@ -1247,10 +1311,10 @@ section { padding: 40px 40px; }
     <div class="section-inner">
         <div class="bakery-story-text reveal in-view">
 
-            <h2 class="section-heading">Baking since <span class="highlight">1994</span></h2>
-            <p>We hand craft our ciabatta and focaccia bread. Made fresh, every day in our bakeries</p>
-            <p>Every evening we hand mix and hand shape our ciabatta and focaccia dough, to make all the bread that will be used the next day. It’s baked overnight so it’s fresh first thing for our sandwich production.</p>
-            <p>The recipe for our bread, which was first developed back in 1994, is simple, and designed primarily for one thing – to compliment a filling to make a great sandwich.</p>
+            <h2 class="section-heading">Baking since <span class="highlight" id="line-thru">164</span><span id="line-under">1994</span></h2>
+            <p id="width50">We hand craft our ciabatta and focaccia bread. Made fresh, every day in our bakeries</p>
+            <p id="widthandmove">Every evening we hand mix and hand shape our ciabatta and focaccia dough, to make all the bread that will be used the next day. It’s baked overnight so it’s fresh first thing for our sandwich production.</p>
+            <p id="width50">The recipe for our bread, which was first developed back in 1994, is simple, and designed primarily for one thing – to compliment a filling to make a great sandwich.</p>
         </div>
         <div class="bakery-story-img reveal reveal-delay-1 in-view">
             <img src="https://github.com/Stepzach/DesignPortfolio/blob/main/164_074A9792e_2018%20(1).jpg?raw=true" alt="Inside the Bakery 164 kitchen" loading="lazy">
