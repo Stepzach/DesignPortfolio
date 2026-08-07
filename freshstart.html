@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minimalist Portfolio - Michelle</title>
+    <title>Zach Stephens — Side Projects</title>
+    <meta name="description" content="A small hobby space where [Your Name] messes around with web design and game dev for fun.">
     <style>
-        /* Imported lighter weights specifically */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
 
         :root {
             --bg-color: #ffffff;
-            --text-color: #333333; /* Slightly softer black */
-            --text-muted: #999999; /* Lighter grey */
+            --text-color: #333333;
+            --text-muted: #999999;
             --border-color: #eaeaea;
             --hover-bg: #fafafa;
-            --card-radius: 30px; /* Slightly tighter radius */
+            --card-radius: 30px;
             --primary-green: #2fae60;
             --bg-green: #ebf7ed;
         }
@@ -25,55 +25,38 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+            position: relative;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            /* Reduced base size and weight for "finer" look */
-            font-size: 16px; 
-            font-weight: 400; 
+            font-size: 16px;
+            font-weight: 400;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-           
-            overflow-x: hidden;
-            position: relative;
-        }
-            
-        
-            
-        html, body {
-            width: 100%;
-            overflow-x: hidden; /* Prevent horizontal scroll */
-            position: relative;
         }
 
-      
-     .ambient-gradient {
-    position: absolute;
-    top: -20%;
-    right: -20%;
-    width: 80vw;
-    height: 600px;
-    
-    /* 1. Temporarily use stronger colors to see if it renders */
-    background: radial-gradient(ellipse at center, rgba(100, 150, 255, 0.1) 0%, rgba(150, 100, 255, 0.1) 35%, rgba(255, 255, 255, 0) 70%);
-    
-    filter: blur(90px);
-    
-    /* 2. Move it to the front temporarily to rule out z-index issues */
-    z-index: -1; 
-    
-    pointer-events: none;
-}
-      
-        
-        a, .project-card, .contact-pill, .social-icons a, .profile-photo {
-            
+        /* Ambient background wash behind the header */
+        .ambient-gradient {
+            position: absolute;
+            top: -20%;
+            right: -20%;
+            width: 80vw;
+            height: 600px;
+            background: radial-gradient(ellipse at center, rgba(100, 150, 255, 0.1) 0%, rgba(150, 100, 255, 0.1) 35%, rgba(255, 255, 255, 0) 70%);
+            filter: blur(90px);
+            z-index: -1;
+            pointer-events: none;
         }
 
         /* Container Layout */
         .container {
-            max-width: 1600px; /* Reduced width slightly for focus */
+            max-width: 1600px;
             margin: 0 auto;
             padding: 1rem 2rem;
             min-height: 80vh;
@@ -85,11 +68,10 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Minimalist Monochrome Logo */
         .logo-stamp {
             width: 40px;
             height: 40px;
-            border: 1px solid var(--text-color); /* Thinner, monochrome border */
+            border: 1px solid var(--text-color);
             color: var(--text-color);
             display: flex;
             align-items: center;
@@ -97,12 +79,10 @@
             font-size: 0.9rem;
             font-weight: 400;
             border-radius: 4px;
-            margin-bottom: 4rem;
-            opacity: 1;
+            margin-bottom: 2.5rem;
         }
 
         header h1 {
-            /* Smaller, finer heading */
             font-size: clamp(1.8rem, 2.8vw, 2.6rem);
             font-weight: 400;
             letter-spacing: -0.03em;
@@ -116,16 +96,30 @@
             max-width: 650px;
             font-weight: 350;
         }
-        
+
         header .subtitle strong {
             font-weight: 500;
             color: var(--text-color);
         }
 
+        /* Friendly "this is just a hobby" note */
+        .hobby-note {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--hover-bg);
+            color: var(--text-muted);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 450;
+            margin-top: 1.2rem;
+        }
+
         /* Tab Navigation */
         .tabs {
             display: flex;
-            gap: 0.2rem; /* Tighter gap */
+            gap: 0.2rem;
             margin-top: 3rem;
         }
 
@@ -161,139 +155,104 @@
 
         /* Work Section (Grid) */
         .projects-grid {
-            border-top: 1px solid rgba(0,0,0,0.06); 
-            padding-top:2rem;
+            border-top: 1px solid rgba(0,0,0,0.06);
+            padding-top: 2rem;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1rem 2rem; /* Added vertical gap for descriptions */
+            gap: 1rem 2rem;
             margin-bottom: 4rem;
         }
 
-        /* Wrapper for Project Items */
-      /* Update 1: Make the item the reference point for positioning */
-.project-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-    text-decoration: none;
-    position: relative; /* Crucial for desktop tag positioning */
-}
+        .project-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            text-decoration: none;
+            position: relative;
+        }
 
-/* Update 2: Ensure card keeps its shape */
-.project-card {
-    background-color: var(--hover-bg);
-    border-radius: var(--card-radius);
-    height: 210px;
-    position: relative;
-    overflow: hidden;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-    width: 100%;
-}
+        .project-card {
+            background-color: var(--hover-bg);
+            border-radius: var(--card-radius);
+            height: 210px;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+            width: 100%;
+        }
 
-/* Update 3: Desktop Tag Styles (The "Pill" look) */
-.project-tag {
-    position: absolute; /* Floats over the card on desktop */
-    bottom: 1.5rem; /* Default fallback */
-    left: 1.5rem;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(8px);
-    padding: 0.35rem 0.9rem;
-    border-radius: 50px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--text-color);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-    letter-spacing: 0.02em;
-    pointer-events: none; /* Allows clicks to pass through to the card image */
-    z-index: 10;
-}
+        .project-tag {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            padding: 0.35rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            letter-spacing: 0.02em;
+            pointer-events: none;
+            z-index: 10;
+        }
 
-/* Fix: Adjust description spacing since tag is now a sibling */
-.project-description {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    font-weight: 400;
-    letter-spacing: -0.01em;
-    line-height: 1.4;
-    opacity: 0;
-    transform: translateY(7px);
-    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    padding-left: 0.2rem; /* Reduced padding slightly */
-    margin-top: 0.5rem; /* Gap between card/tag and text */
-}
-
-        /* Description Text Styling */
         .project-description {
             font-size: 0.95rem;
             color: var(--text-muted);
             font-weight: 400;
             letter-spacing: -0.01em;
-            line-height:1.4;
-            /* Animation Setup */
+            line-height: 1.4;
             opacity: 0;
             transform: translateY(7px);
             transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            padding-left:1rem;
+            padding-left: 0.2rem;
+            margin-top: 0.5rem;
         }
 
-        /* Hover Effects */
         .project-item:hover .project-card {
-            transform: scale(0.98); /* Subtle scale */
+            transform: scale(0.98);
             opacity: 1;
         }
 
         .project-item:hover .project-description {
             opacity: 1;
-            transform: translateY(0); /* Move up */
+            transform: translateY(0);
         }
 
-        /* More subtle gradients */
-        .card-apple { background: linear-gradient(135deg, #f7f4f9 0%, #edf0ff 100%); }
-        .card-roblox { background: linear-gradient(135deg, #e3e6ec 0%, #dde2f0 100%); }
-        .card-nasa { background: linear-gradient(135deg, #fffcf9 0%, #fff1eb 100%); }
-        .card-personal { background: linear-gradient(135deg, #eff1f3 0%, #eef3f5 100%); }
+        /* Card background washes — swap for real screenshots any time */
+        .card-1 { background: linear-gradient(135deg, #f7f4f9 0%, #edf0ff 100%); }
+        .card-2 { background: linear-gradient(135deg, #e3e6ec 0%, #dde2f0 100%); }
+        .card-3 { background: linear-gradient(135deg, #fffcf9 0%, #fff1eb 100%); }
+        .card-4 { background: linear-gradient(135deg, #eff1f3 0%, #eef3f5 100%); }
 
-        /* Icon watermark made more subtle */
-        .card-apple::after {
-            content: '';
-            font-size: 7rem;
-            color: rgba(255, 255, 255, 0.6);
-            mix-blend-mode: overlay;
-        }
-
-      
-        /* --- UPDATED ABOUT SECTION STYLES --- */
-        
+        /* About Section */
         .about-main-wrapper {
-             border-top: 1px solid rgba(0,0,0,0.06); 
-             padding-top: 2rem;
-             margin-bottom: 4rem;
+            border-top: 1px solid rgba(0,0,0,0.06);
+            padding-top: 2rem;
+            margin-bottom: 4rem;
         }
 
-        /* Top part: Image and Bio */
         .about-top-split {
             display: grid;
-            /* 2 Columns: Image Left, Bio Right */
             grid-template-columns: 280px 1fr;
             gap: 4rem;
-            margin-bottom: 5rem; /* Space before experience */
+            margin-bottom: 5rem;
         }
 
-        /* Bottom part: Experience Section */
-        .experience-section {
-            border-top: 1px solid var(--border-color); /* Divider line */
+        .things-i-use {
+            border-top: 1px solid var(--border-color);
             padding-top: 3rem;
             display: grid;
-            /* Align header with profile image column, content with bio column */
-            grid-template-columns: 280px 1fr; 
+            grid-template-columns: 280px 1fr;
             gap: 4rem;
         }
 
-        /* New Image Styles to match screenshot */
         .profile-wrapper {
             position: relative;
             padding-top: 1rem;
@@ -304,17 +263,13 @@
             height: auto;
             aspect-ratio: 3/4;
             object-fit: cover;
-            /* Polaroid styling */
             border: 10px solid #ffffff;
-            border-bottom: 10px solid #ffffff; /* Thicker bottom */
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             border-radius: 2px;
-            /* The Tilt */
             transform: rotate(-3deg);
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Interactive tilt correction on hover */
         .profile-photo:hover {
             transform: rotate(0deg) scale(1.02);
             z-index: 2;
@@ -353,7 +308,7 @@
         .meta-item svg {
             width: 16px;
             height: 16px;
-            fill: #d1d1d1; /* Lighter icon color */
+            fill: #d1d1d1;
         }
 
         .about-text p {
@@ -395,22 +350,20 @@
             border-radius: 50%;
         }
 
-        /* Experience Specifics */
-        .exp-header {
+        /* "Things I use" list — reuses the experience-list layout for tools/stack */
+        .tiu-header {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-            
         }
 
-        .exp-header h2 {
+        .tiu-header h2 {
             font-size: 1.8rem;
             font-weight: 400;
             color: #333;
-            
         }
 
-        .exp-header a {
+        .tiu-header a {
             color: var(--text-muted);
             text-decoration: none;
             font-size: 0.95rem;
@@ -418,27 +371,26 @@
             align-items: center;
             gap: 0.3rem;
             transition: color 0.3s ease;
-             
         }
 
-        .exp-header a:hover {
+        .tiu-header a:hover {
             color: var(--text-color);
         }
 
-        .experience-list {
+        .tiu-list {
             display: flex;
             flex-direction: column;
             gap: 1.8rem;
         }
 
-        .exp-item {
+        .tiu-item {
             display: flex;
             align-items: center;
             gap: 1.5rem;
         }
 
-        .exp-logo {
-            width: 70px; /* Slightly larger logo container */
+        .tiu-logo {
+            width: 70px;
             height: 70px;
             border-radius: 50%;
             background: #f5f5f5;
@@ -446,35 +398,17 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            overflow: hidden;
-        }
-        
-        /* Grayscale filter for minimalism */
-        .exp-logo img {
-            width: 70%;
-            height: 70%;
-            object-fit: cover;
-            transition: all 0.3s ease;
-        }
-        
-        .exp-item:hover .exp-logo img {
-            filter: grayscale(0%);
-            opacity: 1;
+            font-size: 1.6rem;
         }
 
-        .exp-details {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .exp-details h3 {
+        .tiu-details h3 {
             font-size: 1.1rem;
             font-weight: 500;
             color: var(--text-color);
             margin-bottom: 0rem;
         }
 
-        .exp-details p {
+        .tiu-details p {
             font-size: 0.9rem;
             color: var(--text-muted);
             font-weight: 300;
@@ -485,7 +419,7 @@
             padding: 4rem 2rem 2rem;
             background-color: var(--bg-color);
             color: var(--text-color);
-            border-top: 1px solid rgba(0,0,0,0.03); /* Finer border */
+            border-top: 1px solid rgba(0,0,0,0.03);
         }
 
         .footer-wrapper {
@@ -578,7 +512,7 @@
         }
 
         .social-icons svg {
-            width: 22px; /* Smaller icons */
+            width: 22px;
             height: 22px;
             fill: currentColor;
         }
@@ -598,43 +532,167 @@
             font-weight: 400;
         }
 
-        /* Animations */
+        /* Scroll reveal starting state */
         .reveal-element {
             opacity: 0;
             transform: translateY(20px);
         }
 
+        /* Respect reduced-motion preferences: swap slides for a simple fade */
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-element,
+            .project-card,
+            .project-description,
+            .profile-photo,
+            .contact-pill,
+            .tab-section {
+                transition: opacity 0.2s ease !important;
+                transform: none !important;
+                animation: none !important;
+            }
+            .project-description { opacity: 1 !important; }
+        }
+
         /* Responsive */
         @media (max-width: 900px) {
-            .projects-grid { grid-template-columns: 1fr; }
-            
-            /* Stack layout on mobile */
-            .about-top-split { 
-                grid-template-columns: 1fr; 
-                gap: 3rem; 
+            header {
+                margin-top: 0rem;
+                margin-bottom: 1rem;
             }
-            .experience-section {
+
+            .logo-stamp {
+                margin-bottom: 3rem;
+            }
+
+            header h1 {
+                font-size: clamp(2rem, 3vw, 2.8rem);
+                font-weight: 500;
+            }
+
+            header .subtitle {
+                font-size: clamp(0.95rem, 1.1vw, 1rem);
+                font-weight: 300;
+                line-height: 1.4;
+            }
+
+            header .subtitle strong {
+                font-weight: 400;
+                color: var(--text-color);
+            }
+
+            .tabs {
+                margin-top: 1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                padding-top: 1.5rem;
+            }
+
+            .about-top-split {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .things-i-use {
                 grid-template-columns: 1fr;
                 gap: 2rem;
-                border:none !important;
+                border: none !important;
             }
 
             .container { padding: 2rem 1.5rem; }
-            
-            /* Center the profile image on mobile */
+
             .profile-wrapper {
+                position: relative;
+                padding-top: 0rem;
                 max-width: 280px;
                 margin: 0 auto;
             }
 
-            /* Force text to be visible on mobile without hover */
+            .profile-photo {
+                width: 90%;
+                transform: rotate(-3deg);
+            }
+
+            /* Ambient wash becomes a soft full-width fade behind the header */
+            .ambient-gradient {
+                position: absolute;
+                top: -5%;
+                left: 0%;
+                width: 100%;
+                height: 400px;
+                z-index: -1;
+                pointer-events: none;
+                overflow: hidden;
+                background-color: #ffffff;
+                -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+                mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+            }
+
+            .ambient-gradient::after {
+                content: '';
+                position: absolute;
+                top: -20%;
+                left: -10%;
+                width: 120%;
+                height: 100%;
+                background:
+                    radial-gradient(circle at 50% 55%, rgba(255, 190, 200, 0.8) 10%, transparent 50%),
+                    radial-gradient(circle at 85% 30%, rgba(180, 230, 255, 1) 0%, transparent 50%),
+                    radial-gradient(circle at 50% 10%, rgba(220, 200, 255, 1) 0%, transparent 60%);
+                filter: blur(80px);
+                transform: translateZ(0);
+            }
+
+            .ambient-gradient::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+                opacity: 0.08;
+                z-index: 1;
+                mix-blend-mode: multiply;
+            }
+
+            /* Tag + description are always visible on mobile, no hover needed */
+            .project-tag {
+                position: static;
+                background: transparent;
+                backdrop-filter: none;
+                box-shadow: none;
+                padding: 0;
+                border-radius: 0;
+                margin-left: 1rem;
+                font-size: 0.95rem;
+                font-weight: 500;
+                color: #111;
+                margin-top: 0.5rem;
+                margin-bottom: 0.1rem;
+            }
+
             .project-description {
                 opacity: 1;
                 transform: translateY(0);
-                
+                margin-top: 0;
+                font-size: 0.95rem;
+                padding-left: 1rem;
+            }
+
+            .project-item {
+                margin-bottom: 0.3rem;
+            }
+
+            .weakdate {
+                font-size: 0.95rem;
+                color: var(--text-muted);
+                font-weight: 400;
             }
 
             footer { padding: 3rem 1.5rem 2rem; }
+
             .footer-content {
                 display: flex;
                 flex-direction: column;
@@ -642,17 +700,18 @@
                 margin-bottom: 4rem;
                 text-align: left;
             }
+
             .footer-brand { order: 1; }
-            .footer-contact { 
-                order: 2; 
-                align-self: flex-start; 
+            .footer-contact {
+                order: 2;
+                align-self: flex-start;
                 text-align: left;
                 justify-self: start;
             }
             .social-icons { justify-content: flex-start; }
-            .footer-nav { 
-                order: 3; 
-                align-self: flex-start; 
+            .footer-nav {
+                order: 3;
+                align-self: flex-start;
                 gap: 1rem;
             }
         }
@@ -667,20 +726,15 @@
                 justify-content: flex-start;
             }
             .project-card {
-                height: 320px; /* Fixed height for desktop */
+                height: 320px;
             }
-            
-            /* -------------------------------------------
-               FIX: Anchoring the tag to the image height 
-               ------------------------------------------- */
             .project-tag {
-                bottom: auto; /* Stop positioning relative to parent bottom */
-                top: 320px;   /* Align top of tag to the bottom line of the card (height is 320px) */
-                margin-top: -1.5rem; /* Move it UP into the card by the desired spacing */
-                transform: translateY(-100%); /* Move it UP by its own height */
+                bottom: auto;
+                top: 320px;
+                margin-top: -1.5rem;
+                transform: translateY(-100%);
             }
-
-            .experience-section {
+            .things-i-use {
                 display: flex;
                 gap: 4rem;
                 justify-content: space-between;
@@ -692,180 +746,30 @@
                 padding-right: 2.5rem;
             }
         }
-      
-       @media (max-width: 900px) {
-            
-             header {
-            margin-top: 0rem;
-            margin-bottom: 1rem;
-          
-        }
-        .logo-stamp {
-              margin-bottom: 5rem;
-        }
-        header h1 {
-    font-size: clamp(2rem, 3vw, 2.8rem);
-    font-weight: 500;
-    
-}
-.projects-grid {
-   
-    padding-top: 1.5rem;
-  
-}
-
-header .subtitle {
-        font-size: clamp(0.95rem, 1.1vw, 1rem);
-    font-weight: 300;
-    line-height:1.4;
-}
-header .subtitle strong {
-    font-weight: 400;
-    color: var(--text-color);
-}
-.tabs {
-    display: flex;
-    gap: 0.2rem;
-    margin-top: 1rem;
-}
-
- .ambient-gradient {
-        position: absolute;
-        top: -5%;
-        left: 0%;
-        width: 100%;
-        height: 400px; /* Covers the header area well */
-        z-index: -1;
-        pointer-events: none;
-        overflow: hidden;
-        background-color: #ffffff;
-        
-        /* Fade out the bottom of the gradient into the white page */
-        -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-        mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-    }
-
-    /* Layer 1: The Color Blobs (Blurred) */
-    .ambient-gradient::after {
-        content: '';
-        position: absolute;
-        top: -20%;
-        left: -10%;
-        width: 120%;
-        height: 100%;
-        /* 1. Pink/Red on the left (matches the red stamp logo side)
-           2. Blue/Cyan on the right
-           3. Soft Purple in the center 
-        */
-        background: 
-            radial-gradient(circle at 15% 30%, rgba(255, 190, 200, 0.0) 0%, transparent 10%),
-            radial-gradient(circle at 50% 55%, rgba(255, 190, 200, 0.8) 10%, transparent 50%),
-            radial-gradient(circle at 85% 30%, rgba(180, 230, 255, 1) 0%, transparent 50%),
-            radial-gradient(circle at 50% 10%, rgba(220, 200, 255, 1) 0%, transparent 60%);
-        
-        /* The heavy blur creates the dreamy wash */
-        filter: blur(80px);
-        opacity: 1;
-        transform: translateZ(0); /* Hardware acceleration */
-    }
-
-    /* Layer 2: The Noise Texture (Sharp) */
-    /* This creates the "paper/film" grain seen in the screenshot */
-    .ambient-gradient::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        /* A tiny SVG noise pattern encoded in base64 */
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
-        
-        opacity: 0.08; /* Keep this low (0.05 - 0.15) for subtlety */
-        z-index: 1;
-        mix-blend-mode: multiply; /* Blends the grain into the colors */
-    }
-
-        
-        
-         .profile-wrapper {
-            position: relative;
-            padding-top: 0rem;
-        }
-
-        .profile-photo {
-            width: 90%;
-            height: auto;
-            aspect-ratio: 3/4;
-            object-fit: cover;
-            /* Polaroid styling */
-            border: 10px solid #ffffff;
-            border-bottom: 10px solid #ffffff; /* Thicker bottom */
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            border-radius: 2px;
-            /* The Tilt */
-            transform: rotate(-3deg);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        
-        .project-tag {
-        position: static; /* No longer floating absolute */
-        background: transparent; /* Remove pill background */
-        backdrop-filter: none;
-        box-shadow: none;
-        padding: 0;
-        border-radius: 0;
-            margin-left: 1rem;
-        
-        /* Typography specific to mobile look */
-        font-size: 0.95rem; 
-        font-weight: 500; /* Slightly bolder */
-        color: #111; /* Darker, like the "Apple" text in screenshot */
-        
-        /* Spacing */
-        margin-top: 0.5rem;
-        margin-bottom: 0.1rem;
-       
-    }
-
-    /* 2. Ensure description is visible and spaced correctly */
-    .project-description {
-        opacity: 1; /* Always visible on mobile */
-        transform: translateY(0);
-        margin-top: 0; /* Tag handles the top spacing */
-        font-size: 0.95rem;
-       
-    }
-    
-    /* 3. Adjust spacing for the grid items */
-    .project-item {
-        margin-bottom: 0.3rem;
-    }
-    
-    .weakdate {
-          
-        font-size: 0.95rem;
-    color: var(--text-muted);
-    
-    font-weight: 400;
-    }
-    
-         }
     </style>
-</head> 
+</head>
 <body>
-  
+
     <div class="ambient-gradient"></div>
 
     <div class="container">
         <header>
+            <!-- ✏️ Edit: your initials -->
             <div class="logo-stamp reveal-element">ZS</div>
-            <h1 class="reveal-element">zachary stephens</h1>
+
+            <!-- ✏️ Edit: your name -->
+            <h1 class="reveal-element">Zach Stephens</h1>
+
+            <!-- ✏️ Edit: a one-line intro -->
             <p class="subtitle reveal-element">
-                Designing useful products to spark moments of delight & human connection. <span style="opacity:0.7"></span><br>
-                Previously at <strong>Air Liquide</strong> & <strong>Agreena</strong>.
+                I build little websites & games in my spare time - to learn, and mostly for fun.
             </p>
-            
+
+            <!-- Friendly heads-up that this is a hobby space, not the main portfolio -->
+            <div class="hobby-note reveal-element">
+                👋 Heads up — this is just my side-project playground, not my main portfolio.
+            </div>
+
             <div class="tabs reveal-element">
                 <a href="#work" class="tab-link active" data-target="work-section">Work</a>
                 <a href="#about" class="tab-link" data-target="about-section">About</a>
@@ -874,101 +778,97 @@ header .subtitle strong {
 
         <main id="work-section" class="tab-section active">
             <div class="projects-grid">
+
+                <!-- ✏️ Edit: swap in your own projects. Duplicate this block for more. -->
                 <div class="project-item reveal-element">
-                    <a href="#" class="project-card card-apple">
-                      </a>
-                        <div class="project-tag">Air Liquide<span class="weakdate"> • 2026</span></div>
-                    
-                    <p class="project-description">Redesigning the future of clean energy dashboarding for industrial use.</p>
+                    <a href="#" class="project-card card-1"></a>
+                    <div class="project-tag">Leeds Student Radio<span class="weakdate"> • Website, 2025-26</span></div>
+                    <p class="project-description">My biggest project yet, made from scratch! Content is loaded from Google sheets for easy edits, and many cool features like a Live Chat & Top Charts using Firebase.</p>
                 </div>
 
                 <div class="project-item reveal-element">
-                    <a href="#" class="project-card card-roblox">
-                      </a>
-                        <div class="project-tag">Air Liquide<span class="weakdate"> • 2025</span></div>
-                    
-                    <p class="project-description">Creating intuitive design systems for complex data workflows.</p>
+                    <a href="#" class="project-card card-2"></a>
+                    <div class="project-tag">Guide de Paris<span class="weakdate"> • Website, 2026</span></div>
+                    <p class="project-description">After spending probably the best year of my life in Paris, during my placement year, I decided to share all the amazing things I did!</p>
                 </div>
 
                 <div class="project-item reveal-element">
-                    <a href="#" class="project-card card-nasa">
-                      </a>
-                        <div class="project-tag">Leeds Student Radio<span class="weakdate"> • 2024</span></div>
-                    
-                    <p class="project-description">A modern audio interface built for student-led broadcasting.</p>
+                    <a href="#" class="project-card card-3"></a>
+                    <div class="project-tag">NYT Mini Crossword<span class="weakdate"> • Game Dev, 2024</span></div>
+                    <p class="project-description">Hard to believe, but I built this before the age of AI. My goal was to recreate the NTY Mini as closely as possible, to play for free with my friends :)</p>
                 </div>
 
                 <div class="project-item reveal-element">
-                    <a href="#" class="project-card card-personal"> </a>
-                        <div class="project-tag">University Year 2 Project</div>
-                   
-                    <p class="project-description">Exploring the intersection of physical form and digital function.</p>
+                    <a href="#" class="project-card card-4"></a>
+                    <div class="project-tag">BBD Website<span class="weakdate"> • Website, 2023</span></div>
+                    <p class="project-description">Website I made for Bad B!tch Dubz, a DJ Collective in Bristol, one of my first web design projects.</p>
                 </div>
+
             </div>
         </main>
 
         <main id="about-section" class="tab-section">
             <div class="about-main-wrapper">
-                
+
                 <div class="about-top-split">
                     <div class="profile-wrapper reveal-element">
-                        <img src="https://gimgs2.nohat.cc/thumb/f/640/male-face-icon-default-profile-image--c3f2c592f9.jpg" class="profile-photo" alt="Zachary Stephens">
-                        <p class="caption-text">A visit to the studio of Hung Liu</p>
+                        <!-- ✏️ Edit: swap this src for your own photo -->
+                        <img src="https://gimgs2.nohat.cc/thumb/f/640/male-face-icon-default-profile-image--c3f2c592f9.jpg" class="profile-photo" alt="[Your Name]">
+                        <p class="caption-text">[A short caption for your photo]</p>
                     </div>
 
                     <div class="about-bio reveal-element" style="transition-delay: 0.05s;">
-                        <h2>Hi, I'm Zach!</h2>
-                        
+                        <h2>Hi, I'm [Your Name]!</h2>
+
                         <div class="meta-info">
                             <div class="meta-item">
                                 <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                                <span>London / Paris </span>
+                                <span>[Your City / Country]</span>
                             </div>
                             <div class="meta-item">
                                 <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
-                                <span>Product Design BSc. / University of Leeds '27</span>
+                                <span>[Your day job / course] — this site is just a hobby on the side</span>
                             </div>
                         </div>
 
                         <div class="about-text">
-                            <p>I love physics, art, technology, & the ways that they can work together to create extraordinary products for people.</p>
-                            
-                            <p>I believe thoughtful design makes life more intuitive (& beautiful). I want to bring more of it into the world—whether through my creations or the communities I'm helping to build. I like to think of it as my <strong>ikigai</strong>: the constant pursuit of an intersection between passion, profession, & personal mission.</p>
-                            
-                            <p>I also love discovering new hidden food spots, getting excited about beautifully designed stationery, & listening to audiobooks on long drives.</p>
+                            <p>By day I'm [what you actually do — job, degree, etc]. In my spare time I like tinkering with code, mostly building small websites and even smaller games.</p>
+
+                            <p>Nothing here is client work or polished production — just stuff I've made because I enjoy the process of building things and learning as I go.</p>
+
+                            <p>[Optional: add a line about what got you into this, or what you're learning next.]</p>
                         </div>
 
-                        <a href="mailto:hello@example.com" class="contact-pill">
+                        <!-- ✏️ Edit: your email -->
+                        <a href="mailto:your-email@example.com" class="contact-pill">
                             <span class="dot"></span>
-                            Working on something cool? Get in touch
+                            Made something fun too? Say hi
                         </a>
                     </div>
                 </div>
 
-                <div class="experience-section reveal-element" style="transition-delay: 0.1s;">
-                    <div class="exp-header">
-                        <h2>Experience</h2>
-                        <a href="#">Resume ↗</a>
+                <div class="things-i-use reveal-element" style="transition-delay: 0.1s;">
+                    <div class="tiu-header">
+                        <h2>What I build with</h2>
+                        <!-- ✏️ Edit: link to GitHub, itch.io, etc, or delete this line -->
+                        <a href="#">GitHub ↗</a>
                     </div>
-                    
-                    <div class="experience-list">
-                        <div class="exp-item">
-                            <div class="exp-logo">
-                               <img src="https://companieslogo.com/img/orig/AI.PA-00c0bedf.png?t=1720244490" alt="Air Liquide">
-                            </div>
-                            <div class="exp-details">
-                                <h3>Air Liquide</h3>
-                                <p>Product Design Intern, 2025</p>
+
+                    <div class="tiu-list">
+                        <!-- ✏️ Edit: swap in the tools/languages you actually use -->
+                        <div class="tiu-item">
+                            <div class="tiu-logo">🖥️</div>
+                            <div class="tiu-details">
+                                <h3>HTML / CSS / JavaScript</h3>
+                                <p>For building and styling websites like this one</p>
                             </div>
                         </div>
 
-                        <div class="exp-item">
-                            <div class="exp-logo">
-                                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc-UGBJQLNKJr6VmpjiTt2W56-yRy4iLKM7g&s" alt="Hummingbird">
-                            </div>
-                            <div class="exp-details">
-                                <h3>Hummingbird Technologies</h3>
-                                <p>Product Design Intern, 2021</p>
+                        <div class="tiu-item">
+                            <div class="tiu-logo">🎮</div>
+                            <div class="tiu-details">
+                                <h3>[Godot / Unity / etc]</h3>
+                                <p>For small game projects</p>
                             </div>
                         </div>
                     </div>
@@ -982,62 +882,55 @@ header .subtitle strong {
         <div class="footer-wrapper">
             <div class="footer-content reveal-element">
                 <div class="footer-brand">
-                    <div class="logo-stamp">ZS</div>
-                    <h2>zachary stephens</h2>
+                    <div class="logo-stamp">YN</div>
+                    <h2>[Your Name]</h2>
                 </div>
-                
+
                 <div class="footer-nav">
                     <a href="#work">Work</a>
-                    <a href="#art">Archives</a>
                     <a href="#about">About</a>
                 </div>
 
                 <div class="footer-contact">
-                    <p>Let's work together!</p>
-                    <a href="mailto:zachstep05@gmail.com" class="email-link">zachstep05@gmail.com</a>
-                    
+                    <p>Let's build something fun!</p>
+                    <!-- ✏️ Edit: your email -->
+                    <a href="mailto:your-email@example.com" class="email-link">your-email@example.com</a>
+
                     <div class="social-icons">
+                        <!-- ✏️ Edit: swap # for your real profile links, or delete icons you don't use -->
                         <a href="#" aria-label="Instagram">
                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224.3 141a115 115 0 1 0 -.6 230 115 115 0 1 0 .6-230zm-.6 40.4a74.6 74.6 0 1 1 .6 149.2 74.6 74.6 0 1 1 -.6-149.2zm93.4-45.1a26.8 26.8 0 1 1 53.6 0 26.8 26.8 0 1 1 -53.6 0zm129.7 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM399 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
                         </a>
-                        
                         <a href="#" aria-label="LinkedIn">
                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zm5 170.2l66.5 0 0 213.8-66.5 0 0-213.8zm71.7-67.7a38.5 38.5 0 1 1 -77 0 38.5 38.5 0 1 1 77 0zM317.9 416l0-104c0-24.8-.5-56.7-34.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9l0 105.8-66.4 0 0-213.8 63.7 0 0 29.2 .9 0c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9l0 117.2-66.4 0z"/></svg>
                         </a>
-                        <a href="#" aria-label="Srava">
-                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M158.4 0L7 292 96.2 292 158.4 175.9 220.1 292 308.6 292 158.4 0zM308.6 292l-43.9 88.2-44.6-88.2-67.6 0 112.2 220 111.5-220-67.6 0z"/></svg>
+                        <a href="#" aria-label="GitHub">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
                         </a>
                     </div>
                 </div>
             </div>
-            
+
             <div class="footer-bottom reveal-element">
-                <p>Website <strong>by me</strong> & Gemini's help ;)</p>
-                <p class="changelog">2026</p>
+                <p>A little hobby project, always evolving <strong>✌️</strong></p>
+                <p>2026</p>
             </div>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-          
 
-            // 2. Tab Navigation Logic
+            // Tab Navigation
             const tabLinks = document.querySelectorAll('.tab-link');
             const tabSections = document.querySelectorAll('.tab-section');
 
             tabLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    
-                    // Remove active state from all tabs and sections
                     tabLinks.forEach(l => l.classList.remove('active'));
                     tabSections.forEach(s => s.classList.remove('active'));
-                    
-                    // Add active state to clicked tab
                     link.classList.add('active');
-                    
-                    // Show corresponding section
                     const targetId = link.getAttribute('data-target');
                     const targetSection = document.getElementById(targetId);
                     if (targetSection) {
@@ -1046,7 +939,7 @@ header .subtitle strong {
                 });
             });
 
-            // 3. Scroll Reveal Animations
+            // Scroll Reveal Animations
             const revealElements = document.querySelectorAll('.reveal-element');
             const revealOptions = {
                 threshold: 0.1,
@@ -1067,7 +960,7 @@ header .subtitle strong {
             const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
 
             revealElements.forEach((el, index) => {
-                el.style.transitionDelay = `${index * 0.05}s`; 
+                el.style.transitionDelay = `${index * 0.05}s`;
                 revealObserver.observe(el);
             });
         });
