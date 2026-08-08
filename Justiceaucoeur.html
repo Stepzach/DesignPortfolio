@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Justice au Cœur — Lycée Français Charles de Gaulle de Londres</title>
+<title>Justice au Cœur</title>
 <meta name="description" content="Justice au Cœur, le club caritatif du Lycée Français Charles de Gaulle de Londres, fondé en 1989.">
 <style>
   :root {
@@ -26,19 +26,19 @@
     background: var(--bg-main);
     color: var(--text-muted);
     font-family: 'Avenir LT Std', Avenir, sans-serif;
-      font-weight: 100;
+    font-weight: 100;
     line-height: 24px;
     -webkit-font-smoothing: antialiased;
-        letter-spacing: 1px;
+    letter-spacing: 1px;
     
   }
   
   h1, h2, h3 {
-font-size: 2em;
+    font-size: 2em;
     line-height: 1.4em;
     color: var(--text-dark);
     margin: 0;
-        color: #132b43;
+    color: #132b43;
     font-weight: 700;
   }
   
@@ -51,6 +51,17 @@ font-size: 2em;
     outline: 2px solid var(--primary);
     outline-offset: 3px;
     border-radius: 4px;
+  }
+
+  /* ---------- TOP BANNER ---------- */
+  .top-banner {
+    background: var(--primary);
+    color: var(--bg-main);
+    text-align: center;
+    padding: 10px 24px;
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
   }
 
   /* ---------- NAV ---------- */
@@ -136,7 +147,7 @@ font-size: 2em;
     margin-bottom: 16px;
     letter-spacing: 1px;
     line-height: 1.4em;
-        font-weight: 600;
+    font-weight: 600;
   }
   .hero h1 {
     font-size: clamp(36px, 5vw, 56px);
@@ -220,11 +231,19 @@ font-size: 2em;
     transition: box-shadow 0.2s ease;
   }
   .local-card:hover { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08); }
+  
+  .local-card-header {
+    display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;
+  }
   .local-card .tag {
     display: inline-block; padding: 4px 12px; background: var(--bg-alt); border-radius: 99px;
     font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
-    color: var(--secondary); margin-bottom: 16px; align-self: flex-start;
+    color: var(--secondary); align-self: flex-start;
   }
+  .local-card-logo {
+    height: 40px; max-width: 100px; object-fit: contain;
+  }
+  
   .local-card h3 { font-size: 20px; margin-bottom: 12px; }
   .local-card p { color: var(--text-muted); font-size: 15px; margin: 0 0 24px; flex-grow: 1; }
   .local-card a.visit {
@@ -236,8 +255,9 @@ font-size: 2em;
 /* ---------- FOOTER ---------- */
   footer {
     padding: 80px 0; 
-    border-top: 1px solid var(--border); 
-    background: var(--bg-alt);
+    border-top: 1px solid #7c1a23; 
+    background: #90202a;
+    color: #ffffff;
   }
   .footer-inner {
     display: flex; 
@@ -261,10 +281,11 @@ font-size: 2em;
     height: 56px; 
     width: auto; 
     object-fit: contain; 
+  
   }
   footer .fine { 
     font-size: 15px; 
-    color: var(--text-muted); 
+    color: rgba(255, 255, 255, 0.8); 
     margin: 0; 
   }
   footer .foot-links { 
@@ -276,12 +297,37 @@ font-size: 2em;
   footer .foot-links a { 
     font-size: 15px; 
     font-weight: 500; 
-    color: var(--text-dark); 
+    color: #ffffff; 
     text-decoration: none; 
-    transition: color .2s ease; 
+    transition: opacity .2s ease; 
   }
   footer .foot-links a:hover { 
-    color: var(--primary); 
+    opacity: 0.8; 
+  }
+
+  /* Social Buttons */
+  .social-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    justify-content: flex-end;
+  }
+  .social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 99px;
+    color: #ffffff !important;
+    font-size: 14px !important;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  .social-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
   }
 
   /* ---------- ANIMATIONS ---------- */
@@ -306,10 +352,13 @@ font-size: 2em;
     .event-thumb { width: 100%; height: 200px; }
     .footer-inner { flex-direction: column; }
     footer .foot-links { text-align: left; }
+    .social-links { justify-content: flex-start; }
   }
 </style>
 </head>
 <body>
+
+<div class="top-banner" data-i18n="top-welcome">Bienvenue sur le site de Justice au Coeur</div>
 
 <header class="nav">
   <div class="nav-inner">
@@ -339,7 +388,7 @@ font-size: 2em;
             <path d="M30,0 V36 M0,18 H60" stroke="#fff" stroke-width="10"/>
             <path d="M30,0 V36 M0,18 H60" stroke="#cf142b" stroke-width="4"/>
           </svg>
-        </span>EN
+        </span>UK
       </button>
     </div>
   </div>
@@ -468,19 +517,28 @@ font-size: 2em;
       </div>
       <div class="local-grid">
         <div class="local-card reveal">
-          <span class="tag" data-i18n="local-tag1">Alimentaire</span>
+          <div class="local-card-header">
+            <span class="tag" data-i18n="local-tag1">Alimentaire</span>
+            <img class="local-card-logo" src="https://givetoday.co.uk/wp-content/uploads/Charity%20Logos/Hammersmith%20&%20Fulham%20Foodbank.png" alt="Hammersmith & Fulham Foodbank Logo">
+          </div>
           <h3 data-i18n="local-card1-h3">Hammersmith & Fulham Foodbank</h3>
           <p data-i18n="local-card1-p">Une banque alimentaire locale qui vient en aide aux familles du borough voisin de notre Lycée, à travers la distribution de colis alimentaires d'urgence.</p>
           <a class="visit" href="https://hammersmithfulham.foodbank.org.uk/" target="_blank" rel="noopener" data-i18n="local-visit">Visiter le site <span aria-hidden="true">→</span></a>
         </div>
         <div class="local-card reveal">
-          <span class="tag" data-i18n="local-tag2">Humanitaire</span>
+          <div class="local-card-header">
+            <span class="tag" data-i18n="local-tag2">Humanitaire</span>
+            <img class="local-card-logo" src="https://blogs.icrc.org/app/uploads/sites/102/2025/12/2025-British-Red-Cross.png" alt="British Red Cross Logo">
+          </div>
           <h3 data-i18n="local-card2-h3">British Red Cross</h3>
           <p data-i18n="local-card2-p">L'une des organisations soutenues lors de notre campagne « Tous en blanc », active au Royaume-Uni comme à l'international.</p>
           <a class="visit" href="https://www.redcross.org.uk/" target="_blank" rel="noopener" data-i18n="local-visit">Visiter le site <span aria-hidden="true">→</span></a>
         </div>
         <div class="local-card reveal">
-          <span class="tag" data-i18n="local-tag3">Réfugiés</span>
+          <div class="local-card-header">
+            <span class="tag" data-i18n="local-tag3">Réfugiés</span>
+            <img class="local-card-logo" src="https://geneve-int.ch/sites/default/files/styles/scale_450x450/public/2021-06/UNHCR-logo_0.png?itok=P20gsICy" alt="UNHCR Logo">
+          </div>
           <h3 data-i18n="local-card3-h3">HCR / UNHCR</h3>
           <p data-i18n="local-card3-p">L'agence des Nations Unies pour les réfugiés, en faveur de la paix.</p>
           <a class="visit" href="https://www.unhcr.org/" target="_blank" rel="noopener" data-i18n="local-visit">Visiter le site <span aria-hidden="true">→</span></a>
@@ -494,20 +552,34 @@ font-size: 2em;
   <div class="wrap footer-inner">
     <div class="footer-brand">
       <div class="footer-logos">
-        <img src="https://ik.imagekit.io/53bnrahwc/images.png" alt="Logo Justice au Cœur">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/LFCG-TRANSPARENT.png/250px-LFCG-TRANSPARENT.png" alt="LFCG Logo">
+        <img src="https://ik.imagekit.io/53bnrahwc/images.png" alt="Logo Justice au Cœur" style="border:solid 1px white; border-radius:50%;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/LFCG-TRANSPARENT.png/250px-LFCG-TRANSPARENT.png" alt="LFCG Logo" style=" filter: brightness(0) invert(1);">
       </div>
       <p class="fine" data-i18n="footer-fine">Association caritative du Lycée Français Charles de Gaulle de Londres, fondée en 1989.</p>
     </div>
     <div class="foot-links">
       <a href="mailto:contact@lyceefrancais.org.uk" data-i18n="footer-contact">Nous contacter</a>
       <a href="https://www.lyceefrancais.org.uk/" target="_blank" rel="noopener">lyceefrancais.org.uk</a>
+      
+      <!-- New Social Buttons Here -->
+      <div class="social-links">
+        <a href="https://instagram.com/justiceaucoeur" class="social-btn" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          @justiceaucoeur
+        </a>
+        <a href="https://facebook.com/justiceaucoeur" class="social-btn" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          @justiceaucoeur
+        </a>
+      </div>
     </div>
   </div>
 </footer>
 
 <script>
 const I18N = {
+  "top-welcome": {fr:"Bienvenue sur le site de Justice au Coeur", en:"Welcome to Justice au Coeur's Website"},
+
   "nav-about": {fr:"Qui sommes-nous", en:"About us"},
   "nav-actions": {fr:"Nos actions", en:"What we do"},
   "nav-partners": {fr:"Partenaires", en:"Partners"},
