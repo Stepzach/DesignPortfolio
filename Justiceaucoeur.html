@@ -5,310 +5,307 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Justice au Cœur — Lycée Français Charles de Gaulle de Londres</title>
 <meta name="description" content="Justice au Cœur, le club caritatif du Lycée Français Charles de Gaulle de Londres, fondé en 1989.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Fraunces:ital,opsz,wght@1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --ink: #3f090e;
-    --ink-soft: #90202a;
-    --coeur:#C1352B;
-    --coeur-deep:#8F2620;
-    --parchment: #FFFDF8;
-    --parchment-deep:#EDE4D2;
-    --paper:#FFFDF8;
-    --gold:#B8863A;
-    --line: rgba(22,35,61,0.13);
-    --maxw: 1080px;
+  :root {
+    --bg-main: #FFFFFF;
+    --bg-alt: #F9FAFB;
+    --text-dark: #111827;
+    --text-muted: #343c44;
+    --primary: #90202a;
+    --primary-hover: #D62828;
+    --secondary: #90202a;
+    --border: #E5E7EB;
+    --radius: 12px;
+    --maxw: 1100px;
   }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--parchment);
-    color:var(--ink);
-    font-family:'Inter',sans-serif;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
+  
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg-main);
+    color: var(--text-muted);
+    font-family: 'Avenir LT Std', Avenir, sans-serif;
+      font-weight: 100;
+    line-height: 24px;
+    -webkit-font-smoothing: antialiased;
+        letter-spacing: 1px;
+    
   }
-  h1,h2,h3,.display{
-    font-family:'Fraunces',serif;
-    font-weight:600;
-    letter-spacing:-0.01em;
-    color:var(--ink);
-    margin:0;
+  
+  h1, h2, h3 {
+font-size: 2em;
+    line-height: 1.4em;
+    color: var(--text-dark);
+    margin: 0;
+        color: #132b43;
+    font-weight: 700;
   }
-  a{color:inherit;}
-  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
-  img{max-width:100%;}
+  
+  a { color: inherit; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+  img { max-width: 100%; display: block; }
 
-  /* focus visibility */
-  a:focus-visible, button:focus-visible{
-    outline:2px solid var(--coeur);
-    outline-offset:3px;
-    border-radius:3px;
+  /* Focus visibility */
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 
   /* ---------- NAV ---------- */
-  header.nav{
-    position:sticky; top:0; z-index:50;
-    background: #FFFDF8;
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
+  header.nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
   }
-  .nav-inner{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:8px 16px;
-    max-width:var(--maxw); margin:0 auto;
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 24px;
+    max-width: var(--maxw); margin: 0 auto;
   }
-  .brand{display:flex; flex-direction:column; gap:1px;}
-  .brand-name{
-    font-family:'Fraunces',serif; font-weight:600; font-size:19px; letter-spacing:-0.01em;
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-images { display: flex; align-items: center; gap: 8px; }
+  .brand-images img {
+    height: 40px; width: auto; object-fit: contain;
   }
-  .brand-name .heart-mark{ color:var(--coeur); }
-  .brand-sub{
-    font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase;
-    color:var(--ink-soft);
+  nav.links { display: flex; align-items: center; gap: 32px; }
+  nav.links a {
+    font-size: 14.5px; font-weight: 500; text-decoration: none; 
+    color: var(--text-muted);
+    transition: color .2s ease;
   }
-  nav.links{ display:flex; align-items:center; gap:26px; }
-  nav.links a{
-    font-size:14px; text-decoration:none; color:var(--ink-soft);
-    transition:color .15s ease;
-  }
-  nav.links a:hover{color:var(--coeur);}
+  nav.links a:hover { color: var(--primary); }
 
-  /* language toggle */
-  .lang-toggle{
-    display:flex; align-items:center; background:var(--paper);
-    border:1px solid var(--line); border-radius:999px; padding:3px;
-    gap:2px; box-shadow:0 1px 2px rgba(22,35,61,0.05);
+  /* Language toggle */
+  .lang-toggle {
+    display: flex; align-items: center; background: var(--bg-alt);
+    border: 1px solid var(--border); border-radius: 99px; padding: 4px;
+    gap: 4px;
   }
-  .lang-toggle button{
-    display:flex; align-items:center; gap:6px;
-    border:none; background:transparent; cursor:pointer;
-    padding:6px 12px; border-radius:999px;
-    font-family:'Inter',sans-serif; font-size:12.5px; font-weight:600;
-    letter-spacing:0.03em;
-    color:var(--ink-soft);
-    transition:background .18s ease, color .18s ease;
+  .lang-toggle button {
+    display: flex; align-items: center; gap: 8px;
+    border: none; background: transparent; cursor: pointer;
+    padding: 6px 14px; border-radius: 99px;
+    font-family: 'Avenir LT Std', Avenir, sans-serif; font-size: 13px; font-weight: 600;
+    color: var(--text-muted);
+    transition: all .2s ease;
   }
-  .lang-toggle button.active{
-    background:#9e3039; color:var(--paper);
+  .lang-toggle button.active {
+    background: #FFFFFF; color: var(--text-dark);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   }
-  .flag{width:16px; height:11px; border-radius:2px; overflow:hidden; display:block; flex-shrink:0; box-shadow:0 0 0 1px rgba(0,0,0,0.08); border:solid 1px white;}
-
-  .mobile-toggle{display:none;}
-
-  /* ---------- IMAGE PLACEHOLDERS ---------- */
-  .img-placeholder{
-    border-radius:14px;
-    border:1.5px dashed rgba(22,35,61,0.28);
-    background:repeating-linear-gradient(135deg, var(--parchment-deep) 0, var(--parchment-deep) 11px, var(--paper) 11px, var(--paper) 22px);
-    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
-    color:var(--ink-soft);
-    overflow:hidden;
+  .flag {
+    width: 16px; height: 12px; border-radius: 2px; overflow: hidden; 
+    display: block; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.1);
   }
 
+  /* ---------- IMAGES ---------- */
+  .img-placeholder {
+    border-radius: var(--radius);
+    background: var(--bg-alt);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    overflow: hidden;
+    border: 1px solid var(--border);
   }
   .img-placeholder img {
-   object-fit:cover;
-   height:100%;
-   width:100%;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
   }
   
-  .hero-image{ aspect-ratio:4/5; }
-  .about-image{ aspect-ratio:16/10; margin-bottom:20px; }
-  .event-thumb{ width:104px; height:104px; border-radius:12px; flex-shrink:0; }
-  .event-thumb svg{ width:24px; height:24px; }
-  .event-thumb .ph-label{ font-size:8.5px; }
+  .hero-image { aspect-ratio: 4/3; }
+  .about-image { aspect-ratio: 16/10; margin-bottom: 24px; }
+  .event-thumb { width: 120px; height: 120px; border-radius: var(--radius); flex-shrink: 0; }
 
-  .logo-badge{
-    width:56px; height:56px; border-radius:12px;
-    border:1.5px dashed rgba(22,35,61,0.28);
-    background:repeating-linear-gradient(135deg, var(--parchment-deep) 0, var(--parchment-deep) 7px, var(--paper) 7px, var(--paper) 14px);
-    display:flex; align-items:center; justify-content:center;
-    flex-shrink:0;
-    font-family:'Fraunces',serif; font-weight:600; font-size:15px; color:var(--ink-soft);
+  .logo-badge {
+    width: 48px; height: 48px; border-radius: 8px;
+    background: var(--bg-alt); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; overflow: hidden;
   }
+  .logo-badge img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
 
   /* ---------- HERO ---------- */
-  .hero{
-    padding:88px 0 72px;
-    position:relative;
+  .hero { padding: 96px 0; }
+  .eyebrow {
+    display: inline-flex; align-items: center;
+    font-size: 13px;  
+    color: var(--primary);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+    line-height: 1.4em;
+        font-weight: 600;
   }
-  .eyebrow{
-    display:inline-flex; align-items:center; gap:8px;
-    font-size:12px; font-weight:600; letter-spacing:0.09em; text-transform:uppercase;
-    color:var(--coeur-deep);
-    margin-bottom:22px;
+  .hero h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.1;
+    max-width: 14ch;
   }
-  
-  .hero h1{
-    font-size:clamp(34px, 5.4vw, 58px);
-    line-height:1.06;
-    max-width:15ch;
+  .hero .lede {
+    margin-top: 24px; font-size: 18px; color: var(--text-muted); max-width: 50ch;
   }
-  .hero .lede{
-    margin-top:26px;
-    font-size:17.5px;
-    color:var(--ink-soft);
-    max-width:46ch;
-  }
-  .hero-grid{
-    display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;
-  }
-  .hero-cta{ display:flex; gap:14px; margin-top:36px; flex-wrap:wrap; }
-  .btn{
-    display:inline-flex; align-items:center; gap:8px;
-    padding:13px 22px; border-radius:8px;
-    font-size:14.5px; font-weight:600; text-decoration:none;
-    border:1px solid transparent;
-    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
-  }
-  .btn-primary{ background:var(--coeur); color:var(--paper); }
-  .btn-primary:hover{ background:var(--coeur-deep); transform:translateY(-1px); }
-  .btn-ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
-  .btn-ghost:hover{ border-color:var(--ink); transform:translateY(-1px); }
-
-  .hero-figures{
-    margin-top:64px;
-    display:grid; grid-template-columns:repeat(3,1fr);
-    border-top:1px solid var(--line);
-    padding-top:28px;
-    gap:20px;
-  }
-  .figure .num{
-    font-family:'Fraunces',serif; font-weight:600; font-size:clamp(26px,3vw,34px);
-    color:var(--ink);
-  }
-  .figure .lbl{
-    font-size:12.5px; color:var(--ink-soft); margin-top:4px;
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
   }
 
-  /* section shell */
-  section{ padding:84px 0; position:relative; }
-  section.alt{ background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
-  .section-head{ max-width:60ch; margin-bottom:48px; }
-  .section-head h2{ font-size:clamp(26px,3.4vw,36px); margin-top:14px; }
-  .section-head p{ margin-top:16px; color:var(--ink-soft); font-size:16px; }
+  /* ---------- SECTIONS ---------- */
+  section { padding: 96px 0; }
+  section.alt { background: var(--bg-alt); }
+  .section-head { max-width: 65ch; margin-bottom: 56px; }
+  .section-head h2 { font-size: clamp(28px, 4vw, 40px); margin-top: 12px; }
+  .section-head p { margin-top: 16px; color: var(--text-muted); font-size: 18px; }
 
   /* ---------- ABOUT ---------- */
-  .about-grid{
-    display:grid; grid-template-columns: 1.5fr 1fr; gap:56px; align-items:start;
+  .about-grid {
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: start;
   }
-  .about-grid p{ color:var(--ink-soft); font-size:16px; margin:0 0 16px; }
-  .about-grid p:last-child{margin-bottom:0;}
-  .about-stat{
-    background:var(--parchment); border:1px solid var(--line); border-radius:12px;
-    padding:26px; margin-bottom:16px;
+  .about-grid p { color: var(--text-muted); font-size: 16px; margin: 0 0 16px; }
+  .about-grid p:last-child { margin-bottom: 0; }
+  .about-stat {
+    background: var(--bg-main); border: 1px solid var(--border);
+    padding: 24px; margin-bottom: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   }
-  .about-stat .num{ font-family:'Fraunces',serif; font-size:30px; font-weight:600; color:var(--coeur-deep);}
-  .about-stat .lbl{ font-size:13px; color:var(--ink-soft); margin-top:4px;}
+  .about-stat .num { font-size: 24px; font-weight: 700; color: var(--secondary); }
+  .about-stat .lbl { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
 
-  /* ---------- TIMELINE / EVENTS (fil rouge) ---------- */
-  .thread{
-    position:relative;
-    padding-left:34px;
+  /* ---------- EVENTS THREAD ---------- */
+  .thread { position: relative; padding-left: 32px; }
+  .thread::before {
+    content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px;
+    background: var(--border); border-radius: 2px;
   }
-  .thread::before{
-    content:""; position:absolute; left:5px; top:6px; bottom:6px; width:2px;
-    background:linear-gradient(to bottom, var(--coeur), var(--gold));
-    border-radius:2px; opacity:0.55;
+  .thread-item {
+    position: relative; padding-bottom: 48px;
+    display: flex; gap: 32px; align-items: flex-start;
   }
-  .thread-item{
-    position:relative; padding-bottom:36px;
-    display:flex; gap:22px; align-items:flex-start;
+  .thread-item:last-child { padding-bottom: 0; }
+  .thread-item::before {
+    content: ""; position: absolute; left: -32px; top: 0px;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--bg-main); border: 4px solid var(--secondary);
   }
-  .thread-item:last-child{padding-bottom:0;}
-  .thread-item::before{
-    content:""; position:absolute; left:-34px; top:4px;
-    width:11px; height:11px; border-radius:50%;
-    background:var(--paper); border:2.5px solid var(--coeur);
+  .thread-item-body { flex: 1; min-width: 0; }
+  .thread-item .when {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.05em; 
+    color: var(--primary); margin-bottom: 8px; display: block;
   }
-  .thread-item-body{ flex:1; min-width:0; }
-  .thread-item .when{
-    font-size:11.5px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
-    color:var(--coeur-deep); margin-bottom:6px; display:block;
-  }
-  .thread-item h3{ font-size:19px; font-weight:600; margin-bottom:6px; }
-  .thread-item p{ color:var(--ink-soft); font-size:15px; margin:0; max-width:56ch; }
+  .thread-item h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+  .thread-item p { color: var(--text-muted); font-size: 16px; margin: 0; max-width: 60ch; }
 
   /* ---------- PARTNERS ---------- */
-  .partners-grid{
-    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
-    background:var(--line); border:1px solid var(--line); border-radius:12px; overflow:hidden;
+  .partners-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;
   }
-  .partner{
-    background:var(--paper); padding:20px; font-size:14.5px; font-weight:600;
-    display:flex; align-items:center; gap:14px; min-height:90px;
+  .partner {
+    background: var(--bg-main); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 16px 20px; font-size: 15px; font-weight: 600;
+    display: flex; align-items: center; gap: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .partner:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
   }
 
   /* ---------- LOCAL ACTION ---------- */
-  .local-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-  .local-card{
-    background:var(--paper); border:1px solid var(--line); border-radius:14px;
-    padding:26px; display:flex; flex-direction:column;
+  .local-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .local-card {
+    background: var(--bg-main); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 32px; display: flex; flex-direction: column;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    transition: box-shadow 0.2s ease;
   }
-  .local-card .tag{
-    font-size:11px; font-weight:700; letter-spacing:0.07em; text-transform:uppercase;
-    color:var(--gold); margin-bottom:12px;
+  .local-card:hover { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08); }
+  .local-card .tag {
+    display: inline-block; padding: 4px 12px; background: var(--bg-alt); border-radius: 99px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--secondary); margin-bottom: 16px; align-self: flex-start;
   }
-  .local-card h3{ font-size:18px; margin-bottom:10px; }
-  .local-card p{ color:var(--ink-soft); font-size:14.5px; margin:0 0 20px; flex-grow:1; }
-  .local-card a.visit{
-    font-size:13.5px; font-weight:600; color:var(--coeur-deep); text-decoration:none;
-    display:inline-flex; align-items:center; gap:6px;
+  .local-card h3 { font-size: 20px; margin-bottom: 12px; }
+  .local-card p { color: var(--text-muted); font-size: 15px; margin: 0 0 24px; flex-grow: 1; }
+  .local-card a.visit {
+    font-size: 14px; font-weight: 600; color: var(--primary); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
   }
-  .local-card a.visit:hover{ text-decoration:underline; }
+  .local-card a.visit:hover { text-decoration: underline; }
 
-  /* ---------- JOIN ---------- */
-  .join{
-    background:var(--parchment-deep);
-    border-radius:18px; padding:56px; text-align:center;
+/* ---------- FOOTER ---------- */
+  footer {
+    padding: 80px 0; 
+    border-top: 1px solid var(--border); 
+    background: var(--bg-alt);
   }
-  .join h2{ font-size:clamp(26px,3.6vw,38px); max-width:22ch; margin:0 auto; }
-  .join p{ color:var(--ink-soft); max-width:52ch; margin:18px auto 30px; font-size:16px; }
-  .join .hero-cta{ justify-content:center; }
+  .footer-inner {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start; 
+    flex-wrap: wrap; 
+    gap: 48px;
+  }
+  footer .footer-brand { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 24px; 
+    max-width: 45ch; 
+  }
+  footer .footer-logos { 
+    display: flex; 
+    align-items: center; 
+    gap: 24px; 
+  }
+  footer .footer-logos img { 
+    height: 56px; 
+    width: auto; 
+    object-fit: contain; 
+  }
+  footer .fine { 
+    font-size: 15px; 
+    color: var(--text-muted); 
+    margin: 0; 
+  }
+  footer .foot-links { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 16px; 
+    text-align: right; 
+  }
+  footer .foot-links a { 
+    font-size: 15px; 
+    font-weight: 500; 
+    color: var(--text-dark); 
+    text-decoration: none; 
+    transition: color .2s ease; 
+  }
+  footer .foot-links a:hover { 
+    color: var(--primary); 
+  }
 
-  /* ---------- FOOTER ---------- */
-  footer{
-    padding:48px 0 60px;
-    border-top:1px solid var(--line);
-  }
-  .footer-inner{
-    display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:24px;
-  }
-  footer .brand-name{ font-size:16px; }
-  footer .fine{ font-size:13px; color:var(--ink-soft); margin-top:8px; max-width:40ch; }
-  footer .foot-links{ display:flex; gap:22px; }
-  footer .foot-links a{ font-size:13.5px; color:var(--ink-soft); text-decoration:none; }
-  footer .foot-links a:hover{ color:var(--coeur); }
-
-  /* reveal on scroll */
-  .reveal{ opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease; }
-  .reveal.in{ opacity:1; transform:translateY(0); }
-  @media (prefers-reduced-motion: reduce){
-    .reveal{ opacity:1; transform:none; transition:none; }
-    html{ scroll-behavior:auto; }
+  /* ---------- ANIMATIONS ---------- */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
   }
 
   /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 860px){
-    .about-grid{ grid-template-columns:1fr; }
-    .hero-grid{ grid-template-columns:1fr; }
-    .hero-image{ aspect-ratio:16/10; order:-1; }
-    .partners-grid{ grid-template-columns:1fr 1fr; }
-    .local-grid{ grid-template-columns:1fr; }
-    .hero-figures{ grid-template-columns:1fr; gap:18px; }
-    nav.links{ display:none; }
-    .join{ padding:34px 24px; }
+  @media (max-width: 900px) {
+    .hero-grid, .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .hero-image { order: -1; aspect-ratio: 16/9; }
+    .local-grid { grid-template-columns: 1fr; }
+    nav.links { display: none; }
   }
-  @media (max-width: 560px){
-    .partners-grid{ grid-template-columns:1fr; }
-    .hero{ padding:56px 0 48px; }
-    section{ padding:60px 0; }
-    .thread-item{ flex-direction:column; }
-    .event-thumb{ width:100%; height:110px; }
+  @media (max-width: 600px) {
+    .hero { padding: 64px 0; }
+    section { padding: 64px 0; }
+    .thread-item { flex-direction: column; gap: 16px; }
+    .event-thumb { width: 100%; height: 200px; }
+    .footer-inner { flex-direction: column; }
+    footer .foot-links { text-align: left; }
   }
 </style>
 </head>
@@ -317,26 +314,25 @@
 <header class="nav">
   <div class="nav-inner">
     <div class="brand">
-     <span style="display:flex; flex-align:row; align-items: center;"><img src="https://ik.imagekit.io/53bnrahwc/images.png" style="width:50px; border-radius:50%; object-fit:contain; height:50px">
-     <img src=" https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/LFCG-TRANSPARENT.png/250px-LFCG-TRANSPARENT.png?utm_source=fr.wikipedia.org&utm_campaign=parser&utm_content=thumbnail" style="width:130px; border-radius:50%; object-fit:contain; height:auto; overflow: visible;">
-    </span>
-    
+      <div class="brand-images">
+        <img src="https://ik.imagekit.io/53bnrahwc/images.png" alt="Logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/LFCG-TRANSPARENT.png/250px-LFCG-TRANSPARENT.png" alt="LFCG Logo">
+      </div>
     </div>
     <nav class="links">
       <a href="#about" data-i18n="nav-about">Qui sommes-nous</a>
       <a href="#actions" data-i18n="nav-actions">Nos actions</a>
       <a href="#partenaires" data-i18n="nav-partners">Partenaires</a>
-      <a href="#rejoindre" data-i18n="nav-join">Nous rejoindre</a>
     </nav>
     <div class="lang-toggle" role="group" aria-label="Choix de la langue / Language choice">
       <button type="button" id="btn-fr" class="active" onclick="setLang('fr')" aria-pressed="true">
         <span class="flag" aria-hidden="true">
-          <svg viewBox="0 0 3 2" width="16" height="11"><rect width="1" height="2" fill="#002395"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ED2939"/></svg>
+          <svg viewBox="0 0 3 2" width="16" height="12"><rect width="1" height="2" fill="#002395"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ED2939"/></svg>
         </span>FR
       </button>
       <button type="button" id="btn-en" onclick="setLang('en')" aria-pressed="false">
         <span class="flag" aria-hidden="true">
-          <svg viewBox="0 0 60 36" width="16" height="11">
+          <svg viewBox="0 0 60 36" width="16" height="12">
             <rect width="60" height="36" fill="#00247d"/>
             <path d="M0,0 L60,36 M60,0 L0,36" stroke="#fff" stroke-width="6"/>
             <path d="M0,0 L60,36 M60,0 L0,36" stroke="#cf142b" stroke-width="2.4"/>
@@ -353,18 +349,15 @@
   <section class="hero">
     <div class="wrap">
       <div class="hero-grid">
-        <div>
+        <div class="reveal">
           <span class="eyebrow" data-i18n="hero-eyebrow">Association caritative, fondée en 1989</span>
           <h1 data-i18n="hero-h1">La solidarité à l’échelle locale & internationale</h1>
           <p class="lede" data-i18n="hero-lede">Tout au long de l’année, au sein de Justice au Cœur, la Charity du LFCG, des lycéen.ne.s encadré.es par des enseignantes s’engagent dans une démarche citoyenne et caritative au profit d’associations partenaires qui luttent contre la pauvreté et les inégalités.</p>
-         
         </div>
         <div class="img-placeholder hero-image reveal in">
-        <img src="https://www.lyceefrancais.org.uk/assets/News/_resampled/FitWyIxMDI0IiwiMTAyNCJd/IMG-1207-ok.png">
+          <img src="https://www.lyceefrancais.org.uk/assets/News/_resampled/FitWyIxMDI0IiwiMTAyNCJd/IMG-1207-ok.png" alt="Élèves du Lycée Français Charles de Gaulle">
         </div>
       </div>
-     
-     
     </div>
   </section>
 
@@ -374,17 +367,16 @@
         <div class="reveal">
           <span class="eyebrow" data-i18n="about-eyebrow">Qui sommes-nous</span>
           <h2 data-i18n="about-h2">Un club fondé par des professeurs, porté par des élèves.</h2>
-          <p style="margin-top:18px;" data-i18n="about-p1">De l’affichage à la collecte des fonds, les opérations sont concertées et menées par les élèves. La communication, relayée par divers services du Lycée, va des affiches disposées dans l’établissement, aux fonds d’écran sur les ordinateurs des classes et des personnels, en passant par les messages adressés aux familles, afin que toute la communauté scolaire se mobilise.</p>
+          <p style="margin-top:24px;" data-i18n="about-p1">De l’affichage à la collecte des fonds, les opérations sont concertées et menées par les élèves. La communication, relayée par divers services du Lycée, va des affiches disposées dans l’établissement, aux fonds d’écran sur les ordinateurs des classes et des personnels, en passant par les messages adressés aux familles, afin que toute la communauté scolaire se mobilise.</p>
         </div>
         <div class="reveal">
           <div class="img-placeholder about-image">
-           <img src="https://ik.imagekit.io/53bnrahwc/555611879_25248341848083879_7922604162379172186_n.jpg">
+            <img src="https://ik.imagekit.io/53bnrahwc/555611879_25248341848083879_7922604162379172186_n.jpg" alt="Réunion des élèves">
           </div>
           <div class="about-stat">
-            <div class="num" data-i18n="about-stat1-num">Tous les mercredis</div>
+  
             <div class="lbl" data-i18n="about-stat1-lbl">Réunion hebdomadaire ouverte aux élèves volontaires</div>
           </div>
-         
         </div>
       </div>
     </div>
@@ -392,16 +384,15 @@
 
   <section id="actions">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head reveal">
         <span class="eyebrow" data-i18n="actions-eyebrow">Ce que nous faisons</span>
         <h2 data-i18n="actions-h2">Des campagnes qui rythment l'année scolaire.</h2>
-        <p data-i18n="actions-p">Chaque événement a sa saison. Ensemble, ils forment le fil rouge de l'engagement de Justice au Cœur tout au long de l'année.</p>
+        <p data-i18n="actions-p">L'engagement de Justice au Cœur tout au long de l'année.</p>
       </div>
       <div class="thread">
         <div class="thread-item reveal">
           <div class="img-placeholder event-thumb">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/></svg>
-            <span class="ph-label" data-i18n="ph-ev1">Photo</span>
+            <img src="https://ik.imagekit.io/53bnrahwc/1701965263873.jpeg" alt="Bazar de Noël">
           </div>
           <div class="thread-item-body">
             <span class="when" data-i18n="ev1-when">Décembre</span>
@@ -410,10 +401,6 @@
           </div>
         </div>
         <div class="thread-item reveal">
-          <div class="img-placeholder event-thumb">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.35-9.5-8.5C.7 8.6 2.6 5 6 5c2 0 3.5 1.2 4 2.5C10.5 6.2 12 5 14 5c3.4 0 5.3 3.6 3.5 7.5C15 16.65 12 21 12 21z" transform="scale(0.8) translate(3,2)"/></svg>
-            <span class="ph-label" data-i18n="ph-ev2">Photo</span>
-          </div>
           <div class="thread-item-body">
             <span class="when" data-i18n="ev2-when">Février</span>
             <h3 data-i18n="ev2-h3">Vente de sucettes de la Saint-Valentin</h3>
@@ -422,19 +409,17 @@
         </div>
         <div class="thread-item reveal">
           <div class="img-placeholder event-thumb">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21c0-4 3-5 8-5s8 1 8 5"/><circle cx="12" cy="8" r="4"/></svg>
-            <span class="ph-label" data-i18n="ph-ev3">Photo</span>
+            <img src="https://ik.imagekit.io/53bnrahwc/545311625_25087587550825977_5943554077411557878_n.jpg" alt="Bal Masqué">
           </div>
           <div class="thread-item-body">
-            <span class="when" data-i18n="ev3-when">Toute l'année</span>
+            <span class="when" data-i18n="ev3-when">Mars</span>
             <h3 data-i18n="ev3-h3">Bal Masqué des 6èmes–5èmes</h3>
             <p data-i18n="ev3-p">Une soirée pensée pour les plus jeunes du secondaire, organisée et animée par les élèves de Justice au Cœur.</p>
           </div>
         </div>
         <div class="thread-item reveal">
           <div class="img-placeholder event-thumb">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12c0-2 1.5-4 4-4s4 2 4 4-1.5 4-4 4"/></svg>
-            <span class="ph-label" data-i18n="ph-ev4">Photo</span>
+            <img src="https://ik.imagekit.io/53bnrahwc/555463984_25246771398240924_7065679436854687396_n.jpg" alt="Ventes de gâteaux">
           </div>
           <div class="thread-item-body">
             <span class="when" data-i18n="ev4-when">Récurrent</span>
@@ -443,14 +428,10 @@
           </div>
         </div>
         <div class="thread-item reveal">
-          <div class="img-placeholder event-thumb">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/><path d="M5 5l14 14M19 5L5 19" opacity="0.5"/></svg>
-            <span class="ph-label" data-i18n="ph-ev5">Photo</span>
-          </div>
           <div class="thread-item-body">
             <span class="when" data-i18n="ev5-when">Selon l'actualité</span>
             <h3 data-i18n="ev5-h3">Campagnes de solidarité internationale</h3>
-            <p data-i18n="ev5-p">Lorsque l'actualité l'exige, Justice au Cœur se mobilise aux côtés du Conseil de Vie Lycéenne pour des collectes de dons en espèces — comme lors de la campagne « Tous en blanc » pour la paix.</p>
+            <p data-i18n="ev5-p">Lorsque l'actualité l'exige, Justice au Cœur se mobilise aux côtés du Conseil de Vie Lycéenne pour des collectes de dons en espèces.</p>
           </div>
         </div>
       </div>
@@ -459,41 +440,41 @@
 
   <section id="partenaires" class="alt">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head reveal">
         <span class="eyebrow" data-i18n="partners-eyebrow">Nos associations partenaires</span>
         <h2 data-i18n="partners-h2">Nous n'agissons jamais seuls.</h2>
-        <p data-i18n="partners-p">Justice au Cœur fonctionne sur un principe de partenariat : les fonds collectés sont reversés à des associations qui agissent au plus près du terrain, en France, au Royaume-Uni et à l'international.</p>
+        <p data-i18n="partners-p">Les fonds collectés sont reversés à des associations qui agissent au plus près du terrain, en France, au Royaume-Uni et à l'international.</p>
       </div>
-      <div class="partners-grid">
-        <div class="partner"><span class="logo-badge">ATD</span>ATD Quart Monde</div>
-        <div class="partner"><span class="logo-badge">CHC</span>Cardinal Hume Centre</div>
-        <div class="partner"><span class="logo-badge">DFL</span>Dispensaire Français de Londres</div>
-        <div class="partner"><span class="logo-badge">EM</span>Emmaüs</div>
-        <div class="partner"><span class="logo-badge">EK</span>Edu'Kenya</div>
-        <div class="partner"><span class="logo-badge">EdM</span>Enfants du Mékong</div>
-        <div class="partner"><span class="logo-badge">PSE</span>PSE — Pour un Sourire d'Enfant</div>
-        <div class="partner"><span class="logo-badge">HI</span>Handicap International</div>
-        <div class="partner"><span class="logo-badge">+</span><span data-i18n="partner-and-more">… et nos partenaires ponctuels</span></div>
+      <div class="partners-grid reveal">
+        <div class="partner"><span class="logo-badge"><img src="https://www.tousbenevoles.org/images/action/1731509166.png" alt="ATD"></span>ATD Quart Monde</div>
+        <div class="partner"><span class="logo-badge"><img src="https://www.universitycatholic.net/wp-content/uploads/bfi_thumb/cardinalhumecentre-odybllxyaa5xttwmhsal8doqrs96s4aauexcw2lafg.jpg" alt="Cardinal Hume"></span>Cardinal Hume Centre</div>
+        <div class="partner"><span class="logo-badge"><img src="https://media.licdn.com/dms/image/v2/C4D0BAQFFaTTM3RRGHg/company-logo_200_200/company-logo_200_200/0/1630516355181?e=2147483647&v=beta&t=9ts9US8k5lIYjURRdJKS22soj4XndsMQ9cz4nPkLrAo" alt="Dispensaire"></span>Dispensaire Français de Londres</div>
+        <div class="partner"><span class="logo-badge"><img src="https://lemouvementassociatif.org/wp-content/uploads/2024/06/Emmaus-France.png" alt="Emmaüs"></span>Emmaüs</div>
+        <div class="partner"><span class="logo-badge"><img src="https://media.licdn.com/dms/image/v2/C4E0BAQEoEhEAPq_lug/company-logo_200_200/company-logo_200_200/0/1630596589124/edukenya_logo?e=2147483647&v=beta&t=BE7fDsFuMNIZji94_F7nl7QajoDzc_GlXMK__pcXYC4" alt="EduKenya"></span>Edu'Kenya</div>
+        <div class="partner"><span class="logo-badge"><img src="https://dae87hicbxri9.cloudfront.net/uploads/assoc/logo/6/Plan_de_travail_18_4x.jpg" alt="Enfants du Mékong"></span>Enfants du Mékong</div>
+        <div class="partner"><span class="logo-badge"><img src="https://storage.benevolt.fr/ea0beef8-7e6e-44f3-b986-db6cc1fe9084/c/pour-un-sourire-denfant-logo-avatar.jpg" alt="PSE"></span>Pour un Sourire d'Enfant</div>
+        <div class="partner"><span class="logo-badge"><img src="https://www.hi.org/sn_uploads/fck/logo-hi-main.jpg" alt="HI"></span>Handicap International</div>
+        <div class="partner" style="background: transparent; border: none; box-shadow: none; color: var(--text-muted);"><span class="logo-badge" style="background: transparent; border: 1px dashed var(--border);">+</span><span data-i18n="partner-and-more">Et d'autres selon les campagnes</span></div>
       </div>
     </div>
   </section>
 
   <section>
     <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow" data-i18n="local-eyebrow">Agir localement, à Londres</span>
+      <div class="section-head reveal">
+        <span class="eyebrow" data-i18n="local-eyebrow">Agir localement</span>
         <h2 data-i18n="local-h2">La solidarité commence tout près de chez nous.</h2>
-        <p data-i18n="local-p">Au-delà des grandes campagnes, Justice au Cœur encourage les élèves à soutenir des initiatives de proximité — à commencer par la lutte contre la précarité alimentaire dans les boroughs voisins du Lycée.</p>
+        <p data-i18n="local-p">Au-delà des grandes campagnes, Justice au Cœur encourage les élèves à soutenir des initiatives de proximité, à commencer par la lutte contre la précarité alimentaire dans les boroughs voisins du Lycée.</p>
       </div>
       <div class="local-grid">
         <div class="local-card reveal">
-          <span class="tag" data-i18n="local-tag1">Précarité alimentaire</span>
+          <span class="tag" data-i18n="local-tag1">Alimentaire</span>
           <h3 data-i18n="local-card1-h3">Hammersmith & Fulham Foodbank</h3>
           <p data-i18n="local-card1-p">Une banque alimentaire locale qui vient en aide aux familles du borough voisin de notre Lycée, à travers la distribution de colis alimentaires d'urgence.</p>
           <a class="visit" href="https://hammersmithfulham.foodbank.org.uk/" target="_blank" rel="noopener" data-i18n="local-visit">Visiter le site <span aria-hidden="true">→</span></a>
         </div>
         <div class="local-card reveal">
-          <span class="tag" data-i18n="local-tag2">Aide humanitaire</span>
+          <span class="tag" data-i18n="local-tag2">Humanitaire</span>
           <h3 data-i18n="local-card2-h3">British Red Cross</h3>
           <p data-i18n="local-card2-p">L'une des organisations soutenues lors de notre campagne « Tous en blanc », active au Royaume-Uni comme à l'international.</p>
           <a class="visit" href="https://www.redcross.org.uk/" target="_blank" rel="noopener" data-i18n="local-visit">Visiter le site <span aria-hidden="true">→</span></a>
@@ -501,22 +482,8 @@
         <div class="local-card reveal">
           <span class="tag" data-i18n="local-tag3">Réfugiés</span>
           <h3 data-i18n="local-card3-h3">HCR / UNHCR</h3>
-          <p data-i18n="local-card3-p">L'agence des Nations Unies pour les réfugiés, second partenaire de notre collecte « Tous en blanc » en faveur de la paix.</p>
+          <p data-i18n="local-card3-p">L'agence des Nations Unies pour les réfugiés, en faveur de la paix.</p>
           <a class="visit" href="https://www.unhcr.org/" target="_blank" rel="noopener" data-i18n="local-visit">Visiter le site <span aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="rejoindre">
-    <div class="wrap">
-      <div class="join reveal">
-        <span class="eyebrow" style="justify-content:center;" data-i18n="join-eyebrow">Nous rejoindre</span>
-        <h2 data-i18n="join-h2">Vous êtes élève au LFCG ? Rejoignez-nous.</h2>
-        <p data-i18n="join-p">Aucune expérience requise — seulement l'envie d'agir. Nous nous retrouvons chaque mercredi pour préparer nos campagnes, partager des idées et avancer ensemble.</p>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="https://www.lyceefrancais.org.uk/" target="_blank" rel="noopener" data-i18n="join-cta-1">Contacter le Lycée</a>
-          <a class="btn btn-ghost" href="https://www.instagram.com/justice_au_coeur_lfcg/" target="_blank" rel="noopener" data-i18n="join-cta-2">Nous suivre sur Instagram</a>
         </div>
       </div>
     </div>
@@ -525,62 +492,46 @@
 
 <footer>
   <div class="wrap footer-inner">
-    <div>
-      <span class="brand-name">Justice au C<span class="heart-mark">œ</span>ur</span>
-      <p class="fine" data-i18n="footer-fine">Club caritatif du Lycée Français Charles de Gaulle de Londres, fondé en 1989 par des professeurs et des élèves engagés.</p>
+    <div class="footer-brand">
+      <div class="footer-logos">
+        <img src="https://ik.imagekit.io/53bnrahwc/images.png" alt="Logo Justice au Cœur">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/LFCG-TRANSPARENT.png/250px-LFCG-TRANSPARENT.png" alt="LFCG Logo">
+      </div>
+      <p class="fine" data-i18n="footer-fine">Association caritative du Lycée Français Charles de Gaulle de Londres, fondée en 1989.</p>
     </div>
     <div class="foot-links">
+      <a href="mailto:contact@lyceefrancais.org.uk" data-i18n="footer-contact">Nous contacter</a>
       <a href="https://www.lyceefrancais.org.uk/" target="_blank" rel="noopener">lyceefrancais.org.uk</a>
-      <a href="#about" data-i18n="footer-link1">Qui sommes-nous</a>
-      <a href="#partenaires" data-i18n="footer-link2">Partenaires</a>
     </div>
   </div>
 </footer>
 
 <script>
 const I18N = {
-  "nav-sub": {fr:"Lycée Français Charles de Gaulle de Londres", en:"Lycée Français Charles de Gaulle de Londres"},
   "nav-about": {fr:"Qui sommes-nous", en:"About us"},
   "nav-actions": {fr:"Nos actions", en:"What we do"},
   "nav-partners": {fr:"Partenaires", en:"Partners"},
-  "nav-join": {fr:"Nous rejoindre", en:"Join us"},
 
-  "hero-eyebrow": {fr:"Association caritative, fondée en 1989", en:"A student-run charity, founded in 1989"},
-  "hero-h1": {fr:"La solidarité s'apprend à hauteur d'élève.", en:"Solidarity, learned at eye level."},
-  "hero-lede": {fr:"Justice au Cœur est le club caritatif du Lycée Français Charles de Gaulle de Londres. Élèves et professeurs y unissent leurs forces pour lutter, ensemble, contre la pauvreté et les inégalités — à Londres comme dans le monde.", en:"Justice au Cœur is the charity club of the Lycée Français Charles de Gaulle de Londres. Students and teachers join forces to fight poverty and inequality together — in London and around the world."},
-  "hero-cta-1": {fr:"Découvrir nos actions", en:"Discover our work"},
-  "hero-cta-2": {fr:"Nos partenaires solidaires", en:"Our partner organisations"},
-  "fig-1": {fr:"Année de création", en:"Year founded"},
-  "fig-2": {fr:"Élèves engagés (2019–2020)", en:"Students involved (2019–2020)"},
-  "fig-3": {fr:"Fonds levés en une année", en:"Raised in a single year"},
-  "ph-hero": {fr:"Photo à ajouter — élèves de Justice au Cœur", en:"Photo to be added — Justice au Cœur students"},
-  "ph-about": {fr:"Photo à ajouter — réunion du mercredi", en:"Photo to be added — Wednesday meeting"},
-  "ph-ev1": {fr:"Photo", en:"Photo"},
-  "ph-ev2": {fr:"Photo", en:"Photo"},
-  "ph-ev3": {fr:"Photo", en:"Photo"},
-  "ph-ev4": {fr:"Photo", en:"Photo"},
-  "ph-ev5": {fr:"Photo", en:"Photo"},
+  "hero-eyebrow": {fr:"Association caritative, fondée en 1989", en:"A charity, founded in 1989"},
+  "hero-h1": {fr:"La solidarité à l’échelle locale & internationale", en:"Solidarity, both local and international"},
+  "hero-lede": {fr:"Tout au long de l’année, au sein de Justice au Cœur, la Charity du LFCG, des lycéen.ne.s encadré.es par des enseignantes s’engagent dans une démarche citoyenne et caritative au profit d’associations partenaires qui luttent contre la pauvreté et les inégalités.", en:"Throughout the year, within Justice au Cœur, the LFCG's charity, students supervised by teachers take part in a civic and charitable effort in support of partner associations fighting poverty and inequality."},
 
   "about-eyebrow": {fr:"Qui sommes-nous", en:"About us"},
   "about-h2": {fr:"Un club fondé par des professeurs, porté par des élèves.", en:"Founded by teachers, driven by students."},
-  "about-p1": {fr:"Créé en 1989 par des professeurs du Lycée, Justice au Cœur réunit chaque mercredi des élèves volontaires autour d'un objectif simple : comprendre les inégalités du monde et agir, à leur échelle, pour les réduire.", en:"Founded in 1989 by teachers at the Lycée, Justice au Cœur brings together volunteer students every Wednesday around a simple goal: understand the world's inequalities and act, at their own scale, to reduce them."},
-  "about-p2": {fr:"De l'affiche à la collecte des fonds, chaque campagne est pensée et menée par les élèves eux-mêmes — avec le soutien de leurs enseignants et de toute la communauté du LFCG, des familles aux salles de classe.", en:"From posters to fundraising, every campaign is designed and run by the students themselves — with the support of their teachers and the whole LFCG community, from families to classrooms."},
-  "about-p3": {fr:"Justice au Cœur, c'est aussi l'occasion de rencontrer des personnes généreuses, de partager un repas avec celles et ceux qu'on ne croise pas toujours, et de s'ouvrir à d'autres réalités que la nôtre.", en:"Justice au Cœur is also a chance to meet generous people, share a meal with those we don't always cross paths with, and open up to realities beyond our own."},
+  "about-p1": {fr:"De l’affichage à la collecte des fonds, les opérations sont concertées et menées par les élèves. La communication, relayée par divers services du Lycée, va des affiches disposées dans l’établissement, aux fonds d’écran sur les ordinateurs des classes et des personnels, en passant par les messages adressés aux familles, afin que toute la communauté scolaire se mobilise.", en:"From posters to fundraising, every action is planned and carried out by the students. Communication is relayed by various departments of the Lycée — from posters displayed around the school, to screensavers on classroom and staff computers, to messages sent to families — so that the whole school community gets involved."},
   "about-stat1-num": {fr:"Tous les mercredis", en:"Every Wednesday"},
   "about-stat1-lbl": {fr:"Réunion hebdomadaire ouverte aux élèves volontaires", en:"Weekly meeting open to volunteer students"},
-  "about-stat2-num": {fr:"9 associations", en:"9 organisations"},
-  "about-stat2-lbl": {fr:"Partenaires soutenues sur le terrain", en:"Partners supported on the ground"},
 
   "actions-eyebrow": {fr:"Ce que nous faisons", en:"What we do"},
   "actions-h2": {fr:"Des campagnes qui rythment l'année scolaire.", en:"Campaigns that mark the school year."},
-  "actions-p": {fr:"Chaque événement a sa saison. Ensemble, ils forment le fil rouge de l'engagement de Justice au Cœur tout au long de l'année.", en:"Every event has its season. Together, they form the common thread of Justice au Cœur's commitment throughout the year."},
+  "actions-p": {fr:"L'engagement de Justice au Cœur tout au long de l'année.", en:"Justice au Cœur's commitment throughout the year."},
   "ev1-when": {fr:"Décembre", en:"December"},
   "ev1-h3": {fr:"Bazar de Noël", en:"Christmas Bazaar"},
   "ev1-p": {fr:"Un rendez-vous devenu culte au Lycée : stands tenus par les élèves, artisanat et gourmandises, au profit de nos associations partenaires.", en:"A beloved fixture at the Lycée: student-run stalls, crafts and treats, in aid of our partner organisations."},
   "ev2-when": {fr:"Février", en:"February"},
   "ev2-h3": {fr:"Vente de sucettes de la Saint-Valentin", en:"Valentine's lollipop sale"},
   "ev2-p": {fr:"La vente traditionnelle qui ouvre la saison des campagnes de solidarité de printemps.", en:"The traditional sale that opens the spring season of solidarity campaigns."},
-  "ev3-when": {fr:"Toute l'année", en:"Year-round"},
+  "ev3-when": {fr:"Mars", en:"March"},
   "ev3-h3": {fr:"Bal Masqué des 6èmes–5èmes", en:"Masked Ball for Year 7–8 students"},
   "ev3-p": {fr:"Une soirée pensée pour les plus jeunes du secondaire, organisée et animée par les élèves de Justice au Cœur.", en:"An evening designed for the youngest secondary students, organised and hosted by Justice au Cœur members."},
   "ev4-when": {fr:"Récurrent", en:"Recurring"},
@@ -588,36 +539,30 @@ const I18N = {
   "ev4-p": {fr:"Des collectes ponctuelles, organisées à l'occasion d'actions plus larges, pour financer nos partenaires au fil de l'année.", en:"One-off sales, held alongside larger campaigns, to fund our partners throughout the year."},
   "ev5-when": {fr:"Selon l'actualité", en:"As events unfold"},
   "ev5-h3": {fr:"Campagnes de solidarité internationale", en:"International solidarity campaigns"},
-  "ev5-p": {fr:"Lorsque l'actualité l'exige, Justice au Cœur se mobilise aux côtés du Conseil de Vie Lycéenne pour des collectes de dons en espèces — comme lors de la campagne « Tous en blanc » pour la paix.", en:"When world events call for it, Justice au Cœur mobilises alongside the Conseil de Vie Lycéenne for cash-donation drives — as with the 'Tous en blanc' campaign for peace."},
+  "ev5-p": {fr:"Lorsque l'actualité l'exige, Justice au Cœur se mobilise aux côtés du Conseil de Vie Lycéenne pour des collectes de dons en espèces.", en:"When world events call for it, Justice au Cœur mobilises alongside the Conseil de Vie Lycéenne for cash-donation drives."},
 
   "partners-eyebrow": {fr:"Nos associations partenaires", en:"Our partner organisations"},
   "partners-h2": {fr:"Nous n'agissons jamais seuls.", en:"We never act alone."},
-  "partners-p": {fr:"Justice au Cœur fonctionne sur un principe de partenariat : les fonds collectés sont reversés à des associations qui agissent au plus près du terrain, en France, au Royaume-Uni et à l'international.", en:"Justice au Cœur works on a partnership model: the funds we raise are donated to organisations working directly on the ground, in France, the UK and internationally."},
-  "partner-and-more": {fr:"… et nos partenaires ponctuels", en:"… and our occasional partners"},
+  "partners-p": {fr:"Les fonds collectés sont reversés à des associations qui agissent au plus près du terrain, en France, au Royaume-Uni et à l'international.", en:"The funds we raise are donated to associations working directly on the ground, in France, the UK and internationally."},
+  "partner-and-more": {fr:"Et d'autres selon les campagnes", en:"And others, depending on the campaign"},
 
-  "local-eyebrow": {fr:"Agir localement, à Londres", en:"Acting locally, in London"},
+  "local-eyebrow": {fr:"Agir localement", en:"Acting locally"},
   "local-h2": {fr:"La solidarité commence tout près de chez nous.", en:"Solidarity starts close to home."},
-  "local-p": {fr:"Au-delà des grandes campagnes, Justice au Cœur encourage les élèves à soutenir des initiatives de proximité — à commencer par la lutte contre la précarité alimentaire dans les boroughs voisins du Lycée.", en:"Beyond our larger campaigns, Justice au Cœur encourages students to support local initiatives — starting with the fight against food poverty in the boroughs neighbouring the Lycée."},
-  "local-tag1": {fr:"Précarité alimentaire", en:"Food poverty"},
+  "local-p": {fr:"Au-delà des grandes campagnes, Justice au Cœur encourage les élèves à soutenir des initiatives de proximité, à commencer par la lutte contre la précarité alimentaire dans les boroughs voisins du Lycée.", en:"Beyond our larger campaigns, Justice au Cœur encourages students to support local initiatives, starting with the fight against food poverty in the boroughs neighbouring the Lycée."},
+  "local-tag1": {fr:"Alimentaire", en:"Food"},
   "local-card1-h3": {fr:"Hammersmith & Fulham Foodbank", en:"Hammersmith & Fulham Foodbank"},
   "local-card1-p": {fr:"Une banque alimentaire locale qui vient en aide aux familles du borough voisin de notre Lycée, à travers la distribution de colis alimentaires d'urgence.", en:"A local foodbank supporting families in the borough next to our Lycée, through the distribution of emergency food parcels."},
-  "local-tag2": {fr:"Aide humanitaire", en:"Humanitarian aid"},
+  "local-tag2": {fr:"Humanitaire", en:"Humanitarian"},
   "local-card2-h3": {fr:"British Red Cross", en:"British Red Cross"},
   "local-card2-p": {fr:"L'une des organisations soutenues lors de notre campagne « Tous en blanc », active au Royaume-Uni comme à l'international.", en:"One of the organisations supported during our 'Tous en blanc' campaign, active in the UK and internationally."},
   "local-tag3": {fr:"Réfugiés", en:"Refugees"},
   "local-card3-h3": {fr:"HCR / UNHCR", en:"UNHCR"},
-  "local-card3-p": {fr:"L'agence des Nations Unies pour les réfugiés, second partenaire de notre collecte « Tous en blanc » en faveur de la paix.", en:"The UN Refugee Agency, the second partner of our 'Tous en blanc' collection for peace."},
-  "local-visit": {fr:"Visiter le site →", en:"Visit the site →"},
+  "local-card3-p": {fr:"L'agence des Nations Unies pour les réfugiés, en faveur de la paix.", en:"The United Nations agency for refugees, working in the cause of peace."},
+ "local-visit": {fr:"Visiter le site →", en:"Visit the site →"},
 
-  "join-eyebrow": {fr:"Nous rejoindre", en:"Join us"},
-  "join-h2": {fr:"Vous êtes élève au LFCG ? Rejoignez-nous.", en:"A student at LFCG? Come join us."},
-  "join-p": {fr:"Aucune expérience requise — seulement l'envie d'agir. Nous nous retrouvons chaque mercredi pour préparer nos campagnes, partager des idées et avancer ensemble.", en:"No experience required — just the will to act. We meet every Wednesday to plan campaigns, share ideas and move forward together."},
-  "join-cta-1": {fr:"Contacter le Lycée", en:"Contact the Lycée"},
-  "join-cta-2": {fr:"Nous suivre sur Instagram", en:"Follow us on Instagram"},
-
-  "footer-fine": {fr:"Club caritatif du Lycée Français Charles de Gaulle de Londres, fondé en 1989 par des professeurs et des élèves engagés.", en:"The charity club of the Lycée Français Charles de Gaulle de Londres, founded in 1989 by teachers and committed students."},
-  "footer-link1": {fr:"Qui sommes-nous", en:"About us"},
-  "footer-link2": {fr:"Partenaires", en:"Partners"}
+  "footer-fine": {fr:"Association caritative du Lycée Français Charles de Gaulle de Londres, fondée en 1989.", en:"The charity of the Lycée Français Charles de Gaulle de Londres, founded in 1989."},
+  "footer-contact": {fr:"Nous contacter", en:"Contact us"}
+  
 };
 
 function setLang(lang){
